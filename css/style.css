@@ -1455,11 +1455,8 @@ text-decoration:none;
 display:block;
 }
 #footer_bottom{
-width:980px;
 height:20px;
-padding:26px 0 20px;
 overflow:hidden;
-background:url(../images/submenu.png) no-repeat 0 -384px transparent;
 text-align:center;
 color:#848484;
 }

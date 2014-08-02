@@ -99,6 +99,7 @@
 		<!-- /Main content alpha -->
 	</div>
   	<!--! end of #container -->
+  	<div id="footer_bottom" class="png_bg"><p>Copyrights © <a href="http://www.irana.ir">Irana</a> 2014. All rights reserved.</p></div>
   	<!-- Javascript at the bottom for fast page loading -->
   	<!-- Grab Google CDN's jQuery. fall back to local if necessary -->
   	<script src="js/jquery.min.js"></script>
