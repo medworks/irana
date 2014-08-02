@@ -29,7 +29,7 @@
 		<!-- Header -->
 	    <div id="header">
 			<div id="logo">
-				<a href="index.html">
+				<a href="./">
 					<img src="images/logo.png" alt="">
 				</a>
 			</div>
