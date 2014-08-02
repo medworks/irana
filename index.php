@@ -34,89 +34,29 @@
 				</a>
 			</div>
 			<div id="personal_data">
-				<p>Phone <span>+42 555-46-65</span></p>
-				<p>email: <span><a href="mailto:johndoe@johndoes.com">johndoe@johndoes.com</a></span></p>
+				<p>Phone <span class="latin-font">051 3855-55-60</span></p>
+				<p>Email: <span><a href="mailto:info@irana.ir" class="latin-font">info@irana.ir</a></span></p>
 			</div>
 		</div>
 		<div id="menu" class="png_bg">
 			<ul>
 				<li class="selected">
-					<a href="index.html">Home</a>
+					<a href="index.html">صفحه اصلی</a>
 				</li>
 				<li>
-					<a href="#" class="">Features</a>
-					<ul style="display: none;">
-						<li class="first_sub png_bg">
-							<a href="typography.html">Typography</a>
-							<ul style="display: none;">
-								<li class="first_sub png_bg"><a href="typography.html">Headings and paragraphs</a></li>
-								<li><a href="floats.html">Images and floats</a></li>
-								<li><a href="dropcaps.html">Dropcaps and blockquotes</a></li>
-								<li><a href="checklists.html">Code blocks and checklists</a></li>
-								<li><a href="buttons.html">Buttons</a></li>
-								<li><a href="boxes.html">Warning boxes</a></li>
-								<li><a href="separators.html">Separators</a></li>
-								<li><a href="tables.html">Tables</a></li>
-								<li><a href="showcase.html">Grids and container blocks</a></li>
-								<li><a href="pricing.html">Pricing tables</a></li>
-								<li><a href="toggle.html">FAQ toggles</a></li>
-							</ul>
-						</li>
-						<li><a href="showcase.html">Grids showcase</a></li>
-						<li><a href="pricing.html">Pricing tables</a></li>
-						<li><a href="about.html">About</a></li>
-					</ul>
+					<a href="#" class="">امکانات</a>
 				</li>
 				<li>
-					<a href="#" class="">Pages</a>
-					<ul style="display: none;">
-						<li class="first_sub png_bg">
-							<a href="#">Mainpage styles</a>
-							<ul style="display: none;">
-								<li class="first_sub png_bg"><a href="index.html">Default</a></li>
-								<li><a href="mainpage_pricing.html">With pricing</a></li>
-								<li><a href="mainpage_pricing_nowidg.html">With pricing, without widgets</a></li>
-								<li><a href="mainpage_news.html">With news section</a></li>
-								<li><a href="mainpage_noslogan.html">Without slogan area</a></li>
-								<li><a href="mainpage_noslider.html">Without slider</a></li>
-								<li><a href="mainpage_vid.html">With video</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">Portfolio styles</a>
-							<ul style="display: none;">
-								<li class="first_sub png_bg"><a href="portfolio4c.html">4-columns</a></li>
-								<li><a href="portfolio.html">Default, 3-columns</a></li>
-								<li><a href="portfolio2c.html">2-columns</a></li>
-								<li><a href="portfolio1c.html">1-column</a></li>
-								<li><a href="portfolio_allinone.html">All in one</a></li>
-							</ul>
-						</li>
-						<li><a href="#">Blog styles</a>
-							<ul style="display: none;">
-								<li class="first_sub png_bg"><a href="blog.html">Default</a></li>
-								<li><a href="blog2.html">Sidebar left</a></li>
-								<li><a href="blog3.html">Double sidebars</a></li>
-							</ul>
-						</li>
-						<li><a href="#">Contact styles</a>
-							<ul style="display: none;">
-								<li class="first_sub png_bg"><a href="contact.html">Default</a></li>
-								<li><a href="contact2.html">Style no.2</a></li>
-								<li><a href="contact3.html">Style no.3</a></li>
-							</ul>
-						</li>
-						<li><a href="404.html">Error 404 page</a></li>
-					</ul>
+					<a href="#" class="">پشتیبانی</a>
 				</li>
 				<li>
-					<a href="blog.html" class="">Blog</a>
+					<a href="blog.html" class="">وبلاگ</a>
 				</li>
 				<li>
-					<a href="portfolio.html">Portfolio</a>
+					<a href="portfolio.html">تماس با ما</a>
 				</li>
 				<li>
-					<a href="contact.html" class="">Contact</a>
+					<a href="contact.html" class="">درباره ما</a>
 				</li>
 			</ul>
 		</div>
@@ -134,25 +74,22 @@
 						<img src="images/slides/slide5.jpg" alt="" style="display: none;">
 						<img src="images/slides/slide6.jpg" alt="" style="display: none;">
 					</div>
-					<div id="htmlcaption" class="nivo-html-caption">
-						<h3>Hello!</h3>
-						<p>Welcome to the Etherna, a truly flexible and beautiful theme that will be a great base for your new portfolio, company site or blog. </p>
-						<p>Take a look at the available backgrounds and color presets that I've prepared, there are 27 variations, and each one of them is great!</p>
-					</div>
-					<div id="htmlcaption2" class="nivo-html-caption">
-						<h3>Etherna is..</h3>
-						<p>..something different. The details and precision in styling is a result of over 200 hours of hard work, and you pay for half of one!</p>
-						<p>Now this is what I call a bargain! </p>
-						<p><a href="typography.html" class="superbutton">+ See more..</a></p>
-					</div>
 					<div class="loader" style="display: none;"></div>
 				</div>
 				<div class="container_gamma slogan">
+					<div class="search">
+						<form action="#" method="get">
+							<input type="text" placeholder="5118555560">
+						</form>
+					</div>
+					<h2 class="rtl">
+						شماره خط مورد نظر خود را مانند شماره روبرو وارد نمایید: 5118555560
+					</h2>
+				</div>
+				<div class="container_gamma slogan" style="background:none">
 					<img src="images/info_button.png" class="alignright" alt="">
-					<h1>This is space that I call 
-						<strong>slogan area.</strong> It's purpose is to drive your 
-						<strong>att- <br>ention</strong> to something important, like button that will say 
-						<strong>"buy me!"</strong>
+					<h1 class="rtl">
+						تمامي كالاها و خدمات اين فروشگاه، حسب مورد داراي مجوزهاي لازم از مراجع مربوطه مي‌باشند و فعاليت‌هاي اين سايت تابع قوانين و مقررات جمهوري اسلامي ايران است.
 					</h1>
 				</div>
 			</div>

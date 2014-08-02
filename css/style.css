@@ -177,15 +177,40 @@ button {  width: auto; overflow: visible; }
    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
 .ie7 img { -ms-interpolation-mode: bicubic; }
 
+.rtl{
+	direction: rtl;
+}
 
+.ltr{
+	direction: ltr;
+}
+
+@font-face{
+    font-family: 'bmitra';
+    src: url('../fonts/BMitra.eot');
+    src: url('../fonts/BMitra.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/BMitra.woff') format('woff'),
+         url('../fonts/BMitra.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a,li,span,p,h1,h2,h3,h4,h5,h6,strong{
+	font-family:'bmitra';
+	font-weight: normal;
+}
+
+.latin-font{
+	font: 13px/18px Arial, sans-serif;
+}
 
 /* 
  * Non-semantic helper classes 
  */
 
  .alignright{
- float:right;
- margin-left:13px;
+ float:left;
+ margin-right:13px;
  }
  .alignleft{
  float:left;
@@ -506,7 +531,7 @@ h1 span, h2 span, h3 span, h4 span, h5 span, h6 span,h1 strong,h2 strong,h3 stro
 font-family:'customFontBold', Arial, sans-serif;
 font-weight:normal;
 }
-h1,h2,h3,h4,h5,h6,.hotstuff ul li a,.inner_main .widget ul.testimonials li p span{
+.hotstuff ul li a,.inner_main .widget ul.testimonials li p span{
 font-family:'customFont', Arial, sans-serif;
 }
 h1{
@@ -719,9 +744,9 @@ zoom:1;
 }
 #menu ul{
 height:28px;
-margin:1px 0 0 17px;
+margin:1px 17px 0 0px;
 position:relative;
-float:left;
+float:right;
 text-shadow:1px 1px #ffffff;
 z-index:997;
 zoom:1;
@@ -733,10 +758,10 @@ margin-left:11px;
 height:15px;
 padding:0px 8px 14px 5px;
 margin:0;
-background:url(../images/menu_separator.png) repeat-y top right transparent;
+background:url(../images/menu_separator.png) repeat-y top left transparent;
 font:15px/15px Arial, sans-serif;
 display:inline;
-float:left;
+float:right;
 position:relative;
 z-index:998;
 zoom:1;
@@ -747,12 +772,11 @@ padding-bottom:0px;
 #menu ul li a{
 text-decoration:none;
 color:#777777;
-font:15px/15px Arial, sans-serif;
-letter-spacing:0.3px;
 display:block;
-float:left;
+float:right;
 padding:8px 6px 11px;
 zoom:1;
+font-size:20px;
 }
 #menu ul li a.menu_box_mid_bg{
 background:url(../images/menu_box.png) no-repeat center 2px transparent;
@@ -773,7 +797,7 @@ span.menu_box_right{
 width:3px;
 height:32px;
 display:inline;
-float:left;
+float:right;
 }
 span.menu_box_right_bg{
 background:url(../images/menu_box.png) no-repeat -297px 2px transparent;
@@ -857,12 +881,11 @@ color:#1e1e1e;
 }
 
 .search{
-width:200px;
+width:250px;
 height:30px;
 margin:0 30px 0 0;
-background:url(../images/search_hovered.png) no-repeat scroll 0 0 transparent;
-display:inline;
-float:right;
+display:inline-block;
+float:left;
 }
 .search input{
 width:139px;
@@ -874,10 +897,7 @@ display:inline;
 float:left;
 font:13px/18px Arial, sans-serif;
 color:#555555;
-background:url(../images/search_field.png) no-repeat scroll 0 0 transparent;
 border:none;
-opacity: 0.01;
-filter: alpha(opacity = 1);
 zoom:1;
 }
 .search #search_submit{
@@ -1258,9 +1278,9 @@ text-decoration:none;
 /* ---------------------------------------------------------------Forms--------------------------------------------------------------- */
 .inner_main input{
 width:95%;
-height:13px;
+height:18px;
 padding:8px 10px 6px;
-margin:1px 0 10px;
+margin:0px 0 10px;
 background-color:#f1f1f2;
 border:1px solid #ffffff;
 border-radius:4px;

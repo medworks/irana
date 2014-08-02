@@ -23,7 +23,7 @@ jQuery(document).ready(function() {
 		if(hasFocci){jQuery(this).filter('#search_submit').stop().animate({"opacity": "0.01"},{queue:false,duration:300});}
 	});
 	
-	jQuery('#menu > ul > li').prepend('<span class="menu_box_left"></span>').append('<span class="menu_box_right"></span>');
+	jQuery('#menu > ul > li').prepend('<span class="menu_box_right"></span>').append('<span class="menu_box_left"></span>');
 	/* Menu jQuery rollout, additional styling allowing for rounded borders */
 	var Menus = jQuery('#menu ul li');
 	if(!(jQuery.browser.msie && jQuery.browser.version.substr(0,1)<8)){Menus.find('ul li').has('ul li').find('>a').append('<span> &raquo;</span>');}
@@ -171,7 +171,7 @@ jQuery(window).load(function(){
 	/* Innitialize Nivo Slider */
 	jQuery('#slider').nivoSlider({
 	directionNav:false,
-	captionOpacity:1,
+	captionOpacity:0,
 	slices:10,
 	pauseTime:6000,
 	keyboardNav:true,
