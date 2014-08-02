@@ -6,7 +6,7 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 
-<html lang="en" class="no-js"><!--<![endif]--><head>
+<html lang="fa" class="no-js"><!--<![endif]--><head>
 	<meta charset="utf-8">
 	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
 	   Remove this if you use the .htaccess -->
@@ -17,6 +17,7 @@
 	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+<meta http-equiv="Content-Language"  content="Fa">
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<!-- CSS : implied media="all" -->
@@ -40,16 +41,13 @@
 		<div id="menu" class="png_bg">
 			<ul>
 				<li class="selected">
-					<span class="menu_box_left"></span>
 					<a href="index.html">Home</a>
-					<span class="menu_box_right"></span>
 				</li>
 				<li>
-					<span class="menu_box_left"></span>
 					<a href="#" class="">Features</a>
 					<ul style="display: none;">
 						<li class="first_sub png_bg">
-							<a href="typography.html">Typography<span> »</span></a>
+							<a href="typography.html">Typography</a>
 							<ul style="display: none;">
 								<li class="first_sub png_bg"><a href="typography.html">Headings and paragraphs</a></li>
 								<li><a href="floats.html">Images and floats</a></li>
@@ -62,22 +60,18 @@
 								<li><a href="showcase.html">Grids and container blocks</a></li>
 								<li><a href="pricing.html">Pricing tables</a></li>
 								<li><a href="toggle.html">FAQ toggles</a></li>
-								<li class="last_sub png_bg"></li>
 							</ul>
 						</li>
 						<li><a href="showcase.html">Grids showcase</a></li>
 						<li><a href="pricing.html">Pricing tables</a></li>
 						<li><a href="about.html">About</a></li>
-						<li class="last_sub png_bg"></li>
 					</ul>
-					<span class="menu_box_right"></span>
 				</li>
 				<li>
-					<span class="menu_box_left"></span>
 					<a href="#" class="">Pages</a>
 					<ul style="display: none;">
 						<li class="first_sub png_bg">
-							<a href="#">Mainpage styles<span> »</span></a>
+							<a href="#">Mainpage styles</a>
 							<ul style="display: none;">
 								<li class="first_sub png_bg"><a href="index.html">Default</a></li>
 								<li><a href="mainpage_pricing.html">With pricing</a></li>
@@ -86,55 +80,43 @@
 								<li><a href="mainpage_noslogan.html">Without slogan area</a></li>
 								<li><a href="mainpage_noslider.html">Without slider</a></li>
 								<li><a href="mainpage_vid.html">With video</a></li>
-								<li class="last_sub png_bg"></li>
 							</ul>
 						</li>
 						<li>
-							<a href="#">Portfolio styles<span> »</span></a>
+							<a href="#">Portfolio styles</a>
 							<ul style="display: none;">
 								<li class="first_sub png_bg"><a href="portfolio4c.html">4-columns</a></li>
 								<li><a href="portfolio.html">Default, 3-columns</a></li>
 								<li><a href="portfolio2c.html">2-columns</a></li>
 								<li><a href="portfolio1c.html">1-column</a></li>
 								<li><a href="portfolio_allinone.html">All in one</a></li>
-								<li class="last_sub png_bg"></li>
 							</ul>
 						</li>
-						<li><a href="#">Blog styles<span> »</span></a>
+						<li><a href="#">Blog styles</a>
 							<ul style="display: none;">
 								<li class="first_sub png_bg"><a href="blog.html">Default</a></li>
 								<li><a href="blog2.html">Sidebar left</a></li>
 								<li><a href="blog3.html">Double sidebars</a></li>
-								<li class="last_sub png_bg"></li>
 							</ul>
 						</li>
-						<li><a href="#">Contact styles<span> »</span></a>
+						<li><a href="#">Contact styles</a>
 							<ul style="display: none;">
 								<li class="first_sub png_bg"><a href="contact.html">Default</a></li>
 								<li><a href="contact2.html">Style no.2</a></li>
 								<li><a href="contact3.html">Style no.3</a></li>
-								<li class="last_sub png_bg"></li>
 							</ul>
 						</li>
 						<li><a href="404.html">Error 404 page</a></li>
-						<li class="last_sub png_bg"></li>
 					</ul>
-					<span class="menu_box_right"></span>
 				</li>
 				<li>
-					<span class="menu_box_left"></span>
 					<a href="blog.html" class="">Blog</a>
-					<span class="menu_box_right"></span>
 				</li>
 				<li>
-					<span class="menu_box_left"></span>
 					<a href="portfolio.html">Portfolio</a>
-					<span class="menu_box_right"></span>
 				</li>
 				<li>
-					<span class="menu_box_left"></span>
 					<a href="contact.html" class="">Contact</a>
-					<span class="menu_box_right"></span>
 				</li>
 			</ul>
 		</div>
