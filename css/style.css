@@ -177,32 +177,6 @@ button {  width: auto; overflow: visible; }
    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
 .ie7 img { -ms-interpolation-mode: bicubic; }
 
-.rtl{
-	direction: rtl;
-}
-
-.ltr{
-	direction: ltr;
-}
-
-@font-face{
-    font-family: 'bmitra';
-    src: url('../fonts/BMitra.eot');
-    src: url('../fonts/BMitra.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/BMitra.woff') format('woff'),
-         url('../fonts/BMitra.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-a,li,span,p,h1,h2,h3,h4,h5,h6,strong{
-	font-family:'bmitra';
-	font-weight: normal;
-}
-
-.latin-font{
-	font: 13px/18px Arial, sans-serif;
-}
 
 /* 
  * Non-semantic helper classes 
@@ -882,8 +856,7 @@ color:#1e1e1e;
 
 .search{
 width:250px;
-height:30px;
-margin:0 30px 0 0;
+height:60px;
 display:inline-block;
 float:left;
 }
@@ -1857,7 +1830,7 @@ text-align:center;
 margin:0 0 -3px;
 }
 .specs{
-background:url(../images/pricing_spec_separator.png) repeat-x bottom left transparent;
+/*background:url(../images/pricing_spec_separator.png) repeat-x bottom left transparent;*/
 min-height:42px;
 }
 .specs img{
@@ -1877,7 +1850,7 @@ background:url(../images/spec_buyme.png) repeat-x top left transparent;
 .buyme p a.superbutton{
 display:inline;
 float:none;
-padding:5px 13px;
+padding:2px 13px;
 }
 /* ---------------------------------------------------------------/Pricing--------------------------------------------------------------- */
 
@@ -2256,3 +2229,49 @@ margin: 5px 0 10px;
 div.toggler h3{
 margin: 5px 0 8px;
 }
+
+/*********************/
+.rtl{
+	direction: rtl !important;
+}
+
+.ltr{
+	direction: ltr !important;
+}
+
+@font-face{
+    font-family: 'bmitra';
+    src: url('../fonts/BMitra.eot');
+    src: url('../fonts/BMitra.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/BMitra.woff') format('woff'),
+         url('../fonts/BMitra.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input{
+	font-family:'bmitra' !important;
+	font-weight: normal !important;
+	direction:rtl !important;
+}
+
+.latin-font{
+	font: 13px/18px Arial, sans-serif !important;
+}
+
+ul.banks{
+	margin-top:10px;
+}
+
+ul.banks li{
+	float:right;
+	margin-left:5px;
+}
+
+ul.banks li img{
+	width: 35px;
+	height: 35px;
+}
+
+.clear{clear:both;display:block;width:0 !important;height:0 !important;min-height:0 !important;min-width:0 !important;margin:0 !important;padding:0 !important;overflow:hidden}
+/*********************/
