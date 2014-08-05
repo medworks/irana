@@ -7,6 +7,7 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 
 <html lang="fa" class="no-js"><!--<![endif]--><head>
+	<title>Irana</title>
 	<meta charset="utf-8">
 	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
 	   Remove this if you use the .htaccess -->
