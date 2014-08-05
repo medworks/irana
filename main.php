@@ -7,6 +7,7 @@
   
     $db = Database::GetDatabase();
 	$msg = Message::GetMessage();
+	
 	$row = $db->Select("properties", "planid", "tel = "."'{$_GET[tel]}'");	
 	if ($row)
 	{	  
@@ -54,15 +55,17 @@ $html =<<<cd
 				<div class="container_gamma slogan" style="background:none">
 					<h3>
 						2) مشترک گرامی در صورت انتخاب گزینه تمدید، طرح درخواستی شما از زمان پرداخت فعال شده و میزان حجم و زمان به مانده قبلی شما اضافه خواهد شد، در غیر اینصورت از گزینه شارژ استفاده نمایید.
-					</h3></br>
-					<div style="direction:rtl;width:150px;float:right">				
+					</h3></br>					
+					<div class="action" name="selector" id="selector" style="direction:rtl;width:150px;float:right">							
 							<strong style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" type="radio" checked name="plan" value="sharg">
 							<strong style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
-							<strong style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">
+							<strong style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
 					</div>
+					
 					<script>
 						$(document).ready(function(){
-							$('form.action input').click(function(){
+							$('div.action input').click(function(){
+							//alert("test")
 								var cureentAct= $(this).val();
 								$(".toggler div.act").css("display","none");
 								if (cureentAct=="sharg"){
@@ -81,19 +84,19 @@ $html =<<<cd
 						<div style="float:right;width:550px;">
 							<!-- Sharj hesab -->
 							<div id="sharg" class='act'>
-								<h3>شارژ حساب</h3>
+								<h3>شارژ حساب</h3>						
 									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99">								
 							</div>
 							<!-- tamdid hesab feli -->
 							<div id="tamdid" class='act activity'>
-								<h3>تمدید حساب فعلی</h3>
+								<h3>تمدید حساب فعلی</h3>								
 								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">طرح: <span style="color:#b24824">برنزی 6 ماهه 3 گیگ+بدون شبانه</span></strong>
 								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">18 گیگابایت</span></strong>
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>							
 							</div>
 							<!-- taghir hesab -->
 							<div id="taghir" class='act activity'>
-								<h3>تغییر حساب</h3>						
+								<h3>تغییر حساب</h3>		
 									<strong style="font-size:18px;padding:0 5px 5px;display:inline-block;color:#000">طرح: </strong>
 										<select style="width:220px;height:28px;border-radius:8px;color:#b24824">
 											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
@@ -103,7 +106,7 @@ $html =<<<cd
 											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
 										</select>
 									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">18 گیگابایت</span></strong>
-									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>						
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>
 							</div>
 							<h4>پرداخت اینترنتی از طریق کلیه کارت های عضو شبکه شتاب امکان پذیر می باشد.</h4>
 							<ul class="banks">
