@@ -12,6 +12,8 @@
 					<h3>
 						1) لطفاً ایمیل و تلفن همراه معتبر وارد نمائید. در صورت پرداخت بصورت اینترنتی، اطلاعات خرید به این ایمیل و تلفن ارسال می شود.
 					</h3></br>
+					<h5>شماره خط: 5118555560</h5>
+					<h5 style="margin-bottom:10px;">نوع حساب: برنزی 6 ماهه 3 گیگ+بدون شبانه</h5>
 					<div style="direction:rtl">
 						<form action="#" method="get">
 							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input style="width:30%;font-size:15px;" type="text" placeholder="نام و نام خانوادگی">
@@ -25,18 +27,61 @@
 						2) مشترک گرامی در صورت انتخاب گزینه تمدید، طرح درخواستی شما از زمان پرداخت فعال شده و میزان حجم و زمان به مانده قبلی شما اضافه خواهد شد، در غیر اینصورت از گزینه شارژ استفاده نمایید.
 					</h3></br>
 					<div style="direction:rtl;width:150px;float:right">
-						<form action="#" method="get">
-							<strong style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" type="radio" name="plan" value="sharg">
+						<form class="action" action="#" method="get">
+							<strong style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" type="radio" checked name="plan" value="sharg">
 							<strong style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
 							<strong style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">
 						</form>
 					</div>
-					<div style="direction:rtl;width:700px;float:right;padding-bottom:70px" class="toggler open">
-						<h3>شارژ حساب</h3>
+					<script>
+						$(document).ready(function(){
+							$('form.action input').click(function(){
+								var cureentAct= $(this).val();
+								$(".toggler div.act").css("display","none");
+								if (cureentAct=="sharg"){
+									$(".toggler #sharg").css('display',"block");
+								}
+								if (cureentAct=="tamdid"){
+									$(".toggler #tamdid").css('display',"block");
+								}
+								if (cureentAct=="taghir"){
+									$(".toggler #taghir").css('display',"block");
+								}
+							});
+						});
+					</script>
+					<div class="toggler open" style="direction:rtl;width:700px;float:right;padding-bottom:70px;">
 						<div style="float:right;width:550px;">
-							<form action="#" method="get">
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99">
-							</form>
+							<!-- Sharj hesab -->
+							<div id="sharg" class='act'>
+								<h3>شارژ حساب</h3>
+								<form action="#" method="get">
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99">
+								</form>
+							</div>
+							<!-- tamdid hesab feli -->
+							<div id="tamdid" class='act activity'>
+								<h3>تمدید حساب فعلی</h3>
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">طرح: <span style="color:#b24824">برنزی 6 ماهه 3 گیگ+بدون شبانه</span></strong>
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">18 گیگابایت</span></strong>
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>
+							</div>
+							<!-- taghir hesab -->
+							<div id="taghir" class='act activity'>
+								<h3>تغییر حساب</h3>
+								<form action="#" method="get">
+									<strong style="font-size:18px;padding:0 5px 5px;display:inline-block;color:#000">طرح: </strong>
+										<select style="width:220px;height:28px;border-radius:8px;color:#b24824">
+											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
+											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
+											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
+											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
+											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
+										</select>
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">18 گیگابایت</span></strong>
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>
+								</form>
+							</div>
 							<h4>پرداخت اینترنتی از طریق کلیه کارت های عضو شبکه شتاب امکان پذیر می باشد.</h4>
 							<ul class="banks">
 								<li><a title="بانک کشاورزی"><img src="images/banks/bankkeshavarzi.png" alt="بانک کشاورزی" /></a></li>
@@ -53,7 +98,7 @@
 							</ul>
 							<div class="clear"></div>
 							<h3 style="color:#b24824">تذکر:</h3>
-							<h4>1-کاربر گرامی با توجه به اینکه شارژ خریداری شده بلافاصله به حساب شما اضافه شده و قابل استفاده خواهد بود، امکان برگشت خرید انجام شده وجود ندارد.</h4>
+							<h4 style="margin-bottom:10px">1-کاربر گرامی با توجه به اینکه شارژ خریداری شده بلافاصله به حساب شما اضافه شده و قابل استفاده خواهد بود، امکان برگشت خرید انجام شده وجود ندارد.</h4>
 							<h4>2-کاربر گرامی قیمت ارائه شده مطابق مصوبات سازمان تنظیم مقررات ارتباطات رادیوئی و شرکت مخابرات ایران می باشد و تنها با ابلاغ مصوبه جدید از سوی سازمان مذکور تغییر خواهد کرد.</h4>
 						</div>
 						<div class="pricing" style="border-left:0 none;border-right:0 none;margin:0">

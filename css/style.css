@@ -1845,7 +1845,7 @@ min-height:20px;
 .buyme{
 padding:6px 0 6px 0;
 overflow:hidden;
-background:url(../images/spec_buyme.png) repeat-x top left transparent;
+/*background:url(../images/spec_buyme.png) repeat-x top left transparent;*/
 }
 .buyme p a.superbutton{
 display:inline;
@@ -2255,6 +2255,8 @@ a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input{
 	direction:rtl !important;
 }
 
+.clear{clear:both;display:block;width:0 !important;height:0 !important;min-height:0 !important;min-width:0 !important;margin:0 !important;padding:0 !important;overflow:hidden}
+
 .latin-font{
 	font: 13px/18px Arial, sans-serif !important;
 }
@@ -2273,5 +2275,7 @@ ul.banks li img{
 	height: 35px;
 }
 
-.clear{clear:both;display:block;width:0 !important;height:0 !important;min-height:0 !important;min-width:0 !important;margin:0 !important;padding:0 !important;overflow:hidden}
+.activity{
+	display: none;
+}
 /*********************/

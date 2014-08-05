@@ -23,6 +23,9 @@
 	<!-- CSS : implied media="all" -->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/rainbow.css" type="text/css">
+
+  	<script src="js/jquery.min.js"></script>
+	
 </head>
 <body>
   	<div id="container">
@@ -45,19 +48,16 @@
 					<a href="index.html">صفحه اصلی</a>
 				</li>
 				<li>
-					<a href="#" class="">امکانات</a>
+					<a href="contact.html" class="">درباره ما</a>
+				</li>
+				<li>
+					<a href="#" class="">تعرفه ها</a>
 				</li>
 				<li>
 					<a href="#" class="">پشتیبانی</a>
 				</li>
 				<li>
-					<a href="blog.html" class="">وبلاگ</a>
-				</li>
-				<li>
 					<a href="portfolio.html">تماس با ما</a>
-				</li>
-				<li>
-					<a href="contact.html" class="">درباره ما</a>
 				</li>
 			</ul>
 		</div>
