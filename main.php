@@ -7,6 +7,13 @@
   
     $db = Database::GetDatabase();
 	$msg = Message::GetMessage();
+	$row = $db->Select("properties", "planid", "tel = "."'{$_GET[tel]}'");	
+	if ($row)
+	{	  
+	  $plan = $db->Select("plans", "pname", "id = "."'{$row[0]}'");	
+	  //echo $db->cmd;
+	  $plan = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[0]}</b></h5>";
+	}
 	if ($_POST["mark"] =="order" )
 	{
 		$fields = array("`fullname`","`tel`","`mobile`","`email`");	
@@ -36,8 +43,8 @@ $html =<<<cd
 						1) لطفاً ایمیل و تلفن همراه معتبر وارد نمائید. در صورت پرداخت بصورت اینترنتی، اطلاعات خرید به این ایمیل و تلفن ارسال می شود.
 					</h3></br>
 					<form name="frmorder" id="frmorder"action="" method="post">
-					<h5>شماره خط :<b>{$_GET['tel']}</b></h5>
-					<h5 style="margin-bottom:10px;">نوع حساب: برنزی 6 ماهه 3 گیگ+بدون شبانه</h5>
+					<h5>شماره خط : <b>{$_GET['tel']}</b></h5>
+					{$plan}
 					<div style="direction:rtl">						
 							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی">
 							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789">
