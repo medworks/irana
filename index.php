@@ -18,8 +18,9 @@
 				</div>
 				<div class="container_gamma slogan">
 					<div class="search">
-						<form action="#" method="get">
-							<input type="text" class="ltr latin-font" placeholder="5118555560">
+						<form action="main.php" method="get">
+							<input type="text" name="tel" id="tel" class="ltr latin-font" placeholder="5118555560">
+							<input type="hidden"  name="mark" value="pay" />
 						</form>
 					</div>
 					<h2 class="rtl">

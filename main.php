@@ -1,6 +1,12 @@
 <?php
 	include_once("inc/header.php");
-?>
+	
+	include_once("config.php");
+    include_once("classes/database.php");
+    include_once("classes/messages.php");
+  
+    $db = Database::GetDatabase();
+$html =<<<cd
 		<!-- Main content alpha -->
 		<div class="main png_bg">
 			<div class="inner_main">
@@ -12,13 +18,14 @@
 					<h3>
 						1) لطفاً ایمیل و تلفن همراه معتبر وارد نمائید. در صورت پرداخت بصورت اینترنتی، اطلاعات خرید به این ایمیل و تلفن ارسال می شود.
 					</h3></br>
-					<h5>شماره خط: 5118555560</h5>
+					<h5>شماره خط :<b>{$_GET['tel']}</b></h5>
 					<h5 style="margin-bottom:10px;">نوع حساب: برنزی 6 ماهه 3 گیگ+بدون شبانه</h5>
 					<div style="direction:rtl">
-						<form action="#" method="get">
+						<form action="" method="post">
 							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی">
 							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789">
 							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input style="width:30%;font-size:15px;color:#000;" class="ltr" type="text" placeholder="name@domain.com">
+							<input type='hidden' name='mark' value='order' />";
 						</form>
 					</div>
 				</div>
@@ -119,7 +126,8 @@
 		<!-- /Main content alpha -->
 	</div>
   	<!--! end of #container -->
-<?php
+cd;
+    echo $html;
 	include_once("inc/footer.php");
 ?>
   	
