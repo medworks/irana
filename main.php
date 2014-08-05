@@ -6,6 +6,20 @@
     include_once("classes/messages.php");
   
     $db = Database::GetDatabase();
+	$msg = Message::GetMessage();
+	if ($_POST["mark"] ="order" )
+	{
+		$fields = array("`fullname`","`tel`","`mobile`","`email`");	
+	    $values = array("'{$_POST[fullname]}'","'{$_GET[tel]}'","'{$_POST[mobile]}'","'{$_POST[email]}'");
+	    if (!$db->InsertQuery('properties',$fields,$values)) 
+		{
+			$msgs = $msg->ShowError("ثبت اطلاعات با مشکل مواجه شد");		
+		} 	
+		else 
+		{  										
+			$msgs = $msg->ShowSuccess("ثبت اطلاعات با موفقیت انجام شد");		
+		}
+	}
 $html =<<<cd
 		<!-- Main content alpha -->
 		<div class="main png_bg">
@@ -15,30 +29,29 @@ $html =<<<cd
 					<h1>شارژ و تمدید حساب</h1>
 				</div>
 				<div class="container_gamma slogan">
+				<div name="message">
+					{$msgs}
+				</div>
 					<h3>
 						1) لطفاً ایمیل و تلفن همراه معتبر وارد نمائید. در صورت پرداخت بصورت اینترنتی، اطلاعات خرید به این ایمیل و تلفن ارسال می شود.
 					</h3></br>
+					<form name="frmorder" id="frmorder"action="" method="post">
 					<h5>شماره خط :<b>{$_GET['tel']}</b></h5>
 					<h5 style="margin-bottom:10px;">نوع حساب: برنزی 6 ماهه 3 گیگ+بدون شبانه</h5>
-					<div style="direction:rtl">
-						<form action="" method="post">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789">
-							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input style="width:30%;font-size:15px;color:#000;" class="ltr" type="text" placeholder="name@domain.com">
-							<input type='hidden' name='mark' value='order' />";
-						</form>
+					<div style="direction:rtl">						
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789">
+							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input name="email" style="width:30%;font-size:15px;color:#000;" class="ltr" type="text" placeholder="name@domain.com">													
 					</div>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
 					<h3>
 						2) مشترک گرامی در صورت انتخاب گزینه تمدید، طرح درخواستی شما از زمان پرداخت فعال شده و میزان حجم و زمان به مانده قبلی شما اضافه خواهد شد، در غیر اینصورت از گزینه شارژ استفاده نمایید.
 					</h3></br>
-					<div style="direction:rtl;width:150px;float:right">
-						<form class="action" action="#" method="get">
+					<div style="direction:rtl;width:150px;float:right">				
 							<strong style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" type="radio" checked name="plan" value="sharg">
 							<strong style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
 							<strong style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">
-						</form>
 					</div>
 					<script>
 						$(document).ready(function(){
@@ -62,9 +75,7 @@ $html =<<<cd
 							<!-- Sharj hesab -->
 							<div id="sharg" class='act'>
 								<h3>شارژ حساب</h3>
-								<form action="#" method="get">
-									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99">
-								</form>
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99">								
 							</div>
 							<!-- tamdid hesab feli -->
 							<div id="tamdid" class='act activity'>
@@ -75,8 +86,7 @@ $html =<<<cd
 							</div>
 							<!-- taghir hesab -->
 							<div id="taghir" class='act activity'>
-								<h3>تغییر حساب</h3>
-								<form action="#" method="get">
+								<h3>تغییر حساب</h3>						
 									<strong style="font-size:18px;padding:0 5px 5px;display:inline-block;color:#000">طرح: </strong>
 										<select style="width:220px;height:28px;border-radius:8px;color:#b24824">
 											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
@@ -86,8 +96,7 @@ $html =<<<cd
 											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
 										</select>
 									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">18 گیگابایت</span></strong>
-									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>
-								</form>
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>						
 							</div>
 							<h4>پرداخت اینترنتی از طریق کلیه کارت های عضو شبکه شتاب امکان پذیر می باشد.</h4>
 							<ul class="banks">
@@ -120,6 +129,8 @@ $html =<<<cd
 					</div>
 				</div>
 			</div>
+			   <input type='hidden' name='mark' value='order' />";
+			</form>
 			<!-- /True containers (keep the content inside containers!) -->
     	</div>
     	<div class="endmain png_bg"></div>
