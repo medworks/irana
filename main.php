@@ -4,6 +4,7 @@
 	include_once("config.php");
     include_once("classes/database.php");
     include_once("classes/messages.php");
+	include_once("classes/functions.php");
   
     $db = Database::GetDatabase();
 	$msg = Message::GetMessage();
@@ -11,10 +12,15 @@
 	$row = $db->Select("properties", "planid", "tel = "."'{$_GET[tel]}'");	
 	if ($row)
 	{	  
-	  $plan = $db->Select("plans", "pname", "id = "."'{$row[0]}'");	
+	  $plan = $db->Select("plans", "*", "id = "."'{$row[0]}'");	
 	  //echo $db->cmd;
-	  $plan = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[0]}</b></h5>";
+	  $plancode = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[pname]}</b></h5>";
 	}
+	
+	$plans = $db->SelectAll("plans", "*",NULL,"ID");
+	
+	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
+	
 	if ($_POST["mark"] =="order" )
 	{
 		$fields = array("`fullname`","`tel`","`mobile`","`email`");	
@@ -45,7 +51,7 @@ $html =<<<cd
 					</h3></br>
 					<form name="frmorder" id="frmorder"action="" method="post">
 					<h5>شماره خط : <b>{$_GET['tel']}</b></h5>
-					{$plan}
+					{$plancode}
 					<div style="direction:rtl">						
 							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی">
 							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789">
@@ -90,21 +96,15 @@ $html =<<<cd
 							<!-- tamdid hesab feli -->
 							<div id="tamdid" class='act activity'>
 								<h3>تمدید حساب فعلی</h3>								
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">طرح: <span style="color:#b24824">برنزی 6 ماهه 3 گیگ+بدون شبانه</span></strong>
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">18 گیگابایت</span></strong>
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>							
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">طرح: <span style="color:#b24824">{$plan[pname]}</span></strong>
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">{$plan[gig]} گیگابایت</span></strong>
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">{$plan[month]} ماهه</span></strong>							
 							</div>
 							<!-- taghir hesab -->
 							<div id="taghir" class='act activity'>
 								<h3>تغییر حساب</h3>		
 									<strong style="font-size:18px;padding:0 5px 5px;display:inline-block;color:#000">طرح: </strong>
-										<select style="width:220px;height:28px;border-radius:8px;color:#b24824">
-											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
-											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
-											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
-											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
-											<option value="">برنزی 6 ماهه 3 گیگ+بدون شبانه</option>
-										</select>
+										{$cbplans}
 									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">18 گیگابایت</span></strong>
 									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>
 							</div>
