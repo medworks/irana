@@ -2,7 +2,7 @@
 <html lang="fa">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Irana-Manage CMS</title>
+<title>Irana | Admin page</title>
 
 <link rel="stylesheet" media="screen" href="css/reset.css">
 <link rel="stylesheet" media="screen" href="css/grid.css">
