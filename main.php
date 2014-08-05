@@ -7,7 +7,7 @@
   
     $db = Database::GetDatabase();
 	$msg = Message::GetMessage();
-	if ($_POST["mark"] ="order" )
+	if ($_POST["mark"] =="order" )
 	{
 		$fields = array("`fullname`","`tel`","`mobile`","`email`");	
 	    $values = array("'{$_POST[fullname]}'","'{$_GET[tel]}'","'{$_POST[mobile]}'","'{$_POST[email]}'");
@@ -123,7 +123,7 @@ $html =<<<cd
 								<div class="specs"><p style="font-size:18px;margin-top:10px;">هزینه سرویس</p><p style="font-size:18px;">5000 تومان</p></div>
 								<div class="specs"><p style="font-size:18px;padding-top:10px;">5% تخفیف</p></div>
 								<div class="specs"><p style="font-size:18px"><img src="images/check.png" alt=""> مبلغ قابل پرداخت</p><p style="font-size:18px">5000 تومان</p></div>
-								<div class="buyme"><p><a href="#" style="font-size:18px" class="superbutton">پرداخت</a></p></div>
+								<div class="buyme"><p><a href="#" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>
 							</div>
 						</div>
 					</div>
@@ -136,6 +136,12 @@ $html =<<<cd
     	<div class="endmain png_bg"></div>
 		<!-- /Main content alpha -->
 	</div>
+	<script type="text/javascript">
+		function submitform()
+		{
+		  document.getElementById("frmorder").submit();
+		}
+	</script>
   	<!--! end of #container -->
 cd;
     echo $html;
