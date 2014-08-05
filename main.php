@@ -16,9 +16,9 @@
 					<h5 style="margin-bottom:10px;">نوع حساب: برنزی 6 ماهه 3 گیگ+بدون شبانه</h5>
 					<div style="direction:rtl">
 						<form action="#" method="get">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input style="width:30%;font-size:15px;" type="text" placeholder="نام و نام خانوادگی">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input style="width:30%;font-size:15px;" class="ltr latin-font" type="text" placeholder="09123456789">
-							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input style="width:30%;font-size:15px;" class="ltr" type="text" placeholder="name@domain.com">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789">
+							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input style="width:30%;font-size:15px;color:#000;" class="ltr" type="text" placeholder="name@domain.com">
 						</form>
 					</div>
 				</div>
