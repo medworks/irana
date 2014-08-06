@@ -22,7 +22,6 @@
  if (isset($_GET["gig"]))
 {   
       $gig = $_GET["gig"];
-
 	  $num =(int)($gig / 5);
 	  if ($num == 0) 
 	  {
