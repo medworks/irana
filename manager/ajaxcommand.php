@@ -6,9 +6,17 @@
 	$db = Database::GetDatabase();
 
  if (isset($_GET["planid"]))
-{   $rows = array();
-	$rows = $db->Select("plans","*","id={$_GET[planid]}","id ASC");	
-	echo json_encode($rows);
+{   $row = array();
+	$row = $db->Select("plans","*","id={$_GET[planid]}");	
+	echo json_encode($row);
+}
+
+ if (isset($_GET["recplan"]))
+{   $row = array();
+	//$row = $db->Select("properties","planid","tel={$_GET[recplan]}");
+	$row = $db->Select("plans","price","id='{$_GET[recplan]}'");
+	//echo $db->cmd;
+	echo ($row[0]);
 }
 
 
