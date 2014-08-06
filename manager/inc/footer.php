@@ -1,3 +1,6 @@
+	</div>
+	        <div id="push"></div>
+	    </section>
 </div>
 <footer>
         <div id="footer-inner" class="container_8 clearfix">

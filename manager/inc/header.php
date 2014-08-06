@@ -55,3 +55,19 @@
                 </nav>
             </div>
         </header>
+        <section>
+        <div class="container_8 clearfix">
+            <!-- Sidebar -->
+            <aside class="grid_1">
+                <nav class="global">
+                    <ul class="clearfix">
+                        <li><a class="nav-icon icon-house" href="dashboard.html">پیشخوان</a></li>
+                        <li><a class="nav-icon icon-time" href="activity.html">درباره ما</a></li>
+                        <li><a class="nav-icon icon-book" href="contacts.html">لیست پرداختی</a></li>
+                        <li><a class="nav-icon icon-tick" href="tasks.html">لیست تایید شده</a></li>
+                        <li><a class="nav-icon icon-tick" href="tasks.html">تعرفه ها</a></li>
+                        <li><a class="nav-icon icon-note" href="notes.html">تماس با ما</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <!-- Sidebar End -->
