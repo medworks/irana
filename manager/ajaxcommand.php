@@ -43,8 +43,10 @@
 		$price = $price + ($gig - 10)*1600;
 		$price = $price+($price*0.08);
 	  }
-  
-	echo ($price);
+    //setlocale(LC_MONETARY, 'fa-IR');
+	//echo money_format("%i", $price);
+	$pattern = "/(\d)(?=(\d\d\d)+(?!\d))/";
+	echo preg_replace($pattern,"$1,", $price);
 }
 
 
