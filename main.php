@@ -143,7 +143,7 @@ $html =<<<cd
 							<!-- Sharj hesab -->
 							<div id="sharg" class='act'>
 								<h3>شارژ حساب</h3>						
-									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input name="gigabyte" style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99">								
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input name="gigabyte" id="gigabyte" style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99">								
 							</div>
 							<!-- tamdid hesab feli -->
 							<div id="tamdid" class='act activity'>
@@ -219,6 +219,15 @@ $html =<<<cd
 				}
 			        });
 			});	
+			
+			$( "#gigabyte" ).change(function() {
+			  var volgig = $('#gigabyte').val()			 
+				$.get('manager/ajaxcommand.php?gig= '+$('#gigabyte').val(),function(data) {
+				//alert(data);
+						$('#price').html(data);
+				  });	
+			});
+			
     });
 	</script>
   	<!--! end of #container -->

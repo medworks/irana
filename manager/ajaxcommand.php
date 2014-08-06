@@ -27,12 +27,16 @@
 	  $num =(int)($gig / 5);
 	 // echo $num;
 	  if ($num == 0) 
-		 $price = $gig*3600; 
+	  {
+		 $price = ($gig*3600); 
+		 $price = $price+($price*0.08);
+	  }	 
 	  else
       if ($num ==1)
       {
 		$price = 5*3600;
 		$price = $price +($gig % 5)*2600;
+		$price = $price+($price*0.08);
       }
       else	
       if ($num >= 2)	  
@@ -40,6 +44,7 @@
 	    $price = 5*3600;
 		$price = $price + (5 * 2600);
 		$price = $price + ($gig - 10)*1600;
+		$price = $price+($price*0.08);
 	  }
   
 	echo ($price);
