@@ -1,3 +1,6 @@
+<?php
+    header('Content-Type: text/html; charset=UTF-8');
+?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -33,18 +36,19 @@
     <div id="wrapper">
         <header style="opacity: 1;">
             <div class="container_8 clearfix">
-                <h1 class="grid_1"><a href="dashboard.html">Streamlined</a></h1>
-                <nav class="grid_5">
-                    <ul class="clearfix">
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="profile.html">Profile</a></li>
-                        <li class="fr">
-                            <a href="#">administrator<span class="arrow-down"></span></a>
+                <h1 class="grid_1" style="font-size:20px;"><a href="dashboard.html">شرکت ایرانا</a></h1>
+                <nav class="grid_5" style="width:750px;">
+                    <ul class="clearfix" style="font-size:15px;">
+                        <li><a href="dashboard.html">پیشخوان</a></li>
+                        <li><a href="profile.html">درباره ما</a></li>
+                        <li><a href="profile.html">تعرفه ها</a></li>
+                        <li><a href="profile.html">تماس با ما</a></li>
+                        <li class="fl">
+                            <a href="#">عملیات<span class="arrow-down"></span></a>
                             <ul>
-                                <li><a href="#">Account</a></li>
-                                <li><a href="#">Users</a></li>
-                                <li><a href="#">Groups</a></li>
-                                <li><a href="#">Sign out</a></li>
+                                <li><a href="#">تنظیمات</a></li>
+                                <li><a href="#">تعریف یوزر</a></li>
+                                <li><a href="#">خارج شدن</a></li>
                             </ul>
                         </li>
                     </ul>

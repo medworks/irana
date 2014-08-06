@@ -229,7 +229,7 @@
 .grid_5,
 .grid_6 {
 	display:inline;
-	float: left;
+	float: right;
 	position: relative;
 	margin-left: 10px;
 	margin-right: 10px;

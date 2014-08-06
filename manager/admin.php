@@ -7,11 +7,12 @@
             <aside class="grid_1">
                 <nav class="global">
                     <ul class="clearfix">
-                        <li><a class="nav-icon icon-house" href="dashboard.html">Overview</a></li>
-                        <li><a class="nav-icon icon-time" href="activity.html">Latest Activity</a></li>
-                        <li><a class="nav-icon icon-book" href="contacts.html"><span>2</span>Contacts</a></li>
-                        <li><a class="nav-icon icon-tick" href="tasks.html"><span>1</span>Tasks</a></li>
-                        <li><a class="nav-icon icon-note" href="notes.html">Notes</a></li>
+                        <li><a class="nav-icon icon-house" href="dashboard.html">پیشخوان</a></li>
+                        <li><a class="nav-icon icon-time" href="activity.html">درباره ما</a></li>
+                        <li><a class="nav-icon icon-book" href="contacts.html">لیست پرداختی</a></li>
+                        <li><a class="nav-icon icon-tick" href="tasks.html">لیست تایید شده</a></li>
+                        <li><a class="nav-icon icon-tick" href="tasks.html">تعرفه ها</a></li>
+                        <li><a class="nav-icon icon-note" href="notes.html">تماس با ما</a></li>
                     </ul>
                 </nav>
             </aside>
@@ -21,12 +22,12 @@
                 <div class="main-content">
                     <header>
                         <h2>
-                            Tables
+                            لیست پرداختی ها
                         </h2>
                     </header>
                     <section class="container_6 clearfix">
                         <div class="grid_6">
-                            <h3>Table with pagination and sorting</h3>
+                            <h3 style="font-size:18px;">لیست مشترکین پرداخت اینترنتی </h3>
                             <hr>
                             <table class="datatable paginate sortable full">
                                 <thead>

@@ -1,3 +1,6 @@
+<?php
+    header('Content-Type: text/html; charset=UTF-8');
+?>
 <!doctype html>
 
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
