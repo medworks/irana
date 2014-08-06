@@ -21,11 +21,9 @@
 
  if (isset($_GET["gig"]))
 {   
-   $gig = $_GET["gig"];
-//   int $num;
+      $gig = $_GET["gig"];
 
 	  $num =(int)($gig / 5);
-	 // echo $num;
 	  if ($num == 0) 
 	  {
 		 $price = ($gig*3600); 
