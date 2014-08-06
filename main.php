@@ -5,6 +5,7 @@
     include_once("classes/database.php");
     include_once("classes/messages.php");
 	include_once("classes/functions.php");
+	include_once("/lib/persiandate.php");
   
     $db = Database::GetDatabase();
 	$msg = Message::GetMessage();
@@ -17,7 +18,7 @@
 	  $plancode = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[pname]}</b></h5>";
 	}
 	
-	$plans = $db->SelectAll("plans", "*",NULL,"ID");
+	$plans = $db->SelectAll("plans","*",NULL,"ID");
 	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
 	
@@ -25,13 +26,45 @@
 	{
 		$fields = array("`fullname`","`tel`","`mobile`","`email`");	
 	    $values = array("'{$_POST[fullname]}'","'{$_GET[tel]}'","'{$_POST[mobile]}'","'{$_POST[email]}'");
-	    if (!$db->InsertQuery('properties',$fields,$values)) 
+	    //ToJalali($rows[$i]["regdate"]," l d F  Y ");
+		$date = date('Y-m-d H:i:s');
+		if ($db->InsertQuery('properties',$fields,$values)) 
 		{
-			$msgs = $msg->ShowError("ثبت اطلاعات با مشکل مواجه شد");		
+		    $lastid = $db->InsertId();
+			
+			$fields = array("`propid`","`planid`","`orderdate`","`status`","`gig`");	
+			
+			if ($_POST["plan"] =="sharg")
+			{
+				$planid = -1;
+				$status = 0;
+				$giga = $_POST["gigabyte"];
+			}
+			else
+			if ($_POST["plan"] =="tamdid")
+			{
+			    $planid = -1;
+			    $status = 1;
+				$giga = 0;
+			}	
+			else	
+			if ($_POST["plan"] =="taghir")
+			{
+				$planid=$_POST["cbplans"];
+                $status = 2;
+				$giga = 0;
+			}
+			
+	        $values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$status}'","'{$giga}'");
+			
+			$db->InsertQuery('orders',$fields,$values);
+			
+			$msgs = $msg->ShowSuccess("ثبت اطلاعات با موفقیت انجام شد");		
 		} 	
 		else 
-		{  										
-			$msgs = $msg->ShowSuccess("ثبت اطلاعات با موفقیت انجام شد");		
+		{  	
+            $msgs = $msg->ShowError("ثبت اطلاعات با مشکل مواجه شد");				
+			
 		}
 	}
 $html =<<<cd
@@ -91,7 +124,7 @@ $html =<<<cd
 							<!-- Sharj hesab -->
 							<div id="sharg" class='act'>
 								<h3>شارژ حساب</h3>						
-									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99">								
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input name="gigabyte" style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99">								
 							</div>
 							<!-- tamdid hesab feli -->
 							<div id="tamdid" class='act activity'>
@@ -105,8 +138,8 @@ $html =<<<cd
 								<h3>تغییر حساب</h3>		
 									<strong style="font-size:18px;padding:0 5px 5px;display:inline-block;color:#000">طرح: </strong>
 										{$cbplans}
-									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">18 گیگابایت</span></strong>
-									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">6 ماهه</span></strong>
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824" id="gig">0 گیگابایت</span></strong>
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824" id="month">0 ماهه</span></strong>
 							</div>
 							<h4>پرداخت اینترنتی از طریق کلیه کارت های عضو شبکه شتاب امکان پذیر می باشد.</h4>
 							<ul class="banks">
@@ -129,7 +162,7 @@ $html =<<<cd
 						</div>
 						<div class="pricing" style="border-left:0 none;border-right:0 none;margin:0">
 							<div class="pricing_column" style="border-left:0 none;border-right:0 none;background:none">
-								<div class="pricing_blurb" style="margin:0 !important;top: 10px;"><h3>مبلغ قابل پرداخت</h3><h2 style="margin:0;padding-top:0;">5000</h2><strong style="margin-right:57px;font-size:18px;color:#000">تومان</strong></div>
+								<div class="pricing_blurb" style="margin:0 !important;top: 10px;"><h3>مبلغ قابل پرداخت</h3><h2 style="margin:0;padding-top:0;" id="price">5000</h2><strong style="margin-right:57px;font-size:18px;color:#000">تومان</strong></div>
 								<div class="specs"><p style="font-size:18px;margin-top:10px;">هزینه سرویس</p><p style="font-size:18px;">5000 تومان</p></div>
 								<div class="specs"><p style="font-size:18px;padding-top:10px;">5% تخفیف</p></div>
 								<div class="specs"><p style="font-size:18px"><img src="images/check.png" alt=""> مبلغ قابل پرداخت</p><p style="font-size:18px">5000 تومان</p></div>
@@ -151,6 +184,23 @@ $html =<<<cd
 		{
 		  document.getElementById("frmorder").submit();
 		}
+	</script>
+	<script type='text/javascript'>
+		$(document).ready(function(){         	
+			$("#cbplans").change(function(){			   
+			    $.ajax({
+				type: "GET",
+				url: "manager/ajaxcommand.php",
+				data: 'planid=' + $(this).val(),
+				dataType: "json",
+				success: function (data) {				    
+					$('#gig').html(data[3]*data[2]+" گیگابایت ");
+					$('#month').html(data[2]+" ماهه ");
+					$('#price').html(data[5]);
+				}
+			        });
+			});	
+    });
 	</script>
   	<!--! end of #container -->
 cd;
