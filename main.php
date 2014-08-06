@@ -191,7 +191,7 @@ $html =<<<cd
 					</div>
 				</div>
 			</div>
-			   <input type='hidden' name='mark' value='order' />";
+			   <input type='hidden' name='mark' value='order' />
 			</form>
 			<!-- /True containers (keep the content inside containers!) -->
     	</div>
