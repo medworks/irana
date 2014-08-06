@@ -205,7 +205,15 @@ $html =<<<cd
 		}
 	</script>
 	<script type='text/javascript'>
-		$(document).ready(function(){         	
+		$(document).ready(function(){
+			
+			$( "#gigabyte" ).keyup(function() {
+			  var volgig = $('#gigabyte').val()			 
+				$.get('manager/ajaxcommand.php?gig= '+$('#gigabyte').val(),function(data) {
+						$('#price').html(data);
+				  });	
+			});
+		
 			$("#cbplans").change(function(){			   
 			    $.ajax({
 				type: "GET",
@@ -220,16 +228,11 @@ $html =<<<cd
 			        });
 			});	
 			
-			$( "#gigabyte" ).change(function() {
-			  var volgig = $('#gigabyte').val()			 
-				$.get('manager/ajaxcommand.php?gig= '+$('#gigabyte').val(),function(data) {
-				//alert(data);
-						$('#price').html(data);
-				  });	
-			});
+			
 			
 		
     });
+	
 	function isNumber(evt) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;
