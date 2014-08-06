@@ -97,7 +97,7 @@ $html =<<<cd
 					<form name="frmorder" id="frmorder"action="" method="post">
 					<h5>شماره خط : <b>{$_GET['tel']}</b></h5>
 					{$plancode}
-					<div style="direction:rtl">						
+					<div style="direction:rtl">
 							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
 							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789" value="{$row[mobile]}">
 							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input name="email" style="width:30%;font-size:15px;color:#000;" class="ltr" type="text" placeholder="name@domain.com" value="{$row[email]}">													
@@ -108,9 +108,9 @@ $html =<<<cd
 						2) مشترک گرامی در صورت انتخاب گزینه تمدید، طرح درخواستی شما از زمان پرداخت فعال شده و میزان حجم و زمان به مانده قبلی شما اضافه خواهد شد، در غیر اینصورت از گزینه شارژ استفاده نمایید.
 					</h3></br>					
 					<div class="action" name="selector" id="selector" style="direction:rtl;width:150px;float:right">							
-							<strong style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" type="radio" checked name="plan" value="sharg">
-							<strong style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
-							<strong style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
+						<strong style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" type="radio" checked name="plan" value="sharg">
+						<strong style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
+						<strong style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
 					</div>
 					
 					<script>
