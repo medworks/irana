@@ -29,8 +29,8 @@
 	   
 	   if (!$isclientexist)
 	   {
-			$fields = array("`fullname`","`tel`","`mobile`","`email`");	
-			$values = array("'{$_POST[fullname]}'","'{$_GET[tel]}'","'{$_POST[mobile]}'","'{$_POST[email]}'");	
+			$fields = array("`fullname`","`tel`","`mobile`","`email`","`planid`");	
+			$values = array("'{$_POST[fullname]}'","'{$_GET[tel]}'","'{$_POST[mobile]}'","'{$_POST[email]}'","{$_POST["cbplans"]}");	
 			if ($db->InsertQuery('properties',$fields,$values)) 
 			{		    
 				$lastid = $db->InsertId();
@@ -65,6 +65,13 @@
 			$planid=$_POST["cbplans"];
 			$status = 2;
 			$giga = 0;
+			// change recent plan -------------------------------------------------
+			if ($isclientexist)
+			{
+				$values = array("`planid`"=>"'{$planid}'");		
+				$db->UpdateQuery("properties",$values,array("id='{$row["id"]}'"));
+			}	
+			//---------------------------------------------------------------------
 		}
 		
 		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$status}'","'{$giga}'");
