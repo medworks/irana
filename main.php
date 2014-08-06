@@ -15,12 +15,14 @@
 	{	  
 	  $isclientexist = true;
 	  $plan = $db->Select("plans", "*", "id = "."'{$row["planid"]}'");	
+	  $plangig = $plan[gig]*$plan[month];
 	  //echo $db->cmd;
 	  $plancode = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[pname]}</b></h5>";
 	}
 	
 	$plans = $db->SelectAll("plans","*",NULL,"ID");	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
+	
 	
 	if ($_POST["mark"] =="order" )
 	{
@@ -121,12 +123,17 @@ $html =<<<cd
 								$(".toggler div.act").css("display","none");
 								if (cureentAct=="sharg"){
 									$(".toggler #sharg").css('display',"block");
+									$('#price').html("0");
 								}
 								if (cureentAct=="tamdid"){
 									$(".toggler #tamdid").css('display',"block");
+									$.get('manager/ajaxcommand.php?recplan={$row[planid]}',function(data) {
+						               $('#price').html(data);
+				                    });								
 								}
 								if (cureentAct=="taghir"){
 									$(".toggler #taghir").css('display',"block");
+									$('#price').html("0");
 								}
 							});
 						});
@@ -141,9 +148,9 @@ $html =<<<cd
 							<!-- tamdid hesab feli -->
 							<div id="tamdid" class='act activity'>
 								<h3>تمدید حساب فعلی</h3>								
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">طرح: <span style="color:#b24824">{$plan[pname]}</span></strong>
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span style="color:#b24824">{$plan[gig]} گیگابایت</span></strong>
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span style="color:#b24824">{$plan[month]} ماهه</span></strong>							
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">طرح: <span id="recplanname" style="color:#b24824">{$plan[pname]}</span></strong>
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span id="recplangig" style="color:#b24824">{$plangig} گیگابایت</span></strong>
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span id="recplanmonth"style="color:#b24824">{$plan[month]} ماهه</span></strong>							
 							</div>
 							<!-- taghir hesab -->
 							<div id="taghir" class='act activity'>
@@ -174,7 +181,7 @@ $html =<<<cd
 						</div>
 						<div class="pricing" style="border-left:0 none;border-right:0 none;margin:0">
 							<div class="pricing_column" style="border-left:0 none;border-right:0 none;background:none">
-								<div class="pricing_blurb" style="margin:0 !important;top: 10px;"><h3>مبلغ قابل پرداخت</h3><h2 style="margin:0;padding-top:0;" id="price">5000</h2><strong style="margin-right:57px;font-size:18px;color:#000">تومان</strong></div>
+								<div class="pricing_blurb" style="margin:0 !important;top: 10px;"><h3>مبلغ قابل پرداخت</h3><h2 style="margin:0;padding-top:0;" id="price">0</h2><strong style="margin-right:57px;font-size:18px;color:#000">تومان</strong></div>
 								<div class="specs"><p style="font-size:18px;margin-top:10px;">هزینه سرویس</p><p style="font-size:18px;">5000 تومان</p></div>
 								<div class="specs"><p style="font-size:18px;padding-top:10px;">5% تخفیف</p></div>
 								<div class="specs"><p style="font-size:18px"><img src="images/check.png" alt=""> مبلغ قابل پرداخت</p><p style="font-size:18px">5000 تومان</p></div>
