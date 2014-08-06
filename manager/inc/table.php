@@ -1,4 +1,3 @@
-<hr>
 <table class="datatable paginate sortable full">
     <thead>
         <tr>

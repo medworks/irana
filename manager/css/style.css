@@ -1108,4 +1108,15 @@ a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input{
     font-weight: normal;
 }
 
+form.plans p{
+    font-size:18px;
+}
+
+form.plans p span{
+    margin-left: 10px;
+}
+
+form.plans p input{
+    font-size:18px;
+}
 /****************************************8*/
