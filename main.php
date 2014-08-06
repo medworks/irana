@@ -9,63 +9,68 @@
   
     $db = Database::GetDatabase();
 	$msg = Message::GetMessage();
-	
-	$row = $db->Select("properties", "planid", "tel = "."'{$_GET[tel]}'");	
+	$isclientexist = false;
+	$row = $db->Select("properties", "*", "tel = "."'{$_GET[tel]}'");	
 	if ($row)
 	{	  
-	  $plan = $db->Select("plans", "*", "id = "."'{$row[0]}'");	
+	  $isclientexist = true;
+	  $plan = $db->Select("plans", "*", "id = "."'{$row["planid"]}'");	
 	  //echo $db->cmd;
 	  $plancode = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[pname]}</b></h5>";
 	}
 	
-	$plans = $db->SelectAll("plans","*",NULL,"ID");
-	
+	$plans = $db->SelectAll("plans","*",NULL,"ID");	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
 	
 	if ($_POST["mark"] =="order" )
 	{
-		$fields = array("`fullname`","`tel`","`mobile`","`email`");	
-	    $values = array("'{$_POST[fullname]}'","'{$_GET[tel]}'","'{$_POST[mobile]}'","'{$_POST[email]}'");
-	    //ToJalali($rows[$i]["regdate"]," l d F  Y ");
-		$date = date('Y-m-d H:i:s');
-		if ($db->InsertQuery('properties',$fields,$values)) 
+	   $date = date('Y-m-d H:i:s');	
+	   //ToJalali($rows[$i]["regdate"]," l d F  Y ");
+	   
+	   if (!$isclientexist)
+	   {
+			$fields = array("`fullname`","`tel`","`mobile`","`email`");	
+			$values = array("'{$_POST[fullname]}'","'{$_GET[tel]}'","'{$_POST[mobile]}'","'{$_POST[email]}'");	
+			if ($db->InsertQuery('properties',$fields,$values)) 
+			{		    
+				$lastid = $db->InsertId();
+				$msgs = $msg->ShowSuccess("ثبت اطلاعات با موفقیت انجام شد");		
+			} 	
+			else 
+			{  	
+				$msgs = $msg->ShowError("ثبت اطلاعات با مشکل مواجه شد");							
+			}
+	   }
+       else
+	     $lastid = $row["id"];
+		
+		$fields = array("`propid`","`planid`","`orderdate`","`status`","`gig`");	
+			
+		if ($_POST["plan"] =="sharg")
 		{
-		    $lastid = $db->InsertId();
-			
-			$fields = array("`propid`","`planid`","`orderdate`","`status`","`gig`");	
-			
-			if ($_POST["plan"] =="sharg")
-			{
-				$planid = -1;
-				$status = 0;
-				$giga = $_POST["gigabyte"];
-			}
-			else
-			if ($_POST["plan"] =="tamdid")
-			{
-			    $planid = -1;
-			    $status = 1;
-				$giga = 0;
-			}	
-			else	
-			if ($_POST["plan"] =="taghir")
-			{
-				$planid=$_POST["cbplans"];
-                $status = 2;
-				$giga = 0;
-			}
-			
-	        $values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$status}'","'{$giga}'");
-			
-			$db->InsertQuery('orders',$fields,$values);
-			
-			$msgs = $msg->ShowSuccess("ثبت اطلاعات با موفقیت انجام شد");		
-		} 	
-		else 
-		{  	
-            $msgs = $msg->ShowError("ثبت اطلاعات با مشکل مواجه شد");				
-			
+			$planid = -1;
+			$status = 0;
+			$giga = $_POST["gigabyte"];
 		}
+		else
+		if ($_POST["plan"] =="tamdid")
+		{
+			$planid = -1;
+			$status = 1;
+			$giga = 0;
+		}	
+		else	
+		if ($_POST["plan"] =="taghir")
+		{
+			$planid=$_POST["cbplans"];
+			$status = 2;
+			$giga = 0;
+		}
+		
+		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$status}'","'{$giga}'");
+		
+		$db->InsertQuery('orders',$fields,$values);
+	   
 	}
 $html =<<<cd
 		<!-- Main content alpha -->
