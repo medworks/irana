@@ -98,9 +98,9 @@ $html =<<<cd
 					<h5>شماره خط : <b>{$_GET['tel']}</b></h5>
 					{$plancode}
 					<div style="direction:rtl">						
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789">
-							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input name="email" style="width:30%;font-size:15px;color:#000;" class="ltr" type="text" placeholder="name@domain.com">													
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789" value="{$row[mobile]}">
+							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input name="email" style="width:30%;font-size:15px;color:#000;" class="ltr" type="text" placeholder="name@domain.com" value="{$row[email]}">													
 					</div>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
