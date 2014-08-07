@@ -10,8 +10,6 @@
             </header>
             <section class="container_6 clearfix">
                 <div class="grid_6">
-                    <h3 style="font-size:18px;">تنظیمات سایت</h3>
-					<hr>
 					<form class="setting">
 						<p><span style="display:block;margin-bottom:5px;">درباره ما</span><textarea>درباره ما</textarea></p>
                         <p><span>عنوان سایت</span><input type="text" name="title" placeholder="عنوان سایت"/></p>

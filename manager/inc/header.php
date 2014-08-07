@@ -39,15 +39,15 @@
                 <h1 class="grid_1" style="font-size:20px;"><a href="dashboard.html">شرکت ایرانا</a></h1>
                 <nav class="grid_5" style="width:750px;">
                     <ul class="clearfix" style="font-size:15px;">
-                        <li><a href="dashboard.html">پیشخوان</a></li>
-                        <li><a href="profile.html">درباره ما</a></li>
-                        <li><a href="profile.html">تعرفه ها</a></li>
-                        <li><a href="profile.html">تماس با ما</a></li>
+                        <li><a href="dashboard.html">لیست پرداختی</a></li>
+                        <li><a href="profile.html">لیست تایید شده</a></li>
+                        <li><a href="profile.html">تعرفه طرح ها</a></li>
+                        <li><a href="profile.html">تعرفه حجم ها</a></li>
                         <li class="fl">
                             <a href="#">عملیات<span class="arrow-down"></span></a>
                             <ul>
                                 <li><a href="#">تنظیمات</a></li>
-                                <li><a href="#">تعریف یوزر</a></li>
+                                <li><a href="#">تعریف کاربر</a></li>
                                 <li><a href="#">خارج شدن</a></li>
                             </ul>
                         </li>
@@ -61,12 +61,10 @@
             <aside class="grid_1">
                 <nav class="global">
                     <ul class="clearfix">
-                        <li><a class="nav-icon icon-house" href="dashboard.html">پیشخوان</a></li>
-                        <li><a class="nav-icon icon-time" href="activity.html">درباره ما</a></li>
+                        <li><a class="nav-icon icon-house" href="dashboard.html">لیست پرداختی</a></li>
+                        <li><a class="nav-icon icon-tick" href="activity.html">لیست تایید شده</a></li>
                         <li><a class="nav-icon icon-book" href="contacts.html">لیست پرداختی</a></li>
-                        <li><a class="nav-icon icon-tick" href="tasks.html">لیست تایید شده</a></li>
-                        <li><a class="nav-icon icon-tick" href="tasks.html">تعرفه ها</a></li>
-                        <li><a class="nav-icon icon-note" href="notes.html">تماس با ما</a></li>
+                        <li><a class="nav-icon icon-note" href="tasks.html">تعرفه حجم ها</a></li>
                     </ul>
                 </nav>
             </aside>

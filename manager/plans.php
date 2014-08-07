@@ -10,8 +10,6 @@
             </header>
             <section class="container_6 clearfix">
                 <div class="grid_6">
-                    <h3 style="font-size:18px;">تعرفه طرح ها</h3>
-					<hr>
 					<form class="plans">
 						<p><span>نام طرح</span><input type="text" name="plan" placeholder="طلایی - 3 گیگابایت - 3 ماهه" /></p>
 						<p><span>مدت زمان (ماه)</span><input type="text" name="month" placeholder="1-12"/></p>
