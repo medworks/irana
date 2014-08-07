@@ -1,3 +1,5 @@
+</div>
+<!--! end of #container -->
 <div id="footer_bottom" class="png_bg"><p class="ltr latin-font">Copyrights © <a href="./">Irana</a> 2014. All rights reserved.</p></div>
   	<!-- Javascript at the bottom for fast page loading -->
   	<!-- Grab Google CDN's jQuery. fall back to local if necessary -->

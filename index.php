@@ -37,8 +37,6 @@
     	</div>
     	<div class="endmain png_bg"></div>
 		<!-- /Main content alpha -->
-	</div>
-  	<!--! end of #container -->
 <?php
 	include_once("inc/footer.php");
 ?>

@@ -197,7 +197,6 @@ $html =<<<cd
     	</div>
     	<div class="endmain png_bg"></div>
 		<!-- /Main content alpha -->
-	</div>
 	<script type="text/javascript">
 		function submitform()
 		{
