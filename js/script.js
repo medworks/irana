@@ -125,10 +125,10 @@ jQuery(document).ready(function() {
     /* Contact form validation, ajax response */
     var paraTag = jQuery('input#submit').parent('p');
     jQuery(paraTag).children('input').remove();
-    jQuery(paraTag).append('<input type="button" name="submit" id="submit" value="Send it!" class="superbutton" />');
+    jQuery(paraTag).append('<input type="button" name="submit" id="submit" value="ارسال!" class="superbutton" />');
 
     jQuery('#form_main input#submit').click(function() {
-        jQuery('#form_main p').append('<img src="css/img/ajax-loader.gif" class="loaderIcon" alt="Loading..." />');
+        jQuery('#form_main p').append('<img src="images/ajax-loader.gif" class="loaderIcon" alt="Loading..." />');
 
         var name = jQuery('input#name').val();
         var email = jQuery('input#email').val();
@@ -203,7 +203,7 @@ jQuery(window).load(function(){
 	});
 	
 	/* Smooth image load */
-	borderSubject.fadeIn(1500).parent().delay(1500).queue(function() {jQuery(this).css('background-image','url(css/img/zoom.png)');});
+	borderSubject.fadeIn(1500).parent().delay(1500).queue(function() {jQuery(this).css('background-image','url(images/zoom.png)');});
 	
 	/* Catch the height of longest footer column and stretch the others to the same size */
 	var highHeels = 0;
