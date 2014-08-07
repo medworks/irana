@@ -63,8 +63,8 @@
                     <ul class="clearfix">
                         <li><a class="nav-icon icon-house" href="dashboard.html">لیست پرداختی</a></li>
                         <li><a class="nav-icon icon-tick" href="activity.html">لیست تایید شده</a></li>
-                        <li><a class="nav-icon icon-book" href="contacts.html">لیست پرداختی</a></li>
-                        <li><a class="nav-icon icon-note" href="tasks.html">تعرفه حجم ها</a></li>
+                        <li><a class="nav-icon icon-note" href="notes.html">تعرفه طرح ها</a></li>
+                        <li><a class="nav-icon icon-book" href="tasks.html">تعرفه حجم ها</a></li>
                     </ul>
                 </nav>
             </aside>

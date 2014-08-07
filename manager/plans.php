@@ -5,7 +5,7 @@
         <div class="main-content">
             <header>
                 <h2>
-                    تعرفه ها
+                    تعرفه طرح ها
                 </h2>
             </header>
             <section class="container_6 clearfix">
