@@ -1095,7 +1095,7 @@ body > footer {
     font-style: normal;
 }
 
-a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input{
+a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input,textarea{
     font-family:'bmitra' !important;
     font-weight: normal !important;
     direction:rtl !important;
@@ -1110,13 +1110,27 @@ a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input{
 
 form.plans p{
     font-size:18px;
+    float: right;
 }
 
-form.plans p span{
+form.plans p span,
+form.setting p span{
     margin-left: 10px;
 }
 
-form.plans p input{
+form.plans p input,
+form.setting p input{
     font-size:18px;
+    margin-left: 10px;
+}
+
+form.setting p{
+    font-size: 18px;
+}
+
+form.setting textarea{
+    width: 400px;
+    height: 170px;
+    font-size: 18px;
 }
 /****************************************8*/

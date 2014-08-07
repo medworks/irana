@@ -279,7 +279,7 @@ a.button.no-text {
 
 .pagination li {
     display: inline-block;
-    float: left;
+    float: right;
     margin: 0 2px;
 }
 .pagination li a {

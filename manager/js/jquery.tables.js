@@ -20,13 +20,13 @@
             $('<li class="prev"><a class="'+options.buttonClass+'" href="#">&laquo;</a></li>').click(function(){
                 if (api.getIndex()>0) api.prev(); return false;
             }).prependTo(pages);
-            $('<li class="first"><a class="'+options.buttonClass+'" href="#">First</a></li>').click(function(){
+            $('<li class="first"><a class="'+options.buttonClass+'" href="#">اولین</a></li>').click(function(){
                 api.click(0); return false;
             }).prependTo(pages);
             $('<li class="next"><a class="'+options.buttonClass+'" href="#">&raquo;</a></li>').click(function(){
                 if (api.getIndex()<trs.length/options.rows) api.next(); return false;
             }).appendTo(pages);
-            $('<li class="last"><a class="'+options.buttonClass+'" href="#">Last</a></li>').click(function(){
+            $('<li class="last"><a class="'+options.buttonClass+'" href="#">آخرین</a></li>').click(function(){
                 api.click(trs.length/options.rows-1); return false;
             }).appendTo(pages);
             return $(this);
