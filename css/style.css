@@ -431,7 +431,7 @@ display:none;
 /* LOGO POSITION */
 #logo{
 bottom:0px;
-left:4px;
+right:4px;
 }
 
 
@@ -489,7 +489,6 @@ a:link { -webkit-tap-highlight-color: #DE5328; }
 
 p{
 font:13px/19px Trebuchet MS,Arial,Helvetica, sans-serif;
-letter-spacing:0.1px;
 margin:0 0 1.5em;
 color:#666666;
 text-shadow:1px 1px #ffffff;
@@ -692,12 +691,12 @@ position:absolute;
 #personal_data{
 position:absolute;
 bottom:0;
-right:0;
+left:0;
 }
 #personal_data p{
 color:#535352;
 text-shadow:none;
-font:13px/18px Arial, sans-serif;
+font-size: 17px;
 margin:0;
 font-weight:bold;
 text-align:right;
@@ -747,7 +746,7 @@ padding-bottom:0px;
 text-decoration:none;
 color:#777777;
 display:block;
-float:right;
+float:left;
 padding:8px 6px 11px;
 zoom:1;
 font-size:20px;
@@ -771,7 +770,7 @@ span.menu_box_right{
 width:3px;
 height:32px;
 display:inline;
-float:right;
+float:left;
 }
 span.menu_box_right_bg{
 background:url(../images/menu_box.png) no-repeat -297px 2px transparent;
@@ -1428,13 +1427,13 @@ text-decoration:none;
 display:block;
 }
 #footer_bottom{
-height:20px;
+height:45px;
 overflow:hidden;
 text-align:center;
 color:#848484;
 }
 #footer_bottom p{
-font:11px/11px Arial, sans-serif;
+font-size:15px;
 text-shadow:1px 1px #ffffff;
 }
 #footer_bottom a{
@@ -2277,5 +2276,12 @@ ul.banks li img{
 
 .activity{
 	display: none;
+}
+
+#menu ul,
+#menu ul li,
+#menu ul li a,
+#menu ul li span{
+	direction: ltr !important;
 }
 /*********************/

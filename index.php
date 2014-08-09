@@ -19,7 +19,7 @@
 				<div class="container_gamma slogan">
 					<div class="search">
 						<form action="main.php" method="get">
-							<input type="text" name="tel" id="tel" class="ltr latin-font" placeholder="5118555560">
+							<input type="text" name="tel" style="color:#000;" id="tel" class="ltr latin-font" placeholder="5118555560">
 						</form>
 					</div>
 					<h2 class="rtl">

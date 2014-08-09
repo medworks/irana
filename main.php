@@ -138,7 +138,7 @@ $html =<<<cd
 							});
 						});
 					</script>
-					<div class="toggler open" style="direction:rtl;width:700px;float:right;padding-bottom:70px;">
+					<div class="toggler open" style="direction:rtl;width:700px;float:left;padding-bottom:70px;">
 						<div style="float:right;width:550px;">
 							<!-- Sharj hesab -->
 							<div id="sharg" class='act'>

@@ -3,21 +3,20 @@
 ?>
 <!doctype html>
 
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if lt IE 7 ]> <html lang="fa" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="fa" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="fa" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="fa" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 
 <html lang="fa" class="no-js"><!--<![endif]--><head>
-	<title>Irana</title>
+	<title>گروه بازرگانی ایرانا</title>
 	<meta charset="utf-8">
 	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
 	   Remove this if you use the .htaccess -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title></title>
 	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="author" content="Mediateq.ir">
 	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
@@ -36,33 +35,29 @@
 		<!-- Header -->
 	    <div id="header">
 			<div id="logo">
-				<a href="./" style="text-decoration:none">
-					<!-- <img src="images/logo.png" alt=""> -->
-					<h1 style="color:#DE5328;text-shadow:2px 1px 2px #DE5328">Irana</h1>
-				</a>
+				<!-- <img src="images/logo.png" alt=""> -->
+				<h1 style="color:#DE5328;text-shadow:2px 1px 2px #DE5328">گروه بازرگانی ایرانا<span>نماینده رسمی تمدید و ثبت محصولات مخابرات</h1>
 			</div>
 			<div id="personal_data">
-				<p>Phone: <span class="latin-font">051 3855-55-60</span></p>
-				<p>Email: <span><a href="mailto:info@irana.ir" class="latin-font">info@irana.ir</a></span></p>
+				<p>تلفن: <span style="display:inline-block;direction:ltr !important">(051) 3855-55-60</span></p>
+				<p>ایمیل: <span><a href="mailto:info@irana.ir" class="latin-font">info@irana.ir</a></span></p>
 			</div>
 		</div>
-		<div id="menu" class="png_bg">
+		<div id="menu" class="png_bg ltr">
 			<ul>
 				<li class="selected">
-					<a href="index.html">صفحه اصلی</a>
+					<a href="#">صفحه اصلی</a>
 				</li>
 				<li>
-					<a href="contact.html" class="">درباره ما</a>
+					<a href="#" class="">درباره ما</a>
 				</li>
 				<li>
 					<a href="#" class="">تعرفه ها</a>
 				</li>
 				<li>
-					<a href="#" class="">پشتیبانی</a>
-				</li>
-				<li>
-					<a href="portfolio.html">تماس با ما</a>
+					<a href="#">تماس با ما</a>
 				</li>
 			</ul>
 		</div>
+		<div class="clear"></div>
     	<!-- /Header -->
