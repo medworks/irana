@@ -111,10 +111,12 @@ $html =<<<cd
 					</h3></br>					
 					<div class="action" name="selector" id="selector" style="direction:rtl;width:150px;float:right">							
 						<strong style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" type="radio" checked name="plan" value="sharg">
+						<p class="clear"></p>
 						<strong style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
+						<p class="clear"></p>
 						<strong style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
 					</div>
-					
+
 					<script>
 						$(document).ready(function(){
 							$('div.action input').click(function(){
