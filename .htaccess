@@ -1,0 +1,46 @@
+# deny most common except .php
+<FilesMatch "\.(inc|tpl|h|ihtml|sql|ini|conf|class|bin|spd|theme|module)$">
+deny from all
+</FilesMatch>
+                           
+<IFModule mod_rewrite.c>   
+	RewriteEngine On 
+	RewriteRule ^index.html irana/index.php [L]
+	RewriteRule ^search.html irana/index.php?item=search&act=do [L]
+	RewriteRule ^about-us.html irana/index.php?item=about [L]
+	RewriteRule ^gallery.html irana/index.php?item=gallery [L]
+	RewriteBase / 	
+
+#Add WWW		
+	RewriteCond %{HTTP_HOST} ^irana.ir$ [NC]
+	RewriteRule ^(.*)$ http://www.irana.ir/$1 [L,R=301]	
+	
+# proc/self/environ? no way!
+	RewriteCond %{QUERY_STRING} proc/self/environ [OR]
+
+	# Block out any script trying to set a mosConfig value through the URL
+	RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|\%3D) [OR]
+
+	# Block out any script trying to base64_encode crap to send via URL
+	RewriteCond %{QUERY_STRING} base64_encode.*(.*) [OR]
+
+	# Block out any script that includes a <script> tag in URL
+	RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+
+	# Block out any script trying to set a PHP GLOBALS variable via URL
+	RewriteCond %{QUERY_STRING} GLOBALS(=|[|\%[0-9A-Z]{0,2}) [OR]
+
+	# Block out any script trying to modify a _REQUEST variable via URL
+	RewriteCond %{QUERY_STRING} _REQUEST(=|[|\%[0-9A-Z]{0,2})
+
+	# Send all blocked request to homepage with 403 Forbidden error!
+	RewriteRule ^(.*)$ index.php [F,L]	
+
+</IFModule>
+ErrorDocument 404 http://www.mediateq.ir/themes/404.html
+# Enable / Disable directory Listing/Browsing
+Options -Indexes
+IndexOptions -FancyIndexing
+ServerSignature Off
+
+
