@@ -142,7 +142,7 @@ $table .=<<<cd
 	
 cd;
 }
-$table.="<tbody> <table>";
+$table.="</tbody> </table>";
 //include_once("inc/table.php");
 $html.=<<<cd
                     {$table}
