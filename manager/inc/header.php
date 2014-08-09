@@ -41,7 +41,7 @@
                     <ul class="clearfix" style="font-size:15px;">
                         <li><a href="dashboard.html">لیست پرداختی</a></li>
                         <li><a href="profile.html">لیست تایید شده</a></li>
-                        <li><a href="profile.html">تعرفه طرح ها</a></li>
+                        <li><a href="plans.php">تعرفه طرح ها</a></li>
                         <li><a href="profile.html">تعرفه حجم ها</a></li>
                         <li class="fl">
                             <a href="#">عملیات<span class="arrow-down"></span></a>
@@ -63,7 +63,7 @@
                     <ul class="clearfix">
                         <li><a class="nav-icon icon-house" href="dashboard.html">لیست پرداختی</a></li>
                         <li><a class="nav-icon icon-tick" href="activity.html">لیست تایید شده</a></li>
-                        <li><a class="nav-icon icon-note" href="notes.html">تعرفه طرح ها</a></li>
+                        <li><a class="nav-icon icon-note" href="plans.php">تعرفه طرح ها</a></li>
                         <li><a class="nav-icon icon-book" href="tasks.html">تعرفه حجم ها</a></li>
                     </ul>
                 </nav>
