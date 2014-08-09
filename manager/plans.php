@@ -91,9 +91,60 @@ $html =<<<cd
                     <div class="clear"></div>
                     <hr>
 cd;
-echo $html;
-include_once("inc/table.php");
-$html=<<<cd
+
+$rows = $db->SelectAll("plans","*",null,"id ASC");
+$table=<<<cd
+<table class="datatable paginate sortable full">
+    <thead>
+        <tr>	        
+            <th><a href="#">نام طرح</a></th>
+            <th><a href="#">مدت زمان</a></th>
+            <th><a href="#">حجم طرح</a></th>
+            <th><a href="#">شبانه </a></th>
+            <th><a href="#">مودم</a></th>
+			<th><a href="#">هزینه طرح</a></th>
+			<th><a href="#">درصد تخفیف</a></th>
+			<th style="width:70px"><a href="#"></a></th>	
+        </tr>
+    </thead>
+	<tbody style="display: none;">
+cd;
+for($i = 0; $i < Count($rows); $i++)
+{
+ $rows[$i]["month"] = " ماهه ".($rows[$i]["month"]);
+ $rows[$i]["gig"] = " گیگابایت ".($rows[$i]["gig"]);
+ $rows[$i]["night"] = ($rows[$i]["night"])?"دارد" :"ندارد";
+ $rows[$i]["modem"] = ($rows[$i]["modem"])?"دارد" :"ندارد";
+
+if (($i+1)%10 == 0)
+	
+	$table.=<<<cd
+	</tbody>
+<tbody style="display: table-row-group;">
+cd;
+
+$table .=<<<cd
+        <tr>		
+            <td>{$rows[$i]["pname"]}</td>
+            <td>{$rows[$i]["month"]}</td>
+            <td>{$rows[$i]["gig"]}</td>
+            <td>{$rows[$i]["night"]}</td>
+            <td>{$rows[$i]["modem"]}</td>
+			<td>{$rows[$i]["price"]}</td>
+			<td>{$rows[$i]["percent"]}</td>
+			<td>
+                <ul class="action-buttons">
+                    <li><a href="?act=edit&pid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="pencil"></span></a></li>
+                    <li><a href="?act=del&pid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="bin"></span></a></li>
+                </ul>
+            </td>
+        </tr>
+	
+cd;
+}
+$table.="<tbody> <table>";
+//include_once("inc/table.php");
+$html.=<<<cd
                     {$table}
                 </div>
             </section>
