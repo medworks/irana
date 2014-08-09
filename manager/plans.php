@@ -1,22 +1,41 @@
 <?php 
 	include_once("inc/header.php");
+	include_once("../config.php");
+	include_once("../classes/functions.php");
+	include_once("../classes/database.php");	
+	include_once("../classes/messages.php");	
+	include_once("../lib/persiandate.php");	
+	include_once("../classes/session.php");	
+	include_once("../classes/login.php");
+	$login = Login::GetLogin();
+    if (!$login->IsLogged())
+	 {
+		header("Location: ../index.php");
+		die(); // solve a security bug
+	 }
+	$db = Database::GetDatabase();
     
 	//ob_start(); 	
 	//$table = include_once("inc/table.php");
 	//ob_end_clean();
+	
+$_GET['act']="new"; // default
+
+$night = isset($_POST[night]);
+$modem = isset($_POST[modem]);
 
 if ($_POST["mark"]=="saveplan")
-	{						   				
+	{	      
 		$fields = array("`pname`","`month`","`gig`","`night`","`modem`","`price`","`percent`");		
 		$values = array("'{$_POST[plan]}'","'{$_POST[month]}'","'{$_POST[volume]}'",
-						"'{$_POST[night]}'","'{$_POST[modem]}'","'{$_POST[price]}'","'{$_POST[percent]}'");	
+						"'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'");	
 		if (!$db->InsertQuery('plans',$fields,$values)) 
 		{			
-			header('location:plans.html?msg=2');
+			header('location:plans.php?msg=2');			
 		} 	
 		else 
 		{  										
-			header('location:plans.html?msg=1');									
+			header('location:plans.php?msg=1');												
 		}  				 
 	}
 	else
@@ -31,7 +50,7 @@ if ($_POST["mark"]=="saveplan")
 						 "`price`"=>"'{$_POST[price]}'",
 						 "`percent`"=>"'{$_POST[percent]}'");
         $db->UpdateQuery("plans",$values,array("id='{$_GET[pid]}'"));		
-		header('location:plans.html?msg=2');
+		header('location:plans.php?msg=2');
 	}	
 	
 	if ($_GET['act']=="new")
@@ -44,11 +63,12 @@ if ($_POST["mark"]=="saveplan")
 	{
 		$insertoredit = "
 			<p><input type='submit' style='width:70px;height:35px' value='ویرایش'/></p>
-						<input type='hidden' name='mark' value='saveplan' />  ";
+						<input type='hidden' name='mark' value='editplan' />  ";
 	}
-
+//$msgs = GetMessage($_GET['msg']);
 $html =<<<cd
-	<!-- Main Section -->
+  <div id="message">{$msgs}</div>
+	<!-- Main Section -->	
     <section class="main-section grid_7">
         <div class="main-content">
             <header>
@@ -58,12 +78,12 @@ $html =<<<cd
             </header>
             <section class="container_6 clearfix">
                 <div class="grid_6">
-					<form class="plans">
+					<form class="plans" action="" method="post">
 						<p><span>نام طرح</span><input type="text" name="plan" placeholder="طلایی - 3 گیگابایت - 3 ماهه" /></p>
 						<p><span>مدت زمان (ماه)</span><input type="text" name="month" placeholder="1-12"/></p>
 						<p><span>حجم (گیگابایت)</span><input type="text" name="volume" placeholder="1-99"/></p>
-						<p style="padding-top:10px"><span>شبانه دارد</span><input type="checkbox" name="night" value="" /></p>
-						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="" /></p>
+						<p style="padding-top:10px"><span>شبانه دارد</span><input type="checkbox" name="night" value="1" /></p>
+						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="1" /></p>
 						<p class="clear"></p>
                         <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" /></p>
 						{$insertoredit}						
