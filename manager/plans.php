@@ -1,6 +1,74 @@
-<?php include_once("inc/header.php"); ?>
+<?php 
+	include_once("inc/header.php");
+	include_once("../config.php");
+	include_once("../classes/functions.php");
+	include_once("../classes/database.php");	
+	include_once("../classes/messages.php");	
+	include_once("../lib/persiandate.php");	
+	include_once("../classes/session.php");	
+	include_once("../classes/login.php");
+	$login = Login::GetLogin();
+    if (!$login->IsLogged())
+	 {
+		header("Location: ../index.php");
+		die(); // solve a security bug
+	 }
+	$db = Database::GetDatabase();
+    
+	//ob_start(); 	
+	//$table = include_once("inc/table.php");
+	//ob_end_clean();
+	
+$_GET['act']="new"; // default
 
-	<!-- Main Section -->
+$night = isset($_POST[night]);
+$modem = isset($_POST[modem]);
+
+if ($_POST["mark"]=="saveplan")
+	{	      
+		$fields = array("`pname`","`month`","`gig`","`night`","`modem`","`price`","`percent`");		
+		$values = array("'{$_POST[plan]}'","'{$_POST[month]}'","'{$_POST[volume]}'",
+						"'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'");	
+		if (!$db->InsertQuery('plans',$fields,$values)) 
+		{			
+			header('location:plans.php?msg=2');			
+		} 	
+		else 
+		{  										
+			header('location:plans.php?msg=1');												
+		}  				 
+	}
+	else
+	if ($_POST["mark"]=="editplan")
+	{		
+	    $_POST["detail"] = addslashes($_POST["detail"]);
+		$values = array("`pname`"=>"'{$_POST[plan]}'",
+		                 "`month`"=>"'{$_POST[month]}'",
+						 "`gig`"=>"'{$_POST[volume]}'",
+						 "`night`"=>"'{$_POST[night]}'",
+						 "`modem`"=>"'{$_POST[modem]}'",
+						 "`price`"=>"'{$_POST[price]}'",
+						 "`percent`"=>"'{$_POST[percent]}'");
+        $db->UpdateQuery("plans",$values,array("id='{$_GET[pid]}'"));		
+		header('location:plans.php?msg=2');
+	}	
+	
+	if ($_GET['act']=="new")
+	{
+		$insertoredit = "
+			<p><input type='submit' style='width:70px;height:35px' value='ثبت'/></p>
+						<input type='hidden' name='mark' value='saveplan' />  ";
+	}
+	if ($_GET['act']=="edit")
+	{
+		$insertoredit = "
+			<p><input type='submit' style='width:70px;height:35px' value='ویرایش'/></p>
+						<input type='hidden' name='mark' value='editplan' />  ";
+	}
+//$msgs = GetMessage($_GET['msg']);
+$html =<<<cd
+  <div id="message">{$msgs}</div>
+	<!-- Main Section -->	
     <section class="main-section grid_7">
         <div class="main-content">
             <header>
@@ -10,23 +78,80 @@
             </header>
             <section class="container_6 clearfix">
                 <div class="grid_6">
-					<form class="plans">
+					<form class="plans" action="" method="post">
 						<p><span>نام طرح</span><input type="text" name="plan" placeholder="طلایی - 3 گیگابایت - 3 ماهه" /></p>
 						<p><span>مدت زمان (ماه)</span><input type="text" name="month" placeholder="1-12"/></p>
 						<p><span>حجم (گیگابایت)</span><input type="text" name="volume" placeholder="1-99"/></p>
-						<p style="padding-top:10px"><span>شبانه دارد</span><input type="checkbox" name="night" value="" /></p>
-						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="" /></p>
+						<p style="padding-top:10px"><span>شبانه دارد</span><input type="checkbox" name="night" value="1" /></p>
+						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="1" /></p>
 						<p class="clear"></p>
                         <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" /></p>
-						<p><input type="submit" style="width:70px;height:35px" value="ثبت"/></p>
+						{$insertoredit}						
 					</form>
                     <div class="clear"></div>
                     <hr>
-                    <?php include_once("inc/table.php") ?>
+cd;
+
+$rows = $db->SelectAll("plans","*",null,"id ASC");
+$table=<<<cd
+<table class="datatable paginate sortable full">
+    <thead>
+        <tr>	        
+            <th><a href="#">نام طرح</a></th>
+            <th><a href="#">مدت زمان</a></th>
+            <th><a href="#">حجم طرح</a></th>
+            <th><a href="#">شبانه </a></th>
+            <th><a href="#">مودم</a></th>
+			<th><a href="#">هزینه طرح</a></th>
+			<th><a href="#">درصد تخفیف</a></th>
+			<th style="width:70px"><a href="#"></a></th>	
+        </tr>
+    </thead>
+	<tbody style="display: none;">
+cd;
+for($i = 0; $i < Count($rows); $i++)
+{
+ $rows[$i]["month"] = " ماهه ".($rows[$i]["month"]);
+ $rows[$i]["gig"] = " گیگابایت ".($rows[$i]["gig"]);
+ $rows[$i]["night"] = ($rows[$i]["night"])?"دارد" :"ندارد";
+ $rows[$i]["modem"] = ($rows[$i]["modem"])?"دارد" :"ندارد";
+
+if (($i+1)%10 == 0)
+	
+	$table.=<<<cd
+	</tbody>
+<tbody style="display: table-row-group;">
+cd;
+
+$table .=<<<cd
+        <tr>		
+            <td>{$rows[$i]["pname"]}</td>
+            <td>{$rows[$i]["month"]}</td>
+            <td>{$rows[$i]["gig"]}</td>
+            <td>{$rows[$i]["night"]}</td>
+            <td>{$rows[$i]["modem"]}</td>
+			<td>{$rows[$i]["price"]}</td>
+			<td>{$rows[$i]["percent"]}</td>
+			<td>
+                <ul class="action-buttons">
+                    <li><a href="?act=edit&pid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="pencil"></span></a></li>
+                    <li><a href="?act=del&pid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="bin"></span></a></li>
+                </ul>
+            </td>
+        </tr>
+	
+cd;
+}
+$table.="<tbody> <table>";
+//include_once("inc/table.php");
+$html.=<<<cd
+                    {$table}
                 </div>
             </section>
         </div>
     </section>
     <!-- Main Section End -->
-
-<?php include_once("inc/footer.php"); ?>
+cd;
+echo $html;
+include_once("inc/footer.php"); 
+?>
