@@ -1,5 +1,11 @@
-<?php include_once("inc/header.php"); ?>
+<?php 
+	include_once("inc/header.php");
+    
+	//ob_start(); 	
+	//$table = include_once("inc/table.php");
+	//ob_end_clean();	
 
+$html =<<<cd
 	<!-- Main Section -->
     <section class="main-section grid_7">
         <div class="main-content">
@@ -19,14 +25,21 @@
 						<p class="clear"></p>
                         <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" /></p>
 						<p><input type="submit" style="width:70px;height:35px" value="ثبت"/></p>
+						<input type="hidden" name="mark" value="plan" />  
 					</form>
                     <div class="clear"></div>
                     <hr>
-                    <?php include_once("inc/table.php") ?>
+cd;
+echo $html;
+include_once("inc/table.php");
+$html=<<<cd
+                    {$table}
                 </div>
             </section>
         </div>
     </section>
     <!-- Main Section End -->
-
-<?php include_once("inc/footer.php"); ?>
+cd;
+echo $html;
+include_once("inc/footer.php"); 
+?>

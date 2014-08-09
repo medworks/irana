@@ -15,7 +15,7 @@ if ($login->IsLogged())
 } 
 else
 {
-	if (isset ($_POST["mark"]) AND $_POST["mark"] == "adminlogin")
+	if (isset ($_POST["mark"]) AND $_POST["mark"] == "login")
 	{
 		if ($login->AdminLogin($_POST['username'],$_POST['password']))
 		{		 
@@ -91,7 +91,7 @@ $(document).ready(function(){
     			<p class="clearfix">
     				<button class="button button-gray fr" type="submit">ورود</button>
     			</p>
-				<input type="hidden" name="mark" value="adminlogin" />    
+				<input type="hidden" name="mark" value="login" />    
     		</form>
     	</section>
     </div>
