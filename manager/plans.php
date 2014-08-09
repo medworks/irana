@@ -18,8 +18,7 @@
 	//ob_start(); 	
 	//$table = include_once("inc/table.php");
 	//ob_end_clean();
-	
-$_GET['act']="new"; // default
+
 
 $night = isset($_POST[night]);
 $modem = isset($_POST[modem]);
@@ -61,6 +60,9 @@ if ($_POST["mark"]=="saveplan")
 	}
 	if ($_GET['act']=="edit")
 	{
+	    $row=$db->Select("plans","*","id='{$_GET["pid"]}'",NULL);
+		$nightchecked=($row['night'])?"checked":"";
+		$modemchecked=($row['modem'])?"checked":"";
 		$insertoredit = "
 			<p><input type='submit' style='width:70px;height:35px' value='ویرایش'/></p>
 						<input type='hidden' name='mark' value='editplan' />  ";
@@ -79,20 +81,20 @@ $html =<<<cd
             <section class="container_6 clearfix">
                 <div class="grid_6">
 					<form class="plans" action="" method="post">
-						<p><span>نام طرح</span><input type="text" name="plan" placeholder="طلایی - 3 گیگابایت - 3 ماهه" /></p>
-						<p><span>مدت زمان (ماه)</span><input type="text" name="month" placeholder="1-12"/></p>
-						<p><span>حجم (گیگابایت)</span><input type="text" name="volume" placeholder="1-99"/></p>
-						<p style="padding-top:10px"><span>شبانه دارد</span><input type="checkbox" name="night" value="1" /></p>
-						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="1" /></p>
+						<p><span>نام طرح</span><input type="text" name="plan" placeholder="طلایی - 3 گیگابایت - 3 ماهه" value='{$row[pname]}' /></p>
+						<p><span>مدت زمان (ماه)</span><input type="text" name="month" placeholder="1-12" value='{$row[month]}' /></p>
+						<p><span>حجم (گیگابایت)</span><input type="text" name="volume" placeholder="1-99" value='{$row[gig]}' /></p>
+						<p style="padding-top:10px"><span>شبانه دارد</span><input type="checkbox" name="night" value="1" {$nightchecked} /></p>
+						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="1" {$modemchecked}/></p>
 						<p class="clear"></p>
-                        <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" /></p>
+                        <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" value='{$row[percent]}'/></p>
 						{$insertoredit}						
 					</form>
                     <div class="clear"></div>
                     <hr>
 cd;
 
-$rows = $db->SelectAll("plans","*",null,"id ASC");
+$rows = $db->SelectAll("plans","*",null,"id Desc");
 $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead>
