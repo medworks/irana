@@ -181,13 +181,18 @@ $html =<<<cd
 							<h4 style="margin-bottom:10px">1-کاربر گرامی با توجه به اینکه شارژ خریداری شده بلافاصله به حساب شما اضافه شده و قابل استفاده خواهد بود، امکان برگشت خرید انجام شده وجود ندارد.</h4>
 							<h4>2-کاربر گرامی قیمت ارائه شده مطابق مصوبات سازمان تنظیم مقررات ارتباطات رادیوئی و شرکت مخابرات ایران می باشد و تنها با ابلاغ مصوبه جدید از سوی سازمان مذکور تغییر خواهد کرد.</h4>
 						</div>
-						<div class="pricing" style="border-left:0 none;border-right:0 none;margin:0">
-							<div class="pricing_column" style="border-left:0 none;border-right:0 none;background:none">
-								<div class="pricing_blurb" style="margin:0 !important;top: 10px;"><h3>مبلغ قابل پرداخت</h3><h2 style="margin:0;padding-top:0;" id="price">0</h2><strong style="margin-right:57px;font-size:18px;color:#000">تومان</strong></div>
-								<div class="specs"><p style="font-size:18px;margin-top:10px;">هزینه سرویس</p><p style="font-size:18px;">5000 تومان</p></div>
-								<div class="specs"><p style="font-size:18px;padding-top:10px;">5% تخفیف</p></div>
-								<div class="specs"><p style="font-size:18px"><img src="images/check.png" alt=""> مبلغ قابل پرداخت</p><p style="font-size:18px">5000 تومان</p></div>
-								<div class="buyme"><p><a href="#" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>
+						<div class="price">
+							<div class="box">
+								<div>
+									<h3>مبلغ قابل پرداخت</h3>
+									<h2 id="price" style="font-size:26px;margin-top:5px">0</h2>
+									<strong style="font-size:23px;margin-right:53px;display:inline-block;margin-top:10px">ریال</strong>
+									<div class="specs" style="margin-top:25px"><p style="font-size:18px;margin-top:10px;">هزینه سرویس</p><p style="font-size:18px;">5000 تومان</p></div>
+									<div class="specs"><p style="font-size:18px;padding-top:10px;">5% تخفیف</p></div>
+									<div class="specs"><p style="font-size:18px"><img src="images/check.png" alt=""> مبلغ قابل پرداخت</p><p style="font-size:18px">0 ریال</p></div>
+									<div class="buyme" style="margin-right:30px"><p><a href="#" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>
+								</div>
+
 							</div>
 						</div>
 					</div>
