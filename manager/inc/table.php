@@ -1,5 +1,5 @@
 <table class="datatable paginate sortable full">
-    <thead>
+    <thead class="rtl">
         <tr>
             <th><a href="#">Browser</a></th>
             <th><a href="#">Platform</a></th>
