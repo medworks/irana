@@ -60,7 +60,6 @@ $html =<<<cd
 						<div class="add_border" style="width: 428px;"><img src="images/map.png" alt="" class="border_magic" style="display: block;"></div>
 					</div>
 					<div class="clearfix"></div>
-					<div class="hr"></div>
 				</div>
 			</div>
 		</div>
