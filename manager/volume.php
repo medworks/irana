@@ -13,6 +13,7 @@
 					<form class="plans">
                         <p><span>از حجم</span><input type="text" name="volume1" placeholder="از حجم"/></p>
                         <p><span>تا حجم</span><input type="text" name="volume2" placeholder="تا حجم"/></p>
+                        <p><span>قیمت (ریال)</span><input type="text" name="price" placeholder="قیمت (ریال)"/></p>
                         <p><span>با درصد تخفیف</span><input type="text" name="username" placeholder="1-100"/></p>
 						<p><input type="submit" style="width:70px;height:35px" value="ثبت"/></p>
 					</form>

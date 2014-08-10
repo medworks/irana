@@ -84,6 +84,7 @@ $html =<<<cd
 						<p><span>نام طرح</span><input type="text" name="plan" placeholder="طلایی - 3 گیگابایت - 3 ماهه" value='{$row[pname]}' /></p>
 						<p><span>مدت زمان (ماه)</span><input type="text" name="month" placeholder="1-12" value='{$row[month]}' /></p>
 						<p><span>حجم (گیگابایت)</span><input type="text" name="volume" placeholder="1-99" value='{$row[gig]}' /></p>
+						<p><span>قیمت (ریال)</span><input type="text" name="price" value='' placeholder="قیمت (ریال)"/></p>
 						<p style="padding-top:10px"><span>شبانه دارد</span><input type="checkbox" name="night" value="1" {$nightchecked} /></p>
 						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="1" {$modemchecked}/></p>
 						<p class="clear"></p>
@@ -97,7 +98,7 @@ cd;
 $rows = $db->SelectAll("plans","*",null,"id Desc");
 $table=<<<cd
 <table class="datatable paginate sortable full">
-    <thead>
+    <thead class="rtl">
         <tr>	        
             <th><a href="#">نام طرح</a></th>
             <th><a href="#">مدت زمان</a></th>
@@ -106,7 +107,7 @@ $table=<<<cd
             <th><a href="#">مودم</a></th>
 			<th><a href="#">هزینه طرح</a></th>
 			<th><a href="#">درصد تخفیف</a></th>
-			<th style="width:70px"><a href="#"></a></th>	
+			<th style="width:70px"><a href="#">عملیات</a></th>	
         </tr>
     </thead>
 	<tbody style="display: none;">

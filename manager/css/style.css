@@ -1095,7 +1095,7 @@ body > footer {
     font-style: normal;
 }
 
-a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input,textarea{
+a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input,textarea,td{
     font-family:'bmitra' !important;
     font-weight: normal !important;
     direction:rtl !important;

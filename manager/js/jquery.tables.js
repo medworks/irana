@@ -13,7 +13,7 @@
             var pages = $('<ul class="pagination clearfix"></ul>');
             if (!$(this).hasClass('paginate')) $(this).addClass('paginate');
             for(var i = 0; i < trs.length; i+=options.rows) {
-                trs.slice(i, i+options.rows).wrapAll("<tbody></tbody>");
+                trs.slice(i, i+options.rows).wrapAll("<tbody class='rtl'></tbody>");
                 pages.append('<li class="page"><a class="'+options.buttonClass+'" href="#">'+(i/options.rows+1)+'</a></li>');
             }
             var api = $(this).find("tbody > tbody").unwrap().parents('table.paginate').after(pages).next().tabs("table.paginate > tbody", {effect: options.effect}).data("tabs");
