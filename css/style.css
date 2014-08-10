@@ -2284,4 +2284,9 @@ ul.banks li img{
 #menu ul li span{
 	direction: ltr !important;
 }
+
+div.action input{
+	background-color: transparent !important;
+	border: 0 none !important;
+}
 /*********************/
