@@ -89,7 +89,7 @@ table.datatable.no-border thead th:first-child, table.datatable.no-border thead 
 table.datatable th, table.datatable td {
     padding: 5px;
     vertical-align: middle;
-    font-size: 15px;
+    font-size: 17px;
     text-align: center;
 }
 

@@ -86,7 +86,7 @@ $html=<<<cd
 cd;
 $rows = $db->SelectAll("volumes","*",null,"id Asc");
 $table=<<<cd
-<table class="datatable paginate sortable full">
+<table class="datatable sortable full">
     <thead class="rtl">
         <tr>	        
             <th><a href="#">از حجم</a></th>
@@ -96,7 +96,7 @@ $table=<<<cd
 			<th style="width:70px"><a href="#">عملیات</a></th>	
         </tr>
     </thead>
-	<tbody style="display: none;">
+	<tbody class="rtl">
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
