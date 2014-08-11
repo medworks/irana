@@ -35,12 +35,20 @@ table.datatable thead th {
     position: relative;
 }
 
-table.datatable thead th:not(:last-child) {
+/*table.datatable thead th:not(:last-child) {
     border-left: 1px solid #aaa;
+}*/
+
+table.datatable thead th{
+    border-right: 1px solid #aaa;
 }
 
-table.datatable thead th:not(:first-child) {
-    border-right: 1px solid #fff;
+table.datatable thead th:first-child {
+    border-right: 0 none;
+}
+
+table.datatable thead th{
+    border-left: 1px solid #fff;
 }
 
 table.datatable thead th:first-child {
@@ -89,8 +97,16 @@ table.datatable tbody tr:nth-child(odd) td {
     background: #f9f9f9;
 }
 
-table.datatable tbody td:not(:last-child) {
+/*table.datatable tbody td:not(:last-child) {
     border-left: 1px solid #eee;
+}*/
+
+table.datatable tbody td{
+    border-right: 1px solid #eee;
+}
+
+table.datatable tbody td:first-child{
+    border-right: 0 none;
 }
 
 table.datatable.sortable {
