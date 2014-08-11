@@ -48,7 +48,7 @@
 	}
 	if ($_GET['act']=="edit")
 	{
-	    $row=$db->Select("plans","*","id='{$_GET["pid"]}'",NULL);
+	    $row=$db->Select("volumes","*","id='{$_GET["vid"]}'",NULL);
 		$nightchecked=($row['night'])?"checked":"";
 		$modemchecked=($row['modem'])?"checked":"";
 		$insertoredit = "
@@ -58,7 +58,7 @@
 	if ($_GET['act']=="del")
 	{
 		$db->Delete("volumes"," id",$_GET["vid"]);		
-		header('location:volume.php');	
+		header('location:volume.php?act=new');	
 	}	
 //$msgs = GetMessage($_GET['msg']);
 $html=<<<cd
@@ -73,17 +73,60 @@ $html=<<<cd
             <section class="container_6 clearfix">
                 <div class="grid_6">
 					<form class="plans" action="" method="post">
-                        <p><span>از حجم</span><input type="text" name="fvol" placeholder="از حجم"/></p>
-                        <p><span>تا حجم</span><input type="text" name="tvol" placeholder="تا حجم"/></p>
-                        <p><span>قیمت (ریال)</span><input type="text" name="price" placeholder="قیمت (ریال)"/></p>
-                        <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100"/></p>
+                        <p><span>از حجم</span><input type="text" name="fvol" placeholder="از حجم" value='{$row[fvol]}'/></p>
+                        <p><span>تا حجم</span><input type="text" name="tvol" placeholder="تا حجم" value='{$row[tvol]}'/></p>
+                        <p><span>قیمت (ریال)</span><input type="text" name="price" placeholder="قیمت (ریال)" value='{$row[price]}'/></p>
+                        <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" value='{$row[percent]}'/></p>
 						{$insertoredit}
 					</form>
                     <div class="clear"></div>
                     <hr>
 cd;
+$rows = $db->SelectAll("volumes","*",null,"id Asc");
+$table=<<<cd
+<table class="datatable paginate sortable full">
+    <thead class="rtl">
+        <tr>	        
+            <th><a href="#">از حجم</a></th>
+            <th><a href="#">تا حجم</a></th>
+            <th><a href="#">قیمت</a></th>
+            <th><a href="#">درصد تخفیف </a></th>            
+			<th style="width:70px"><a href="#">عملیات</a></th>	
+        </tr>
+    </thead>
+	<tbody style="display: none;">
+cd;
+for($i = 0; $i < Count($rows); $i++)
+{
+ $rows[$i]["fvol"] = ($rows[$i]["fvol"])." گیگابایت ";
+ $rows[$i]["tvol"] = ($rows[$i]["fvol"])." گیگابایت ";
+ 
+if (($i+1)%10 == 0)
+	
+	$table.=<<<cd
+	</tbody>
+<tbody style="display: table-row-group;">
+cd;
 
+$table .=<<<cd
+        <tr>		
+            <td>{$rows[$i]["fvol"]}</td>
+            <td>{$rows[$i]["tvol"]}</td>
+            <td>{$rows[$i]["price"]}</td>
+            <td>{$rows[$i]["percent"]}</td>            
+			<td>
+                <ul class="action-buttons">
+                    <li><a href="?act=edit&vid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="pencil"></span></a></li>
+                    <li><a href="?act=del&vid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="bin"></span></a></li>
+                </ul>
+            </td>
+        </tr>
+	
+cd;
+}
+$table.="</tbody> </table>";
 $html.=<<<cd
+                {$table}
                 </div>
             </section>
         </div>
