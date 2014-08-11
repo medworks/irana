@@ -73,7 +73,7 @@ $html=<<<cd
             </header>
             <section class="container_6 clearfix">
                 <div class="grid_6">
-				    {$msgs}
+				    <div id="message">{$msgs}</div>
 					<form class="plans" action="" method="post">
                         <p><span>از حجم</span><input type="text" name="fvol" placeholder="از حجم" value='{$row[fvol]}'/></p>
                         <p><span>تا حجم</span><input type="text" name="tvol" placeholder="تا حجم" value='{$row[tvol]}'/></p>
