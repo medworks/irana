@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2014 at 06:21 PM
+-- Generation Time: Aug 11, 2014 at 01:37 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -82,8 +82,7 @@ INSERT INTO `plans` (`id`, `pname`, `month`, `gig`, `night`, `modem`, `price`, `
 (8, 'طلایی 6 ماهه 8 گیگ + بدون شبانه', 6, 8, 0, 0, 2008800, 0),
 (9, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 0, 3),
 (10, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 0, 3),
-(11, 'نقره داغ6 ماهه 3گیگ', 6, 3, 0, 1, 0, 4),
-(12, 'نقره داغ 12 ماهه 8 گیگ', 12, 8, 1, 1, 0, 5);
+(12, 'نقره داغ 12 ماهه 6 گیگ', 12, 6, 1, 1, 950000, 5);
 
 -- --------------------------------------------------------
 
@@ -186,6 +185,30 @@ INSERT INTO `users` (`id`, `name`, `family`, `image`, `email`, `username`, `pass
 (2, 'علی رضا', 'صادقی نژاد', './newspics/editnews.png', 'r.sadeghi@yahoo.com', 'reza', '4510', 1),
 (3, 'علی', 'قائمی', './newspics/works.png', 'ali.ghaemi@gmail.com', 'ghaemi', '827ccb0eea8a706c4c34a16891f84e7b', 0),
 (4, 'آرش', 'خویتندار', './newspics/addworks.png', 'arash.kh@gmail.com', 'arash', '827ccb0eea8a706c4c34a16891f84e7b', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `volumes`
+--
+
+CREATE TABLE IF NOT EXISTS `volumes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fvol` tinyint(3) unsigned NOT NULL,
+  `tvol` tinyint(3) unsigned NOT NULL,
+  `price` double NOT NULL,
+  `percent` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `volumes`
+--
+
+INSERT INTO `volumes` (`id`, `fvol`, `tvol`, `price`, `percent`) VALUES
+(1, 1, 5, 3600, 5),
+(3, 6, 10, 2600, 5),
+(4, 10, 99, 1600, 5);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
