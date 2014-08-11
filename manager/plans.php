@@ -30,11 +30,11 @@ if ($_POST["mark"]=="saveplan")
 						"'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'");	
 		if (!$db->InsertQuery('plans',$fields,$values)) 
 		{			
-			header('location:plans.php?msg=2');			
+			header('location:plans.php?act=new&msg=2');			
 		} 	
 		else 
 		{  										
-			header('location:plans.php?msg=1');												
+			header('location:plans.php?act=new&msg=1');												
 		}  				 
 	}
 	else
@@ -48,7 +48,7 @@ if ($_POST["mark"]=="saveplan")
 						 "`price`"=>"'{$_POST[price]}'",
 						 "`percent`"=>"'{$_POST[percent]}'");
         $db->UpdateQuery("plans",$values,array("id='{$_GET[pid]}'"));		
-		header('location:plans.php?msg=2');
+		header('location:plans.php?act=new&msg=2');
 	}	
 	
 	if ($_GET['act']=="new")
@@ -69,7 +69,7 @@ if ($_POST["mark"]=="saveplan")
 	if ($_GET['act']=="del")
 	{
 		$db->Delete("plans"," id",$_GET["pid"]);		
-		header('location:plans.php');	
+		header('location:plans.php?act=new');	
 	}	
 //$msgs = GetMessage($_GET['msg']);
 $html =<<<cd
