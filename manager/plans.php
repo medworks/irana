@@ -39,8 +39,7 @@ if ($_POST["mark"]=="saveplan")
 	}
 	else
 	if ($_POST["mark"]=="editplan")
-	{		
-	    $_POST["detail"] = addslashes($_POST["detail"]);
+	{			    
 		$values = array("`pname`"=>"'{$_POST[plan]}'",
 		                 "`month`"=>"'{$_POST[month]}'",
 						 "`gig`"=>"'{$_POST[volume]}'",
