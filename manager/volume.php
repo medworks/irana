@@ -1,5 +1,6 @@
-<?php include_once("inc/header.php"); ?>
+<?php include_once("inc/header.php"); 
 
+$html=<<<cd
 	<!-- Main Section -->
     <section class="main-section grid_7">
         <div class="main-content">
@@ -10,7 +11,7 @@
             </header>
             <section class="container_6 clearfix">
                 <div class="grid_6">
-					<form class="plans">
+					<form class="plans" action="" method="post">
                         <p><span>از حجم</span><input type="text" name="volume1" placeholder="از حجم"/></p>
                         <p><span>تا حجم</span><input type="text" name="volume2" placeholder="تا حجم"/></p>
                         <p><span>قیمت (ریال)</span><input type="text" name="price" placeholder="قیمت (ریال)"/></p>
@@ -25,5 +26,7 @@
         </div>
     </section>
     <!-- Main Section End -->
-
-<?php include_once("inc/footer.php"); ?>
+cd;
+echo $html;
+include_once("inc/footer.php");
+?>
