@@ -1,5 +1,21 @@
-<?php include_once("inc/header.php"); ?>
-
+<?php 
+	include_once("inc/header.php"); 
+	include_once("../config.php");
+    include_once("../classes/database.php");
+	include_once("../classes/messages.php");
+	include_once("../classes/session.php");	
+	include_once("../classes/functions.php");
+	include_once("../lib/persiandate.php");	
+	include_once("../classes/login.php");
+	
+	$login = Login::GetLogin();
+    if (!$login->IsLogged())
+	 {
+		header("Location: ../index.php");
+		die(); // solve a security bug
+	 }
+	$db = Database::GetDatabase();
+$html=<<<cd
 	<!-- Main Section -->
     <section class="main-section grid_7">
         <div class="main-content">
@@ -10,7 +26,7 @@
             </header>
             <section class="container_6 clearfix">
                 <div class="grid_6">
-					<form class="setting">
+					<form class="setting" action="" method="post">
 						<p><span style="display:block;margin-bottom:5px;">درباره ما</span><textarea>درباره ما</textarea></p>
                         <p><span>عنوان سایت</span><input type="text" name="title" placeholder="عنوان سایت"/></p>
                         <p><span>کلمات کلیدی</span><input type="text" name="keywords" style="width:450px" placeholder="کلمات کلیدی"/></p>
@@ -20,6 +36,7 @@
                         <p><span>فاکس</span><input type="text" name="fax" class="ltr" placeholder="51-38555560" /></p>
                         <p><span style="display:block;margin-bottom:5px;">آدرس</span><textarea>آدرس</textarea></p>
 						<p><input type="submit" style="width:70px;height:35px" value="ثبت"/></p>
+						<input type='hidden' name='mark' value='editsetting' />
 					</form>
                     <div class="clear"></div>
                 </div>
@@ -27,5 +44,7 @@
         </div>
     </section>
     <!-- Main Section End -->
-
-<?php include_once("inc/footer.php"); ?>
+cd;
+echo $html;
+include_once("inc/footer.php"); 
+?>
