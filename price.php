@@ -62,12 +62,7 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
 					        </tr>
 					        <tr>
 					            <td>Firefox 3.0</td>
@@ -75,12 +70,7 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
 					        </tr>
 					        <tr>
 					            <td>Firefox 3.6</td>
@@ -88,12 +78,7 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
 					        </tr>
 					        <tr>
 					            <td>Firefox 3.6</td>
@@ -101,12 +86,7 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
 					        </tr>
 					        <tr>
 					            <td>Firefox 3.6</td>
@@ -114,12 +94,7 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
 					        </tr>
 					        <tr>
 					            <td>Chrome 6.0</td>
@@ -127,12 +102,7 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
 					        </tr>
 					        <tr>
 					            <td>Chrome 7.0</td>
@@ -140,12 +110,7 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
 					        </tr>
 					        <tr>
 					            <td>Chrome 7.0</td>
@@ -153,12 +118,7 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
 					        </tr>
 					        <tr>
 					            <td>Internet Explorer 6.0</td>
@@ -166,12 +126,7 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
 					        </tr>
 					        <tr>
 					            <td>Internet Explorer 7.0</td>
@@ -179,12 +134,47 @@ $html =<<<cd
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
 					            <td>Table Cell</td>
-					            <td>
-					                <ul class="action-buttons">
-					                    <li><a href="#" class="button button-gray no-text"><span class="pencil"></span></a></li>
-					                    <li><a href="#" class="button button-gray no-text"><span class="bin"></span></a></li>
-					                </ul>
-					            </td>
+					            <td>Table Cell</td>
+					        </tr>
+					    </tbody>
+					</table>
+					<div class="clearfix"></div>
+				</div>
+				<div class="container_alpha slogan">
+					<h1>تعرفه حجم ها</h1>
+				</div>
+				<div class="container_gamma slogan" style="background:none">
+					<table class="datatable full">
+					    <thead class="rtl">
+					        <tr>
+					            <th>از حجم (گیگابایت)</th>
+					            <th>تا حجم (گیگابایت)</th>
+					            <th>قیمت (ریال)</th>
+					            <th>تخفیف (درصد)</th>
+					            <th>قابل پرداخت (ریال)</th>
+					        </tr>
+					    </thead>
+					    <tbody class="rtl">
+					        <tr>
+					            <td>Firefox 3.0</td>
+					            <td>Windows</td>
+					            <td>Table Cell</td>
+					            <td>Table Cell</td>
+					            <td>Table Cell</td>
+					        </tr>
+					        <tr>
+					            <td>Firefox 3.0</td>
+					            <td>OS X</td>
+					            <td>Table Cell</td>
+					            <td>Table Cell</td>
+					            <td>Table Cell</td>
+					        </tr>
+					        <tr>
+					            <td>Firefox 3.6</td>
+					            <td>Windows</td>
+					            <td>Table Cell</td>
+					            <td>Table Cell</td>
+					            <td>Table Cell</td>
 					        </tr>
 					    </tbody>
 					</table>
