@@ -67,6 +67,11 @@ if ($_POST["mark"]=="saveplan")
 			<p><input type='submit' style='width:70px;height:35px' value='ویرایش'/></p>
 						<input type='hidden' name='mark' value='editplan' />  ";
 	}
+	if ($_GET['act']=="del")
+	{
+		$db->Delete("plans"," id",$_GET["pid"]);		
+		header('location:plans.php');	
+	}	
 //$msgs = GetMessage($_GET['msg']);
 $html =<<<cd
   <div id="message">{$msgs}</div>
@@ -84,7 +89,7 @@ $html =<<<cd
 						<p><span>نام طرح</span><input type="text" name="plan" placeholder="طلایی - 3 گیگابایت - 3 ماهه" value='{$row[pname]}' /></p>
 						<p><span>مدت زمان (ماه)</span><input type="text" name="month" placeholder="1-12" value='{$row[month]}' /></p>
 						<p><span>حجم (گیگابایت)</span><input type="text" name="volume" placeholder="1-99" value='{$row[gig]}' /></p>
-						<p><span>قیمت (ریال)</span><input type="text" name="price" value='' placeholder="قیمت (ریال)"/></p>
+						<p><span>قیمت (ریال)</span><input type="text" name="price"  placeholder="قیمت (ریال)" value='{$row[price]}'/></p>
 						<p style="padding-top:10px"><span>شبانه دارد</span><input type="checkbox" name="night" value="1" {$nightchecked} /></p>
 						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="1" {$modemchecked}/></p>
 						<p class="clear"></p>
@@ -114,8 +119,8 @@ $table=<<<cd
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
- $rows[$i]["month"] = " ماهه ".($rows[$i]["month"]);
- $rows[$i]["gig"] = " گیگابایت ".($rows[$i]["gig"]);
+ $rows[$i]["month"] = ($rows[$i]["month"])." ماهه ";
+ $rows[$i]["gig"] = ($rows[$i]["gig"])." گیگابایت ";
  $rows[$i]["night"] = ($rows[$i]["night"])?"دارد" :"ندارد";
  $rows[$i]["modem"] = ($rows[$i]["modem"])?"دارد" :"ندارد";
 
