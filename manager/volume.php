@@ -14,6 +14,7 @@
 		die(); // solve a security bug
 	 }
 	$db = Database::GetDatabase();
+	$msg = Message::GetMessage();
     
     if ($_POST["mark"]=="savevol")
 	{	      
@@ -60,10 +61,10 @@
 		$db->Delete("volumes"," id",$_GET["vid"]);		
 		header('location:volume.php?act=new');	
 	}	
-//$msgs = GetMessage($_GET['msg']);
+$msgs = GetMessage($_GET['msg']);
 $html=<<<cd
 	<!-- Main Section -->
-    <section class="main-section grid_7">
+    <section class="main-section grid_7">	
         <div class="main-content">
             <header>
                 <h2>
@@ -72,6 +73,7 @@ $html=<<<cd
             </header>
             <section class="container_6 clearfix">
                 <div class="grid_6">
+				    {$msgs}
 					<form class="plans" action="" method="post">
                         <p><span>از حجم</span><input type="text" name="fvol" placeholder="از حجم" value='{$row[fvol]}'/></p>
                         <p><span>تا حجم</span><input type="text" name="tvol" placeholder="تا حجم" value='{$row[tvol]}'/></p>
@@ -99,7 +101,7 @@ cd;
 for($i = 0; $i < Count($rows); $i++)
 {
  $rows[$i]["fvol"] = ($rows[$i]["fvol"])." گیگابایت ";
- $rows[$i]["tvol"] = ($rows[$i]["fvol"])." گیگابایت ";
+ $rows[$i]["tvol"] = ($rows[$i]["tvol"])." گیگابایت ";
  
 if (($i+1)%10 == 0)
 	

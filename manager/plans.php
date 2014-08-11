@@ -71,7 +71,7 @@ if ($_POST["mark"]=="saveplan")
 		$db->Delete("plans"," id",$_GET["pid"]);		
 		header('location:plans.php?act=new');	
 	}	
-//$msgs = GetMessage($_GET['msg']);
+$msgs = GetMessage($_GET['msg']);
 $html =<<<cd
   <div id="message">{$msgs}</div>
 	<!-- Main Section -->	
@@ -84,6 +84,7 @@ $html =<<<cd
             </header>
             <section class="container_6 clearfix">
                 <div class="grid_6">
+				  {$msgs}
 					<form class="plans" action="" method="post">
 						<p><span>نام طرح</span><input type="text" name="plan" placeholder="طلایی - 3 گیگابایت - 3 ماهه" value='{$row[pname]}' /></p>
 						<p><span>مدت زمان (ماه)</span><input type="text" name="month" placeholder="1-12" value='{$row[month]}' /></p>
