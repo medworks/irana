@@ -61,7 +61,7 @@
             <aside class="grid_1">
                 <nav class="global">
                     <ul class="clearfix">
-                        <li><a class="nav-icon icon-house" href="#">لیست پرداختی</a></li>
+                        <li><a class="nav-icon icon-house" href="admin.php">لیست سفارشات</a></li>
                         <li><a class="nav-icon icon-tick" href="#">لیست تایید شده</a></li>
                         <li><a class="nav-icon icon-note" href="plans.php?act=new">تعرفه طرح ها</a></li>
                         <li><a class="nav-icon icon-book" href="volume.php?act=new">تعرفه حجم ها</a></li>
