@@ -39,7 +39,7 @@
                 <h1 class="grid_1" style="font-size:20px;"><a href="dashboard.html">شرکت ایرانا</a></h1>
                 <nav class="grid_5" style="width:750px;">
                     <ul class="clearfix" style="font-size:15px;">
-                        <li><a href="#">لیست پرداختی</a></li>
+                        <li><a href="admin.php">لیست سفارشات</a></li>
                         <li><a href="#">لیست تایید شده</a></li>
                         <li><a href="plans.php?act=new">تعرفه طرح ها</a></li>
                         <li><a href="volume.php?act=new">تعرفه حجم ها</a></li>
