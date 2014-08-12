@@ -73,7 +73,6 @@ if ($_POST["mark"]=="saveplan")
 	}	
 $msgs = GetMessage($_GET['msg']);
 $html =<<<cd
-  <div id="message">{$msgs}</div>
 	<!-- Main Section -->	
     <section class="main-section grid_7">
         <div class="main-content">
