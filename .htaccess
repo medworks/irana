@@ -37,7 +37,7 @@ deny from all
 	RewriteRule ^(.*)$ index.php [F,L]	
 
 </IFModule>
-ErrorDocument 404 http://www.mediateq.ir/themes/404.html
+ErrorDocument 404 http://www.ir2020.ir/404.html
 # Enable / Disable directory Listing/Browsing
 Options -Indexes
 IndexOptions -FancyIndexing
