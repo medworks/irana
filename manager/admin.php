@@ -39,12 +39,13 @@ $html=<<<cd
                 <div class="grid_6">
 cd;
 
-$rows = $db->SelectAll("orders","*",null,"id dec");
+$rows = $db->SelectAll("orders","*",null,"id Desc");
 $table=<<<cd
 <table class="datatable sortable full">
     <thead class="rtl">
         <tr>	        
             <th><a href="#">نام مشتری</a></th>
+			<th><a href="#">تلفن مشتری</a></th>
             <th><a href="#">نام طرح</a></th>
             <th><a href="#">نوع سفارش</a></th>
             <th><a href="#">وضضعیت سفارش </a></th>            
@@ -56,9 +57,17 @@ $table=<<<cd
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
- $rows[$i]["propid"] = $db->Select("properties","fullname","id = ".$rows[$i]["propid"]);
- $rows[$i]["planid"] = $db->Select("plans","pname","id = ".$rows[$i]["planid"]);
- 
+ $tel = $db->Select("properties","tel","id = ".$rows[$i]["propid"])[0];
+ $rows[$i]["propid"] = $db->Select("properties","fullname","id = ".$rows[$i]["propid"])[0]; 
+ $rows[$i]["planid"] = $db->Select("plans","pname","id = ".$rows[$i]["planid"])[0];
+ if($rows[$i]["kind"]==0)
+	$rows[$i]["kind"] = "شارژ حساب";
+ else
+ if ($rows[$i]["kind"]==1) 
+	$rows[$i]["kind"] = "تمدید حساب فعلی";
+ else	
+ if ($rows[$i]["kind"]==2) 
+	$rows[$i]["kind"] = "تغییر حساب"; 
 if (($i+1)%10 == 0)
 	
 	$table.=<<<cd
@@ -69,6 +78,7 @@ cd;
 $table .=<<<cd
         <tr>		
             <td>{$rows[$i]["propid"]}</td>
+			<td>{$tel}</td>			
             <td>{$rows[$i]["planid"]}</td>
             <td>{$rows[$i]["kind"]}</td>
             <td>{$rows[$i]["status"]}</td>            
