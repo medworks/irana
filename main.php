@@ -46,26 +46,26 @@
        else
 	     $lastid = $row["id"];
 		
-		$fields = array("`propid`","`planid`","`orderdate`","`status`","`gig`");	
+		$fields = array("`propid`","`planid`","`orderdate`","`kind`","`status`","`gig`");	
 			
 		if ($_POST["plan"] =="sharg")
 		{
 			$planid = -1;
-			$status = 0;
+			$kind = 0;
 			$giga = $_POST["gigabyte"];
 		}
 		else
 		if ($_POST["plan"] =="tamdid")
 		{
 			$planid = -1;
-			$status = 1;
+			$kind = 1;
 			$giga = 0;
 		}	
 		else	
 		if ($_POST["plan"] =="taghir")
 		{
 			$planid=$_POST["cbplans"];
-			$status = 2;
+			$kind = 2;
 			$giga = 0;
 			// change recent plan -------------------------------------------------
 			if ($isclientexist)
@@ -76,7 +76,7 @@
 			//---------------------------------------------------------------------
 		}
 		
-		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$status}'","'{$giga}'");
+		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$kind}'","'1'","'{$giga}'");
 		
 		$db->InsertQuery('orders',$fields,$values);
 	   

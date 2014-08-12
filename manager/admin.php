@@ -31,7 +31,7 @@
         <div class="main-content">
             <header>
                 <h2>
-                    لیست پرداختی ها
+                   لیست سفارشات
                 </h2>
             </header>
             <section class="container_6 clearfix">
