@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2014 at 01:37 PM
+-- Generation Time: Aug 12, 2014 at 10:27 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -31,23 +31,29 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `propid` int(11) NOT NULL,
   `planid` int(11) NOT NULL,
   `orderdate` varchar(10) NOT NULL,
+  `kind` tinyint(4) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `gig` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `propid`, `planid`, `orderdate`, `status`, `gig`) VALUES
-(1, 12, -1, '2014-08-06', 0, 2),
-(2, 13, 5, '2014-08-06', 2, 0),
-(3, 0, 5, '2014-08-06', 2, 0),
-(4, 14, -1, '2014-08-06', 0, 5),
-(5, 0, 6, '2014-08-06', 2, 0),
-(6, 14, 3, '2014-08-06', 2, 0),
-(7, 14, 5, '2014-08-06', 2, 0);
+INSERT INTO `orders` (`id`, `propid`, `planid`, `orderdate`, `kind`, `status`, `gig`) VALUES
+(1, 12, -1, '2014-08-06', 0, 2, 2),
+(2, 13, 5, '2014-08-06', 1, 1, 0),
+(3, 0, 5, '2014-08-06', 2, 1, 0),
+(4, 14, -1, '2014-08-06', 0, 1, 5),
+(5, 0, 6, '2014-08-06', 2, 1, 0),
+(6, 14, 3, '2014-08-06', 2, 1, 0),
+(7, 14, 5, '2014-08-06', 2, 1, 0),
+(8, 14, -1, '2014-08-12', 0, 1, 5),
+(9, 13, 5, '2014-08-06', 1, 1, 0),
+(10, 14, -1, '2014-08-06', 0, 1, 5),
+(11, 14, -1, '2014-08-12', 0, 1, 5),
+(12, 12, -1, '2014-08-06', 0, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -65,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `plans` (
   `price` double NOT NULL,
   `percent` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `plans`
@@ -82,7 +88,9 @@ INSERT INTO `plans` (`id`, `pname`, `month`, `gig`, `night`, `modem`, `price`, `
 (8, 'طلایی 6 ماهه 8 گیگ + بدون شبانه', 6, 8, 0, 0, 2008800, 0),
 (9, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 0, 3),
 (10, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 0, 3),
-(12, 'نقره داغ 12 ماهه 6 گیگ', 12, 6, 1, 1, 950000, 5);
+(12, 'نقره داغ 12 ماهه 6 گیگ', 12, 6, 1, 1, 950000, 5),
+(13, 'نقره داغ 12 ماهه 8 گیگ', 3, 5, 1, 1, 950000, 3),
+(14, 'نقره داغ 12 ماهه 6 گیگ', 6, 6, 0, 0, 450000, 10);
 
 -- --------------------------------------------------------
 
@@ -131,8 +139,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 
 INSERT INTO `settings` (`id`, `key`, `value`) VALUES
 (1, 'Site_Theme_Name', 'default'),
-(2, 'About_System', '<p>گروه مدیا تک بر در سال 1392 تشکیل و به جهت رفاه حال مشتریان عزیز</p>'),
-(3, 'Site_Title', 'سیستم مدیریت محتوای مدیا تکنیک'),
+(2, 'About_System', 'گروه مدیا تک بر در سال 1392 تشکیل و به جهت رفاه حال مشتریان عزیز'),
+(3, 'Site_Title', 'شرکت ایرانا'),
 (4, 'Site_KeyWords', 'مدیا تک - سی ام اس - مدیریت محتوا'),
 (5, 'Site_Describtion', 'این سایت بر پایه phpطراحی شده است که باعث سهولت در'),
 (6, 'Admin_Email', 'admin@mediateq.ir'),
@@ -146,15 +154,15 @@ INSERT INTO `settings` (`id`, `key`, `value`) VALUES
 (14, 'YouTube_Add', 'youtube.com'),
 (15, 'Tell_Number', '7623666'),
 (16, 'Fax_Number', '7634562'),
-(17, 'Address', 'مشهد - سه راه فلسطین - ساختمان 202 - طبقه اول - واحد 3'),
+(17, 'Address', 'جهت تست آدرس\r\nتست دوم'),
 (18, 'Is_Smtp_Active', 'yes'),
 (19, 'Smtp_Host', 'smtp.gmail.com'),
 (20, 'Smtp_User_Name', 'hatami4510@gmail.com'),
 (21, 'Smtp_Pass_Word', '12345'),
 (22, 'Smtp_Port', '465'),
 (23, 'Email_Sender_Name', 'گروه مدیاتک'),
-(24, 'WellCome_Title', 'به سایت ژیک خوش آمدید'),
-(25, 'WellCome_Body', 'شرکت ساختمانی ژیک  جهت رفاه حال پزشکان ساختمانی شیک طراحی و ساخته است'),
+(24, 'WellCome_Title', ''),
+(25, 'WellCome_Body', ''),
 (26, 'Gplus_Add', 'www.googleplus.com'),
 (27, 'About_Pic_Name', 'about_pic.jpg');
 
@@ -199,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `volumes` (
   `price` double NOT NULL,
   `percent` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `volumes`
