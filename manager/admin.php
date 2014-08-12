@@ -24,8 +24,12 @@
 	   else
 		    echo $mes->ShowError("عملیات خروج با خطا مواجه شد، لطفا مجددا سعی نمایید.");
    }
+if ($_GET["act"]=="ord")	
+	$where = "Status = 1";
+else	
+if ($_GET["act"]=="confirm")	
+	$where = "Status = 2";
 	
-
 $html=<<<cd
     <!-- Main Section -->
     <section class="main-section grid_7">
@@ -39,11 +43,12 @@ $html=<<<cd
                 <div class="grid_6">
 cd;
 
-$rows = $db->SelectAll("orders","*",null,"id Desc");
+$rows = $db->SelectAll("orders","*",$where,"id Desc");
 $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">
         <tr>	  
+			<th><a href="#">تاریخ سفارش</a></th>		
             <th><a href="#">نام مشتری</a></th>
 			<th><a href="#">تلفن مشتری</a></th>
             <th><a href="#">نام طرح</a></th>
@@ -57,9 +62,13 @@ $table=<<<cd
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
+ $rows[$i]["orderdate"] = ToJalali($rows[$i]["sdate"]," l d F  Y ");
+  
  $tel = $db->Select("properties","tel","id = ".$rows[$i]["propid"])[0];
  $rows[$i]["propid"] = $db->Select("properties","fullname","id = ".$rows[$i]["propid"])[0]; 
+ 
  $rows[$i]["planid"] = $db->Select("plans","pname","id = ".$rows[$i]["planid"])[0];
+ 
  if($rows[$i]["kind"]==0)
 	$rows[$i]["kind"] = "شارژ حساب";
  else
@@ -77,6 +86,7 @@ cd;
 
 $table .=<<<cd
         <tr>		
+		    <td>{$rows[$i]["orderdate"]}</td>
             <td>{$rows[$i]["propid"]}</td>
 			<td>{$tel}</td>			
             <td>{$rows[$i]["planid"]}</td>
@@ -85,7 +95,7 @@ $table .=<<<cd
 			<td>{$rows[$i]["gig"]}</td>            
 			<td>
                 <ul class="action-buttons">
-                    <li><a href="?act=edit&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="pencil"></span></a></li>
+                    <li><a href="?act=confirm&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="pencil"></span></a></li>
                     <li><a href="?act=del&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="bin"></span></a></li>
                 </ul>
             </td>
