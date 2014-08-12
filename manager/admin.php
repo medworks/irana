@@ -88,6 +88,11 @@ for($i = 0; $i < Count($rows); $i++)
  if ($rows[$i]["kind"]==2) 
 	$rows[$i]["kind"] = "تغییر حساب"; 
 	
+if ($rows[$i]["status"]==1) 
+	$rows[$i]["status"] = "تایید نشده";
+else	
+	$rows[$i]["status"] = "تایید شده";
+	
 if (($i+1)%11 == 0)	
 	$table.=<<<cd
 	</tbody>
