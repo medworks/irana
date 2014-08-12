@@ -27,7 +27,7 @@
 if ($_GET["act"]=="ord")	
 	$where = "Status = 1";
 else	
-if ($_GET["act"]=="confirm")	
+if ($_GET["act"]=="confirmed")	
 	$where = "Status = 2";
 	
 $html=<<<cd

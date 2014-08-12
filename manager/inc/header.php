@@ -40,7 +40,7 @@
                 <nav class="grid_5" style="width:750px;">
                     <ul class="clearfix" style="font-size:15px;">
                         <li><a href="admin.php?act=ord">لیست سفارشات</a></li>
-                        <li><a href="admin.php?act=confirm">لیست تایید شده</a></li>
+                        <li><a href="admin.php?act=confirmed">لیست تایید شده</a></li>
                         <li><a href="plans.php?act=new">تعرفه طرح ها</a></li>
                         <li><a href="volume.php?act=new">تعرفه حجم ها</a></li>
                         <li class="fl">
@@ -62,7 +62,7 @@
                 <nav class="global">
                     <ul class="clearfix">
                         <li><a class="nav-icon icon-house" href="admin.php?act=ord">لیست سفارشات</a></li>
-                        <li><a class="nav-icon icon-tick" href="admin.php?act=confirm">لیست تایید شده</a></li>
+                        <li><a class="nav-icon icon-tick" href="admin.php?act=confirmed">لیست تایید شده</a></li>
                         <li><a class="nav-icon icon-note" href="plans.php?act=new">تعرفه طرح ها</a></li>
                         <li><a class="nav-icon icon-book" href="volume.php?act=new">تعرفه حجم ها</a></li>
                     </ul>
