@@ -8,7 +8,7 @@ include_once("../classes/messages.php");
  
 $login=Login::GetLogin();
 $msg=Message::GetMessage();
-$msg = "";
+$msgs = "";
 if ($login->IsLogged())
 {	
 		header("Location: ../manager/admin.php");
@@ -23,7 +23,7 @@ else
 		}	
 		else
 		{ 
-			$msg = $msg->ShowError("نام کاربری یا کلمه عبور اشتباه می باشد !");			
+			$msgs = $msg->ShowError("نام کاربری یا کلمه عبور اشتباه می باشد !");			
 		}	
 	}   
 
@@ -93,14 +93,15 @@ $(document).ready(function(){
     			</p>
 				<input type="hidden" name="mark" value="login" />    
     		</form>
+			<div class="message">
+				{$msgs}
+			</div>
     	</section>
     </div>
     <div class="apple_overlay black" id="overlay">
         <iframe class="contentWrap" style="width: 100%; height: 500px"></iframe>
     </div>
-	<div class="message">
-				{$msg}
-    </div>
+	
 </body>
 </html>
 cd;

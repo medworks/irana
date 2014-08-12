@@ -39,8 +39,8 @@
                 <h1 class="grid_1" style="font-size:20px;"><a href="dashboard.html">شرکت ایرانا</a></h1>
                 <nav class="grid_5" style="width:750px;">
                     <ul class="clearfix" style="font-size:15px;">
-                        <li><a href="#">لیست پرداختی</a></li>
-                        <li><a href="#">لیست تایید شده</a></li>
+                        <li><a href="admin.php?act=ord">لیست سفارشات</a></li>
+                        <li><a href="admin.php?act=confirmed">لیست تایید شده</a></li>
                         <li><a href="plans.php?act=new">تعرفه طرح ها</a></li>
                         <li><a href="volume.php?act=new">تعرفه حجم ها</a></li>
                         <li class="fl">
@@ -61,8 +61,8 @@
             <aside class="grid_1">
                 <nav class="global">
                     <ul class="clearfix">
-                        <li><a class="nav-icon icon-house" href="#">لیست پرداختی</a></li>
-                        <li><a class="nav-icon icon-tick" href="#">لیست تایید شده</a></li>
+                        <li><a class="nav-icon icon-house" href="admin.php?act=ord">لیست سفارشات</a></li>
+                        <li><a class="nav-icon icon-tick" href="admin.php?act=confirmed">لیست تایید شده</a></li>
                         <li><a class="nav-icon icon-note" href="plans.php?act=new">تعرفه طرح ها</a></li>
                         <li><a class="nav-icon icon-book" href="volume.php?act=new">تعرفه حجم ها</a></li>
                     </ul>

@@ -38,7 +38,7 @@
 						 "`price`"=>"'{$_POST[price]}'",
 						 "`percent`"=>"'{$_POST[percent]}'");
         $db->UpdateQuery("volumes",$values,array("id='{$_GET[vid]}'"));		
-		header('location:volume.php?act=edit&msg=2');
+		header('location:volume.php?act=edit&msg=1');
 	}	
 	
 	if ($_GET['act']=="new")

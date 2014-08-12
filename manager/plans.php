@@ -48,7 +48,7 @@ if ($_POST["mark"]=="saveplan")
 						 "`price`"=>"'{$_POST[price]}'",
 						 "`percent`"=>"'{$_POST[percent]}'");
         $db->UpdateQuery("plans",$values,array("id='{$_GET[pid]}'"));		
-		header('location:plans.php?act=new&msg=2');
+		header('location:plans.php?act=new&msg=1');
 	}	
 	
 	if ($_GET['act']=="new")
