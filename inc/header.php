@@ -3,6 +3,10 @@
 	include_once("./config.php");
 	include_once("./classes/database.php");
 	include_once("./classes/functions.php");
+	
+	$Site_Title = GetSettingValue('Site_Title',0);
+	$Site_KeyWords = GetSettingValue('Site_KeyWords',0);
+	$Site_Describtion = GetSettingValue('Site_Describtion',0);
 	$Contact_Email = GetSettingValue('Contact_Email',0);				
 	$Tell_Number = GetSettingValue('Tell_Number',0);	
 ?>
@@ -15,7 +19,7 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 
 <html lang="fa" class="no-js"><!--<![endif]--><head>
-	<title>گروه بازرگانی ایرانا</title>
+	<title><?php echo $Site_Title?></title>
 	<meta charset="utf-8">
 	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
 	   Remove this if you use the .htaccess -->
