@@ -24,11 +24,21 @@
 	   else
 		    echo $mes->ShowError("عملیات خروج با خطا مواجه شد، لطفا مجددا سعی نمایید.");
    }
-if ($_GET["act"]=="ord")	
-	$where = "Status = 1";
-else	
-if ($_GET["act"]=="confirmed")	
-	$where = "Status = 2";
+   
+   if ($_GET['act']=="del")
+  {
+	  $db->Delete("orders"," id",$_GET["oid"]);		
+	  if ($_GET["act"]=="ord")	
+		header("location:admin.php?act=ord");	
+	 else	
+	    header("location:admin.php?act=confirmed");	
+  }	
+	
+	if ($_GET["act"]=="ord")	
+		$where = "Status = 1";
+	else	
+	if ($_GET["act"]=="confirmed")	
+		$where = "Status = 2";
 	
 $html=<<<cd
     <!-- Main Section -->
