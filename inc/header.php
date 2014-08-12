@@ -1,5 +1,10 @@
 <?php
     header('Content-Type: text/html; charset=UTF-8');
+	include_once("./config.php");
+	include_once("./classes/database.php");
+	include_once("./classes/functions.php");
+	$Contact_Email = GetSettingValue('Contact_Email',0);				
+	$Tell_Number = GetSettingValue('Tell_Number',0);	
 ?>
 <!doctype html>
 
@@ -39,8 +44,8 @@
 				<h1 style="color:#DE5328;text-shadow:2px 1px 2px #DE5328">گروه بازرگانی ایرانا<span>نماینده رسمی تمدید و ثبت محصولات مخابرات</h1>
 			</div>
 			<div id="personal_data">
-				<p>تلفن: <span style="display:inline-block;direction:ltr !important">(051) 3855-55-60</span></p>
-				<p>ایمیل: <span><a href="mailto:info@irana.ir" class="latin-font">info@irana.ir</a></span></p>
+				<p>تلفن: <span style="display:inline-block;direction:ltr !important">(051) <?php echo $Tell_Number?></span></p>
+				<p>ایمیل: <span><a href="mailto:info@irana.ir" class="latin-font"><?php echo $Contact_Email?></a></span></p>
 			</div>
 		</div>
 		<div id="menu" class="png_bg ltr">
