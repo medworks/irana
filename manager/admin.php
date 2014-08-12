@@ -41,9 +41,9 @@ cd;
 
 $rows = $db->SelectAll("orders","*",null,"id Desc");
 $table=<<<cd
-<table class="datatable sortable full">
+<table class="datatable paginate sortable full">
     <thead class="rtl">
-        <tr>	        
+        <tr>	  
             <th><a href="#">نام مشتری</a></th>
 			<th><a href="#">تلفن مشتری</a></th>
             <th><a href="#">نام طرح</a></th>
@@ -53,7 +53,7 @@ $table=<<<cd
 			<th style="width:70px"><a href="#">عملیات</a></th>	
         </tr>
     </thead>
-	<tbody class="rtl">
+	<tbody style="display: none;">
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
@@ -68,11 +68,11 @@ for($i = 0; $i < Count($rows); $i++)
  else	
  if ($rows[$i]["kind"]==2) 
 	$rows[$i]["kind"] = "تغییر حساب"; 
-if (($i+1)%10 == 0)
 	
+if (($i+1)%11 == 0)	
 	$table.=<<<cd
 	</tbody>
-<tbody style="display: table-row-group;">
+		<tbody style="display: table-row-group;">
 cd;
 
 $table .=<<<cd
