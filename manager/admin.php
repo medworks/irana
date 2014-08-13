@@ -33,6 +33,16 @@
 	 else	
 	    header("location:admin.php?act=confirmed");	
   }	
+  if ($_GET['act']=="confirm")
+  {
+	 $values = array("`status`"=>"'2'");
+     $db->UpdateQuery("orders",$values,array("id='{$_GET[oid]}'"));			
+	 
+	 if ($_GET["act"]=="ord")	
+		header("location:admin.php?act=ord");	
+	 else	
+	    header("location:admin.php?act=confirmed");	
+  }	
 	
 	if ($_GET["act"]=="ord")
     { 	
