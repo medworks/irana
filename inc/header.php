@@ -61,7 +61,7 @@
 					<a href="#" class="">درباره ما</a>
 				</li>
 				<li>
-					<a href="#" class="">تعرفه ها</a>
+					<a href="price.php" class="">تعرفه ها</a>
 				</li>
 				<li>
 					<a href="#">تماس با ما</a>

@@ -44,141 +44,97 @@ $html =<<<cd
 					<h1>تعرفه طرح ها</h1>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
-					<table class="datatable full">
-					    <thead class="rtl">
-					        <tr>
-					            <th>نام طرح</th>
-					            <th>مدت زمان (ماه)</th>
-					            <th>حجم (گیگابایت)</th>
-					            <th>قیمت (ریال)</th>
-					            <th>تخفیف (درصد)</th>
-					            <th>قابل پرداخت (ریال)</th>
-					        </tr>
-					    </thead>
-					    <tbody class="rtl">
-					        <tr>
-					            <td>Firefox 3.0</td>
-					            <td>Windows</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Firefox 3.0</td>
-					            <td>OS X</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Firefox 3.6</td>
-					            <td>Windows</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Firefox 3.6</td>
-					            <td>OS X</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Firefox 3.6</td>
-					            <td>Ubuntu</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Chrome 6.0</td>
-					            <td>Windows</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Chrome 7.0</td>
-					            <td>Windows</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Chrome 7.0</td>
-					            <td>OS X</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Internet Explorer 6.0</td>
-					            <td>Windows</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Internet Explorer 7.0</td>
-					            <td>Windows</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					    </tbody>
-					</table>
+cd;
+$rows = $db->SelectAll("plans","*",null,"id Desc");
+$table=<<<cd
+<table class="datatable paginate sortable full">
+    <thead class="rtl">
+        <tr>	        
+            <th><a href="#">نام طرح</a></th>
+            <th><a href="#">مدت زمان</a></th>
+            <th><a href="#">حجم طرح</a></th>
+            <th><a href="#">شبانه </a></th>
+            <th><a href="#">مودم</a></th>
+			<th><a href="#">هزینه طرح</a></th>			
+        </tr>
+    </thead>
+	<tbody style="display: none;">
+cd;
+for($i = 0; $i < Count($rows); $i++)
+{
+ $rows[$i]["month"] = ($rows[$i]["month"])." ماهه ";
+ $rows[$i]["gig"] = ($rows[$i]["gig"])." گیگابایت ";
+ $rows[$i]["night"] = ($rows[$i]["night"])?"دارد" :"ندارد";
+ $rows[$i]["modem"] = ($rows[$i]["modem"])?"دارد" :"ندارد";
+
+if (($i+1)%10 == 0)
+	
+	$table.=<<<cd
+	</tbody>
+<tbody style="display: table-row-group;">
+cd;
+
+$table .=<<<cd
+        <tr>		
+            <td>{$rows[$i]["pname"]}</td>
+            <td>{$rows[$i]["month"]}</td>
+            <td>{$rows[$i]["gig"]}</td>
+            <td>{$rows[$i]["night"]}</td>
+            <td>{$rows[$i]["modem"]}</td>
+			<td>{$rows[$i]["price"]}</td>			
+        </tr>
+	
+cd;
+}
+$table.="</tbody> </table>";
+$html.=<<<cd
+					{$table}
 					<div class="clearfix"></div>
 				</div>
 				<div class="container_alpha slogan">
 					<h1>تعرفه حجم ها</h1>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
-					<table class="datatable full">
-					    <thead class="rtl">
-					        <tr>
-					            <th>از حجم (گیگابایت)</th>
-					            <th>تا حجم (گیگابایت)</th>
-					            <th>قیمت (ریال)</th>
-					            <th>تخفیف (درصد)</th>
-					            <th>قابل پرداخت (ریال)</th>
-					        </tr>
-					    </thead>
-					    <tbody class="rtl">
-					        <tr>
-					            <td>Firefox 3.0</td>
-					            <td>Windows</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Firefox 3.0</td>
-					            <td>OS X</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					        <tr>
-					            <td>Firefox 3.6</td>
-					            <td>Windows</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					            <td>Table Cell</td>
-					        </tr>
-					    </tbody>
-					</table>
-					<div class="clearfix"></div>
+cd;
+$rows = $db->SelectAll("volumes","*",null,"id Asc");
+$table=<<<cd
+<table class="datatable sortable full">
+    <thead class="rtl">
+        <tr>	        
+            <th><a href="#">از حجم</a></th>
+            <th><a href="#">تا حجم</a></th>
+            <th><a href="#">قیمت</a></th>
+            <th><a href="#">درصد تخفیف </a></th>            			
+        </tr>
+    </thead>
+	<tbody class="rtl">
+cd;
+for($i = 0; $i < Count($rows); $i++)
+{
+ $rows[$i]["fvol"] = ($rows[$i]["fvol"])." گیگابایت ";
+ $rows[$i]["tvol"] = ($rows[$i]["tvol"])." گیگابایت ";
+ 
+if (($i+1)%10 == 0)
+	
+	$table.=<<<cd
+	</tbody>
+<tbody style="display: table-row-group;">
+cd;
+
+$table .=<<<cd
+        <tr>		
+            <td>{$rows[$i]["fvol"]}</td>
+            <td>{$rows[$i]["tvol"]}</td>
+            <td>{$rows[$i]["price"]}</td>
+            <td>{$rows[$i]["percent"]}</td>            			
+        </tr>
+	
+cd;
+}
+$table.="</tbody> </table>";
+$html.=<<<cd
+					{$table}
+					<div class="clearfix"> </div>
 				</div>
 			</div>
 		</div>
