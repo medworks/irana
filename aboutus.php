@@ -3,9 +3,7 @@
 	
 	include_once("config.php");
     include_once("classes/database.php");
-    include_once("classes/messages.php");
 	include_once("classes/functions.php");
-	include_once("/lib/persiandate.php");
   
     $About_System = GetSettingValue('About_System',0);
 	
