@@ -6,9 +6,9 @@ deny from all
 <IFModule mod_rewrite.c>   
 	RewriteEngine On 
 	RewriteRule ^index.html irana/index.php [L]
-	RewriteRule ^search.html irana/index.php?item=search&act=do [L]
-	RewriteRule ^about-us.html irana/index.php?item=about [L]
-	RewriteRule ^gallery.html irana/index.php?item=gallery [L]
+	RewriteRule ^aboutus.html irana/aboutus.php [L]
+	RewriteRule ^contact.html irana/contact.php [L]
+	RewriteRule ^price.html irana/price.php [L]
 	RewriteBase / 	
 
 #Add WWW		
