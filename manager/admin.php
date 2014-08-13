@@ -34,11 +34,17 @@
 	    header("location:admin.php?act=confirmed");	
   }	
 	
-	if ($_GET["act"]=="ord")	
+	if ($_GET["act"]=="ord")
+    { 	
 		$where = "Status = 1";
+		$title = "لیست سفارشات";
+	}	
 	else	
 	if ($_GET["act"]=="confirmed")	
+	{
 		$where = "Status = 2";
+		$title = "لیست  تایید شده";
+	}	
 	
 $html=<<<cd
     <!-- Main Section -->
@@ -46,7 +52,7 @@ $html=<<<cd
         <div class="main-content">
             <header>
                 <h2>
-                   لیست سفارشات
+                   {$title}
                 </h2>
             </header>
             <section class="container_6 clearfix">
