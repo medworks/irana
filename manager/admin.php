@@ -67,6 +67,8 @@ $table=<<<cd
 			<th><a href="#">تاریخ سفارش</a></th>		
             <th><a href="#">نام مشتری</a></th>
 			<th><a href="#">تلفن مشتری</a></th>
+			<th><a href="#">موبایل</a></th>
+			<th><a href="#">ایمیل</a></th>
             <th><a href="#">نام طرح</a></th>
             <th><a href="#">نوع سفارش</a></th>
             <th><a href="#">وضضعیت سفارش </a></th>            
@@ -81,6 +83,8 @@ for($i = 0; $i < Count($rows); $i++)
  $rows[$i]["orderdate"] = ToJalali($rows[$i]["sdate"]," l d F  Y ");
   
  $tel = $db->Select("properties","tel","id = ".$rows[$i]["propid"])[0];
+ $mobile = $db->Select("properties","mobile","id = ".$rows[$i]["propid"])[0];
+ $email = $db->Select("properties","email","id = ".$rows[$i]["propid"])[0];
  $rows[$i]["propid"] = $db->Select("properties","fullname","id = ".$rows[$i]["propid"])[0]; 
  
  $rows[$i]["planid"] = $db->Select("plans","pname","id = ".$rows[$i]["planid"])[0];
@@ -110,6 +114,8 @@ $table .=<<<cd
 		    <td>{$rows[$i]["orderdate"]}</td>
             <td>{$rows[$i]["propid"]}</td>
 			<td>{$tel}</td>			
+			<td>{$mobile}</td>			
+			<td>{$email}</td>			
             <td>{$rows[$i]["planid"]}</td>
             <td>{$rows[$i]["kind"]}</td>
             <td>{$rows[$i]["status"]}</td>            
