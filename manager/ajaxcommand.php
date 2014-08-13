@@ -16,7 +16,14 @@
 	//$row = $db->Select("properties","planid","tel={$_GET[recplan]}");
 	$row = $db->Select("plans","price","id='{$_GET[recplan]}'");
 	//echo $db->cmd;
-	echo ($row[0]);
+	$row = ($row[0])?$row[0]:"0";
+	echo ($row);
+}
+
+if (isset($_GET["kind"]))
+{   
+	$Percent_Off = GetSettingValue('Percent_Off',0);	
+	echo " تخفیف ",$Percent_Off," % ";
 }
 
  if (isset($_GET["gig"]))

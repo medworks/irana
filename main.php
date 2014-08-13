@@ -126,11 +126,17 @@ $html =<<<cd
 								if (cureentAct=="sharg"){
 									$(".toggler #sharg").css('display',"block");
 									$('#price').html("0");
+									$.get('manager/ajaxcommand.php?kind=sharg',function(data) {
+						               $('#percent').html(data);
+				                    });
 								}
 								if (cureentAct=="tamdid"){
 									$(".toggler #tamdid").css('display',"block");
 									$.get('manager/ajaxcommand.php?recplan={$row[planid]}',function(data) {
-						               $('#price').html(data);
+									   
+									   toman = (data.replace(/[^\d\.\-\ ]/g, ''))/10;												
+						               $('#price').html(data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+									   $('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 				                    });								
 								}
 								if (cureentAct=="taghir"){
@@ -187,8 +193,8 @@ $html =<<<cd
 									<h3>مبلغ قابل پرداخت</h3>
 									<h2 id="price" style="font-size:26px;margin-top:5px">0</h2>
 									<strong style="font-size:23px;margin-right:53px;display:inline-block;margin-top:10px">ریال</strong>
-									<div class="specs" style="margin-top:25px"><p style="font-size:18px;margin-top:10px;">هزینه سرویس</p><p id="toman" style="font-size:18px;">5000 تومان</p></div>
-									<div class="specs"><p style="font-size:18px;padding-top:10px;">5% تخفیف</p></div>
+									<div class="specs" style="margin-top:25px"><p style="font-size:18px;margin-top:10px;">هزینه سرویس</p><p id="toman" style="font-size:18px;">0 تومان</p></div>
+									<div class="specs"><p id="percent" style="font-size:18px;padding-top:10px;">0% تخفیف</p></div>
 									<div class="specs"><p style="font-size:18px"><img src="images/check.png" alt=""> مبلغ قابل پرداخت</p><p style="font-size:18px">0 ریال</p></div>
 									<div class="buyme" style="margin-right:30px"><p><a href="#" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>
 								</div>
@@ -212,10 +218,9 @@ $html =<<<cd
 	</script>
 	<script type='text/javascript'>
 		$(document).ready(function(){
-			
+			var toman;  
 			$( "#gigabyte" ).keyup(function() {
-			  var volgig = $('#gigabyte').val()
-              var toman;    			  
+			  var volgig = $('#gigabyte').val()			  
 				$.get('manager/ajaxcommand.php?gig= '+$('#gigabyte').val(),function(data) {
 						$('#price').html(data);
 						//alert(data);
@@ -233,7 +238,9 @@ $html =<<<cd
 				success: function (data) {				    
 					$('#gig').html(data[3]*data[2]+" گیگابایت ");
 					$('#month').html(data[2]+" ماهه ");
-					$('#price').html(data[5]);
+					$('#price').html(data[6].replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;						
+					$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 				}
 			        });
 			});	
