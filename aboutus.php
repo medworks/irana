@@ -7,8 +7,8 @@
 	include_once("classes/functions.php");
 	include_once("/lib/persiandate.php");
   
-    $db = Database::GetDatabase();
-	$msg = Message::GetMessage();
+    $About_System = GetSettingValue('About_System',0);
+	
 $html =<<<cd
 		<!-- Main content alpha -->
 		<div class="main png_bg">
@@ -18,7 +18,7 @@ $html =<<<cd
 					<h1>درباره ما</h1>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
-					<h2 style="font-size:20px;">گروه بازرگانی ایرانا فعال در زمینه</h2>
+					<h2 style="font-size:20px;">{$About_System}</h2>
 				</div>
 			</div>
 		</div>
