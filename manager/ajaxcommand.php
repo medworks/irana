@@ -12,18 +12,21 @@
 }
 
  if (isset($_GET["recplan"]))
-{   $row = array();
-	//$row = $db->Select("properties","planid","tel={$_GET[recplan]}");
-	$row = $db->Select("plans","price","id='{$_GET[recplan]}'");
-	//echo $db->cmd;
+{   	
+	$row = $db->Select("plans","price","id='{$_GET[recplan]}'");	
 	$row = ($row[0])?$row[0]:"0";
 	echo ($row);
 }
 
-if (isset($_GET["kind"]))
+if (isset($_GET["kind"]) and ($_GET["kind"]=="percent"))
 {   
 	$Percent_Off = GetSettingValue('Percent_Off',0);	
 	echo " تخفیف ",$Percent_Off," % ";
+}
+if (isset($_GET["kind"]) and ($_GET["kind"]=="percent2"))
+{   
+	$Percent_Off = GetSettingValue('Percent_Off',0);	
+	echo $Percent_Off;
 }
 
  if (isset($_GET["gig"]))

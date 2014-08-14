@@ -126,9 +126,9 @@ $html =<<<cd
 								if (cureentAct=="sharg"){
 									$(".toggler #sharg").css('display',"block");
 									$('#price').html("0");
-									$.get('manager/ajaxcommand.php?kind=sharg',function(data) {
+									$.get('manager/ajaxcommand.php?kind=percent',function(data) {
 						               $('#percent').html(data);
-				                    });
+				                    });									 
 								}
 								if (cureentAct=="tamdid"){
 									$(".toggler #tamdid").css('display',"block");
@@ -136,12 +136,26 @@ $html =<<<cd
 									   
 									   toman = (data.replace(/[^\d\.\-\ ]/g, ''))/10;												
 						               $('#price').html(data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-									   $('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+									   $('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
+									   
+									   $.get('manager/ajaxcommand.php?kind=percent2',function(percent) {										
+										toman = data - (data * (percent /100));										
+										$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
+				                    });
+									
+									$.get('manager/ajaxcommand.php?kind=percent',function(data) {
+						               $('#percent').html(data);
+				                    });
+									   
 				                    });								
 								}
 								if (cureentAct=="taghir"){
 									$(".toggler #taghir").css('display',"block");
 									$('#price').html("0");
+									
+									$.get('manager/ajaxcommand.php?kind=percent',function(data) {
+						               $('#percent').html(data);
+				                    });
 								}
 							});
 						});
@@ -195,7 +209,7 @@ $html =<<<cd
 									<strong style="font-size:23px;margin-right:53px;display:inline-block;margin-top:10px">ریال</strong>
 									<div class="specs" style="margin-top:25px"><p style="font-size:18px;margin-top:10px;">هزینه سرویس</p><p id="toman" style="font-size:18px;">0 تومان</p></div>
 									<div class="specs"><p id="percent" style="font-size:18px;padding-top:10px;">0% تخفیف</p></div>
-									<div class="specs"><p style="font-size:18px"><img src="images/check.png" alt=""> مبلغ قابل پرداخت</p><p style="font-size:18px">0 ریال</p></div>
+									<div class="specs"><p style="font-size:18px"><img src="images/check.png" alt=""> مبلغ قابل پرداخت</p><p id="lastprice" style="font-size:18px">0 ریال</p></div>
 									<div class="buyme" style="margin-right:30px"><p><a href="#" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>
 								</div>
 
@@ -218,15 +232,27 @@ $html =<<<cd
 	</script>
 	<script type='text/javascript'>
 		$(document).ready(function(){
-			var toman;  
+			var toman;
+            var nodot;			
 			$( "#gigabyte" ).keyup(function() {
-			  var volgig = $('#gigabyte').val()			  
+			  var volgig = $('#gigabyte').val()		
 				$.get('manager/ajaxcommand.php?gig= '+$('#gigabyte').val(),function(data) {
 						$('#price').html(data);
 						//alert(data);
 						toman = (data.replace(/[^\d\.\-\ ]/g, ''))/10;						
-						$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-				  });	
+						$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
+						
+						$.get('manager/ajaxcommand.php?kind=percent',function(percent) {
+						               $('#percent').html(percent);
+				        });	
+						
+						$.get('manager/ajaxcommand.php?kind=percent2',function(percent) {										
+						    nodot = (data.replace(/[^\d\.\-\ ]/g, ''));
+							toman = nodot - (nodot * (percent /100));										
+							$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
+						});		
+				  });
+
 			});
 		
 			$("#cbplans").change(function(){			   
@@ -240,9 +266,15 @@ $html =<<<cd
 					$('#month').html(data[2]+" ماهه ");
 					$('#price').html(data[6].replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 					toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;						
-					$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
+					
+					$.get('manager/ajaxcommand.php?kind=percent2',function(percent) {					        
+							toman = data[6] - (data[6] * (percent /100));										
+							$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
+						});	
 				}
 			        });
+										
 			});	
 			
 			
