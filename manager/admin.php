@@ -74,16 +74,16 @@ $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">
         <tr>	  
-			<th><a href="#">تاریخ سفارش</a></th>		
+			<th style="width:60px"><a href="#">تاریخ سفارش</a></th>		
             <th><a href="#">نام مشتری</a></th>
-			<th><a href="#">تلفن مشتری</a></th>
-			<th><a href="#">موبایل</a></th>
-			<th><a href="#">ایمیل</a></th>
+			<th style="width:68px"><a href="#">تلفن</a></th>
+			<th style="width:68px"><a href="#">موبایل</a></th>
+			<th style="width:150px"><a href="#">ایمیل</a></th>
             <th><a href="#">نام طرح</a></th>
-            <th><a href="#">نوع سفارش</a></th>
-            <th><a href="#">وضضعیت سفارش </a></th>            
-			<th><a href="#">حجم(گیگابایت) </a></th>            
-			<th style="width:70px"><a href="#">عملیات</a></th>	
+            <th style="width:35px"><a href="#">نوع سفارش</a></th>
+            <th style="width:35px"><a href="#">وضعیت سفارش</a></th>            
+			<th style="width:20px"><a href="#">حجم</a></th>            
+			<th style="width:55px"><a href="#">عملیات</a></th>	
         </tr>
     </thead>
 	<tbody style="display: none;">

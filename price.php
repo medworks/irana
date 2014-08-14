@@ -47,18 +47,20 @@ $html =<<<cd
 cd;
 $rows = $db->SelectAll("plans","*",null,"id Desc");
 $table=<<<cd
-<table class="datatable paginate sortable full">
+<table class="datatable full">
     <thead class="rtl">
         <tr>	        
-            <th><a href="#">نام طرح</a></th>
-            <th><a href="#">مدت زمان</a></th>
-            <th><a href="#">حجم طرح</a></th>
-            <th><a href="#">شبانه </a></th>
-            <th><a href="#">مودم</a></th>
-			<th><a href="#">هزینه طرح</a></th>			
+          <th>نام طرح</th>
+          <th>مدت زمان (ماه)</th>
+          <th>حجم (گیگابایت)</th>
+          <th>شبانه رایگان</th>
+          <th>مودم رایگان</th>
+          <th>هزینه طرح (ریال)</th>
+          <th>درصد تخفیف</th>
+			    <th>قابل پرداخت (ریال)</th>		
         </tr>
     </thead>
-	<tbody style="display: none;">
+	<tbody class="rtl">
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
@@ -71,7 +73,7 @@ if (($i+1)%10 == 0)
 	
 	$table.=<<<cd
 	</tbody>
-<tbody style="display: table-row-group;">
+<tbody class="rtl" style="display: table-row-group;">
 cd;
 
 $table .=<<<cd
@@ -98,13 +100,14 @@ $html.=<<<cd
 cd;
 $rows = $db->SelectAll("volumes","*",null,"id Asc");
 $table=<<<cd
-<table class="datatable sortable full">
+<table class="datatable full">
     <thead class="rtl">
         <tr>	        
-            <th><a href="#">از حجم</a></th>
-            <th><a href="#">تا حجم</a></th>
-            <th><a href="#">قیمت</a></th>
-            <th><a href="#">درصد تخفیف </a></th>            			
+            <th>از حجم (گیگابایت)</th>
+            <th>تا حجم (گیگابایت)</th>
+            <th>قیمت (ریال)</th>
+            <th>درصد تخفیف</th>                 
+            <th>قابل پرداخت (ریال)</th>            			
         </tr>
     </thead>
 	<tbody class="rtl">

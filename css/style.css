@@ -2248,7 +2248,7 @@ margin: 5px 0 8px;
     font-style: normal;
 }
 
-a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input{
+a,li,span,p,h1,h2,h3,h4,h5,h6,strong,input,th,td{
 	font-family:'bmitra' !important;
 	font-weight: normal !important;
 	direction:rtl !important;
@@ -2310,5 +2310,13 @@ text-shadow: 1px 1px #000000;
 font-size: 20px;
 padding: 6px 0 0 0;
 margin: 0;
+}
+
+table.datatable thead th{
+	font-size:20px;
+}
+
+table.datatable tbody td{
+	font-size: 17px;
 }
 /*********************/
