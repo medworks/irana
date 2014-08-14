@@ -9,6 +9,12 @@
   
     $db = Database::GetDatabase();
 	$msg = Message::GetMessage();
+	
+	$Contact_Email = GetSettingValue('Contact_Email',0);				
+	$Tell_Number = GetSettingValue('Tell_Number',0);
+	$Fax_Number = GetSettingValue('Fax_Number',0);
+	$Address = GetSettingValue('Address',0);
+	
 $html =<<<cd
 		<!-- Main content alpha -->
 		<div class="main png_bg">
@@ -20,17 +26,18 @@ $html =<<<cd
 				<div class="container_gamma slogan" style="background:none">
 					<div class="gs_4">
 						<p style="font-size:17px;">
-							<strong>ایمیل:</strong> <a href="mailto:info@irana.ir">info@irana.ir</a>
+							<strong>ایمیل:</strong> <a href="mailto:{$Contact_Email}">{$Contact_Email}</a>
 						</p>
 					</div>
 					<div class="gs_4">
 						<p style="font-size:17px;">
-							<strong>تلفن:</strong><span class="ltr" style="display:inline-block"> 051-3855 55 60</span><br><strong>فاکس:</strong><span class="ltr" style="display:inline-block"> 051-3855 55 60</span><br><strong>
+							<strong>تلفن:</strong><span class="ltr" style="display:inline-block"> 051-{$Tell_Number}</span>
+							<br><strong>فاکس:</strong><span class="ltr" style="display:inline-block"> 051-{$Fax_Number}</span><br><strong>
 						</p>
 					</div>
 					<div class="gs_4 omega">
 						<p style="font-size:17px;">
-							<strong>آدرس:</strong><br>مشهد-چهاراره لشکر-پاساژ آسیا
+							<strong>آدرس:</strong><br>{$Address}
 						</p>
 					</div>
 					<div class="hr"></div>
