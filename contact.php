@@ -16,6 +16,27 @@
 	$Address = GetSettingValue('Address',0);
 	
 $html =<<<cd
+
+<script>	
+		$(document).ready(function(){
+			$("#frmcontact").submit(function(){               
+			    $.ajax({
+				    type: "POST",
+				    url: "./manager/ajaxcommand.php?contact=reg",
+				    data: $("#frmcontact").serialize(),
+					    success: function(msg)
+						{
+							$("#note-contact").ajaxComplete(function(event, request, settings){				
+								$(this).hide();
+								$(this).html(msg).slideDown("slow");
+								$(this).html(msg);
+							});
+						}
+			    });
+				return false;
+			});
+		});
+	</script>
 		<!-- Main content alpha -->
 		<div class="main png_bg">
 			<div class="inner_main">
@@ -51,8 +72,8 @@ $html =<<<cd
 									<input type="text" name="email" id="email" placeholder="ایمیل" title="Email">
 									<textarea name="comments" id="comments" rows="4" cols="4" placeholder="پیام" placeholder="Message"></textarea>
 									<p>
-										<input type="button" name="submit" id="submit" value="ارسال!" class="superbutton">
-										
+										<input type="submit" name="submit1" id="submit1" value="ارسال!" class="superbutton">
+										<!-- <img src="images/ajax-loader.gif" class="loaderIcon" alt="Loading..." style="display: none;"> -->
 									</p>
 									<ul id="form_response">
 										<li></li>
@@ -60,43 +81,22 @@ $html =<<<cd
 								</div>
 							</div>
 						</form>
+						<div id="note-contact"></div>
 					</div>
 					<!-- Contact form Ends -->
 					<div class="gs_6 omega">
 						<h3>آدرس ما</h3>
-						<div class="add_border" style="width: 428px;"><img src="images/map.png" alt="" class="border_magic" style="display: block;"></div>
+						<div class="add_border" style="width: 428px;">
+						<img src="images/map.png" alt="" class="border_magic" style="display: block;"></div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
-		<!-- /True containers (keep the content inside containers!) -->
-		<div id="note-contact"></div>
+		<!-- /True containers (keep the content inside containers!) -->		
     	<div class="endmain png_bg"></div>
 		<!-- /Main content alpha -->
-	<script>	
-		$(document).ready(function(){
-			$("#frmcontact").submit(function(){
-                alert("test");
-			    $.ajax({
-				    type: "POST",
-				    url: "./manager/ajaxcommand.php?contact=reg",
-				    data: $("#frmcontact").serialize(),
-					    success: function(msg)
-						{
-							$("#note-contact").ajaxComplete(function(event, request, settings){				
-								$(this).hide();
-								$(this).html(msg).slideDown("slow");
-								$(this).html(msg);
-
-
-							});
-						}
-			    });
-				return false;
-			});
-		});
-	</script>
+	
 	
 cd;
     echo $html;

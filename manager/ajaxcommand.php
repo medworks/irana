@@ -66,8 +66,8 @@ if($_GET["contact"]=="reg"){
 	$name    = $_POST['name'];
 	$email   = $_POST['email'];
 	$text = $_POST['comments'];
-    $subject = "contact"
-	$message = "$text";
+    $subject = "contact";
+	$message = $text;
 
 	if( strlen($name)>=1 && checkEmail($email) && strlen($text)>=1 ){
 		if( @mail (
