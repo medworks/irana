@@ -44,7 +44,7 @@ $html =<<<cd
 					<div class="gs_6 omega" style="margin-left:15px;padding-left:17px">
 						<h3>تماس با ما</h3>
 						<!-- Contact form starts -->
-						<form method="post" action="sendEmail.php">
+						<form method="post" action="" id="frmcontact">
 							<div id="form_container">		
 								<div id="form_main">
 									<input type="text" name="name" id="name" placeholder="نام و نام خانوادگی" title="Name">
@@ -52,7 +52,7 @@ $html =<<<cd
 									<textarea name="comments" id="comments" rows="4" cols="4" placeholder="پیام" placeholder="Message"></textarea>
 									<p>
 										<input type="button" name="submit" id="submit" value="ارسال!" class="superbutton">
-										<img src="images/ajax-loader.gif" class="loaderIcon" alt="Loading..." style="display: none;">
+										
 									</p>
 									<ul id="form_response">
 										<li></li>
@@ -71,8 +71,32 @@ $html =<<<cd
 			</div>
 		</div>
 		<!-- /True containers (keep the content inside containers!) -->
+		<div id="note-contact"></div>
     	<div class="endmain png_bg"></div>
 		<!-- /Main content alpha -->
+	<script>	
+		$(document).ready(function(){
+			$("#frmcontact").submit(function(){
+                alert("test");
+			    $.ajax({
+				    type: "POST",
+				    url: "./manager/ajaxcommand.php?contact=reg",
+				    data: $("#frmcontact").serialize(),
+					    success: function(msg)
+						{
+							$("#note-contact").ajaxComplete(function(event, request, settings){				
+								$(this).hide();
+								$(this).html(msg).slideDown("slow");
+								$(this).html(msg);
+
+
+							});
+						}
+			    });
+				return false;
+			});
+		});
+	</script>
 	
 cd;
     echo $html;
