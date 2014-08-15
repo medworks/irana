@@ -48,12 +48,14 @@
     { 	
 		$where = "Status = 1";
 		$title = "لیست سفارشات";
+		$titr = " <th style='width:55px'><a href='#'>عملیات</a></th> ";	
 	}	
 	else	
 	if ($_GET["act"]=="confirmed")	
 	{
 		$where = "Status = 2";
 		$title = "لیست  تایید شده";
+		$titr  = "";
 	}	
 	
 $html=<<<cd
@@ -83,7 +85,7 @@ $table=<<<cd
             <th style="width:35px"><a href="#">نوع سفارش</a></th>
             <th style="width:35px"><a href="#">وضعیت سفارش</a></th>            
 			<th style="width:20px"><a href="#">حجم</a></th>            
-			<th style="width:55px"><a href="#">عملیات</a></th>	
+			{$titr}
         </tr>
     </thead>
 	<tbody style="display: none;">
@@ -130,15 +132,19 @@ $table .=<<<cd
             <td>{$rows[$i]["kind"]}</td>
             <td>{$rows[$i]["status"]}</td>            
 			<td>{$rows[$i]["gig"]}</td>            
-			<td>
+cd;
+if ($_GET["act"]=="ord")
+{
+$table.=<<<cd
+		<td>
                 <ul class="action-buttons">
                     <li><a href="?act=confirm&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="pencil"></span></a></li>
                     <li><a href="?act=del&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="bin"></span></a></li>
                 </ul>
-            </td>
-        </tr>
-	
+        </td>
 cd;
+}
+$table .= "</tr>";
 }
 $table.="</tbody> </table>";
 
