@@ -57,7 +57,7 @@ $table=<<<cd
           <th>مودم رایگان</th>
           <th>هزینه طرح (ریال)</th>
           <th>درصد تخفیف</th>
-			    <th>قابل پرداخت (ریال)</th>		
+		  <th>قابل پرداخت (ریال)</th>		
         </tr>
     </thead>
 	<tbody class="rtl">
@@ -65,9 +65,10 @@ cd;
 for($i = 0; $i < Count($rows); $i++)
 {
  $rows[$i]["month"] = ($rows[$i]["month"])." ماهه ";
- $rows[$i]["gig"] = ($rows[$i]["gig"])." گیگابایت ";
+ $rows[$i]["gig"]   = ($rows[$i]["gig"])." گیگابایت ";
  $rows[$i]["night"] = ($rows[$i]["night"])?"دارد" :"ندارد";
  $rows[$i]["modem"] = ($rows[$i]["modem"])?"دارد" :"ندارد";
+ $percent = $rows[$i]["percent"]." % ";
 
 if (($i+1)%10 == 0)
 	
@@ -75,6 +76,8 @@ if (($i+1)%10 == 0)
 	</tbody>
 <tbody class="rtl" style="display: table-row-group;">
 cd;
+
+$percentedprice =$rows[$i]["price"]-(($rows[$i]["price"]*$rows[$i]["percent"])/100);
 
 $table .=<<<cd
         <tr>		
@@ -84,6 +87,8 @@ $table .=<<<cd
             <td>{$rows[$i]["night"]}</td>
             <td>{$rows[$i]["modem"]}</td>
 			<td>{$rows[$i]["price"]}</td>			
+			<td>{$percent}</td>			
+			<td>{$percentedprice}</td>			
         </tr>
 	
 cd;
@@ -116,7 +121,8 @@ for($i = 0; $i < Count($rows); $i++)
 {
  $rows[$i]["fvol"] = ($rows[$i]["fvol"])." گیگابایت ";
  $rows[$i]["tvol"] = ($rows[$i]["tvol"])." گیگابایت ";
- 
+ $rows[$i]["percent"] = $rows[$i]["percent"]+" % ";
+ $percentedprice = $rows[$i]["price"]-(($rows[$i]["price"]*$rows[$i]["percent"])/100);
 if (($i+1)%10 == 0)
 	
 	$table.=<<<cd
@@ -129,7 +135,8 @@ $table .=<<<cd
             <td>{$rows[$i]["fvol"]}</td>
             <td>{$rows[$i]["tvol"]}</td>
             <td>{$rows[$i]["price"]}</td>
-            <td>{$rows[$i]["percent"]}</td>            			
+            <td>{$percent}</td>
+			<td>{$percentedprice}</td>
         </tr>
 	
 cd;
