@@ -81,7 +81,8 @@ $html =<<<cd
 								</div>
 							</div>
 						</form>
-						<div id="note-contact"></div>
+						<div class="clear"></div>
+						<div id="note-contact" style="font-size:22px;color:#DE5328"></div>
 					</div>
 					<!-- Contact form Ends -->
 					<div class="gs_6 omega">

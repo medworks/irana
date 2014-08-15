@@ -54,7 +54,7 @@
 		</div>
 		<div id="menu" class="png_bg ltr">
 			<ul>
-				<li class="selected">
+				<li>
 					<a href="index.html">صفحه اصلی</a>
 				</li>
 				<li>
