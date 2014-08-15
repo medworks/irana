@@ -131,23 +131,26 @@ $html =<<<cd
 				                    });									 
 								}
 								if (cureentAct=="tamdid"){
-									$(".toggler #tamdid").css('display',"block");
-									$.get('manager/ajaxcommand.php?recplan={$row[planid]}',function(data) {
-									   
-									   toman = (data.replace(/[^\d\.\-\ ]/g, ''))/10;												
-						               $('#price').html(data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-									   $('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
-									   
-									   $.get('manager/ajaxcommand.php?kind=percent2',function(percent) {										
-										toman = data - (data * (percent /100));										
-										$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
-				                    });
-									
-									$.get('manager/ajaxcommand.php?kind=percent',function(data) {
-						               $('#percent').html(data);
-				                    });
-									   
-				                    });								
+									$(".toggler #tamdid").css('display',"block");	
+
+								$.ajax({
+									type: "GET",
+									url: "manager/ajaxcommand.php",
+									data: 'planid=' + {$row[planid]},
+									dataType: "json",
+									success: function (data) {				    
+											  
+											  toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;		
+											   $('#price').html(data[6].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+											   $('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
+												
+												toman = toman - ((toman*data[7])/100);				
+												$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
+											
+											   $('#percent').html(data[7].toString()+" % ");
+										
+									}
+										});									
 								}
 								if (cureentAct=="taghir"){
 									$(".toggler #taghir").css('display',"block");
@@ -268,10 +271,11 @@ $html =<<<cd
 					toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;						
 					$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
 					
-					$.get('manager/ajaxcommand.php?kind=percent2',function(percent) {					        
-							toman = data[6] - (data[6] * (percent /100));										
-							$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
-						});	
+					toman = (data[6].replace(/[^\d\.\-\ ]/g, ''));
+					toman = toman - ((toman*data[7])/100);
+					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
+					
+					$('#percent').html(data[7].toString()+" % ");
 				}
 			        });
 										
