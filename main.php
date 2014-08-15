@@ -27,8 +27,7 @@
 	if ($_POST["mark"] =="order" )
 	{
 	   $date = date('Y-m-d H:i:s');	
-	   //ToJalali($rows[$i]["regdate"]," l d F  Y ");
-	   
+	   	   
 	   if (!$isclientexist)
 	   {
 			$fields = array("`fullname`","`tel`","`mobile`","`email`","`planid`");	
