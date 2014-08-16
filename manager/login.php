@@ -11,7 +11,7 @@ $msg=Message::GetMessage();
 $msgs = "";
 if ($login->IsLogged())
 {	
-		header("Location: ../manager/admin.php");
+		header("Location: ../manager/admin.php?act=ord");
 } 
 else
 {
