@@ -47,7 +47,7 @@
                             <a href="#">عملیات<span class="arrow-down"></span></a>
                             <ul>
                                 <li><a href="setting.php">تنظیمات</a></li>
-                                <li><a href="#">تعریف کاربر</a></li>
+                                <li><a href="user.php">تعریف کاربر</a></li>
                                 <li><a href="admin.php?act=logout">خارج شدن</a></li>
                             </ul>
                         </li>
