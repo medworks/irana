@@ -34,7 +34,7 @@ if ($_POST["mark"]=="saveplan")
 		} 	
 		else 
 		{  										
-			header('location:plans.php?act=new&msg=1');												
+			header('location:plans.php?act=new&msg=1');
 		}  				 
 	}
 	else
