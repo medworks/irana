@@ -19,16 +19,16 @@
 				<div class="container_gamma slogan">
 					<div class="search">
 						<form action="main.php" method="get">
-							<input type="text" name="tel" style="color:#000;" id="tel" class="ltr latin-font" placeholder="5118555560">
+							<input type="text" name="tel" style="color:#000;width:350px;height:25px;font-size:25px" id="tel" class="ltr" placeholder="5118555560">
 						</form>
 					</div>
-					<h2 class="rtl">
-						شماره خط مورد نظر خود را مانند شماره روبرو وارد نمایید و سپس اینتر نمایید:
+					<h2 class="rtl" style="margin-top:8px;">
+						شماره خط:
 					</h2>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
-					<img src="images/info_button.png" class="alignright" alt="">
-					<h1 class="rtl">
+					<img src="images/info_button.png" width="75px" class="alignright" alt="irana attention">
+					<h1 class="rtl" style="font-size:18px;">
 						تمامي كالاها و خدمات اين فروشگاه، حسب مورد داراي مجوزهاي لازم از مراجع مربوطه مي‌باشند و فعاليت‌هاي اين سايت تابع قوانين و مقررات جمهوري اسلامي ايران است.
 					</h1>
 				</div>
