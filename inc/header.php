@@ -48,7 +48,7 @@
 				<h1 style="color:#DE5328;text-shadow:2px 1px 2px #DE5328">گروه بازرگانی ایرانا<span>نماینده رسمی تمدید و ثبت محصولات مخابرات</h1>
 			</div>
 			<div id="personal_data">
-				<p>تلفن: <span style="display:inline-block;direction:ltr !important">(051) <?php echo $Tell_Number?></span></p>
+				<p>تلفن: <span style="display:inline-block;direction:ltr !important"><?php echo $Tell_Number?></span></p>
 				<p>ایمیل: <span><a href="mailto:info@irana.ir" class="latin-font"><?php echo $Contact_Email?></a></span></p>
 			</div>
 		</div>

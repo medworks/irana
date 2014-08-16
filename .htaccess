@@ -5,15 +5,15 @@ deny from all
                            
 <IFModule mod_rewrite.c>   
 	RewriteEngine On 
-	RewriteRule ^index.html irana/index.php [L]
-	RewriteRule ^aboutus.html irana/aboutus.php [L]
-	RewriteRule ^contact.html irana/contact.php [L]
-	RewriteRule ^price.html irana/price.php [L]
+	RewriteRule ^index.html index.php [L]
+	RewriteRule ^aboutus.html aboutus.php [L]
+	RewriteRule ^contact.html contact.php [L]
+	RewriteRule ^price.html price.php [L]
 	RewriteBase / 	
 
 #Add WWW		
-	RewriteCond %{HTTP_HOST} ^irana.ir$ [NC]
-	RewriteRule ^(.*)$ http://www.irana.ir/$1 [L,R=301]	
+	RewriteCond %{HTTP_HOST} ^ir2020.ir$ [NC]
+	RewriteRule ^(.*)$ http://www.ir2020.ir/$1 [L,R=301]	
 	
 # proc/self/environ? no way!
 	RewriteCond %{QUERY_STRING} proc/self/environ [OR]
@@ -42,5 +42,3 @@ ErrorDocument 404 http://www.ir2020.ir/404.html
 Options -Indexes
 IndexOptions -FancyIndexing
 ServerSignature Off
-
-
