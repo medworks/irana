@@ -22,6 +22,7 @@ table.datatable {
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
     border-radius: 5px;
+    direction:rtl !important;
 }
 
 table.datatable thead th {
@@ -44,7 +45,7 @@ table.datatable thead th{
 }
 
 table.datatable thead th:first-child {
-    border-right: 0 none;
+    border-right: 1px solid #aaa;
 }
 
 table.datatable thead th{
@@ -106,7 +107,7 @@ table.datatable tbody td{
 }
 
 table.datatable tbody td:first-child{
-    border-right: 0 none;
+    border-right: 1px solid #aaa;
 }
 
 table.datatable.sortable {
