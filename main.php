@@ -19,6 +19,8 @@
 	  //echo $db->cmd;
 	  $plancode = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[pname]}</b></h5>";
 	}
+	else
+	{ $row["planid"]= -1; }
 	
 	$plans = $db->SelectAll("plans","*",NULL,"ID");	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
