@@ -2309,4 +2309,19 @@ table.datatable thead th{
 table.datatable tbody td{
 	font-size: 17px;
 }
+
+::-webkit-input-placeholder { /* WebKit browsers */
+	color:    #000;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #000;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #000;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #000;
+}
 /*********************/
