@@ -1233,7 +1233,7 @@ text-decoration:none;
 .inner_main input{
 width:95%;
 height:18px;
-padding:20px 10px 0px;
+padding:10px 10px;
 margin:0px 0 10px;
 background-color:#f1f1f2;
 border:1px solid #ffffff;
@@ -2283,6 +2283,14 @@ div.price div.box{
 	background: url(../images/pricing_blurb.png) no-repeat center top transparent;
 }
 
+div.price div.box1{
+	margin-top: 45px !important;
+	width: 144px;
+	height: 141px;
+	position: relative;
+	background: url(../images/pricing_blurb1.png) no-repeat center top transparent;
+}
+
 div.price h2,
 div.price h3,
 div.price strong{
@@ -2291,7 +2299,7 @@ color: #ffffff;
 text-shadow: 1px 1px #000000;
 font-size: 20px;
 padding: 6px 0 0 0;
-margin: 0;
+margin-top: 17px;
 }
 
 table.datatable thead th{

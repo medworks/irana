@@ -97,13 +97,19 @@ $html =<<<cd
 					<h3>
 						1) لطفاً ایمیل و تلفن همراه معتبر وارد نمائید. در صورت پرداخت بصورت اینترنتی، اطلاعات خرید به این ایمیل و تلفن ارسال می شود.
 					</h3></br>
+					<style>
+					 h5 b{
+						font-size:20px;
+						font-weight:normal;
+					 }
+					</style>
 					<form name="frmorder" id="frmorder"action="" method="post">
 					<h5>شماره خط : <b>{$_GET['tel']}</b></h5>
 					{$plancode}
 					<div style="direction:rtl">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:15px;color:#000;" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:15px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789" value="{$row[mobile]}">
-							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input name="email" style="width:30%;font-size:15px;color:#000;" class="ltr" type="text" placeholder="name@domain.com" value="{$row[email]}">													
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:18px;color:#000;" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:18px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789" value="{$row[mobile]}">
+							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input name="email" style="width:30%;font-size:18px;color:#000;" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row[email]}">													
 					</div>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
@@ -208,16 +214,20 @@ $html =<<<cd
 						<div class="price">
 							<div class="box">
 								<div>
-									<h3>مبلغ قابل پرداخت</h3>
-									<h2 id="price" style="font-size:26px;margin-top:5px">0</h2>
-									<strong style="font-size:23px;margin-right:53px;display:inline-block;margin-top:10px">ریال</strong>
-									<div class="specs" style="margin-top:25px"><p style="font-size:18px;margin-top:10px;">هزینه سرویس</p><p id="toman" style="font-size:18px;">0 تومان</p></div>
-									<div class="specs"><p id="percent" style="font-size:18px;padding-top:10px;">0% تخفیف</p></div>
-									<div class="specs"><p style="font-size:18px"><img src="images/check.png" alt=""> مبلغ قابل پرداخت</p><p id="lastprice" style="font-size:18px">0 ریال</p></div>
-									<div class="buyme" style="margin-right:30px"><p><a href="#" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>
+									<h3 style="padding-top:3px">هزینه سرویس</h3>
+									<h2 id="price" style="font-size:26px;margin-top:20px">0</h2>
+									<strong style="font-size:23px;margin-right:58px;display:inline-block;margin-top:-7px">ریال</strong>
+									<div class="specs" style="padding-top:7px;"><p id="percent" style="margin-top:17px;font-size:22px;padding-top:10px;">0% تخفیف</p></div>
 								</div>
-
 							</div>
+							<div class="box1">
+								<div>
+									<strong style="font-size:23px;margin-right:59px;display:inline-block;margin-top:10px">ریال</strong>
+									<h2 id="lastprice" style="font-size:26px;margin-top:5px">0</h2>
+									<h3>قابل پرداخت</h3>
+								</div>
+							</div>
+							<div class="buyme" style="margin-right:33px"><p><a href="#" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>	
 						</div>
 					</div>
 				</div>
@@ -253,7 +263,7 @@ $html =<<<cd
 						$.get('manager/ajaxcommand.php?kind=percent2',function(percent) {										
 						    nodot = (data.replace(/[^\d\.\-\ ]/g, ''));
 							toman = nodot - (nodot * (percent /100));										
-							$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
+							$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 						});		
 				  });
 
@@ -301,4 +311,3 @@ cd;
     echo $html;
 	include_once("inc/footer.php");
 ?>
-  	
