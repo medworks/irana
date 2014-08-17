@@ -133,17 +133,19 @@ $html =<<<cd
 								if (cureentAct=="sharg"){
 									$(".toggler #sharg").css('display',"block");
 									$('#price').html("0");
+								    $('#lastprice').html("0");
 									$.get('manager/ajaxcommand.php?kind=percent',function(data) {
 						               $('#percent').html(data);
 				                    });									 
 								}
 								if (cureentAct=="tamdid"){
-									$(".toggler #tamdid").css('display',"block");	
-
+									$(".toggler #tamdid").css('display',"block");
+								$('#price').html("0");
+								$('#lastprice').html("0");
 								$.ajax({
 									type: "GET",
 									url: "manager/ajaxcommand.php",
-									data: 'planid=' + {$row[planid]},
+									data: 'planid= {$row[planid]}',
 									dataType: "json",
 									success: function (data) {				    
 											  
@@ -162,6 +164,7 @@ $html =<<<cd
 								if (cureentAct=="taghir"){
 									$(".toggler #taghir").css('display',"block");
 									$('#price').html("0");
+									$('#lastprice').html("0");
 									
 									$.get('manager/ajaxcommand.php?kind=percent',function(data) {
 						               $('#percent').html(data);
