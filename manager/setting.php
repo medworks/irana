@@ -14,7 +14,7 @@
 		die(); // solve a security bug
 	}
 	
-		
+    $Extra_Tax = GetSettingValue('Extra_Tax',0);
 	$About_System = GetSettingValue('About_System',0);
 	$Site_Title = GetSettingValue('Site_Title',0);
 	$Site_KeyWords = GetSettingValue('Site_KeyWords',0);
@@ -26,6 +26,7 @@
 	
 	if ($_POST["mark"]==editsetting)
 	{
+	    SetSettingValue("Extra_Tax",$_POST["extratax"]);		
 		SetSettingValue("About_System",$_POST["about"]);		
 		SetSettingValue("Site_Title",$_POST["title"]);
 		SetSettingValue("Site_KeyWords",$_POST["keywords"]);
@@ -48,6 +49,7 @@ $html=<<<cd
             <section class="container_6 clearfix">
                 <div class="grid_6">
 					<form class="setting" action="" method="post">
+					    <p><span>مالیات بر ارزش افزوده</span><input type="text" name="extratax" placeholder="مالیات بر ارزش افزوده" value="{$Extra_Tax}" /></p>
 						<p><span style="display:block;margin-bottom:5px;">درباره ما</span><textarea name="about">{$About_System}</textarea></p>
                         <p><span>عنوان سایت</span><input type="text" name="title" placeholder="عنوان سایت" value="{$Site_Title}" /></p>
                         <p><span>کلمات کلیدی</span><input type="text" name="keywords" style="width:450px" placeholder="کلمات کلیدی" value="{$Site_KeyWords}" /></p>
