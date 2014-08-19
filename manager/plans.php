@@ -22,12 +22,13 @@
 
 $night = isset($_POST[night]);
 $modem = isset($_POST[modem]);
+$special = isset($_POST[special]);
 
 if ($_POST["mark"]=="saveplan")
 	{	      
-		$fields = array("`pname`","`month`","`gig`","`night`","`modem`","`price`","`percent`");		
+		$fields = array("`pname`","`month`","`gig`","`night`","`modem`","`price`","`percent`","`special`");		
 		$values = array("'{$_POST[plan]}'","'{$_POST[month]}'","'{$_POST[volume]}'",
-						"'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'");	
+						"'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'","'{$special}'");	
 		if (!$db->InsertQuery('plans',$fields,$values)) 
 		{			
 			header('location:plans.php?act=new&msg=2');			
@@ -46,7 +47,8 @@ if ($_POST["mark"]=="saveplan")
 						 "`night`"=>"'{$_POST[night]}'",
 						 "`modem`"=>"'{$_POST[modem]}'",
 						 "`price`"=>"'{$_POST[price]}'",
-						 "`percent`"=>"'{$_POST[percent]}'");
+						 "`percent`"=>"'{$_POST[percent]}'",
+						 "`special`"=>"'{$_POST[special]}'");
         $db->UpdateQuery("plans",$values,array("id='{$_GET[pid]}'"));		
 		header('location:plans.php?act=new&msg=1');
 	}	
@@ -62,6 +64,7 @@ if ($_POST["mark"]=="saveplan")
 	    $row=$db->Select("plans","*","id='{$_GET["pid"]}'",NULL);
 		$nightchecked=($row['night'])?"checked":"";
 		$modemchecked=($row['modem'])?"checked":"";
+		$special=($row['special'])?"checked":"";
 		$insertoredit = "
 			<p><input type='submit' style='width:70px;height:35px' value='ویرایش'/></p>
 						<input type='hidden' name='mark' value='editplan' />  ";
@@ -93,7 +96,7 @@ $html =<<<cd
 						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="1" {$modemchecked}/></p>
 						<p class="clear"></p>
                         <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" value='{$row[percent]}'/></p>
-						<p style="padding-top:10px"><span>طرح ویژه</span><input type="checkbox" name="spec" value="1" /></p>
+						<p style="padding-top:10px"><span>طرح ویژه</span><input type="checkbox" name="special" value="1" {$special}/></p>
 						{$insertoredit}						
 					</form>
                     <div class="clear"></div>
