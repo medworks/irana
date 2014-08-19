@@ -6,8 +6,11 @@
 	$db = Database::GetDatabase();
 
  if (isset($_GET["planid"]))
-{   $row = array();
-	$row = $db->Select("plans","*","id={$_GET[planid]}");	
+{   
+    $Extra_Tax = GetSettingValue('Extra_Tax',0);
+    $row = array();
+	$row = $db->Select("plans","*","id={$_GET[planid]}");
+	$row['price']=$row['price']+($row['price']*($Extra_Tax/100));
 	echo json_encode($row);
 }
 
