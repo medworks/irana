@@ -5,12 +5,19 @@
 	
 	$db = Database::GetDatabase();
 
+ 
  if (isset($_GET["planid"]))
 {   
-    $Extra_Tax = GetSettingValue('Extra_Tax',0);
+    //$Extra_Tax = GetSettingValue('Extra_Tax',0);
     $row = array();
-	$row = $db->Select("plans","*","id={$_GET[planid]}");
-	$row['price']=$row['price']+($row['price']*($Extra_Tax/100));
+	$db->cmd = " SELECT *,(SELECT `value` FROM settings
+				 WHERE `key` = 'Extra_Tax')* price/100+price as tax FROM plans
+				 WHERE id ={$_GET[planid]}";
+	$res = $db->RunSQL();    
+    if ($res)
+	    $row =  mysqli_fetch_array($res);
+	//$row = $db->Select("plans","*","id={$_GET[planid]}");
+	//$row[6]=$row[6]+($row[6]*($Extra_Tax/100));	
 	echo json_encode($row);
 }
 

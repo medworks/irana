@@ -82,6 +82,7 @@
 		$db->InsertQuery('orders',$fields,$values);
 	   
 	}
+$Extra_Tax = GetSettingValue('Extra_Tax',0);	
 $html =<<<cd
 		<!-- Main content alpha -->
 		<div class="main png_bg">
@@ -272,7 +273,8 @@ $html =<<<cd
 
 			});
 		
-			$("#cbplans").change(function(){			   
+			$("#cbplans").change(function(){	
+               				
 			    $.ajax({
 				type: "GET",
 				url: "manager/ajaxcommand.php",
@@ -280,16 +282,15 @@ $html =<<<cd
 				dataType: "json",
 				success: function (data) {				    
 					$('#gig').html(data[3]*data[2]+" گیگابایت ");
-					$('#month').html(data[2]+" ماهه ");
-					$('#price').html(data[6].replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-					toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;						
-					$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
-					
-					toman = (data[6].replace(/[^\d\.\-\ ]/g, ''));
-					toman = toman - ((toman*data[7])/100);
-					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
-					
+					$('#month').html(data[2]+" ماهه ");	
 					$('#percent').html(data[7].toString()+" % ");
+					
+					$('#price').html(data[8].replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+				//	toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;						
+				//	$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
+										
+					toman = data[8] - ((data[8]*data[7])/100);
+					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");					
 				}
 			        });
 										
