@@ -2288,7 +2288,7 @@ div.price div.box1{
 	width: 144px;
 	height: 141px;
 	position: relative;
-	background: url(../images/pricing_blurb1.png) no-repeat center top transparent;
+	background: url(../images/pricing_blurb.png) no-repeat center top transparent;
 }
 
 div.price h2,
@@ -2308,20 +2308,5 @@ table.datatable thead th{
 
 table.datatable tbody td{
 	font-size: 17px;
-}
-
-::-webkit-input-placeholder { /* WebKit browsers */
-	color:    #000;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    #000;
-    opacity:  1;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    #000;
-    opacity:  1;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:    #000;
 }
 /*********************/

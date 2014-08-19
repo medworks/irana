@@ -16,13 +16,13 @@
 					</div>
 					<div class="loader" style="display: none;"></div>
 				</div>
-				<div class="container_gamma slogan">
+				<div class="container_gamma slogan" style="background-color:#DE5328">
 					<div class="search">
 						<form action="main.php" method="get">
 							<input type="text" name="tel" style="color:#000;width:350px;height:25px;font-size:25px;line-height:32px;" id="tel" class="ltr" placeholder="5118555560">
 						</form>
 					</div>
-					<h2 class="rtl" style="margin-top:8px;">
+					<h2 class="rtl" style="margin-top:8px;text-shadow:none;color:#000">
 						شماره خط:
 					</h2>
 				</div>

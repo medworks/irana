@@ -93,6 +93,7 @@ $html =<<<cd
 						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="1" {$modemchecked}/></p>
 						<p class="clear"></p>
                         <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" value='{$row[percent]}'/></p>
+						<p style="padding-top:10px"><span>طرح ویژه</span><input type="checkbox" name="spec" value="1" /></p>
 						{$insertoredit}						
 					</form>
                     <div class="clear"></div>

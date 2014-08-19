@@ -49,7 +49,7 @@ $html=<<<cd
             <section class="container_6 clearfix">
                 <div class="grid_6">
 					<form class="setting" action="" method="post">
-					    <p><span>مالیات بر ارزش افزوده</span><input type="text" name="extratax" placeholder="مالیات بر ارزش افزوده" value="{$Extra_Tax}" /></p>
+					    <p><span style="display:block;margin-bottom:5px;">مالیات بر ارزش افزوده (درصد)</span><input type="text" name="extratax" placeholder="1-100" value="{$Extra_Tax}" /></p>
 						<p><span style="display:block;margin-bottom:5px;">درباره ما</span><textarea name="about">{$About_System}</textarea></p>
                         <p><span>عنوان سایت</span><input type="text" name="title" placeholder="عنوان سایت" value="{$Site_Title}" /></p>
                         <p><span>کلمات کلیدی</span><input type="text" name="keywords" style="width:450px" placeholder="کلمات کلیدی" value="{$Site_KeyWords}" /></p>

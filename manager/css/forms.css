@@ -255,6 +255,9 @@ a.button.no-text {
 .button span.bin {
     background: transparent url(../images/bin.png) no-repeat center center;
 }
+.button span.order {
+    background: transparent url(../images/tick.png) no-repeat center center;
+}
 .button span.calendar {
     background: transparent url(../images/calendar.png) no-repeat center center;
 }

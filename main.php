@@ -225,9 +225,9 @@ $html =<<<cd
 							</div>
 							<div class="box1">
 								<div>
-									<strong style="font-size:23px;margin-right:59px;display:inline-block;margin-top:10px">ریال</strong>
-									<h2 id="lastprice" style="font-size:26px;margin-top:5px">0</h2>
 									<h3>قابل پرداخت</h3>
+									<h2 id="lastprice" style="font-size:26px;margin-top:5px">0</h2>
+									<strong style="font-size:23px;margin-right:59px;display:inline-block;margin-top:4px">ریال</strong>
 								</div>
 							</div>
 							<div class="buyme" style="margin-right:33px"><p><a href="#" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>	

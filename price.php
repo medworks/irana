@@ -57,7 +57,8 @@ $table=<<<cd
           <th>مودم رایگان</th>
           <th>هزینه طرح (ریال)</th>
           <th>درصد تخفیف</th>
-		  <th>قابل پرداخت (ریال)</th>		
+          <th>قابل پرداخت (ریال)</th>   
+		      <th>سفارش</th>		
         </tr>
     </thead>
 	<tbody class="rtl">
@@ -86,9 +87,14 @@ $table .=<<<cd
             <td>{$rows[$i]["gig"]}</td>
             <td>{$rows[$i]["night"]}</td>
             <td>{$rows[$i]["modem"]}</td>
-			<td>{$rows[$i]["price"]}</td>			
-			<td>{$percent}</td>			
-			<td>{$percentedprice}</td>			
+      			<td>{$rows[$i]["price"]}</td>			
+      			<td>{$percent}</td>			
+            <td>{$percentedprice}</td>
+      			<td>
+              <a href="#" class="button button-gray no-text" style="display:inline-block">
+                <span class="order"></span>
+              </a>
+            </td>
         </tr>
 	
 cd;
