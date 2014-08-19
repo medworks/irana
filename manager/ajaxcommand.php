@@ -25,25 +25,26 @@ if (isset($_GET["kind"]) and ($_GET["kind"]=="percent"))
 }
 if (isset($_GET["kind"]) and ($_GET["kind"]=="percent2"))
 {   
-	$Percent_Off = GetSettingValue('Percent_Off',0);	
+	$Percent_Off = GetSettingValue('Percent_Off',0);		
 	echo $Percent_Off;
 }
 
  if (isset($_GET["gig"]))
 {         
+      $Extra_Tax = GetSettingValue('Extra_Tax',0);	
       $gig = $_GET["gig"];
 	  $num =(int)($gig / 5);
 	  if ($num == 0) 
 	  {
 		 $price = ($gig*36000); 
-		 $price = $price+($price*0.08);
+		 $price = $price+($price*($Extra_Tax/100));
 	  }	 
 	  else
       if ($num ==1)
       {
 		$price = 5*36000;
 		$price = $price +($gig % 5)*26000;
-		$price = $price+($price*0.08);
+		$price = $price+($price*($Extra_Tax/100));
       }
       else	
       if ($num >= 2)	  
@@ -51,7 +52,7 @@ if (isset($_GET["kind"]) and ($_GET["kind"]=="percent2"))
 	    $price = 5*36000;
 		$price = $price + (5 * 26000);
 		$price = $price + ($gig - 10)*16000;
-		$price = $price+($price*0.08);
+		$price = $price+($price*($Extra_Tax/100));
 	  }
     //setlocale(LC_MONETARY, 'fa-IR');
 	//echo money_format("%i", $price);
