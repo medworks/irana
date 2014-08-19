@@ -149,15 +149,15 @@ $html =<<<cd
 									data: 'planid= {$row[planid]}',
 									dataType: "json",
 									success: function (data) {				    
-											  
-											  toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;		
-											   $('#price').html(data[6].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-											   $('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
+											  $('#percent').html(data[7].toString()+" % ");
+											 // toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;		
+											   $('#price').html(data[8].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+											   //$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
 												
-												toman = toman - ((toman*data[7])/100);				
-												$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
+											  toman = data[8] - ((data[8]*data[7])/100);				
+											  $('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
 											
-											   $('#percent').html(data[7].toString()+" % ");
+											   
 										
 									}
 										});									
