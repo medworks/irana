@@ -99,7 +99,7 @@ $html =<<<cd
                     <hr>
 cd;
 
-$rows = $db->SelectAll("plans","*",null,"id Desc");
+$rows = $db->SelectAll("plans","*",null,"id ASC");
 $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">
