@@ -7,10 +7,17 @@
   	include_once("../classes/security.php");
   	include_once("../classes/database.php");	
 	include_once("../classes/login.php");
-    include_once("../lib/persiandate.php");  	
+    include_once("../lib/persiandate.php");  
+    include_once('../lib/sms/sms.class.php');	
 	
 	$login = Login::GetLogin();	
-	$db = Database::GetDatabase();
+	$db = Database::GetDatabase();	
+	
+	$smsuser = 'ir2020'; 
+	$smspass  = '123456'; 
+	$gate = new sms_soap($smsuser, $smspass);
+	$smsbalance = $gate->GetUserBalance();
+	
 	if (!$login->IsLogged())
 	{
 		header("Location: ../index.php");
@@ -41,7 +48,7 @@
 	 if ($_GET["act"]=="ord")	
 		header("location:admin.php?act=ord");	
 	 else	
-	    header("location:admin.php?act=confirmed");	
+	  header("location:admin.php?act=confirmed&oid={$_GET[oid]}");	
   }	
 	
 	if ($_GET["act"]=="ord")
@@ -56,6 +63,13 @@
 		$where = "Status = 2";
 		$title = "لیست  تایید شده";
 		$titr  = "";
+		$row = $db->Select("orders","propid","id ='{$_GET[oid]}'");
+		$mobile = $db->Select("properties","mobile","id ='{$row[0]}'");
+	    $mobile = $mobile[0];		
+		// if ($smsbalance > 10 )
+	 {
+	 $rep =  $gate->SendSMS('.شرکت ایراناکاربر گرامی اطلاعات شما تایید شد', '+9830002349', "{$mobile}", 'normal');	 
+	 }
 	}	
 	
 $html=<<<cd
