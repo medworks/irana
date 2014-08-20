@@ -136,14 +136,14 @@ cd;
 
 if ($rows[$i]["special"])
  {
-  $class= "Style=' background : #FFAABB;'";
+  $class= "spec";
  }
 else
  {
    $class = "";
  }
 $table .=<<<cd
-        <tr {$class}>		
+        <tr class="$class">		
             <td>{$rows[$i]["pname"]}</td>
             <td>{$rows[$i]["month"]}</td>
             <td>{$rows[$i]["gig"]}</td>

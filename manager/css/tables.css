@@ -142,4 +142,7 @@ table.datatable thead th a{
     font-size:17px;
 }
 
+table.datatable tr.spec td{
+    background-color: #FFAABB !important;
+}
 /**********/
