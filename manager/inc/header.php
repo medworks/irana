@@ -47,6 +47,7 @@
                             <a href="#">عملیات<span class="arrow-down"></span></a>
                             <ul>
                                 <li><a href="setting.php">تنظیمات</a></li>
+                                <li><a href="sms.php">اس ام اس</a></li>
                                 <li><a href="user.php?act=new">تعریف کاربر</a></li>
                                 <li><a href="admin.php?act=logout">خارج شدن</a></li>
                             </ul>
