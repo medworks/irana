@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2014 at 12:44 PM
+-- Generation Time: Aug 20, 2014 at 07:33 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `plans` (
   `modem` tinyint(1) NOT NULL,
   `price` double NOT NULL,
   `percent` tinyint(3) unsigned NOT NULL,
+  `special` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
@@ -70,20 +71,20 @@ CREATE TABLE IF NOT EXISTS `plans` (
 -- Dumping data for table `plans`
 --
 
-INSERT INTO `plans` (`id`, `pname`, `month`, `gig`, `night`, `modem`, `price`, `percent`) VALUES
-(1, 'طلایی شش ماهه 3 گیگ + بدون شبانه', 6, 3, 0, 0, 567000, 2),
-(2, 'طلایی سه ماهه 3 گیگ + بدون شبانه', 3, 3, 0, 0, 1131000, 5),
-(3, 'طلایی 12 ماهه 3 گیگ + بدون شبانه', 12, 3, 0, 0, 2268000, 0),
-(4, 'طلایی سه ماهه 5 گیگ + بدون شبانه', 3, 5, 0, 0, 696600, 0),
-(5, 'طلایی 6 ماهه 5 گیگ + بدون شبانه', 6, 5, 0, 0, 1393200, 0),
-(6, 'طلایی 12 ماهه 5 گیگ + بدون شبانه', 12, 5, 0, 0, 2786400, 0),
-(7, 'طلایی 3ماهه 8 گیگ + بدون شبانه', 3, 8, 0, 0, 1004400, 0),
-(8, 'طلایی 6 ماهه 8 گیگ + بدون شبانه', 6, 8, 0, 0, 2008800, 0),
-(9, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 198000, 3),
-(10, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 200000, 3),
-(12, 'نقره داغ 12 ماهه 6 گیگ', 12, 6, 1, 1, 950000, 5),
-(13, 'نقره داغ 12 ماهه 8 گیگ', 3, 5, 1, 1, 950000, 3),
-(14, 'نقره داغ 12 ماهه 6 گیگ', 6, 6, 0, 0, 450000, 10);
+INSERT INTO `plans` (`id`, `pname`, `month`, `gig`, `night`, `modem`, `price`, `percent`, `special`) VALUES
+(1, 'طلایی شش ماهه 3 گیگ + بدون شبانه', 6, 3, 0, 0, 567000, 2, 1),
+(2, 'طلایی سه ماهه 3 گیگ + بدون شبانه', 3, 3, 0, 0, 1131000, 5, 1),
+(3, 'طلایی 12 ماهه 3 گیگ + بدون شبانه', 12, 3, 0, 0, 2268000, 0, 0),
+(4, 'طلایی سه ماهه 5 گیگ + بدون شبانه', 3, 5, 0, 0, 696600, 0, 0),
+(5, 'طلایی 6 ماهه 5 گیگ + بدون شبانه', 6, 5, 0, 0, 1393200, 0, 1),
+(6, 'طلایی 12 ماهه 5 گیگ + بدون شبانه', 12, 5, 0, 0, 2786400, 0, 1),
+(7, 'طلایی 3ماهه 8 گیگ + بدون شبانه', 3, 8, 0, 0, 1004400, 0, 0),
+(8, 'طلایی 6 ماهه 8 گیگ + بدون شبانه', 6, 8, 0, 0, 2008800, 0, 0),
+(9, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 198000, 3, 0),
+(10, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 200000, 3, 0),
+(12, 'نقره داغ 12 ماهه 6 گیگ', 12, 6, 1, 1, 950000, 5, 0),
+(13, 'نقره داغ 12 ماهه 8 گیگ', 3, 5, 1, 1, 950000, 3, 0),
+(14, 'نقره داغ 12 ماهه 6 گیگ', 6, 6, 0, 0, 450000, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `key` varchar(30) NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `settings`
@@ -158,7 +159,8 @@ INSERT INTO `settings` (`id`, `key`, `value`) VALUES
 (25, 'WellCome_Body', ''),
 (26, 'Gplus_Add', 'www.googleplus.com'),
 (27, 'About_Pic_Name', 'about_pic.jpg'),
-(28, 'Percent_Off', '5');
+(28, 'Percent_Off', '5'),
+(29, 'Extra_Tax', '8');
 
 -- --------------------------------------------------------
 
@@ -176,17 +178,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(35) NOT NULL,
   `type` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `family`, `image`, `email`, `username`, `password`, `type`) VALUES
-(1, 'سعید', 'حاتمی', '../userspics/logo.png', 'hatami4560@yahoo.com', 'php', '5f93f983524def3dca464469d2cf9f3e', 0),
+(1, '', 'سعید حاتمی', '', 'hatami4560@yahoo.com', 'php', '5f93f983524def3dca464469d2cf9f3e', 0),
 (2, 'علی رضا', 'صادقی نژاد', './newspics/editnews.png', 'r.sadeghi@yahoo.com', 'reza', '4510', 1),
-(3, 'علی', 'قائمی', './newspics/works.png', 'ali.ghaemi@gmail.com', 'ghaemi', '827ccb0eea8a706c4c34a16891f84e7b', 0),
-(4, 'آرش', 'خویتندار', './newspics/addworks.png', 'arash.kh@gmail.com', 'arash', '827ccb0eea8a706c4c34a16891f84e7b', 0);
+(3, 'علی', 'قائمی', './newspics/works.png', 'ali.ghaemi@gmail.com', 'ghaemi', '827ccb0eea8a706c4c34a16891f84e7b', 0);
 
 -- --------------------------------------------------------
 
