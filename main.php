@@ -7,11 +7,20 @@
 	include_once("classes/functions.php");
 	include_once("/lib/persiandate.php");
     
+	$db = Database::GetDatabase();
+	$msg = Message::GetMessage();
+	$isclientexist = false;	
+	
 	if ($_GET["act"]=="neword")
 	{
 		$tel4neword = "  <strong style='font-size:18px;padding:0 5px 5px;display:block'>".
 		              " تلفن </strong><input name='tel' style='width:30%;font-size:18px;color:#000;' type='text' placeholder='تلفن' /> ";
 		$tel = $_POST["tel"];
+		
+		$kind = 3; // order from price page
+		$giga =0; // order from price page
+		$planid = $_GET["planid"]; // order from price page
+		
 		$javas =<<<cd
 		<script type='text/javascript'>
 		$(document).ready(function(){
@@ -51,21 +60,19 @@ cd;
 	{
 		$tel = $_GET["tel"]; 
 		$javas="";
+    
+		$row = $db->Select("properties", "*", "tel = "."'{$_GET[tel]}'");	
+		if ($row)
+		{	  
+		  $isclientexist = true;
+		  $plan = $db->Select("plans", "*", "id = "."'{$row["planid"]}'");	
+		  $plangig = $plan[gig]*$plan[month];
+		  //echo $db->cmd;
+		  $plancode = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[pname]}</b></h5>";
+		}
+		else
+		{ $row["planid"]= -1; $plancode = "";}
 	}
-    $db = Database::GetDatabase();
-	$msg = Message::GetMessage();
-	$isclientexist = false;	
-	$row = $db->Select("properties", "*", "tel = "."'{$_GET[tel]}'");	
-	if ($row)
-	{	  
-	  $isclientexist = true;
-	  $plan = $db->Select("plans", "*", "id = "."'{$row["planid"]}'");	
-	  $plangig = $plan[gig]*$plan[month];
-	  //echo $db->cmd;
-	  $plancode = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[pname]}</b></h5>";
-	}
-	else
-	{ $row["planid"]= -1; }
 	
 	$plans = $db->SelectAll("plans","*",NULL,"ID");	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
@@ -120,6 +127,12 @@ cd;
 				$db->UpdateQuery("properties",$values,array("id='{$row["id"]}'"));
 			}	
 			//---------------------------------------------------------------------
+		}		
+		if ($_GET["act"]=="neword")
+		{
+			$kind = 3; // order from price page
+			$giga =0; // order from price page
+			$planid = $_GET["planid"]; // order from price page
 		}
 		
 		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$kind}'","'1'","'{$giga}'");
