@@ -79,9 +79,16 @@ if (($i+1)%10 == 0)
 cd;
 
 $percentedprice =$rows[$i]["price"]-(($rows[$i]["price"]*$rows[$i]["percent"])/100);
-
+if ($rows[$i]["special"])
+ {
+  $class= "spec";
+ }
+else
+ {
+   $class = "";
+ }
 $table .=<<<cd
-        <tr>		
+        <tr class="$class">		
             <td>{$rows[$i]["pname"]}</td>
             <td>{$rows[$i]["month"]}</td>
             <td>{$rows[$i]["gig"]}</td>
