@@ -91,7 +91,7 @@ $table .=<<<cd
       			<td>{$percent}</td>			
             <td>{$percentedprice}</td>
       			<td>
-              <a href="#" class="button button-gray no-text" style="display:inline-block">
+              <a href="main.php?act=neword&planid={$rows[$i]["id"]}" class="button button-gray no-text" style="display:inline-block">
                 <span class="order"></span>
               </a>
             </td>
