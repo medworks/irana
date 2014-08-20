@@ -134,8 +134,16 @@ if (($i+1)%10 == 0)
 <tbody style="display: table-row-group;">
 cd;
 
+if ($rows[$i]["special"])
+ {
+  $class= "Style=' background : #FFAABB;'";
+ }
+else
+ {
+   $class = "";
+ }
 $table .=<<<cd
-        <tr>		
+        <tr {$class}>		
             <td>{$rows[$i]["pname"]}</td>
             <td>{$rows[$i]["month"]}</td>
             <td>{$rows[$i]["gig"]}</td>
