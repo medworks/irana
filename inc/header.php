@@ -21,6 +21,7 @@
 <html lang="fa" class="no-js"><!--<![endif]--><head>
 	<title><?php echo $Site_Title?></title>
 	<meta charset="utf-8">
+	<meta name="google-site-verification" content="aK-MwILb314Nv3HBXG0docF8tB_U437D5Dw9R1buL-s" />
 	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
 	   Remove this if you use the .htaccess -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
