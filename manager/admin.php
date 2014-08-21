@@ -13,8 +13,11 @@
 	$login = Login::GetLogin();	
 	$db = Database::GetDatabase();	
 	
-	$smsuser = 'ir2020'; 
-	$smspass  = '123456'; 
+	$smsuser = GetSettingValue('SmsUserName',0);
+	$smspass = GetSettingValue('SmsPassWord',0);
+	$smslinenumber = GetSettingValue('SmsLineNumber',0);
+	$smstext = GetSettingValue('SmsText',1);
+	 
 	$gate = new sms_soap($smsuser, $smspass);
 	$smsbalance = $gate->GetUserBalance();
 	
@@ -67,9 +70,11 @@
 		$mobile = $db->Select("properties","mobile","id ='{$row[0]}'");
 	    $mobile = $mobile[0];		
 		// if ($smsbalance > 10 )
-	 {
-	 $rep =  $gate->SendSMS('.شرکت ایراناکاربر گرامی اطلاعات شما تایید شد', '+9830002349', "{$mobile}", 'normal');	 
-	 }
+	  // {
+	  //echo "mobile is ", $mobile,"<br/>";
+	   //echo $smslinenumber," , ",$smstext," , ",$smsuser," , ",$smspass;
+	    $rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
+	 //  }
 	}	
 	
 $html=<<<cd
