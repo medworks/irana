@@ -14,12 +14,17 @@
 		die(); // solve a security bug
 	}
 	
-    
 	
-	if ($_POST["mark"]==editsetting)
+	$SmsUserName = GetSettingValue('SmsUserName',0);
+	$SmsPassWord = GetSettingValue('SmsPassWord',0);
+	$SmsText = GetSettingValue('SmsText',0);
+	
+    if ($_POST["mark"]==editsetting)
 	{
-	    
-		header('location:setting.php');
+	    SetSettingValue("SmsUserName",$_POST["smsuser"]);		
+		SetSettingValue("SmsPassWord",$_POST["smspassword"]);		
+		SetSettingValue("SmsText",$_POST["smstext"]);
+		header('location:sms.php');
 	}
 $html=<<<cd
 	<!-- Main Section -->
@@ -33,10 +38,9 @@ $html=<<<cd
             <section class="container_6 clearfix">
                 <div class="grid_6">
 					<form class="setting" action="" method="post">
-					    <p><span style="display:block;margin-bottom:5px;">نام کاربری اس ام اس</span><input type="text" name="smsuser" placeholder="نام کاربری" /></p>
-					    <p><span style="display:block;margin-bottom:5px;">رمز عبور اس ام اس</span><input type="password" name="password1" placeholder="رمز عبور" /></p>
-					    <p><span style="display:block;margin-bottom:5px;">تکرار رمز عبور اس ام اس</span><input type="password" name="password2" placeholder="تکرار رمز عبور" /></p>
-						<p><span style="display:block;margin-bottom:5px;">متن پیام اس ام اس</span><textarea name="smstext"></textarea></p>
+					    <p><span style="display:block;margin-bottom:5px;">نام کاربری اس ام اس</span><input type="text" name="smsuser" placeholder="نام کاربری" value="{$SmsUserName}"  /></p>
+					    <p><span style="display:block;margin-bottom:5px;">رمز عبور اس ام اس</span><input type="password" name="smspassword" placeholder="رمز عبور" value="{$SmsPassWord}" /></p>					    
+						<p><span style="display:block;margin-bottom:5px;">متن پیام اس ام اس</span><textarea name="smstext">{$SmsText}</textarea></p>
                         <p><input type="submit" style="width:70px;height:35px" value="ثبت"/></p>
 						<input type='hidden' name='mark' value='editsetting' />
 					</form>
