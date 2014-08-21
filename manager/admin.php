@@ -71,8 +71,8 @@
 	    $mobile = $mobile[0];		
 		// if ($smsbalance > 10 )
 	  // {
-	  echo "mobile is ", $mobile,"<br/>";
-	   echo $smslinenumber," , ",$smstext," , ",$smsuser," , ",$smspass;
+	  //echo "mobile is ", $mobile,"<br/>";
+	   //echo $smslinenumber," , ",$smstext," , ",$smsuser," , ",$smspass;
 	    $rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
 	 //  }
 	}	
