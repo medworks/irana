@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2014 at 07:33 AM
+-- Generation Time: Aug 21, 2014 at 06:15 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -35,18 +35,23 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `status` tinyint(4) NOT NULL,
   `gig` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `propid`, `planid`, `orderdate`, `kind`, `status`, `gig`) VALUES
-(6, 14, 3, '2014-08-06', 2, 2, 0),
+(6, 14, 3, '2014-08-06', 2, 1, 0),
 (7, 14, 5, '2014-08-06', 2, 1, 0),
-(9, 13, 5, '2014-08-06', 1, 2, 0),
-(10, 14, -1, '2014-08-06', 0, 1, 5),
-(12, 12, -1, '2014-08-06', 0, 2, 2);
+(9, 13, 5, '2014-08-06', 1, 1, 0),
+(10, 14, -1, '2014-08-06', 0, 2, 5),
+(12, 12, -1, '2014-08-06', 0, 2, 2),
+(13, 15, -1, '2014-08-20', 1, 2, 0),
+(14, 16, 2, '2014-08-20', 2, 2, 0),
+(15, 17, 1, '2014-08-20', 2, 2, 0),
+(16, 18, 4, '2014-08-20', 3, 2, 0),
+(17, 18, 7, '2014-08-20', 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -75,10 +80,10 @@ INSERT INTO `plans` (`id`, `pname`, `month`, `gig`, `night`, `modem`, `price`, `
 (1, 'طلایی شش ماهه 3 گیگ + بدون شبانه', 6, 3, 0, 0, 567000, 2, 1),
 (2, 'طلایی سه ماهه 3 گیگ + بدون شبانه', 3, 3, 0, 0, 1131000, 5, 1),
 (3, 'طلایی 12 ماهه 3 گیگ + بدون شبانه', 12, 3, 0, 0, 2268000, 0, 0),
-(4, 'طلایی سه ماهه 5 گیگ + بدون شبانه', 3, 5, 0, 0, 696600, 0, 0),
-(5, 'طلایی 6 ماهه 5 گیگ + بدون شبانه', 6, 5, 0, 0, 1393200, 0, 1),
-(6, 'طلایی 12 ماهه 5 گیگ + بدون شبانه', 12, 5, 0, 0, 2786400, 0, 1),
-(7, 'طلایی 3ماهه 8 گیگ + بدون شبانه', 3, 8, 0, 0, 1004400, 0, 0),
+(4, 'طلایی سه ماهه 5 گیگ + بدون شبانه', 3, 5, 0, 0, 696600, 6, 0),
+(5, 'طلایی 6 ماهه 5 گیگ + بدون شبانه', 6, 5, 0, 0, 1393200, 9, 1),
+(6, 'طلایی 12 ماهه 5 گیگ + بدون شبانه', 12, 5, 0, 0, 2786400, 10, 1),
+(7, 'طلایی 3ماهه 8 گیگ + بدون شبانه', 3, 8, 0, 0, 1004400, 7, 0),
 (8, 'طلایی 6 ماهه 8 گیگ + بدون شبانه', 6, 8, 0, 0, 2008800, 0, 0),
 (9, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 198000, 3, 0),
 (10, 'نقره داغ 3 ماهه 5 گیگ', 3, 5, 1, 0, 200000, 3, 0),
@@ -100,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `email` varchar(50) NOT NULL,
   `planid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `properties`
@@ -112,7 +117,11 @@ INSERT INTO `properties` (`id`, `fullname`, `tel`, `mobile`, `email`, `planid`) 
 (11, 'رضا احدی', '5118796457', '09151105478', 'hatami4510@gmail.com', 0),
 (12, 'رضا اکبری', '5116625875', '09151146587', 'aaaa@bbb.com', NULL),
 (13, '', '5116625875', '', '', NULL),
-(14, 'سعید رمضانی', '5118585855', '09154557884', 'aaaa@bbb.com', 5);
+(14, 'سعید رمضانی', '5118585855', '1', 'aaaa@bbb.com', 5),
+(15, 'رمضان', '6623685', '1', 'hatami4560@yahoo.com', -1),
+(16, 'مجتبی امجدی', '5116565655', '1', 'info@mediateq.ir', 2),
+(17, 'رضا اکبری', '5136554785', '1', 'amjadi.m@gmail.com', 1),
+(18, 'مجتبی امجدی', '7623666', '09151204395', 'aaaa@bbb.com', 7);
 
 -- --------------------------------------------------------
 
@@ -125,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `key` varchar(30) NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `settings`
@@ -160,7 +169,11 @@ INSERT INTO `settings` (`id`, `key`, `value`) VALUES
 (26, 'Gplus_Add', 'www.googleplus.com'),
 (27, 'About_Pic_Name', 'about_pic.jpg'),
 (28, 'Percent_Off', '5'),
-(29, 'Extra_Tax', '8');
+(29, 'Extra_Tax', '8'),
+(30, 'SmsUserName', 'ir2020'),
+(31, 'SmsPassWord', '123456'),
+(32, 'SmsText', 'کاربر گرامی،درخواست شما بررسی و تایید شد.\nگروه بازرگانی ایرانا '),
+(33, 'SmsLineNumber', '+9830002349');
 
 -- --------------------------------------------------------
 
