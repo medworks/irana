@@ -31,7 +31,7 @@
 if (isset($_GET["kind"]) and ($_GET["kind"]=="percent"))
 {   
 	$Percent_Off = GetSettingValue('Percent_Off',0);	
-	echo " تخفیف ",$Percent_Off," % ";
+	echo $Percent_Off,"%";
 }
 if (isset($_GET["kind"]) and ($_GET["kind"]=="percent2"))
 {   

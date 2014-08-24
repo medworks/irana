@@ -46,7 +46,7 @@
 				//	$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
 										
 					toman = data[9] - ((data[9]*data[7])/100);
-					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");					
+					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
 				}
 			        });
 										
@@ -168,9 +168,9 @@ $html =<<<cd
 					{$plancode}
 					<div style="direction:rtl">
 					        {$tel4neword}
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:18px;color:#000;" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:18px;color:#000;" class="ltr latin-font" type="text" placeholder="09123456789" value="{$row[mobile]}">
-							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input name="email" style="width:30%;font-size:18px;color:#000;" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row[email]}">													
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:18px;color:#000;background-color:#ddd" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="09123456789" value="{$row[mobile]}">
+							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input name="email" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row[email]}">													
 					</div>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
@@ -215,7 +215,7 @@ $html =<<<cd
 											   //$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
 												
 											  toman = data[8] - ((data[8]*data[7])/100);				
-											  $('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");
+											  $('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 											
 											   
 										
@@ -281,7 +281,7 @@ $html =<<<cd
 									<h3 style="padding-top:3px">هزینه سرویس</h3>
 									<h2 id="price" style="font-size:26px;margin-top:20px">0</h2>
 									<strong style="font-size:23px;margin-right:58px;display:inline-block;margin-top:-7px">ریال</strong>
-									<div class="specs" style="padding-top:7px;"><p id="percent" style="margin-top:17px;font-size:22px;padding-top:10px;">0% تخفیف</p></div>
+									<div class="specs" style="padding-top:7px;"><p style="font-size:22px;display:inline-block;margin-right:38px;"> تخفیف </p><p id="percent" style="margin-top:17px;font-size:22px;padding-top:10px;display:inline-block;"> 0% </p></div>
 								</div>
 							</div>
 							<div class="box1">
@@ -350,7 +350,7 @@ $html =<<<cd
 				//	$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
 										
 					toman = data[9] - ((data[9]*data[7])/100);
-					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" ریال ");					
+					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
 				}
 			        });
 										

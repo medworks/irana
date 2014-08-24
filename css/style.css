@@ -2288,7 +2288,7 @@ div.price div.box1{
 	width: 144px;
 	height: 141px;
 	position: relative;
-	background: url(../images/pricing_blurb.png) no-repeat center top transparent;
+	background: url(../images/pricing_blurb.png) no-repeat center bottom transparent;
 }
 
 div.price h2,
