@@ -111,7 +111,7 @@ $table=<<<cd
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
- $rows[$i]["orderdate"] = ToJalali($rows[$i]["sdate"]," l d F  Y ");
+ $rows[$i]["orderdate"] = ToJalali($rows[$i]["orderdate"]," l d F  Y ");
   
  $tel = $db->Select("properties","tel","id = ".$rows[$i]["propid"])[0];
  $mobile = $db->Select("properties","mobile","id = ".$rows[$i]["propid"])[0];
