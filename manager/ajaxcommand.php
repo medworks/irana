@@ -43,31 +43,35 @@ if (isset($_GET["kind"]) and ($_GET["kind"]=="percent2"))
 {         
       $Extra_Tax = GetSettingValue('Extra_Tax',0);	
       $gig = $_GET["gig"];
+	  $volprice1 = $db->Select("volumes","price","`fvol` ='1' and `tvol`='5'");
+	  $volprice2 = $db->Select("volumes","price","`fvol` ='6' and `tvol`='10'");
+	  $volprice3 = $db->Select("volumes","price","`fvol` ='10' and `tvol`='99'");
 	  $num =(int)($gig / 5);
 	  if ($num == 0) 
 	  {
-		 $price = ($gig*36000); 
+		 $price = ($gig*$volprice1[0]); 
 		 $price = $price+($price*($Extra_Tax/100));
 	  }	 
 	  else
       if ($num ==1)
       {
-		$price = 5*36000;
-		$price = $price +($gig % 5)*26000;
+		$price = 5*$volprice1[0];
+		$price = $price +($gig % 5)*$volprice2[0];
 		$price = $price+($price*($Extra_Tax/100));
       }
       else	
       if ($num >= 2)	  
 	  {
-	    $price = 5*36000;
-		$price = $price + (5 * 26000);
-		$price = $price + ($gig - 10)*16000;
+	    $price = 5*$volprice1[0];
+		$price = $price + (5 * $volprice2[0]);
+		$price = $price + ($gig - 10)*$volprice3[0];
 		$price = $price+($price*($Extra_Tax/100));
 	  }
     //setlocale(LC_MONETARY, 'fa-IR');
 	//echo money_format("%i", $price);
 	$pattern = "/(\d)(?=(\d\d\d)+(?!\d))/";
 	echo preg_replace($pattern,"$1,", $price);
+	//echo $volprice1[0];
 }
 
 if($_GET["contact"]=="reg"){

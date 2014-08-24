@@ -315,11 +315,8 @@ $html =<<<cd
 			$( "#gigabyte" ).keyup(function() {
 			  var volgig = $('#gigabyte').val()		
 				$.get('manager/ajaxcommand.php?gig= '+$('#gigabyte').val(),function(data) {
-						$('#price').html(data);
-						//alert(data);
-					//	toman = (data.replace(/[^\d\.\-\ ]/g, ''))/10;						
-					//	$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
-						
+						$('#price').html(data);						
+										
 						$.get('manager/ajaxcommand.php?kind=percent',function(percent) {
 						               $('#percent').html(percent);
 				        });	

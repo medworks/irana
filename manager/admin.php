@@ -68,11 +68,16 @@
 		$titr  = "";
 		$row = $db->Select("orders","propid","id ='{$_GET[oid]}'");
 		$mobile = $db->Select("properties","mobile","id ='{$row[0]}'");
+		$tel = $db->Select("properties","tel","id ='{$row[0]}'");
+		$user = $db->Select("properties","fullname","id ='{$row[0]}'");
 	    $mobile = $mobile[0];		
 		// if ($smsbalance > 10 )
 	  // {
 	  //echo "mobile is ", $mobile,"<br/>";
 	   //echo $smslinenumber," , ",$smstext," , ",$smsuser," , ",$smspass;
+	   $smstext = str_replace("{user}", $user[0], $smstext);
+	   $smstext = str_replace("{tel}", $tel[0], $smstext);
+	  // echo $smstext;
 	    $rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
 	 //  }
 	}	
