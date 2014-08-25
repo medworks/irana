@@ -226,14 +226,13 @@ $html =<<<cd
 									$(".toggler #taghir").css('display',"block");
 									$('#price').html("0");
 									$('#lastprice').html("0");
-									
-								//	$.get('manager/ajaxcommand.php?kind=percent',function(data) {
+									//	$.get('manager/ajaxcommand.php?kind=percent',function(data) {
 						         //      $('#percent').html(data);
 				                  //  });
 								}
 							});
 						});
-					</script>					
+					</script>							
 					<div class="toggler open" style="direction:rtl;width:700px;float:left;padding-bottom:70px;">
 						<div style="float:right;width:550px;">
 							<!-- Sharj hesab -->
@@ -311,25 +310,27 @@ $html =<<<cd
 	<script type='text/javascript'>
 		$(document).ready(function(){
 			var toman;
-            var nodot;			
-			$( "#gigabyte" ).keyup(function() {
-			  var volgig = $('#gigabyte').val()		
-				$.get('manager/ajaxcommand.php?gig= '+$('#gigabyte').val(),function(data) {
-						$('#price').html(data);						
-										
-						$.get('manager/ajaxcommand.php?kind=percent',function(percent) {
-						               $('#percent').html(percent);
-				        });	
-						
-						$.get('manager/ajaxcommand.php?kind=percent2',function(percent) {										
-						    nodot = (data.replace(/[^\d\.\-\ ]/g, ''));
-							toman = nodot - (nodot * (percent /100));										
-							$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-						});		
-				  });
+            var nodot;		
+            var retdata			
+			$( "#gigabyte" ).keyup(function() {			
+			$.ajax({
+				type: "GET",
+				url: "manager/ajaxcommand.php",
+				data: 'gig=' + $('#gigabyte').val()	,
+				dataType: "json",
+				success: function (data) {		
+				 //retdata = jQuery.parseJSON(data);                   
+					$('#percent').html(data[0].toString()+" % ");
+					
+					$('#price').html(data[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+																			
+					$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
+				}
+			        });
 
 			});
-		
+		       $("#gigabyte").keyup();
+			   
 			$("#cbplans").change(function(){	
                				
 			    $.ajax({
@@ -354,10 +355,6 @@ $html =<<<cd
 			});	
 			
 			
-			
-		
-    });
-	
 	function isNumber(evt) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -365,7 +362,11 @@ $html =<<<cd
             return false;
         }
         return true;
-    }
+    }		
+		
+    });
+	
+	
 	</script>
   	<!--! end of #container -->	
 cd;
