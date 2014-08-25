@@ -14,7 +14,7 @@
 	if ($_GET["act"]=="neword")
 	{
 		$tel4neword = "  <strong style='font-size:18px;padding:0 5px 5px;display:block'>".
-		              " تلفن </strong><input name='tel' style='width:30%;font-size:18px;color:#000;' type='text' placeholder='تلفن' /> ";
+		              " تلفن </strong><input name='tel' style='width:30%;font-size:18px;color:#000;background-color:#ddd' type='text' placeholder='تلفن' /> ";
 		$tel = $_POST["tel"];
 		
 		$kind = 3; // order from price page
