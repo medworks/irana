@@ -174,9 +174,9 @@ cd;
 	$todaydate = $now["year"].$now["mon"].$now["mday"];
 	$todaytime = $now["hours"].$now["minutes"].$now["seconds"];	
 	
-	$terminalId = 1144896;
-	$userName = 'irana';
-	$userPassword = '41833070';
+	$terminalId =  GetSettingValue('Bank_Terminal_ID',1);
+	$userName =  GetSettingValue('Bank_User_Name',1);
+	$userPassword =  GetSettingValue('Bank_Pass_Word',1);
 	$orderId = rand() * time();//uniqid(rand(), false);		
 	$amount = $_POST['orderprice'];				
 	$localDate = $todaydate;
@@ -210,6 +210,19 @@ cd;
 		$ResCode = $res[0];
 		if ($ResCode == "0") 
 		{
+			$date = date('Y-m-d H:i:s');
+			$lastid = $db->InsertId();
+			
+			$fields = array("`oid`","`regdate`");		
+			$values = array("'{$lastid}'","'{$date}'");	
+			if (!$db->InsertQuery('payment',$fields,$values)) 
+			{			
+			//header('location:payment.php');			
+			} 	
+			else 
+			{  										
+			//	header('location:payment.php');
+			}  		
 			// Update table, Save RefId
 			echo "<script language='javascript' type='text/javascript'>postRefId('" . $res[1] . "');</script>";
 		} 
