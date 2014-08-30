@@ -10,7 +10,27 @@
 	$db = Database::GetDatabase();
 	$msg = Message::GetMessage();
 	$isclientexist = false;	
-	
+$postform=<<<cd
+<script language='javascript' type='text/javascript'>
+function postRefId (refIdValue) {
+			var form = document.createElement("form");
+			form.setAttribute("method", "POST");
+			form.setAttribute("action", " https://bpm.shaparak.ir/pgwchannel/startpay.mellat");         
+			form.setAttribute("target", "_self");
+			var hiddenField = document.createElement("input");              
+			hiddenField.setAttribute("name", "RefId");
+			hiddenField.setAttribute("value", refIdValue);
+			form.appendChild(hiddenField);
+
+			document.body.appendChild(form);         
+			form.submit();
+			document.body.removeChild(form);
+		}
+		
+	//postRefId("AB454241");
+	</script>
+cd;
+echo $postform;
 	if ($_GET["act"]=="neword")
 	{
 		$tel4neword = "  <strong style='font-size:18px;padding:0 5px 5px;display:block'>".
@@ -138,7 +158,72 @@ cd;
 		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$kind}'","'1'","'{$giga}'");
 		
 		$db->InsertQuery('orders',$fields,$values);
-	   
+		
+// pay here ==================
+	try 
+	{ 
+		$client = new soapclient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl');
+	} 
+	catch (Exception $e) 
+	{ 
+		die($e->getMessage()); 
+	}	
+
+	$now = getdate();
+	$now["mon"] =  ($now["mon"]<10)?"0".$now["mon"] :$now["mon"];
+	$todaydate = $now["year"].$now["mon"].$now["mday"];
+	$todaytime = $now["hours"].$now["minutes"].$now["seconds"];	
+	
+	$terminalId = 1144896;
+	$userName = 'irana';
+	$userPassword = '41833070';
+	$orderId = rand() * time();//uniqid(rand(), false);		
+	$amount = $_POST['orderprice'];				
+	$localDate = $todaydate;
+	$localTime = $todaytime;
+	$additionalData = "خرید / تمدید/سفارش اینترنت";
+	$callBackUrl = "http://www.ir2020.ir/callback.php";
+	$payerId = 0;
+	//echo "price is  ",$_POST['orderprice'];
+	$namespace='http://interfaces.core.sw.bps.com/';
+	
+	$parameters = array(
+		'terminalId' => $terminalId,
+		'userName' => $userName,
+		'userPassword' => $userPassword,
+		'orderId' => $orderId,
+		'amount' => $amount,
+		'localDate' => $localDate,
+		'localTime' => $localTime,
+		'additionalData' => $additionalData,
+		'callBackUrl' => $callBackUrl,
+		'payerId' => $payerId);
+		
+	$result =  $client->bpPayRequest($parameters,$namespace);
+	//var_dump($result);
+	$array = get_object_vars($result);
+	$resultStr = $array["return"];
+	$res = explode (',',$resultStr);	
+	
+	if(is_array($res))
+	{	
+		$ResCode = $res[0];
+		if ($ResCode == "0") 
+		{
+			// Update table, Save RefId
+			echo "<script language='javascript' type='text/javascript'>postRefId('" . $res[1] . "');</script>";
+		} 
+		else 
+		{
+			// log error in app
+			// Update table, log the error
+			// Show proper message to user
+			//echo $res[0];
+		}
+	}
+	
+	
+	//header('location:main.php');			   
 	}
 $Extra_Tax = GetSettingValue('Extra_Tax',0);	
 $html =<<<cd
@@ -286,7 +371,7 @@ $html =<<<cd
 							<div class="box1">
 								<div>
 									<h3>قابل پرداخت</h3>
-									<h2 id="lastprice" style="font-size:26px;margin-top:5px">0</h2>
+									<h2 id="lastprice" name="lastprice" style="font-size:26px;margin-top:5px">0</h2>
 									<strong style="font-size:23px;margin-right:59px;display:inline-block;margin-top:4px">ریال</strong>
 								</div>
 							</div>
@@ -296,6 +381,7 @@ $html =<<<cd
 				</div>
 			</div>
 			   <input type='hidden' name='mark' value='order' />
+			   <input type='hidden' name='orderprice' value='' />
 			</form>
 			<!-- /True containers (keep the content inside containers!) -->
     	</div>
@@ -325,6 +411,8 @@ $html =<<<cd
 					$('#price').html(data[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 																			
 					$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
+					$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
+					 $('input[name=orderprice]').val(data[2].toString());
 				}
 			        });
 
@@ -368,6 +456,7 @@ $html =<<<cd
 	
 	
 	</script>
+	
   	<!--! end of #container -->	
 cd;
     echo $html;
