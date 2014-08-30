@@ -1,0 +1,86 @@
+<?php
+<script>
+function postRefId (refIdValue) {
+			var form = document.createElement("form");
+			form.setAttribute("method", "POST");
+			form.setAttribute("action", " https://bpm.shaparak.ir/pgwchannel/startpay.mellat");         
+			form.setAttribute("target", "_self");
+			var hiddenField = document.createElement("input");              
+			hiddenField.setAttribute("name", "RefId");
+			hiddenField.setAttribute("value", refIdValue);
+			form.appendChild(hiddenField);
+
+			document.body.appendChild(form);         
+			form.submit();
+			document.body.removeChild(form);
+		}
+		
+	
+	</script>
+	
+// pay here ==================
+		
+		//======================= mellat bank web service =================================    
+	//$client = new soapclient('https://pgwstest.bpm.bankmellat.ir/pgwchannel/services/pgw?wsdl');
+	// $client = new soapclient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl');
+	//$client = @new SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl');
+	try { 
+$client = new SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl');
+ //var_dump($client);
+} catch (Exception $e) { 
+echo($e->getMessage()); 
+}
+//=================================================================================	
+		
+		$terminalId = 1144896;
+		$userName = "irana";
+		$userPassword = "41833070";
+		$orderId = 1011;
+		$amount = 1000;
+		//$date =  date("YYMMDD");
+		//$time =  date("HHIISS");
+		$localDate = date("YYYYMMDD");
+		$localTime = date("HH:II:SS");
+		$additionalData = "test";
+		$callBackUrl = "http://www.ir2020.ir/main.php";
+		$payerId = 0;
+		
+				
+		$namespace='http://interfaces.core.sw.bps.com/';
+		$parameters = array(
+			'terminalId' => $terminalId,
+			'userName' => $userName,
+			'userPassword' => $userPassword,
+			'orderId' => $orderId,
+			'amount' => $amount,
+			'localDate' => $localDate,
+			'localTime' => $localTime,
+			'additionalData' => $additionalData,
+			'callBackUrl' => $callBackUrl,
+			'payerId' => $payerId);
+	
+        // Call the SOAP method
+		//$result = $client->call('bpPayRequest', $parameters, $namespace);
+		$result = $client->bpPayRequest($parameters, $namespace);
+		echo "result is :" , $result;
+		$resultStr  = $result;
+ 		$res = @explode (',',$resultStr);
+		echo "first code : ",$res[0];
+		if(is_array($res))
+		{
+		  echo "<script>alert('Pay Response is : " . $resultStr . "');</script>";
+		  echo "Pay Response is : " . $resultStr;
+          $ResCode = $res[0];
+
+		  if ($ResCode == "0") 
+		  {
+				// Update table, Save RefId
+			echo "<script language='javascript' type='text/javascript'>postRefId('" . $res[1] . "');</script>";
+		 } 
+		else {
+		// log error in app
+		// Update table, log the error
+		// Show proper message to user
+		}
+		}
+?>
