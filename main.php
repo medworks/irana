@@ -66,7 +66,8 @@ echo $postform;
 				//	$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
 										
 					toman = data[9] - ((data[9]*data[7])/100);
-					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
+					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('input[name=orderprice]').val(data[2].toString());
 				}
 			        });
 										
@@ -314,6 +315,7 @@ $html =<<<cd
 												
 											  toman = data[8] - ((data[8]*data[7])/100);				
 											  $('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+											  $('input[name=orderprice]').val(data[2].toString());
 											
 											   
 										
@@ -388,7 +390,7 @@ $html =<<<cd
 									<strong style="font-size:23px;margin-right:59px;display:inline-block;margin-top:4px">ریال</strong>
 								</div>
 							</div>
-							<div class="buyme" style="margin-right:33px"><p><a href="#" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>	
+							<div class="buyme" style="margin-right:33px"><p><a href="javascript:void(0);" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>	
 						</div>
 					</div>
 				</div>
@@ -425,7 +427,7 @@ $html =<<<cd
 																			
 					$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
 					$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
-					 $('input[name=orderprice]').val(data[2].toString());
+					$('input[name=orderprice]').val(data[2].toString());
 				}
 			        });
 
@@ -449,7 +451,8 @@ $html =<<<cd
 				//	$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
 										
 					toman = data[9] - ((data[9]*data[7])/100);
-					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
+					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('input[name=orderprice]').val(data[2].toString());
 				}
 			        });
 										

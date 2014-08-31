@@ -97,75 +97,61 @@ $msg = "";
 if ($paymentdone==1)
 {		
 $msg=<<<cd
-<div id="msg">عملیات پرداخت با موفقیت انجام شد</div>
+	<div id="msg"><p>عملیات پرداخت با موفقیت انجام شد</p></div>
 cd;
 }
 else
 if ($paymentdone==0)
 {	
 $msg=<<<cd
- <div id="msg">عملیات پرداخت با مشکل مواجه شد</div>
+	<div id="msg"><p>عملیات پرداخت با مشکل مواجه شد</p></div>
 cd;
 }
 $html=<<<cd
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title>پرداخت هزینه </title>
-    <link href="Css/Style.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-    <form id="frmpay" runat="server" method="post" action="">
-    <table width="100%" cellspacing="0" cellpadding="0" align="center">
-        <tr>
-            <td>
-                <table class="MainTable" cellspacing="5" cellpadding="1" align="center">
-                    <tr class="HeaderTr">
-                        <td colspan="2" align="center" height="25">
-                            <span class="HeaderText">مشخصات پرداخت</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="LabelTd">
-                            <span>رفرنس</span>
-                        </td>
-                        <td>
-                            <span>{$_POST['RefId']}</span>
-							<input type="hidden" name="RefId" value="{$_POST['RefId']}" />
-                        </td>
-                    </tr>                    
-                    <tr>
-                        <td class="LabelTd">
-                            <span>کد سفارش</span>
-                        </td>
-                        <td>
-                            <span>{$_POST['SaleOrderId']}</span>
-							<input type="hidden" name="SaleOrderId" value="{$_POST['SaleOrderId']}" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="LabelTd">
-                            <span>کد پیگیری</span>
-                        </td>
-                        <td>
-                            <span>{$_POST['SaleReferenceId']}</span>
-							<input type="hidden" name="SaleReferenceId" value="{$_POST['SaleReferenceId']}" />
-                        </td>
-                    </tr>
-					{$confirmButton}
-                </table>
-				
-            </td>
-        </tr>
-    </table>
-	{$msg}
-    </form>
-</body>
-</html>	
+	<style>
+		.inner_main input[type=submit]{
+			width:10%;
+			height:45px;
+			font-size:17px;
+			color:#000;
+		}
+		.inner_main p{
+			font-size:18px;
+		}
+		.inner_main p span{
+			color:#000;
+		}
+		#msg p{
+			color:#DE5328;
+		}
+	</style>
+		<!-- Main content alpha -->
+		<div class="main png_bg">
+			<div class="inner_main" style="min-height:380px;">
+			<!-- True containers (keep the content inside containers!) -->
+				<div class="container_alpha slogan">
+					<h1>مشخصات پرداخت</h1>
+				</div>
+				<div class="container_gamma slogan" style="background:none">
+					<form id="frmpay" runat="server" method="post" action="">
+						<p>رفرنس: <span class="latin-font">{$_POST['RefId']}</span></p>
+						<input type="hidden" name="RefId" value="{$_POST['RefId']}" />
+						<p>کد سفارش: <span class="latin-font">{$_POST['SaleOrderId']}</span></p>
+						<input type="hidden" name="SaleOrderId" value="{$_POST['SaleOrderId']}" />
+						<p>کد پیگیری: <span class="latin-font">{$_POST['SaleReferenceId']}</span></p>
+						<input type="hidden" name="SaleReferenceId" value="{$_POST['SaleReferenceId']}" />
+						{$confirmButton}
+    				</form>
+    				{$msg}
+				</div>
+			</div>
+		<!-- /Main content alpha -->
+		</div>
+		<div class="endmain png_bg"></div>
 cd;
 
 echo $html;
+	include_once("inc/footer.php");
 
-?>	
 
+?>
