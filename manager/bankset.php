@@ -15,19 +15,18 @@
 	}
 	
 	
-	$SmsUserName = GetSettingValue('SmsUserName',0);
-	$SmsPassWord = GetSettingValue('SmsPassWord',0);
-	$SmsLineNumber = GetSettingValue('SmsLineNumber',0);
+	$Bank_Terminal_ID = GetSettingValue('Bank_Terminal_ID',0);
+	$Bank_User_Name = GetSettingValue('Bank_User_Name',0);
+	$Bank_Pass_Word = GetSettingValue('Bank_Pass_Word',0);
 	$SmsText = GetSettingValue('SmsText',0);
 	
 	
     if ($_POST["mark"]==editsetting)
 	{
-	    SetSettingValue("SmsUserName",$_POST["smsuser"]);		
-		SetSettingValue("SmsPassWord",$_POST["smspassword"]);
-		SetSettingValue("SmsLineNumber",$_POST["smslinenumber"]);
-		SetSettingValue("SmsText",$_POST["smstext"]);
-		header('location:sms.php');
+	    SetSettingValue("Bank_Terminal_ID",$_POST["Bank_Terminal_ID"]);		
+		SetSettingValue("Bank_User_Name",$_POST["Bank_User_Name"]);
+		SetSettingValue("Bank_Pass_Word",$_POST["Bank_Pass_Word"]);		
+		header('location:bankset.php');
 	}
 $html=<<<cd
 	<!-- Main Section -->
@@ -41,9 +40,9 @@ $html=<<<cd
             <section class="container_6 clearfix">
                 <div class="grid_6">
 					<form class="setting" action="" method="post">
-					    <p><span style="display:block;margin-bottom:5px;">ترمینال</span><input type="text" name="bankter" class="ltr" /></p>
-					    <p><span style="display:block;margin-bottom:5px;">نام کاربری</span><input type="text" name="bankuser" class="ltr" /></p>
-						<p><span style="display:block;margin-bottom:5px;">رمز عبور</span><input type="password" name="bankpass" class="ltr" /></p>
+					    <p><span style="display:block;margin-bottom:5px;">ترمینال</span><input type="text" name="Bank_Terminal_ID" class="ltr" /></p>
+					    <p><span style="display:block;margin-bottom:5px;">نام کاربری</span><input type="text" name="Bank_User_Name" class="ltr" /></p>
+						<p><span style="display:block;margin-bottom:5px;">رمز عبور</span><input type="password" name="Bank_Pass_Word" class="ltr" /></p>
 						<p><input type="submit" style="width:70px;height:35px" value="ثبت"/></p>
 						<input type='hidden' name='mark' value='editsetting' />
 					</form>
