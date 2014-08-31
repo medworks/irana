@@ -67,7 +67,7 @@ echo $postform;
 										
 					toman = data[9] - ((data[9]*data[7])/100);
 					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-					$('input[name=orderprice]').val(data[2].toString());
+					$('input[name=orderprice]').val(toman.toString());
 				}
 			        });
 										
@@ -294,6 +294,7 @@ $html =<<<cd
 									$(".toggler #sharg").css('display',"block");
 									$('#price').html("0");
 								    $('#lastprice').html("0");
+									$('input[name=orderprice]').val("0");
 									$.get('manager/ajaxcommand.php?kind=percent',function(data) {
 						               $('#percent').html(data);
 				                    });									 
@@ -315,7 +316,7 @@ $html =<<<cd
 												
 											  toman = data[8] - ((data[8]*data[7])/100);				
 											  $('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-											  $('input[name=orderprice]').val(data[2].toString());
+											  $('input[name=orderprice]').val(toman.toString());
 											
 											   
 										
@@ -325,6 +326,7 @@ $html =<<<cd
 								if (cureentAct=="taghir"){
 									$(".toggler #taghir").css('display',"block");
 									$('#price').html("0");
+									$('input[name=orderprice]').val("0");
 									$('#lastprice').html("0");
 									//	$.get('manager/ajaxcommand.php?kind=percent',function(data) {
 						         //      $('#percent').html(data);
@@ -452,7 +454,7 @@ $html =<<<cd
 										
 					toman = data[9] - ((data[9]*data[7])/100);
 					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-					$('input[name=orderprice]').val(data[2].toString());
+					$('input[name=orderprice]').val(toman.toString());
 				}
 			        });
 										
