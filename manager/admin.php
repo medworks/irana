@@ -46,12 +46,27 @@
   if ($_GET['act']=="confirm")
   {
 	 $values = array("`status`"=>"'2'");
-     $db->UpdateQuery("orders",$values,array("id='{$_GET[oid]}'"));			
+     $db->UpdateQuery("orders",$values,array("id='{$_GET[oid]}'"));		
+
+     $row = $db->Select("orders","propid","id ='{$_GET[oid]}'");
+	 $mobile = $db->Select("properties","mobile","id ='{$row[0]}'");
+	 $tel = $db->Select("properties","tel","id ='{$row[0]}'");
+	 $user = $db->Select("properties","fullname","id ='{$row[0]}'");
+	 $mobile = $mobile[0];		
+	// if ($smsbalance > 10 )
+	 // {
+	 //echo "mobile is ", $mobile,"<br/>";
+	  //echo $smslinenumber," , ",$smstext," , ",$smsuser," , ",$smspass;
+	 $smstext = str_replace("{user}", $user[0], $smstext);
+	 $smstext = str_replace("{tel}", $tel[0], $smstext);
+	 // echo $smstext;
+	 $rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
+	 //  }	 
 	 
 	 if ($_GET["act"]=="ord")	
 		header("location:admin.php?act=ord");	
 	 else	
-	  header("location:admin.php?act=confirmed&oid={$_GET[oid]}");	
+	    header("location:admin.php?act=confirmed&oid={$_GET[oid]}");	
   }	
 	
 	if ($_GET["act"]=="ord")
@@ -66,20 +81,8 @@
 		$where = "Status = 2";
 		$title = "لیست  تایید شده";
 		$titr  = "";
-		$row = $db->Select("orders","propid","id ='{$_GET[oid]}'");
-		$mobile = $db->Select("properties","mobile","id ='{$row[0]}'");
-		$tel = $db->Select("properties","tel","id ='{$row[0]}'");
-		$user = $db->Select("properties","fullname","id ='{$row[0]}'");
-	    $mobile = $mobile[0];		
-		// if ($smsbalance > 10 )
-	  // {
-	  //echo "mobile is ", $mobile,"<br/>";
-	   //echo $smslinenumber," , ",$smstext," , ",$smsuser," , ",$smspass;
-	   $smstext = str_replace("{user}", $user[0], $smstext);
-	   $smstext = str_replace("{tel}", $tel[0], $smstext);
-	  // echo $smstext;
-	    $rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
-	 //  }
+		
+	    //header("location:admin.php?act=confirmed");
 	}	
 	
 $html=<<<cd
