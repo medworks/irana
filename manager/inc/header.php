@@ -36,7 +36,7 @@
     <div id="wrapper">
         <header style="opacity: 1;">
             <div class="container_8 clearfix">
-                <h1 class="grid_1" style="font-size:20px;"><a href="dashboard.html">شرکت ایرانا</a></h1>
+                <h1 class="grid_1" style="font-size:20px;"><a href="http://www.ir2020.ir">شرکت ایرانا</a></h1>
                 <nav class="grid_5" style="width:750px;">
                     <ul class="clearfix" style="font-size:15px;">
                         <li><a href="admin.php?act=ord">لیست سفارشات</a></li>
@@ -48,6 +48,7 @@
                             <ul>
                                 <li><a href="setting.php">تنظیمات</a></li>
                                 <li><a href="sms.php">اس ام اس</a></li>
+                                <li><a href="bankset.php">تنظیمات درگاه</a></li>
                                 <li><a href="user.php?act=new">تعریف کاربر</a></li>
                                 <li><a href="admin.php?act=logout">خارج شدن</a></li>
                             </ul>
