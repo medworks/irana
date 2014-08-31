@@ -17,8 +17,7 @@
 	
 	$Bank_Terminal_ID = GetSettingValue('Bank_Terminal_ID',0);
 	$Bank_User_Name = GetSettingValue('Bank_User_Name',0);
-	$Bank_Pass_Word = GetSettingValue('Bank_Pass_Word',0);
-	$SmsText = GetSettingValue('SmsText',0);
+	$Bank_Pass_Word = GetSettingValue('Bank_Pass_Word',0);	
 	
 	
     if ($_POST["mark"]==editsetting)
