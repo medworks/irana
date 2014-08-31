@@ -151,7 +151,7 @@ $table .=<<<cd
             <td>{$rows[$i]["propid"]}</td>
 			<td>{$tel}</td>			
 			<td>{$mobile}</td>			
-			<td>{$email}</td>			
+			<td style="font-size:12px;">{$email}</td>			
             <td>{$rows[$i]["planid"]}</td>
             <td>{$rows[$i]["kind"]}</td>
             <td>{$rows[$i]["status"]}</td>            
