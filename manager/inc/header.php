@@ -41,6 +41,7 @@
                     <ul class="clearfix" style="font-size:15px;">
                         <li><a href="admin.php?act=ord">لیست سفارشات</a></li>
                         <li><a href="admin.php?act=confirmed">لیست تایید شده</a></li>
+                        <li><a href="paymentlist.php">لیست پرداختی ها</a></li>
                         <li><a href="plans.php?act=new">تعرفه طرح ها</a></li>
                         <li><a href="volume.php?act=new">تعرفه حجم ها</a></li>
                         <li class="fl">
