@@ -6,7 +6,8 @@
     include_once("classes/messages.php");
 	include_once("classes/functions.php");
 	include_once("/lib/persiandate.php");
-
+	
+	$db = Database::GetDatabase();
 $paymentdone = -1;	
 $confirmButton =<<<cd
 <tr class="HeaderTr">
@@ -19,6 +20,17 @@ cd;
 
 if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 {
+	$maxid = $db->MaxOfAll("id","orders");
+	$order = $db->Select("orders", "*", "id = "."'{$maxid}'");	
+	$person = $db->Select("properties", "*", "id = "."'{$order[propid]}'");	
+	$db->Delete("orders"," Id",$maxid);
+	
+	$oldMax = $db->MaxOf("id","orders","propid='{$order[propid]}'");	
+	$oldplan = $db->Select("orders", "planid", "id = "."'{$oldMax}'");		
+	
+	$values = array("`planid`"=>"'{$oldplan[0]}'");
+	$db->UpdateQuery("properties",$values,array("id='{$order[propid]}'"));
+	
 	header('location:index.php');
 }
 

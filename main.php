@@ -10,6 +10,7 @@
 	$db = Database::GetDatabase();
 	$msg = Message::GetMessage();
 	$isclientexist = false;	
+	$javas="";
 $postform=<<<cd
 <script language='javascript' type='text/javascript'>
 function postRefId (refIdValue) {
