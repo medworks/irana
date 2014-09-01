@@ -55,13 +55,13 @@
 	 $mobile = $mobile[0];		
 	// if ($smsbalance > 10 )
 	 // {
-	 //echo "mobile is ", $mobile,"<br/>";
-	  //echo $smslinenumber," , ",$smstext," , ",$smsuser," , ",$smspass;
-	 $smstext = str_replace("{user}", $user[0], $smstext);
-	 $smstext = str_replace("{tel}", $tel[0], $smstext);
-	 // echo $smstext;
-	 $rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
-	 //  }	 
+	 
+	 if (isset($mobile) and (strlen($mobile)==11))
+	 {
+		$smstext = str_replace("{user}", $user[0], $smstext);
+		$smstext = str_replace("{tel}", $tel[0], $smstext);	 
+		$rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
+	 }	 
 	 
 	 if ($_GET["act"]=="ord")	
 		header("location:admin.php?act=ord");	
