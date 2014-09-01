@@ -140,7 +140,7 @@ $html=<<<cd
 						<input type="hidden" name="SaleOrderId" value="{$_POST['SaleOrderId']}" />
 						<p>کد پیگیری: <span class="latin-font">{$_POST['SaleReferenceId']}</span></p>
 						<input type="hidden" name="SaleReferenceId" value="{$_POST['SaleReferenceId']}" />
-						{$confirmButton}
+						<p>{$confirmButton}</p>
     				</form>
     				{$msg}
 				</div>
