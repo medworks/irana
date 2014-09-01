@@ -26,8 +26,7 @@ function postRefId (refIdValue) {
 			form.submit();
 			document.body.removeChild(form);
 		}
-		
-	//postRefId("AB454241");
+			
 	</script>
 cd;
 echo $postform;
@@ -77,12 +76,16 @@ echo $postform;
 		</script>
 cd;
 	}
-	else
+	//else
 	{
-		$tel = $_GET["tel"]; 
-		$javas="";
+		if ($_GET["act"]=="neword")
+			$tel = $_POST["tel"]; 
+		else	
+			$tel = $_GET["tel"]; 
+		
+		//$javas="";
     
-		$row = $db->Select("properties", "*", "tel = "."'{$_GET[tel]}'");	
+		$row = $db->Select("properties", "*", "tel = "."'{$tel}'");	
 		if ($row)
 		{	  
 		  $isclientexist = true;
