@@ -16,25 +16,31 @@ $confirmButton =<<<cd
 	</td>
  </tr>
 cd;
+
+if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
+{
+	header('location:index.php');
+}
+
 if ($_POST["mark"]=="savepay")
 {
 	$confirmButton = "";
 	if($_POST['ResCode']==0)
 	{
-	try 
-	{ 
-		$client = new SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl');
-	} 
-	catch (Exception $e) 
-	{ 
-		die($e->getMessage()); 
-	} 
+		try 
+		{ 
+			$client = new SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl');
+		} 
+		catch (Exception $e) 
+		{ 
+			die($e->getMessage()); 
+		} 
 
-	$namespace='http://interfaces.core.sw.bps.com/';
+		$namespace='http://interfaces.core.sw.bps.com/';
 
-	$terminalId =  GetSettingValue('Bank_Terminal_ID',1);
-	$userName =  GetSettingValue('Bank_User_Name',1);
-	$userPassword =  GetSettingValue('Bank_Pass_Word',1);
+		$terminalId =  GetSettingValue('Bank_Terminal_ID',1);
+		$userName =  GetSettingValue('Bank_User_Name',1);
+		$userPassword =  GetSettingValue('Bank_Pass_Word',1);
 
 
 	$parameters = array(

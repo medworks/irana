@@ -232,7 +232,7 @@ cd;
 			// log error in app
 			// Update table, log the error
 			// Show proper message to user
-			//echo $res[0];
+			
 		}
 	}
 	
