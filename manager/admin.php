@@ -38,7 +38,7 @@
    if ($_GET['act']=="del")
   {
 	  $db->Delete("orders"," id",$_GET["oid"]);		
-	  if ($_GET["act"]=="ord")	
+	  if ($_GET["state"]=="ord")	
 		header("location:admin.php?act=ord");	
 	 else	
 	    header("location:admin.php?act=confirmed");	
@@ -87,6 +87,7 @@
 	
 $html=<<<cd
     <!-- Main Section -->
+	
     <section class="main-section grid_7">
         <div class="main-content">
             <header>
@@ -165,8 +166,8 @@ if ($_GET["act"]=="ord")
 $table.=<<<cd
 		<td>
                 <ul class="action-buttons">
-                    <li><a href="?act=confirm&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="pencil"></span></a></li>
-                    <li><a href="?act=del&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="bin"></span></a></li>
+                    <li><a href="?act=confirm&state=ord&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="pencil"></span></a></li>
+                    <li><a id="del" href="?act=del&state=ord&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="bin"></span></a></li>
                 </ul>
         </td>
 cd;
@@ -182,6 +183,22 @@ $html.=<<<cd
         </div>
     </section>
     <!-- Main Section End -->
+	
+<script type='text/javascript'>
+		$(document).ready(function(){	
+		  $("span.bin").click(function() 
+		  {
+				if(confirm("از حذف این رکورد مطمئن هستید؟"))
+				{					
+				}
+				else
+				{
+					return false;
+				}
+		  });
+	    });
+		</script>	
+		
 cd;
   echo $html;
   include_once("inc/footer.php")
