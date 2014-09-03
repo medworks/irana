@@ -44,7 +44,6 @@ echo $postform;
 		$javas =<<<cd
 		<script type='text/javascript'>
 		$(document).ready(function(){
-		  //alert("test");
 		  $("#rbtaghir").attr('checked', 'checked');
           $(".toggler div.act").css("display","none");		  
           $(".toggler #taghir").css('display',"block");		  
@@ -62,9 +61,7 @@ echo $postform;
 					$('#percent').html(data[7].toString()+" % ");
 					
 					$('#price').html(data[9].replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-				//	toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;						
-				//	$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
-										
+														
 					toman = data[9] - ((data[9]*data[7])/100);
 					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 					$('input[name=orderprice]').val(toman.toString());
@@ -101,8 +98,7 @@ cd;
 	
 	$plans = $db->SelectAll("plans","*",NULL,"ID");	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
-	
-	
+		
 	if ($_POST["mark"] =="order" )
 	{
 	   $date = date('Y-m-d H:i:s');	
@@ -242,7 +238,6 @@ cd;
 	}
 $Extra_Tax = GetSettingValue('Extra_Tax',0);	
 $html =<<<cd
-         {$javas} 
 		<!-- Main content alpha -->
 		<div class="main png_bg">
 			<div class="inner_main">
@@ -405,12 +400,16 @@ $html =<<<cd
     	</div>
     	<div class="endmain png_bg"></div>
 		<!-- /Main content alpha -->
+		
+		{$javas} 
+		
 	<script type="text/javascript">
 		function submitform()
 		{
 		  document.getElementById("frmorder").submit();
 		}
 	</script>
+	
 	<script type='text/javascript'>
 		$(document).ready(function(){
 			var toman;
@@ -449,9 +448,7 @@ $html =<<<cd
 					$('#month').html(data[2]+" ماهه ");	
 					$('#percent').html(data[7].toString()+" % ");
 					
-					$('#price').html(data[9].replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-				//	toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;						
-				//	$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
+					$('#price').html(data[9].replace(/\B(?=(\d{3})+(?!\d))/g, ','));				
 										
 					toman = data[9] - ((data[9]*data[7])/100);
 					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
@@ -460,6 +457,7 @@ $html =<<<cd
 			        });
 										
 			});	
+			$("#cbplans").change();
 			
 			
 	function isNumber(evt) {
