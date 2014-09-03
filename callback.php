@@ -34,7 +34,7 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 	header('location:index.php');
 }
 
-if ($_POST["mark"]=="savepay")
+//if ($_POST["mark"]=="savepay")
 {
 	$confirmButton = "";
 	if($_POST['ResCode']==0)
@@ -82,18 +82,22 @@ if ($_POST["mark"]=="savepay")
 			if ($ResCodesettle == "0") 
 			{
 				$paymentdone=1;
+				
+				$maxid = $db->MaxOfAll("id","orders");
+				//$order = $db->Select("orders", "*", "id = "."'{$maxid}'");						
+				$values = array("`paystatus`"=>"'1'");
+				$db->UpdateQuery("orders",$values,array("id='{$maxid}'"));				
 			}
 			else
 			{
 				$paymentdone=0;
+				$result = $client->bpReversalRequest($parameters, $namespace);
 			}
 		} 
 		else 
 		{
 			$paymentdone=0;
-			// log error in app
-			// Update table, log the error
-			// Show proper message to user
+			$result = $client->bpReversalRequest($parameters, $namespace);			
 		}
 	}
 }
@@ -152,7 +156,7 @@ $html=<<<cd
 				</div>
 				<div class="container_gamma slogan" style="background:none">
 					<form id="frmpay" runat="server" method="post" action="">
-						<p>رفرنس: <span class="latin-font">{$_POST['RefId']}</span></p>
+						<p>رسید دیجیتال بانکی: <span class="latin-font">{$_POST['RefId']}</span></p>
 						<input type="hidden" name="RefId" value="{$_POST['RefId']}" />
 						<p>کد سفارش: <span class="latin-font">{$_POST['SaleOrderId']}</span></p>
 						<input type="hidden" name="SaleOrderId" value="{$_POST['SaleOrderId']}" />

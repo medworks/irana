@@ -48,11 +48,27 @@
 	 $values = array("`status`"=>"'2'");
      $db->UpdateQuery("orders",$values,array("id='{$_GET[oid]}'"));		
 
-     $row = $db->Select("orders","propid","id ='{$_GET[oid]}'");
-	 $mobile = $db->Select("properties","mobile","id ='{$row[0]}'");
-	 $tel = $db->Select("properties","tel","id ='{$row[0]}'");
-	 $user = $db->Select("properties","fullname","id ='{$row[0]}'");
+     $row = $db->Select("orders","*","id ='{$_GET[oid]}'");
+	 $mobile = $db->Select("properties","mobile","id ='{$row[propid]}'");
+	 $tel = $db->Select("properties","tel","id ='{$row[propid]}'");
+	 $user = $db->Select("properties","fullname","id ='{$row[propid]}'");
 	 $mobile = $mobile[0];		
+	 if ($row[kind]==0)
+	 {
+		$orderinfo = "شارژ ".$row[gig]." GB";
+	 }
+	 else
+	 if ($row[kind]==1)
+	 {
+	    $plan = $db->Select("plans","pname","id ='{$row[planid]}'");
+		$orderinfo = "تمدید طرح ".$plan[0];
+	 }
+	 else
+	 if ($row[kind]==2)
+	 {
+	    $plan = $db->Select("plans","pname","id ='{$row[planid]}'");
+		$orderinfo = "تغییر طرح به ".$plan[0];
+	 }
 	// if ($smsbalance > 10 )
 	 // {
 	 
@@ -60,6 +76,7 @@
 	 {
 		$smstext = str_replace("{user}", $user[0], $smstext);
 		$smstext = str_replace("{tel}", $tel[0], $smstext);	 
+		$smstext = str_replace("{order_info}", $orderinfo, $smstext);	 
 		$rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
 	 }	 
 	 
@@ -109,10 +126,11 @@ $table=<<<cd
 			<th style="width:68px"><a href="#">تلفن</a></th>
 			<th style="width:68px"><a href="#">موبایل</a></th>
 			<th style="width:150px"><a href="#">ایمیل</a></th>
-            <th><a href="#">نام طرح</a></th>
-            <th style="width:35px"><a href="#">نوع سفارش</a></th>
-            <th style="width:35px"><a href="#">وضعیت سفارش</a></th>            
-			<th style="width:20px"><a href="#">حجم</a></th>            
+			<th style="width:35px"><a href="#">نوع سفارش</a></th>
+            <th><a href="#">نام طرح</a></th>            
+            <th style="width:35px"><a href="#">وضعیت سفارش</a></th>
+			<th style="width:35px"><a href="#">وضعیت پرداخت</a></th>
+			<!-- <th style="width:20px"><a href="#">حجم</a></th>  -->
 			{$titr}
         </tr>
     </thead>
@@ -130,18 +148,30 @@ for($i = 0; $i < Count($rows); $i++)
  $rows[$i]["planid"] = $db->Select("plans","pname","id = ".$rows[$i]["planid"])[0];
  
  if($rows[$i]["kind"]==0)
+ {
 	$rows[$i]["kind"] = "شارژ حساب";
+	$rows[$i]["planid"] = $rows[$i]["gig"]."GB"; 
+ }
  else
  if ($rows[$i]["kind"]==1) 
 	$rows[$i]["kind"] = "تمدید حساب فعلی";
  else	
  if ($rows[$i]["kind"]==2) 
 	$rows[$i]["kind"] = "تغییر حساب"; 
+else	
+ if ($rows[$i]["kind"]==3) 	
+	$rows[$i]["kind"] = "سفارش طرح"; 
 	
 if ($rows[$i]["status"]==1) 
 	$rows[$i]["status"] = "تایید نشده";
 else	
 	$rows[$i]["status"] = "تایید شده";
+
+if ($rows[$i]["paystatus"]==1)
+	$rows[$i]["paystatus"] = "پرداخت شده";
+else
+	$rows[$i]["paystatus"] = "معلق";	
+	
 	
 if (($i+1)%11 == 0)	
 	$table.=<<<cd
@@ -155,11 +185,12 @@ $table .=<<<cd
             <td>{$rows[$i]["propid"]}</td>
 			<td>{$tel}</td>			
 			<td>{$mobile}</td>			
-			<td style="font-size:12px;">{$email}</td>			
+			<td style="font-size:12px;">{$email}</td>
+			<td>{$rows[$i]["kind"]}</td>
             <td>{$rows[$i]["planid"]}</td>
-            <td>{$rows[$i]["kind"]}</td>
-            <td>{$rows[$i]["status"]}</td>            
-			<td>{$rows[$i]["gig"]}</td>            
+            <td>{$rows[$i]["status"]}</td>
+			<td>{$rows[$i]["paystatus"]}</td>
+            <!-- <td>{$rows[$i]["gig"]}</td>  -->
 cd;
 if ($_GET["act"]=="ord")
 {

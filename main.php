@@ -186,7 +186,7 @@ cd;
 	$amount = $_POST['orderprice'];				
 	$localDate = $todaydate;
 	$localTime = $todaytime;
-	$additionalData = "خرید / تمدید/سفارش اینترنت";
+	$additionalData = "خدمات اینترنت مخابرات";
 	$callBackUrl = "http://www.ir2020.ir/callback.php";
 	$payerId = 0;
 	//echo "price is  ",$_POST['orderprice'];
@@ -233,10 +233,7 @@ cd;
 		} 
 		else 
 		{
-			// log error in app
-			// Update table, log the error
-			// Show proper message to user
-			
+			// log error in app						
 		}
 	}
 	

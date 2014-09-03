@@ -28,38 +28,49 @@ $html=<<<cd
                 <div class="grid_6">
 cd;
 
-$rows = $db->SelectAll("orders","*",$where,"id Desc");
+$rows = $db->SelectAll("payment","*",$where,"id Desc");
+
 $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">
         <tr>	  
-			<th style="width:60px"><a href="#">تاریخ پرداخت</a></th>		
-            <th><a href="#">نام مشتری</a></th>
-			<th style="width:68px"><a href="#">تلفن</a></th>
-			<th style="width:68px"><a href="#">موبایل</a></th>
-			<th style="width:150px"><a href="#">ایمیل</a></th>
-            <th><a href="#">کد پرداخت</a></th>
-            <th style="width:35px"><a href="#">شماره پیگیری</a></th>
-            <th style="width:35px"><a href="#">وضعیت پرداخت</a></th>          
-			{$titr}
+			<th style="width:70px"><a href="#">تاریخ پرداخت</a></th>		
+            <th style="width:68px"><a href="#">نام مشتری</a></th>
+			<th style="width:50px"><a href="#">تلفن</a></th>
+			<th style="width:50px"><a href="#">موبایل</a></th>			
+            <th style="width:90px"><a href="#">کد سفارش</a></th>
+            <th style="width:65px"><a href="#">شماره پیگیری</a></th>
+            <th style="width:30px"><a href="#">وضعیت پرداخت</a></th>	
         </tr>
     </thead>
 	<tbody style="display: none;">
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
+ $rows[$i]["regdate"] = ToJalali($rows[$i]["regdate"]," l d F  Y ");
+ $order = $db->Select("orders","propid","id ='{$rows[$i]["oid"]}'");
+ $person = $db->Select("properties","*","id ='{$order[0]}'");
  
+ if ($rows[$i]["confirm"]==1) 
+	$rows[$i]["confirm"]= "قطعی";
+ else
+	$rows[$i]["confirm"]="معلق";
+	
+if (($i+1)%11 == 0)	
+	$table.=<<<cd
+	</tbody>
+		<tbody style="display: table-row-group;">
+cd;
 
 $table .=<<<cd
         <tr>		
-		    <td></td>
-            <td></td>
-			<td></td>			
-			<td></td>			
-			<td style="font-size:12px;"></td>			
-            <td></td>
-            <td></td>
-            <td></td>            
+		    <td>{$rows[$i]["regdate"]}</td>	
+			<td>{$person[fullname]}</td>
+			<td>{$person[tel]}</td>
+            <td>{$person[mobile]}</td>
+			<td>{$rows[$i]["selorder"]}</td>
+			<td>{$rows[$i]["pegiri"]}</td>						
+            <td>{$rows[$i]["confirm"]}</td>                       
 cd;
 $table .= "</tr>";
 }
