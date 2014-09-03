@@ -283,7 +283,6 @@ $html =<<<cd
 					<script>
 						$(document).ready(function(){
 							$('div.action input').click(function(){
-							//alert("test")
 								var cureentAct= $(this).val();
 								$(".toggler div.act").css("display","none");
 								if (cureentAct=="sharg"){
@@ -306,11 +305,8 @@ $html =<<<cd
 									dataType: "json",
 									success: function (data) {				    
 											  $('#percent').html(data[7].toString()+" % ");
-											 // toman = (data[6].replace(/[^\d\.\-\ ]/g, ''))/10;		
-											   $('#price').html(data[8].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-											   //$('#toman').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+" تومان ");
-												
-											  toman = data[8] - ((data[8]*data[7])/100);				
+   										      $('#price').html(data[9].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+											  toman = data[9] - ((data[9]*data[7])/100);				
 											  $('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 											  $('input[name=orderprice]').val(toman.toString());
 											
