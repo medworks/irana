@@ -4,8 +4,9 @@
 	include_once("config.php");
     include_once("classes/database.php");
     include_once("classes/messages.php");
-	include_once("classes/functions.php");
 	include_once("/lib/persiandate.php");
+	include_once("/lib/class.phpmailer.php");
+	include_once("classes/functions.php");
 	
 	$db = Database::GetDatabase();
 $paymentdone = -1;	
@@ -86,7 +87,27 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 				$maxid = $db->MaxOfAll("id","orders");
 				//$order = $db->Select("orders", "*", "id = "."'{$maxid}'");						
 				$values = array("`paystatus`"=>"'1'");
-				$db->UpdateQuery("orders",$values,array("id='{$maxid}'"));				
+				$db->UpdateQuery("orders",$values,array("id='{$maxid}'"));
+				//=============== send email
+				/*
+				$Contact_Email = GetSettingValue('Contact_Email',0);
+				$Email_Text = GetSettingValue('Email_Text',0);	
+				$row = $db->Select("orders","*","id ='{$maxid}'");
+				$mobile = $db->Select("properties","mobile","id ='{$row[propid]}'");
+				$tel = $db->Select("properties","tel","id ='{$row[propid]}'");
+				$user = $db->Select("properties","fullname","id ='{$row[propid]}'");
+				$email = $db->Select("properties","email","id ='{$row[propid]}'");
+								
+				$Email_Text = str_replace("{user}", $user[0], $Email_Text);
+				$Email_Text = str_replace("{tel}", $tel[0], $Email_Text);
+				$Email_Text = str_replace("{mobile}", $mobile[0], $Email_Text);
+				$Email_Text = str_replace("{order_info}", $mobile[0], $Email_Text);
+				$today = ToJalali(date("Y-m-d")," l d F  Y ");
+				$Email_Text = str_replace("{date}", $today, $Email_Text);
+				
+				$issend = SendEmail($Contact_Email,"گروه بازرگانی ایرانا", array($email[0]), "رسید سفارش", $Email_Text);
+				echo "email ->",$issend;
+				*/
 			}
 			else
 			{
@@ -173,6 +194,7 @@ $html=<<<cd
 cd;
 
 echo $html;
+//echo "email ->",$issend;
 	include_once("inc/footer.php");
 
 

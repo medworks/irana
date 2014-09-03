@@ -251,8 +251,8 @@ function DataGrid($cols, $rows, $colsClass, $rowsClass, $itemsInPage, $pageNo, $
 		$senderName = "=?UTF-8?B?" . base64_encode($senderName) . "?=";
 		$mail->SetFrom($senderEmail, $senderName);
 		foreach($receivers as $key=>$r)
-			//$mail->AddAddress($r);
-			$mail->AddBCC($r);
+			$mail->AddAddress($r);
+			//$mail->AddBCC($r);
 		$mail->Subject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
 		//$mail->MsgHTML("=?UTF-8?B?" . base64_encode($message). "?=");
                 $mail->CharSet = "utf-8";

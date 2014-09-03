@@ -309,9 +309,6 @@ $html =<<<cd
 											  toman = data[9] - ((data[9]*data[7])/100);				
 											  $('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 											  $('input[name=orderprice]').val(toman.toString());
-											
-											   
-										
 									}
 										});									
 								}
