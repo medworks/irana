@@ -8,18 +8,11 @@
   	include_once("../classes/database.php");	
 	include_once("../classes/login.php");
     include_once("../lib/persiandate.php");  
-    include_once('../lib/sms/sms.class.php');	
+	
+    
 	
 	$login = Login::GetLogin();	
 	$db = Database::GetDatabase();	
-	
-	$smsuser = GetSettingValue('SmsUserName',0);
-	$smspass = GetSettingValue('SmsPassWord',0);
-	$smslinenumber = GetSettingValue('SmsLineNumber',0);
-	$smstext = GetSettingValue('SmsText',1);
-	 
-	$gate = new sms_soap($smsuser, $smspass);
-	$smsbalance = $gate->GetUserBalance();
 	
 	if (!$login->IsLogged())
 	{
@@ -48,38 +41,6 @@
 	 $values = array("`status`"=>"'2'");
      $db->UpdateQuery("orders",$values,array("id='{$_GET[oid]}'"));		
 
-     $row = $db->Select("orders","*","id ='{$_GET[oid]}'");
-	 $mobile = $db->Select("properties","mobile","id ='{$row[propid]}'");
-	 $tel = $db->Select("properties","tel","id ='{$row[propid]}'");
-	 $user = $db->Select("properties","fullname","id ='{$row[propid]}'");
-	 $mobile = $mobile[0];		
-	 if ($row[kind]==0)
-	 {
-		$orderinfo = "شارژ ".$row[gig]." GB";
-	 }
-	 else
-	 if ($row[kind]==1)
-	 {
-	    $plan = $db->Select("plans","pname","id ='{$row[planid]}'");
-		$orderinfo = "تمدید طرح ".$plan[0];
-	 }
-	 else
-	 if ($row[kind]==2)
-	 {
-	    $plan = $db->Select("plans","pname","id ='{$row[planid]}'");
-		$orderinfo = "تغییر طرح به ".$plan[0];
-	 }
-	// if ($smsbalance > 10 )
-	 // {
-	 
-	 if (isset($mobile) and (strlen($mobile)==11))
-	 {
-		$smstext = str_replace("{user}", $user[0], $smstext);
-		$smstext = str_replace("{tel}", $tel[0], $smstext);	 
-		$smstext = str_replace("{order_info}", $orderinfo, $smstext);	 
-		$rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
-	 }	 
-	 
 	 if ($_GET["act"]=="ord")	
 		header("location:admin.php?act=ord");	
 	 else	

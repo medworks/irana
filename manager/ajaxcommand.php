@@ -5,9 +5,10 @@
 	include_once("../classes/functions.php");
 	include_once("../lib/persiandate.php");	
 	include_once("../lib/class.phpmailer.php");
+	include_once('../lib/sms/sms.class.php');
 	
 	$sess = Session::GetSesstion();
-	$db = Database::GetDatabase();	
+	$db = Database::GetDatabase();
 
  
  if (isset($_GET["planid"]))
@@ -130,8 +131,15 @@ if($_GET["contact"]=="reg"){
 }
 
 if($_GET["order_infos"]=="send"){
-
-  //  echo $sess->Get("person_id");
+//============================ SMS Login =========================
+    $smsuser = GetSettingValue('SmsUserName',0);
+	$smspass = GetSettingValue('SmsPassWord',0);
+	$smslinenumber = GetSettingValue('SmsLineNumber',0);
+	$smstext = GetSettingValue('SmsText',1);
+	 
+	$gate = new sms_soap($smsuser, $smspass);
+	$smsbalance = $gate->GetUserBalance();
+//=================================================================
     $person_id = $_GET["pid"];//$sess->Get("person_id");
 	$order_id =$sess->Get("order_id");
 		
@@ -141,13 +149,27 @@ if($_GET["order_infos"]=="send"){
 	$order_infos = $db->Select("orders","*","id ='{$order_id}'");	
 	if ($order_infos["kind"]==0)
 	{
-		$order_info = "(*".$order_infos["gig"]." GB )*";
+		$order_info = " شارژ (*".$order_infos["gig"]." GB )*";
 	}
-	else	
-	{
-		$plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");	
-		$order_info = "(* طرح ".$plan[0]." )*";
-	}
+	else
+	if ($order_infos["kind"]==1)
+	 {
+	    $plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");
+		$orderinfo = "تمدید طرح ".$plan[0];
+	 }
+	 else
+	 if ($row["kind"]==2)
+	 {
+	    $plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");
+		$orderinfo = "تغییر طرح به ".$plan[0];
+	 }
+	 else
+	 if ($row["kind"]==3)
+	 {
+	    $plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");
+		$orderinfo = "سفارش طرح ".$plan[0];
+	 }
+	
 	
 	$peigiri_code = $db->Select("payment","pegiri","oid ='{$order_id}'");	
 	
@@ -191,7 +213,15 @@ if($_GET["order_infos"]=="send"){
 		echo "<div class='notification_ok rtl medium'>فاکتور خرید به ایمیلتان ارسال شد</div>";
 	 else
 		echo "<div class='notification_error rtl'>خطا در ارسال فاکتور!</div>";
-
+//====================================== Send SMS =========================
+	if (isset($mobile) and (strlen($mobile)==11))
+	 {
+		$smstext = str_replace("{user}", $user, $smstext);
+		$smstext = str_replace("{tel}", $tel, $smstext);	 
+		$smstext = str_replace("{order_info}", $$order_info, $smstext);	 
+		$rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
+	 }	 
+	 
 	
 }
 
