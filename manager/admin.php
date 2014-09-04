@@ -121,12 +121,11 @@ $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">
         <tr>	  
-			<th style="width:70px"><a href="#">تاریخ سفارش</a></th>	
-			<th style="width:45px"><a href="#">ساعت</a></th>		
+			<th style="width:70px"><a href="#">تاریخ سفارش</a></th>			
             <th style="width:80px" ><a href="#">نام مشتری</a></th>
 			<th style="width:68px"><a href="#">تلفن</a></th>
 			<th style="width:70px"><a href="#">موبایل</a></th>
-			<th style="width:150px"><a href="#">ایمیل</a></th>
+			<!-- <th style="width:150px"><a href="#">ایمیل</a></th> -->
 			<th style="width:35px"><a href="#">نوع سفارش</a></th>
             <th style="width:70px"><a href="#">نام طرح</a></th> 
 			<th style="width:70px"><a href="#">مبلغ</a></th> 			
@@ -141,8 +140,7 @@ $table=<<<cd
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
- $ordtime  = ToJalali($rows[$i]["orderdate"],"H:i:s");
- $rows[$i]["orderdate"] = ToJalali($rows[$i]["orderdate"]," l d F  Y ");
+ $rows[$i]["orderdate"] = ToJalali($rows[$i]["orderdate"],"Y/m/d H:i");
  $tel = $db->Select("properties","tel","id = ".$rows[$i]["propid"])[0];
  $mobile = $db->Select("properties","mobile","id = ".$rows[$i]["propid"])[0];
  $email = $db->Select("properties","email","id = ".$rows[$i]["propid"])[0];
@@ -186,11 +184,10 @@ cd;
 $table .=<<<cd
         <tr>		
 		    <td>{$rows[$i]["orderdate"]}</td>
-			<td>{$ordtime}</td>
             <td>{$rows[$i]["propid"]}</td>
 			<td>{$tel}</td>			
 			<td>{$mobile}</td>			
-			<td style="font-size:12px;">{$email}</td>
+			<!-- <td style="font-size:12px;">{$email}</td> -->
 			<td>{$rows[$i]["kind"]}</td>
             <td>{$rows[$i]["planid"]}</td>
 			<td>{$rows[$i]["price"]}</td>
