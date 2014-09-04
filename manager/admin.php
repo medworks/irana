@@ -121,15 +121,18 @@ $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">
         <tr>	  
-			<th style="width:60px"><a href="#">تاریخ سفارش</a></th>		
-            <th><a href="#">نام مشتری</a></th>
+			<th style="width:70px"><a href="#">تاریخ سفارش</a></th>	
+			<th style="width:45px"><a href="#">ساعت</a></th>		
+            <th style="width:80px" ><a href="#">نام مشتری</a></th>
 			<th style="width:68px"><a href="#">تلفن</a></th>
-			<th style="width:68px"><a href="#">موبایل</a></th>
+			<th style="width:70px"><a href="#">موبایل</a></th>
 			<th style="width:150px"><a href="#">ایمیل</a></th>
 			<th style="width:35px"><a href="#">نوع سفارش</a></th>
-            <th><a href="#">نام طرح</a></th>            
+            <th style="width:70px"><a href="#">نام طرح</a></th> 
+			<th style="width:70px"><a href="#">مبلغ</a></th> 			
             <th style="width:35px"><a href="#">وضعیت سفارش</a></th>
 			<th style="width:35px"><a href="#">وضعیت پرداخت</a></th>
+			<th style="width:70px"><a href="#">کد پیگیری</a></th> 
 			<!-- <th style="width:20px"><a href="#">حجم</a></th>  -->
 			{$titr}
         </tr>
@@ -138,15 +141,16 @@ $table=<<<cd
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
+ $ordtime  = ToJalali($rows[$i]["orderdate"],"H:i:s");
  $rows[$i]["orderdate"] = ToJalali($rows[$i]["orderdate"]," l d F  Y ");
-  
  $tel = $db->Select("properties","tel","id = ".$rows[$i]["propid"])[0];
  $mobile = $db->Select("properties","mobile","id = ".$rows[$i]["propid"])[0];
  $email = $db->Select("properties","email","id = ".$rows[$i]["propid"])[0];
  $rows[$i]["propid"] = $db->Select("properties","fullname","id = ".$rows[$i]["propid"])[0]; 
  
  $rows[$i]["planid"] = $db->Select("plans","pname","id = ".$rows[$i]["planid"])[0];
- 
+
+ $peygiri_code =$db->Select("payment","pegiri","oid = ".$rows[$i]["id"])[0]; 
  if($rows[$i]["kind"]==0)
  {
 	$rows[$i]["kind"] = "شارژ حساب";
@@ -182,14 +186,17 @@ cd;
 $table .=<<<cd
         <tr>		
 		    <td>{$rows[$i]["orderdate"]}</td>
+			<td>{$ordtime}</td>
             <td>{$rows[$i]["propid"]}</td>
 			<td>{$tel}</td>			
 			<td>{$mobile}</td>			
 			<td style="font-size:12px;">{$email}</td>
 			<td>{$rows[$i]["kind"]}</td>
             <td>{$rows[$i]["planid"]}</td>
+			<td>{$rows[$i]["price"]}</td>
             <td>{$rows[$i]["status"]}</td>
 			<td>{$rows[$i]["paystatus"]}</td>
+			<td>{$peygiri_code}</td>
             <!-- <td>{$rows[$i]["gig"]}</td>  -->
 cd;
 if ($_GET["act"]=="ord")

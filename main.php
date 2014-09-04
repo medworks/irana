@@ -126,7 +126,7 @@ cd;
 		 
 		 $sess->Set("person_id",$lastid);
 		
-		 $fields = array("`propid`","`planid`","`orderdate`","`kind`","`status`","`gig`");	
+		 $fields = array("`propid`","`planid`","`orderdate`","`kind`","`status`","`gig`","`price`");	
 			
 		if ($_POST["plan"] =="sharg")
 		{
@@ -162,7 +162,7 @@ cd;
 			$planid = $_GET["planid"]; // order from price page
 		}
 		
-		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$kind}'","'1'","'{$giga}'");
+		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$kind}'","'1'","'{$giga}'","'{$_POST[orderprice]}'");
 		
 		$db->InsertQuery('orders',$fields,$values);
 		
