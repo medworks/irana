@@ -88,14 +88,14 @@
 	
 	if ($_GET["act"]=="ord")
     { 	
-		$where = "Status = 1";
+		$where = "Status = 1 AND paystatus = 1";
 		$title = "لیست سفارشات";
 		$titr = " <th style='width:55px'><a href='#'>عملیات</a></th> ";	
 	}	
 	else	
 	if ($_GET["act"]=="confirmed")	
 	{
-		$where = "Status = 2";
+		$where = "Status = 2 AND paystatus = 1";
 		$title = "لیست  تایید شده";
 		$titr  = "";
 		

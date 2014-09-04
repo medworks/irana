@@ -2,14 +2,20 @@
 	include_once("inc/header.php");
 	
 	include_once("config.php");
+	include_once("classes/session.php");
     include_once("classes/database.php");
     include_once("classes/messages.php");
-	include_once("/lib/persiandate.php");
-	include_once("/lib/class.phpmailer.php");
+	include_once("lib/persiandate.php");
+	include_once("lib/class.phpmailer.php");
 	include_once("classes/functions.php");
 	
+	
+	$sess = Session::GetSesstion();	
 	$db = Database::GetDatabase();
+	
+	
 $paymentdone = -1;	
+$javas = "";
 $confirmButton =<<<cd
 <tr class="HeaderTr">
 	<td colspan="2" align="center">
@@ -21,10 +27,12 @@ cd;
 
 if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 {
-	$maxid = $db->MaxOfAll("id","orders");
-	$order = $db->Select("orders", "*", "id = "."'{$maxid}'");	
-	$person = $db->Select("properties", "*", "id = "."'{$order[propid]}'");	
-	$db->Delete("orders"," Id",$maxid);
+	//$maxid = $db->MaxOfAll("id","orders");
+	$order_id = $sess->Get("order_id");
+	$order = $db->Select("orders", "*", "id = "."'{$order_id}'");	
+	//echo $db->cmd;
+	//$person = $db->Select("properties", "*", "id = "."'{$order[propid]}'");	
+	$db->Delete("orders"," Id",$order_id);
 	
 	$oldMax = $db->MaxOf("id","orders","propid='{$order[propid]}'");	
 	$oldplan = $db->Select("orders", "planid", "id = "."'{$oldMax}'");		
@@ -84,19 +92,22 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 			{
 				$paymentdone=1;
 				
-				$maxid = $db->MaxOfAll("id","orders");
-				//$order = $db->Select("orders", "*", "id = "."'{$maxid}'");						
+				//$maxid = $db->MaxOfAll("id","orders");
+				//$order = $db->Select("orders", "*", "id = "."'{$maxid}'");	
+				$order_id = $sess->Get("order_id");
+				$person_id = $sess->Get("person_id");				
 				$values = array("`paystatus`"=>"'1'");
-				$db->UpdateQuery("orders",$values,array("id='{$maxid}'"));
-				//=============== send email
+				$db->UpdateQuery("orders",$values,array("id='{$order_id}'"));
 				/*
+				//=============== send email
+				$person_id = $sess->Get("person_id");
 				$Contact_Email = GetSettingValue('Contact_Email',0);
 				$Email_Text = GetSettingValue('Email_Text',0);	
-				$row = $db->Select("orders","*","id ='{$maxid}'");
-				$mobile = $db->Select("properties","mobile","id ='{$row[propid]}'");
-				$tel = $db->Select("properties","tel","id ='{$row[propid]}'");
-				$user = $db->Select("properties","fullname","id ='{$row[propid]}'");
-				$email = $db->Select("properties","email","id ='{$row[propid]}'");
+				//$row = $db->Select("orders","*","id ='{$maxid}'");
+				$mobile = $db->Select("properties","mobile","id ='{$person_id}'");
+				$tel = $db->Select("properties","tel","id ='{$person_id}'");
+				$user = $db->Select("properties","fullname","id ='{$person_id}'");
+				$email = $db->Select("properties","email","id ='{$person_id}'");
 								
 				$Email_Text = str_replace("{user}", $user[0], $Email_Text);
 				$Email_Text = str_replace("{tel}", $tel[0], $Email_Text);
@@ -104,10 +115,20 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 				$Email_Text = str_replace("{order_info}", $mobile[0], $Email_Text);
 				$today = ToJalali(date("Y-m-d")," l d F  Y ");
 				$Email_Text = str_replace("{date}", $today, $Email_Text);
-				
+				//echo $Email_Text;
 				$issend = SendEmail($Contact_Email,"گروه بازرگانی ایرانا", array($email[0]), "رسید سفارش", $Email_Text);
-				echo "email ->",$issend;
+				//echo "email ->",$issend;
 				*/
+$javas=<<<cd
+		<script type='text/javascript'>
+		 $(document).ready(function(){		 
+		 $.get('manager/ajaxcommand.php?order_infos=send&pid={$person_id}',function(data) {		     
+				   $('#msg2').html(data);			
+				});
+		});
+		</script>
+cd;
+
 			}
 			else
 			{
@@ -139,6 +160,10 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 $msg = "";
 if ($paymentdone==1)
 {		
+$order_id = $sess->Get("order_id");				
+$values = array("`paystatus`"=>"'1'");
+$db->UpdateQuery("orders",$values,array("id='{$order_id}'"));
+
 $msg=<<<cd
 	<div id="msg"><p>عملیات پرداخت با موفقیت انجام شد</p></div>
 cd;
@@ -191,6 +216,8 @@ $html=<<<cd
 		<!-- /Main content alpha -->
 		</div>
 		<div class="endmain png_bg"></div>
+		<div id='msg2'></div>
+		{$javas}
 cd;
 
 echo $html;

@@ -1,9 +1,13 @@
 <?php
 	include_once("../config.php");
+	include_once("../classes/session.php");
     include_once("../classes/database.php");	
-	include_once("../classes/functions.php");	
+	include_once("../classes/functions.php");
+	include_once("../lib/persiandate.php");	
+	include_once("../lib/class.phpmailer.php");
 	
-	$db = Database::GetDatabase();
+	$sess = Session::GetSesstion();
+	$db = Database::GetDatabase();	
 
  
  if (isset($_GET["planid"]))
@@ -123,6 +127,72 @@ if($_GET["contact"]=="reg"){
 		echo "<div class='notification_error rtl'>خطا! لطفا فیلدها را بررسی نمایید و مجددا ارسال کنید!</div>";
 	}
 
+}
+
+if($_GET["order_infos"]=="send"){
+
+  //  echo $sess->Get("person_id");
+    $person_id = $_GET["pid"];//$sess->Get("person_id");
+	$order_id =$sess->Get("order_id");
+		
+	$Contact_Email = GetSettingValue('Contact_Email',0);
+	$Email_Text = GetSettingValue('Email_Text',0);	
+	
+	$order_infos = $db->Select("orders","*","id ='{$order_id}'");	
+	if ($order_infos["kind"]==0)
+	{
+		$order_info = "(*".$order_infos["gig"]." GB )*";
+	}
+	else	
+	{
+		$plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");	
+		$order_info = "(* طرح ".$plan[0]." )*";
+	}
+	
+	$peigiri_code = $db->Select("payment","pegiri","oid ='{$order_id}'");	
+	
+	$mobile = $db->Select("properties","mobile","id ='{$person_id}'");	
+	$tel = $db->Select("properties","tel","id ='{$person_id}'");
+	$user = $db->Select("properties","fullname","id ='{$person_id}'");
+	$email = $db->Select("properties","email","id ='{$person_id}'");
+	$tel = $tel[0];
+	$user = $user[0];
+	$email = $email[0];
+	$mobile = $mobile[0];
+	$Email_Text = str_replace("{user}", $user, $Email_Text);
+	$Email_Text = str_replace("{tel}", $tel, $Email_Text);
+	$Email_Text = str_replace("{mobile}", $mobile, $Email_Text);
+	$Email_Text = str_replace("{order_info}", $order_info, $Email_Text);
+	$today = ToJalali(date("Y-m-d")," l d F  Y ");
+	$Email_Text = str_replace("{date}", $today, $Email_Text);
+	$Email_Text = str_replace("{payment_code}", $peigiri_code[0], $Email_Text);
+
+	$name    = "گروه بازرگانی ایرانا";
+    $subject = "رسید سفارش";
+	$message = $Email_Text;
+ //   echo $db->cmd," ",$person_id," ",$name," ",$email," ",$subject," ",$message;
+	/*
+	//if( strlen($name)>=1 && checkEmail($email[0]) && strlen($message)>=1 )
+	//{
+		if(@mail($email,$subject,$message,"From:$name $Contact_Email"))
+		{
+			echo "<div class='notification_ok rtl medium'>فاکتور خردید شما به ایمیلتان ارسال شد</div>";
+
+		}else{
+			echo "<div class='notification_error rtl'>خطا در ارسال فاکتور!</div>";
+
+		}
+	//}else{
+	//	echo "<div class='notification_error rtl'>خطا! لطفا فیلدها را بررسی نمایید و مجددا ارسال کنید!</div>";
+	//}
+     */
+	 $issend=SendEmail($Contact_Email,"گروه بازرگانی ایرانا", array($email), "رسید سفارش", $message);
+	 if ($issend)
+		echo "<div class='notification_ok rtl medium'>فاکتور خردید شما به ایمیلتان ارسال شد</div>";
+	 else
+		echo "<div class='notification_error rtl'>خطا در ارسال فاکتور!</div>";
+
+	
 }
 
 ?>

@@ -259,6 +259,7 @@ function DataGrid($cols, $rows, $colsClass, $rowsClass, $itemsInPage, $pageNo, $
                 $mail->MsgHTML($message);
 		$mail->Priority = 1;
                 //$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+		$mail->IsHTML(true);		
 		return $mail->Send();
 	}
      function SendSmtpEmail($senderemail,$sendername,$receivers, $subject, $message,$host,$port,$username,$password)

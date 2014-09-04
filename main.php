@@ -2,13 +2,17 @@
 	include_once("inc/header.php");
 	
 	include_once("config.php");
+	include_once("classes/session.php");
     include_once("classes/database.php");
     include_once("classes/messages.php");
-	include_once("classes/functions.php");
+	include_once("classes/functions.php");	
 	include_once("/lib/persiandate.php");
     
+	$sess = Session::GetSesstion();
 	$db = Database::GetDatabase();
 	$msg = Message::GetMessage();
+	
+	
 	$isclientexist = false;	
 	$javas="";
 $postform=<<<cd
@@ -75,7 +79,7 @@ echo $postform;
 cd;
 	}
 	//else
-	{
+	//{
 		if ($_GET["act"]=="neword")
 			$tel = $_POST["tel"]; 
 		else	
@@ -94,7 +98,7 @@ cd;
 		}
 		else
 		{ $row["planid"]= -1; $plancode = "";}
-	}
+	//}
 	
 	$plans = $db->SelectAll("plans","*",NULL,"ID");	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
@@ -119,8 +123,10 @@ cd;
 	   }
        else
 	     $lastid = $row["id"];
+		 
+		 $sess->Set("person_id",$lastid);
 		
-		$fields = array("`propid`","`planid`","`orderdate`","`kind`","`status`","`gig`");	
+		 $fields = array("`propid`","`planid`","`orderdate`","`kind`","`status`","`gig`");	
 			
 		if ($_POST["plan"] =="sharg")
 		{
@@ -159,6 +165,10 @@ cd;
 		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$kind}'","'1'","'{$giga}'");
 		
 		$db->InsertQuery('orders',$fields,$values);
+		
+		$lastid = $db->InsertId();
+		
+		$sess->Set("order_id",$lastid);
 		
 // pay here ==================
 	try 
@@ -223,6 +233,8 @@ cd;
 			else 
 			{  										
 			//	header('location:payment.php');
+				$lastid = $db->InsertId();		
+				$sess->Set("payment_id",$lastid);
 			}  		
 			// Update table, Save RefId
 			echo "<script language='javascript' type='text/javascript'>postRefId('" . $res[1] . "');</script>";
