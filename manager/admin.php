@@ -113,7 +113,7 @@ $html=<<<cd
                 </h2>
             </header>
             <section class="container_6 clearfix">
-                <div class="grid_6">
+                <div class="grid_6" style="width:780px">
 cd;
 
 $rows = $db->SelectAll("orders","*",$where,"id Desc");
@@ -131,7 +131,7 @@ $table=<<<cd
 			<th style="width:70px"><a href="#">مبلغ</a></th> 			
             <th style="width:35px"><a href="#">وضعیت سفارش</a></th>
 			<th style="width:35px"><a href="#">وضعیت پرداخت</a></th>
-			<th style="width:70px"><a href="#">کد پیگیری</a></th> 
+			<th style="width:80px"><a href="#">کد پیگیری</a></th> 
 			<!-- <th style="width:20px"><a href="#">حجم</a></th>  -->
 			{$titr}
         </tr>
