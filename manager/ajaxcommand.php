@@ -188,7 +188,7 @@ if($_GET["order_infos"]=="send"){
      */
 	 $issend=SendEmail($Contact_Email,"گروه بازرگانی ایرانا", array($email), "رسید سفارش", $message);
 	 if ($issend)
-		echo "<div class='notification_ok rtl medium'>فاکتور خردید شما به ایمیلتان ارسال شد</div>";
+		echo "<div class='notification_ok rtl medium'>فاکتور خرید به ایمیلتان ارسال شد</div>";
 	 else
 		echo "<div class='notification_error rtl'>خطا در ارسال فاکتور!</div>";
 
