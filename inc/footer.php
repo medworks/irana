@@ -1,6 +1,7 @@
 </div>
 <!--! end of #container -->
 <div id="footer_bottom" class="png_bg">
+    <p style="margin-bottom:5px;font-height:bold;font-size:17px;">بهترین مرورگر برای استفاده از این سایت <a href="https://www.google.com/chrome/browser/" target="_blank" style="color:#DE5328">Google Chrome</a> میباشد</p>
     <p style="margin-bottom:5px;">حقوق این سایت متعلق به گروه بارزگانی ایرانا می باشد. هرگونه کپی برداری پیگرد قانونی دارد.</p>
     <p>آدرس مرکزی: مشهد-چهارراه لشکر-پاساژ آسیا-واحد 203 (نصرالله سویزی)</p>
 </div>
