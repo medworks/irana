@@ -189,7 +189,8 @@ $html=<<<cd
 		.inner_main p span{
 			color:#000;
 		}
-		#msg p{
+		#msg p,
+		#msg2{
 			color:#DE5328;
 		}
 	</style>
@@ -211,12 +212,12 @@ $html=<<<cd
 						<p>{$confirmButton}</p>
     				</form>
     				{$msg}
+					<p id='msg2'></p>
 				</div>
 			</div>
 		<!-- /Main content alpha -->
 		</div>
 		<div class="endmain png_bg"></div>
-		<div id='msg2'></div>
 		{$javas}
 cd;
 
