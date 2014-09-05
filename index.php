@@ -10,9 +10,6 @@
 						<img src="images/slides/slide1.jpg" alt="" title="#htmlcaption" style="display: none;">
 						<img src="images/slides/slide2.jpg" alt="" style="display: none;">
 						<img src="images/slides/slide3.jpg" alt="" title="#htmlcaption2" style="display: none;">
-						<img src="images/slides/slide4.jpg" alt="" style="display: none;">
-						<img src="images/slides/slide5.jpg" alt="" style="display: none;">
-						<img src="images/slides/slide6.jpg" alt="" style="display: none;">
 					</div>
 					<div class="loader" style="display: none;"></div>
 				</div>
