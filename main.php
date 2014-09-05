@@ -125,7 +125,8 @@ cd;
 	     $lastid = $row["id"];
 		 
 		 $sess->Set("person_id",$lastid);
-		
+		// kind noe sefaresh -> sharj, tamdid,taghir, sefaresh
+		// status -> default is 1,when confirm updated to 2
 		 $fields = array("`propid`","`planid`","`orderdate`","`kind`","`status`","`gig`","`price`");	
 			
 		if ($_POST["plan"] =="sharg")

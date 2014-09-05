@@ -149,25 +149,25 @@ if($_GET["order_infos"]=="send"){
 	$order_infos = $db->Select("orders","*","id ='{$order_id}'");	
 	if ($order_infos["kind"]==0)
 	{
-		$order_info = " شارژ (*".$order_infos["gig"]." GB )*";
+		$order_info = " شارژ (".$order_infos["gig"]." GB )";
 	}
 	else
 	if ($order_infos["kind"]==1)
 	 {
 	    $plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");
-		$orderinfo = "تمدید طرح ".$plan[0];
+		$order_info = "تمدید طرح ".$plan[0];
 	 }
 	 else
 	 if ($row["kind"]==2)
 	 {
 	    $plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");
-		$orderinfo = "تغییر طرح به ".$plan[0];
+		$order_info = "تغییر طرح به ".$plan[0];
 	 }
 	 else
 	 if ($row["kind"]==3)
 	 {
 	    $plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");
-		$orderinfo = "سفارش طرح ".$plan[0];
+		$order_info = "سفارش طرح ".$plan[0];
 	 }
 	
 	
@@ -218,7 +218,7 @@ if($_GET["order_infos"]=="send"){
 	 {
 		$smstext = str_replace("{user}", $user, $smstext);
 		$smstext = str_replace("{tel}", $tel, $smstext);	 
-		$smstext = str_replace("{order_info}", $$order_info, $smstext);	 
+		$smstext = str_replace("{order_info}", $order_info, $smstext);	 
 		$rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
 	 }	 
 	 
