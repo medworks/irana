@@ -88,7 +88,7 @@ $html =<<<cd
 					<div class="gs_6 omega">
 						<h3>آدرس ما</h3>
 						<div class="add_border" style="width: 428px;">
-						<img src="images/map.png" alt="" class="border_magic" style="display: block;"></div>
+						<img src="images/map.png" alt="irana" width="428px" height="174px" class="border_magic" style="display: block;"></div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -103,4 +103,3 @@ cd;
     echo $html;
 	include_once("inc/footer.php");
 ?>
-  	
