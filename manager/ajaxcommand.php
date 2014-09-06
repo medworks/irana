@@ -158,13 +158,13 @@ if($_GET["order_infos"]=="send"){
 		$order_info = "تمدید طرح ".$plan[0];
 	 }
 	 else
-	 if ($row["kind"]==2)
+	 if ($order_infos["kind"]==2)
 	 {
 	    $plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");
 		$order_info = "تغییر طرح به ".$plan[0];
 	 }
 	 else
-	 if ($row["kind"]==3)
+	 if ($order_infos["kind"]==3)
 	 {
 	    $plan = $db->Select("plans","pname","id ='{$order_infos[planid]}'");
 		$order_info = "سفارش طرح ".$plan[0];
