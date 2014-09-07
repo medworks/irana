@@ -88,7 +88,7 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 			$resultStr = $array["return"];
 			$ressettle = explode (',',$resultStr);
 			$ResCodesettle = $ressettle[0];
-			if ($ResCodesettle == "0") 
+			if ($ResCodesettle == "0" Or $ResCodesettle=="45") 
 			{
 				$paymentdone=1;
 				
@@ -154,7 +154,8 @@ cd;
 					"`regdate`"=>"'{$date}'",
 					"`errcode`"=>"'{$_POST['ResCode']}'",
 					"`confirm`"=>"'{$paymentdone}'");
-    $id = $db->MaxOfAll("id", "payment");
+    //$id = $db->MaxOfAll("id", "payment");
+	$id = $sess->Get("payment_id");
     $db->UpdateQuery("payment",$values,array("id='{$id}'"));		
 }	
 $msg = "";
