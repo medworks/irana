@@ -48,6 +48,8 @@ echo $postform;
 		$javas =<<<cd
 		<script type='text/javascript'>
 		$(document).ready(function(){
+		  $("#rbsharj").removeAttr('checked');
+		  $("#rbtamdid").removeAttr('checked');
 		  $("#rbtaghir").attr('checked', 'checked');
           $(".toggler div.act").css("display","none");		  
           $(".toggler #taghir").css('display',"block");		  
@@ -173,7 +175,7 @@ cd;
 		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$kind}'","'1'","'{$giga}'","'{$_POST[orderprice]}'");
 		
 		$db->InsertQuery('orders',$fields,$values);
-		
+		//echo $db->cmd;
 		$lastid = $db->InsertId();
 		
 		$sess->Set("order_id",$lastid);
@@ -294,11 +296,11 @@ $html =<<<cd
 						2) مشترک گرامی در صورت انتخاب گزینه تمدید، طرح درخواستی شما از زمان پرداخت فعال شده و میزان حجم و زمان به مانده قبلی شما اضافه خواهد شد، در غیر اینصورت از گزینه شارژ استفاده نمایید.
 					</h3></br>					
 					<div class="action" name="selector" id="selector" style="direction:rtl;width:150px;float:right">							
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input id="rbsharj" name="rbsharj" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0;" type="radio" checked name="plan" value="sharg">
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input id="rbsharj"  style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0;" type="radio" checked name="plan" value="sharg">
 						<p class="clear"></p>
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input id="rbtamdid" name="rbtamdid" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input id="rbtamdid"  style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
 						<p class="clear"></p>
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input id="rbtaghir" name="rbtaghir" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input id="rbtaghir"  style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
 					</div>
 
 					<script>
@@ -308,6 +310,9 @@ $html =<<<cd
 								$(".toggler div.act").css("display","none");
 								if (cureentAct=="sharg"){
 									$(".toggler #sharg").css('display',"block");
+									//$("#rbsharj").removeAttr('checked');
+									$("#rbtamdid").removeAttr('checked');
+									$("#rbtaghir").removeAttr('checked');
 									$('#price').html("0");
 								    $('#lastprice').html("0");
 									$('input[name=orderprice]').val("0");
@@ -316,6 +321,9 @@ $html =<<<cd
 				                    });									 
 								}
 								if (cureentAct=="tamdid"){
+								$("#rbsharj").removeAttr('checked');
+								//$("#rbtamdid").removeAttr('checked');
+								$("#rbtaghir").removeAttr('checked');
 									$(".toggler #tamdid").css('display',"block");
 								$('#price').html("0");
 								$('#lastprice').html("0");
@@ -334,6 +342,9 @@ $html =<<<cd
 										});									
 								}
 								if (cureentAct=="taghir"){
+								    $("#rbsharj").removeAttr('checked');
+									$("#rbtamdid").removeAttr('checked');
+									//$("#rbtaghir").removeAttr('checked');
 									$(".toggler #taghir").css('display',"block");
 									$('#price').html("0");
 									$('input[name=orderprice]').val("0");
@@ -350,7 +361,8 @@ $html =<<<cd
 							<!-- Sharj hesab -->
 							<div id="sharg" class='act'>
 								<h3>شارژ حساب</h3>						
-									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong><input name="gigabyte" id="gigabyte" style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99" maxlength="2"  onkeypress="return isNumber(event);">
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong>
+									<input name="gigabyte" id="gigabyte" style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99" maxlength="2"  onkeypress="return isNumber(event);">
 							</div>
 							<!-- tamdid hesab feli -->
 							<div id="tamdid" class='act activity'>
@@ -441,7 +453,7 @@ $html =<<<cd
 			alert('لطفا شماره تلفن خود را وارد نمایید');
 			return false;
 		  }
-
+          $("#gigabyte").keyup();
 		  document.getElementById("frmorder").submit();
 		}
 	</script>

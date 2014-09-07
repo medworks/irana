@@ -46,14 +46,12 @@
       
 	  $(document).ready(function(){  
 	  $('form#frmtel').submit(function(e) {
-	       // e.preventDefault();
 			if ($('#tel').val().length < 10)
 			{
 				alert('لطفا شماره تلفن را بصورت 10 رقم ثبت نمایید(5138555560)');
 				e.preventDefault();
 //				return false;
 			}	 
-		//e.preventDefault();	
 	  });
 		
 	  });
