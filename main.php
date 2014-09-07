@@ -81,13 +81,18 @@ cd;
 	//else
 	//{
 		if ($_GET["act"]=="neword")
+		{
 			$tel = $_POST["tel"]; 
+			$plancode ="";
+		}	
 		else	
 			$tel = $_GET["tel"]; 
 		
 		//$javas="";
-    
-		$row = $db->Select("properties", "*", "tel = "."'{$tel}'");	
+		$row=null;
+        if (isset($tel))
+		   $row = $db->Select("properties", "*", "tel = "."'{$tel}'");	
+		//echo $db->cmd;
 		if ($row)
 		{	  
 		  $isclientexist = true;
