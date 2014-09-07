@@ -473,24 +473,26 @@ $html =<<<cd
 		       $("#gigabyte").keyup();
 			   
 			$("#cbplans").change(function(){	
-               				
-			    $.ajax({
-				type: "GET",
-				url: "manager/ajaxcommand.php",
-				data: 'planid=' + $(this).val(),
-				dataType: "json",
-				success: function (data) {				    
-					$('#gig').html(data[3]*data[2]+" گیگابایت ");
-					$('#month').html(data[2]+" ماهه ");	
-					$('#percent').html(data[7].toString()+" % ");
-					
-					$('#price').html(data[9].replace(/\B(?=(\d{3})+(?!\d))/g, ','));				
-										
-					toman = data[9] - ((data[9]*data[7])/100);
-					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-					$('input[name=orderprice]').val(toman.toString());
-				}
-			        });
+               	if ($(this).val() != -1)
+				{
+					$.ajax({
+					type: "GET",
+					url: "manager/ajaxcommand.php",
+					data: 'planid=' + $(this).val(),
+					dataType: "json",
+					success: function (data) {				    
+						$('#gig').html(data[3]*data[2]+" گیگابایت ");
+						$('#month').html(data[2]+" ماهه ");	
+						$('#percent').html(data[7].toString()+" % ");
+						
+						$('#price').html(data[9].replace(/\B(?=(\d{3})+(?!\d))/g, ','));				
+											
+						toman = data[9] - ((data[9]*data[7])/100);
+						$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+						$('input[name=orderprice]').val(toman.toString());
+					}
+						});
+				}	
 										
 			});	
 			$("#cbplans").change();
