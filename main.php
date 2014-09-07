@@ -51,15 +51,17 @@ echo $postform;
 		  $("#rbtaghir").attr('checked', 'checked');
           $(".toggler div.act").css("display","none");		  
           $(".toggler #taghir").css('display',"block");		  
+		  $("input[name='rbsharj']").attr('disabled',true);
+		  $("input[name='rbtamdid']").attr('disabled',true);
 		  $("#cbplans").val({$_GET[planid]});
 		  $("#cbplans").change(function(){	
-		  
+		        				
 			    $.ajax({
 				type: "GET",
 				url: "manager/ajaxcommand.php",
 				data: 'planid= {$_GET[planid]}',
 				dataType: "json",
-				success: function (data) {				    
+				success: function (data) {				    		            
 					$('#gig').html(data[3]*data[2]+" گیگابایت ");
 					$('#month').html(data[2]+" ماهه ");	
 					$('#percent').html(data[7].toString()+" % ");
@@ -89,7 +91,7 @@ cd;
 			$tel = $_GET["tel"]; 
 		
 		//$javas="";
-		$row=null;
+		$row=NULL;
         if (isset($tel))
 		   $row = $db->Select("properties", "*", "tel = "."'{$tel}'");	
 		//echo $db->cmd;
@@ -291,11 +293,11 @@ $html =<<<cd
 						2) مشترک گرامی در صورت انتخاب گزینه تمدید، طرح درخواستی شما از زمان پرداخت فعال شده و میزان حجم و زمان به مانده قبلی شما اضافه خواهد شد، در غیر اینصورت از گزینه شارژ استفاده نمایید.
 					</h3></br>					
 					<div class="action" name="selector" id="selector" style="direction:rtl;width:150px;float:right">							
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input id="rbsharj" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0;" type="radio" checked name="plan" value="sharg">
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input id="rbsharj" name="rbsharj" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0;" type="radio" checked name="plan" value="sharg">
 						<p class="clear"></p>
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input id="rbtamdid" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input id="rbtamdid" name="rbtamdid" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
 						<p class="clear"></p>
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input id="rbtaghir" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input id="rbtaghir" name="rbtaghir" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
 					</div>
 
 					<script>
