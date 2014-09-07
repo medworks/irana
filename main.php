@@ -51,15 +51,17 @@ echo $postform;
 		  $("#rbtaghir").attr('checked', 'checked');
           $(".toggler div.act").css("display","none");		  
           $(".toggler #taghir").css('display',"block");		  
+		  $("input[name='rbsharj']").attr('disabled',true);
+		  $("input[name='rbtamdid']").attr('disabled',true);
 		  $("#cbplans").val({$_GET[planid]});
 		  $("#cbplans").change(function(){	
-		  
+		        				
 			    $.ajax({
 				type: "GET",
 				url: "manager/ajaxcommand.php",
 				data: 'planid= {$_GET[planid]}',
 				dataType: "json",
-				success: function (data) {				    
+				success: function (data) {				    		            
 					$('#gig').html(data[3]*data[2]+" گیگابایت ");
 					$('#month').html(data[2]+" ماهه ");	
 					$('#percent').html(data[7].toString()+" % ");
@@ -81,13 +83,18 @@ cd;
 	//else
 	//{
 		if ($_GET["act"]=="neword")
+		{
 			$tel = $_POST["tel"]; 
+			$plancode ="";
+		}	
 		else	
 			$tel = $_GET["tel"]; 
 		
 		//$javas="";
-    
-		$row = $db->Select("properties", "*", "tel = "."'{$tel}'");	
+		$row=NULL;
+        if (isset($tel))
+		   $row = $db->Select("properties", "*", "tel = "."'{$tel}'");	
+		//echo $db->cmd;
 		if ($row)
 		{	  
 		  $isclientexist = true;
@@ -124,10 +131,7 @@ cd;
        else
 	     $lastid = $row["id"];
 		 
-		 $sess->Set("person_id",$lastid);
-		// kind noe sefaresh -> sharj, tamdid,taghir, sefaresh
-		// status -> default is 1,when confirm updated to 2
-		 $fields = array("`propid`","`planid`","`orderdate`","`kind`","`status`","`gig`","`price`");	
+		 $sess->Set("person_id",$lastid);		
 			
 		if ($_POST["plan"] =="sharg")
 		{
@@ -163,6 +167,9 @@ cd;
 			$planid = $_GET["planid"]; // order from price page
 		}
 		
+		// kind noe sefaresh -> sharj, tamdid,taghir, sefaresh
+		// status -> default is 1,when confirm updated to 2
+		$fields = array("`propid`","`planid`","`orderdate`","`kind`","`status`","`gig`","`price`");	 
 		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$kind}'","'1'","'{$giga}'","'{$_POST[orderprice]}'");
 		
 		$db->InsertQuery('orders',$fields,$values);
@@ -223,10 +230,11 @@ cd;
 		if ($ResCode == "0") 
 		{
 			$date = date('Y-m-d H:i:s');
-			$lastid = $db->InsertId();
+			//$lastid = $db->InsertId();
+			$order_id =$sess->Get("order_id");
 			
 			$fields = array("`oid`","`regdate`");		
-			$values = array("'{$lastid}'","'{$date}'");	
+			$values = array("'{$order_id}'","'{$date}'");	
 			if (!$db->InsertQuery('payment',$fields,$values)) 
 			{			
 			//header('location:payment.php');			
@@ -276,9 +284,9 @@ $html =<<<cd
 					{$plancode}
 					<div style="direction:rtl">
 					        {$tel4neword}
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input name="fullname" style="width:30%;font-size:18px;color:#000;background-color:#ddd" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input name="mobile" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="09123456789" value="{$row[mobile]}">
-							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input name="email" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row[email]}">													
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input id="fullname" name="fullname" style="width:30%;font-size:18px;color:#000;background-color:#ddd" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input id="mobile" name="mobile" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="09123456789" value="{$row[mobile]}">
+							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input id="email" name="email" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row[email]}">													
 					</div>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
@@ -286,11 +294,11 @@ $html =<<<cd
 						2) مشترک گرامی در صورت انتخاب گزینه تمدید، طرح درخواستی شما از زمان پرداخت فعال شده و میزان حجم و زمان به مانده قبلی شما اضافه خواهد شد، در غیر اینصورت از گزینه شارژ استفاده نمایید.
 					</h3></br>					
 					<div class="action" name="selector" id="selector" style="direction:rtl;width:150px;float:right">							
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input id="rbsharj" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0;" type="radio" checked name="plan" value="sharg">
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input id="rbsharj" name="rbsharj" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0;" type="radio" checked name="plan" value="sharg">
 						<p class="clear"></p>
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input id="rbtamdid" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input id="rbtamdid" name="rbtamdid" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
 						<p class="clear"></p>
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input id="rbtaghir" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input id="rbtaghir" name="rbtaghir" style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
 					</div>
 
 					<script>
@@ -394,7 +402,8 @@ $html =<<<cd
 									<strong style="font-size:23px;margin-right:59px;display:inline-block;margin-top:4px">ریال</strong>
 								</div>
 							</div>
-							<div class="buyme" style="margin-right:33px"><p><a href="javascript:void(0);" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>	
+							<div class="buyme" style="margin-right:33px"><p>
+							<a href="javascript:void(0);" onclick ="javascript:submitform();" style="font-size:18px" class="superbutton">پرداخت</a></p></div>	
 						</div>
 					</div>
 				</div>
@@ -412,6 +421,27 @@ $html =<<<cd
 	<script type="text/javascript">
 		function submitform()
 		{
+		  if($('#fullname').val() == '')
+		  {
+			alert('لطفا نام خود را وارد نمایید');
+			return false;
+		  }
+		  if($('#mobile').val() == '')
+		  {
+			alert('لطفا شماره موبایل خود را وارد نمایید');
+			return false;
+		  }
+		  if($('#email').val() == '')
+		  {
+			alert('لطفا ایمیل خود را وارد نمایید');
+			return false;
+		  }
+		  if($('#tel').val() == '')
+		  {
+			alert('لطفا شماره تلفن خود را وارد نمایید');
+			return false;
+		  }
+
 		  document.getElementById("frmorder").submit();
 		}
 	</script>
