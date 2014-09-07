@@ -453,6 +453,37 @@ $html =<<<cd
 			alert('لطفا شماره تلفن خود را وارد نمایید');
 			return false;
 		  }
+		  	  		
+		if ($("input[name='plan']#rbtamdid").is(":checked"))
+		{
+			if ($("span#recplanname").text()=="")
+			{
+				alert('نام طرح خالی است، لطفا از گزینه تغییر حساب استفاده نمایید');
+				return false;
+			}
+        }
+		else
+		if ($("input[name='plan']#rbsharj").is(":checked"))
+		{
+			
+			if ($("#gigabyte").val()=="")
+			{				
+				alert('لطفا مقدار حجم را وارد نمایید!');
+				return false;
+			}
+        }
+		else
+		if ($("input[name='plan']#rbtaghir").is(":checked"))
+		{
+			
+			if ($("#cbplans").val()=="-1")
+			{				
+				alert('لطفا از لیست  طرح مورد نظر را انتخاب نمایید');
+				return false;
+			}
+        }
+	
+		  
           $("#gigabyte").keyup();
 		  document.getElementById("frmorder").submit();
 		}
