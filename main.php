@@ -235,8 +235,8 @@ cd;
 			//$lastid = $db->InsertId();
 			$order_id =$sess->Get("order_id");
 			
-			$fields = array("`oid`","`regdate`");		
-			$values = array("'{$order_id}'","'{$date}'");	
+			$fields = array("`oid`","`regdate`","`errcode`");		
+			$values = array("'{$order_id}'","'{$date}'","'{$ResCode}'");	
 			if (!$db->InsertQuery('payment',$fields,$values)) 
 			{			
 			//header('location:payment.php');			
