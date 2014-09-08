@@ -137,7 +137,7 @@ cd;
 			
 		if ($_POST["plan"] =="sharg")
 		{
-			$planid = -1;
+			$planid =$row["planid"];
 			$kind = 0;
 			$giga = $_POST["gigabyte"];
 		}
@@ -235,8 +235,8 @@ cd;
 			//$lastid = $db->InsertId();
 			$order_id =$sess->Get("order_id");
 			
-			$fields = array("`oid`","`regdate`","`errcode`");		
-			$values = array("'{$order_id}'","'{$date}'","'{$ResCode}'");	
+			$fields = array("`oid`","`refid`","`regdate`","`errcode`");		
+			$values = array("'{$order_id}'","'{$res[1]}'","'{$date}'","'{$ResCode}'");	
 			if (!$db->InsertQuery('payment',$fields,$values)) 
 			{			
 			//header('location:payment.php');			
