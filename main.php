@@ -53,8 +53,8 @@ echo $postform;
 		  $("#rbtaghir").attr('checked', 'checked');
           $(".toggler div.act").css("display","none");		  
           $(".toggler #taghir").css('display',"block");		  
-		  $("input[name='rbsharj']").attr('disabled',true);
-		  $("input[name='rbtamdid']").attr('disabled',true);
+		  $("input[id='rbsharj']").attr('disabled',true);
+		  $("input[id='rbtamdid']").attr('disabled',true);
 		  $("#cbplans").val({$_GET[planid]});
 		  $("#cbplans").change(function(){	
 		        				
@@ -144,7 +144,7 @@ cd;
 		else
 		if ($_POST["plan"] =="tamdid")
 		{
-			$planid = -1;
+			$planid = $row["planid"];
 			$kind = 1;
 			$giga = 0;
 		}	
