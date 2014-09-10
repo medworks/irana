@@ -41,7 +41,7 @@
 	
 </head>
 <body>
-	<iframe style="position: absolute;z-index:1000;top: 5px;left: 1px;" src="./eNamadLogo.htm" frameborder="0" scrolling="no" allowtransparency="true" style="width: 150px; height:150px;"></iframe>
+	<iframe style="position: absolute;z-index:1001;top:15px;left:123px" src="/eNamadLogo.htm" frameborder="0" scrolling="no" allowtransparency="true" style="width: 150px; height:150px;"></iframe>
   	<div id="container">
 		<!-- Header -->
 	    <div id="header">
