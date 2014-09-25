@@ -62,10 +62,70 @@
 		
 	    //header("location:admin.php?act=confirmed");
 	}	
+$list = array("propid"=>"نام مشتری",
+			  "orderdate"=>"تاریخ سفارش",			
+			  "tel"=>"تلفن",
+			  "pegiri"=>"کد پیگیری");
+$combobox = SelectOptionTag("cbsearch",$list,"propid");
+$search=<<<srh
+                    <div class="Top">                       
+						<center>
+							<form action="" method="post" id="frmsrh" name="frmsrh">
+								<p>جستجو بر اساس {$combobox}</p>
+
+								<p class="search-form">
+									<input type="text" id="date_input_1" name="txtsrh" class="search-form" value="جستجو..." onfocus="if (this.value == 'جستجو...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'جستجو...';}"  /> 						
+									  <img src="./images/cal.png" class="cal-btn" id="date_btn_2" alt="cal-pic">			
+							         
+									<a href="admin.php?act={$_GET['act']}" name="srhsubmit" id="srhsubmit" class="button"> جستجو</a>
+									<a href="admin.php?act={$_GET['act']}&rec=all" name="retall" id="retall" class="button"> کلیه اطلاعات</a>
+								</p>
+								<input type="hidden" name="mark" value="srhorders" /> 
+								{$msgs}							
+															
+							</form>
+					   </center>
+					</div>
+<script type='text/javascript'>
+	$(document).ready(function(){	   			
+		$('#srhsubmit').click(function(){	
+			$('#frmsrh').submit();
+			return false;
+		});
+		$('#cbsearch').change(function(){
+			$("select option:selected").each(function(){
+	            if($(this).val()=="orderdate"){
+	            	$('.cal-btn').css('display' , 'inline-block');
+	            	return false;
+	            }else{
+	            	$('.cal-btn').css('display' , 'none');
+	            }
+  			});
+		});
+		
+		$('#date_btn_2').click(function(){
+			//alert("");
+			Calendar.setup({
+					inputField  : "date_input_1",   
+					button      : "date_btn_2",   
+					ifFormat    : "%Y/%m/%d",     
+					showsTime   : false,
+					dateType    : 'jalali',
+					showOthers  : true,
+					langNumbers : true,
+					weekNumbers : true
+			  });
+		});
+		
+		$('#cbsearch').change();
+	});
+	
+</script>	   								
+
+srh;
 	
 $html=<<<cd
-    <!-- Main Section -->
-	
+    <!-- Main Section -->	
     <section class="main-section grid_7">
         <div class="main-content">
             <header>
@@ -73,11 +133,58 @@ $html=<<<cd
                    {$title}
                 </h2>
             </header>
+			{$search}
             <section class="container_6 clearfix">
                 <div class="grid_6" style="width:780px">
 cd;
 
-$rows = $db->SelectAll("orders","*",$where,"id Desc");
+if ($_POST['mark']=="srhorders")
+{
+	
+	switch ($_POST['cbsearch'])
+	{
+	 case 'propid' :
+		$filters = $db->SelectAll("properties","id","fullname LIKE '%{$_POST[txtsrh]}%' ","id Desc");
+		$ids = array();
+		for($i = 0; $i < Count($filters); $i++)
+		{
+			$ids[] = $filters[$i][0];			
+		}
+		$idd = implode(",",($ids));
+		$where.= " AND propid in (".$idd.")";
+		$rows = $db->SelectAll("orders","*",$where,"id Desc");
+		//echo $db->cmd;
+	 break;
+	 case 'orderdate' :
+	 
+	    list($year,$month,$day) = explode("/", trim($_POST["txtsrh"]));		
+		list($gyear,$gmonth,$gday) = jalali_to_gregorian($year,$month,$day);		
+		$_POST["txtsrh"] = Date("Y-m-d",mktime(0, 0, 0, $gmonth, $gday, $gyear));
+		echo $_POST["txtsrh"];
+		$where .= " AND orderdate LIKE '%{$_POST[txtsrh]}%' ";
+		$rows = $db->SelectAll("orders","*",$where,"id Desc");
+	 break;	 
+	 case 'tel' :
+		$filters = $db->SelectAll("properties","id","tel LIKE '%{$_POST[txtsrh]}%' ","id Desc");
+		$ids = array();
+		for($i = 0; $i < Count($filters); $i++)
+		{
+			$ids[] = $filters[$i][0];			
+		}
+		$idd = implode(",",($ids));
+		$where.= " AND propid in (".$idd.")";
+		$rows = $db->SelectAll("orders","*",$where,"id Desc");
+	 break;
+	 case 'pegiri' :
+	    $orderid = $db->Select("payment","oid","pegiri = ".$_POST['txtsrh'])[0]; 
+		
+		$where.= " AND id = ".$orderid;
+		$rows = $db->SelectAll("orders","*",$where,"id Desc");		
+	 break;
+	}	
+}
+else
+	$rows = $db->SelectAll("orders","*",$where,"id Desc");
 $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">

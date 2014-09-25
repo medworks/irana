@@ -13,6 +13,7 @@
 <link rel="stylesheet" media="screen" href="css/messages.css">
 <link rel="stylesheet" media="screen" href="css/forms.css">
 <link rel="stylesheet" media="screen" href="css/tables.css">
+<link rel="stylesheet" type="text/css" href="css/calendar-blue.css" />
 
 <!--[if lt IE 8]>
 <link rel="stylesheet" media="screen" href="css/ie.css" />
@@ -22,6 +23,10 @@
 <script src="js/jquery.tools.min.js"></script>
 <script src="js/jquery.tables.js"></script>
 
+<script type="text/javascript" src="../lib/js/jalali.js"></script>  
+<script type="text/javascript" src="../lib/js/calendar.js"></script>  
+<script type="text/javascript" src="../lib/js/calendar-setup.js"></script>  
+<script type="text/javascript" src="../lib/js/calendar-fa.js"></script>	
 <script type="text/javascript" src="js/global.js"></script>
 
 <!--[if lt IE 9]>
