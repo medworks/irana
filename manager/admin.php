@@ -30,7 +30,9 @@
    
    if ($_GET['act']=="del")
   {
-	  $db->Delete("orders"," id",$_GET["oid"]);		
+	  //$db->Delete("orders"," id",$_GET["oid"]);
+	 $values = array("`remove`"=>"'1'");
+     $db->UpdateQuery("orders",$values,array("id='{$_GET[oid]}'"));			  
 	  if ($_GET["state"]=="ord")	
 		header("location:admin.php?act=ord");	
 	 else	
@@ -49,14 +51,14 @@
 	
 	if ($_GET["act"]=="ord")
     { 	
-		$where = "Status = 1 AND paystatus = 1";
+		$where = "Status = 1 AND paystatus = 1 AND remove = 0 ";
 		$title = "لیست سفارشات";
 		$titr = " <th style='width:55px'><a href='#'>عملیات</a></th> ";	
 	}	
 	else	
 	if ($_GET["act"]=="confirmed")	
 	{
-		$where = "Status = 2 AND paystatus = 1";
+		$where = "Status = 2 AND paystatus = 1 AND remove = 0 ";
 		$title = "لیست  تایید شده";
 		$titr  = "";
 		
