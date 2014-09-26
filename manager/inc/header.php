@@ -72,6 +72,7 @@
                     <ul class="clearfix">
                         <li><a class="nav-icon icon-house" href="admin.php?act=ord">لیست سفارشات</a></li>
                         <li><a class="nav-icon icon-tick" href="admin.php?act=confirmed">لیست تایید شده</a></li>
+						<li><a class="nav-icon icon-tick" href="removedorders.php?act=new">لیست سفارشات حذف شده</a></li>
                         <li><a class="nav-icon icon-note" href="plans.php?act=new">تعرفه طرح ها</a></li>
                         <li><a class="nav-icon icon-book" href="volume.php?act=new">تعرفه حجم ها</a></li>
                     </ul>
