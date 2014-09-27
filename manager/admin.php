@@ -65,6 +65,7 @@
 	    //header("location:admin.php?act=confirmed");
 	}	
 $list = array("propid"=>"نام مشتری",
+			  "orderdate"=>"تاریخ سفارش",	
 			  "tel"=>"تلفن",
 			  "pegiri"=>"کد پیگیری");
 $combobox = SelectOptionTag("cbsearch",$list,"propid");
@@ -143,7 +144,7 @@ if ($_POST['mark']=="srhorders")
 	    list($year,$month,$day) = explode("/", trim($_POST["txtsrh"]));		
 		list($gyear,$gmonth,$gday) = jalali_to_gregorian($year,$month,$day);		
 		$_POST["txtsrh"] = Date("Y-m-d",mktime(0, 0, 0, $gmonth, $gday, $gyear));
-		echo $_POST["txtsrh"];
+		//echo $_POST["txtsrh"];
 		$where .= " AND orderdate LIKE '%{$_POST[txtsrh]}%' ";
 		$rows = $db->SelectAll("orders","*",$where,"id Desc");
 	 break;	 
