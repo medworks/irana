@@ -65,7 +65,6 @@
 	    //header("location:admin.php?act=confirmed");
 	}	
 $list = array("propid"=>"نام مشتری",
-			  "orderdate"=>"تاریخ سفارش",			
 			  "tel"=>"تلفن",
 			  "pegiri"=>"کد پیگیری");
 $combobox = SelectOptionTag("cbsearch",$list,"propid");
@@ -73,14 +72,10 @@ $search=<<<srh
                     <div class="Top">                       
 						<center>
 							<form action="" method="post" id="frmsrh" name="frmsrh">
-								<p>جستجو بر اساس {$combobox}</p>
-
-								<p class="search-form">
+								<p class="search-form" style="font-size:18px">جستجو بر اساس {$combobox}
 									<input type="text" id="date_input_1" name="txtsrh" class="search-form" value="جستجو..." onfocus="if (this.value == 'جستجو...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'جستجو...';}"  /> 						
-									  <img src="./images/cal.png" class="cal-btn" id="date_btn_2" alt="cal-pic">			
-							         
-									<a href="admin.php?act={$_GET['act']}" name="srhsubmit" id="srhsubmit" class="button"> جستجو</a>
-									<a href="admin.php?act={$_GET['act']}&rec=all" name="retall" id="retall" class="button"> کلیه اطلاعات</a>
+							        <a href="admin.php?act={$_GET['act']}" name="srhsubmit" id="srhsubmit" class="button" style="font-size:18px"> جستجو</a>
+									<a href="admin.php?act={$_GET['act']}&rec=all" name="retall" id="retall" class="button" style="font-size:18px"> کلیه اطلاعات</a>
 								</p>
 								<input type="hidden" name="mark" value="srhorders" /> 
 								{$msgs}							
@@ -103,20 +98,6 @@ $search=<<<srh
 	            	$('.cal-btn').css('display' , 'none');
 	            }
   			});
-		});
-		
-		$('#date_btn_2').click(function(){
-			//alert("");
-			Calendar.setup({
-					inputField  : "date_input_1",   
-					button      : "date_btn_2",   
-					ifFormat    : "%Y/%m/%d",     
-					showsTime   : false,
-					dateType    : 'jalali',
-					showOthers  : true,
-					langNumbers : true,
-					weekNumbers : true
-			  });
 		});
 		
 		$('#cbsearch').change();

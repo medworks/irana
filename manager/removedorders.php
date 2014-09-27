@@ -35,7 +35,7 @@ $html=<<<cd
                 </h2>
             </header>
             <section class="container_6 clearfix">
-                <div class="grid_6">
+                <div class="grid_6" style="width:780px">
 cd;
 
 $rows = $db->SelectAll("orders","*"," remove = 1","id Desc");
