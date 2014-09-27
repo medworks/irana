@@ -74,7 +74,7 @@ $search=<<<srh
 						<center>
 							<form action="" method="post" id="frmsrh" name="frmsrh">
 								<p class="search-form" style="font-size:18px">جستجو بر اساس {$combobox}
-									<input type="text" id="date_input_1" name="txtsrh" class="search-form" value="جستجو..." onfocus="if (this.value == 'جستجو...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'جستجو...';}"  /> 						
+									<input type="text" id="date_input_1" name="txtsrh" style="font-size:17px" class="search-form" value="جستجو..." onfocus="if (this.value == 'جستجو...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'جستجو...';}"  /> 						
 							        <a href="admin.php?act={$_GET['act']}" name="srhsubmit" id="srhsubmit" class="button" style="font-size:18px"> جستجو</a>
 									<a href="admin.php?act={$_GET['act']}&rec=all" name="retall" id="retall" class="button" style="font-size:18px"> کلیه اطلاعات</a>
 								</p>
