@@ -71,8 +71,11 @@ if ($_POST["mark"]=="saveplan")
 	}
 	if ($_GET['act']=="del")
 	{
-		$db->Delete("plans"," id",$_GET["pid"]);		
-		header('location:plans.php?act=new');	
+	//	$db->Delete("plans"," id",$_GET["pid"]);		
+	//	header('location:plans.php?act=new');	
+	 $values = array("`remove`"=>"'1'");
+     $db->UpdateQuery("plans",$values,array("id='{$_GET[pid]}'"));	
+	 header('location:plans.php?act=new');	
 	}	
 $msgs = GetMessage($_GET['msg']);
 $html =<<<cd
@@ -103,7 +106,7 @@ $html =<<<cd
                     <hr>
 cd;
 
-$rows = $db->SelectAll("plans","*",null,"id ASC");
+$rows = $db->SelectAll("plans","*"," remove = 0 ","id ASC");
 $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">
@@ -170,6 +173,21 @@ $html.=<<<cd
         </div>
     </section>
     <!-- Main Section End -->
+	<script type='text/javascript'>
+		$(document).ready(function(){	
+		  $("span.bin").click(function() 
+		  {
+				if(confirm("از حذف این رکورد مطمئن هستید؟"))
+				{					
+				}
+				else
+				{
+					return false;
+				}
+		  });
+	    });
+		</script>	
+		
 cd;
 echo $html;
 include_once("inc/footer.php"); 
