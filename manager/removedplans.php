@@ -38,7 +38,7 @@ $html=<<<cd
                 <div class="grid_6" style="width:780px">
 cd;
 
-$rows = $db->SelectAll("plans","*"," remove = 1","id ASC");
+$rows = $db->SelectAll("plans","*"," remove = 1","position ASC");
 
 $table=<<<cd
 <table class="datatable paginate sortable full">

@@ -45,7 +45,7 @@ $html =<<<cd
 				</div>
 				<div class="container_gamma slogan" style="background:none">
 cd;
-$rows = $db->SelectAll("plans","*"," remove = 0 ","id Asc");
+$rows = $db->SelectAll("plans","*"," remove = 0 ","position Asc");
 $table=<<<cd
 <table class="datatable full">
     <thead class="rtl">
