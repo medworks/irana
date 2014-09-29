@@ -49,6 +49,7 @@
 						<li><a href="removedorders.php?act=new">لیست سفارشات حذف شده</a></li>
                         <!-- <li><a href="paymentlist.php">لیست پرداختی ها</a></li> -->
                         <li><a href="plans.php?act=new">تعرفه طرح ها</a></li>
+						<li><a href="removedplans.php?act=new">لیست طرح های حذف شده</a></li>
                         <li><a href="volume.php?act=new">تعرفه حجم ها</a></li>
                         <li class="fl">
                             <a href="#">عملیات<span class="arrow-down"></span></a>
@@ -74,6 +75,7 @@
                         <li><a class="nav-icon icon-tick" href="admin.php?act=confirmed">لیست تایید شده</a></li>
 						<li><a class="nav-icon icon-tick" href="removedorders.php?act=new">لیست سفارشات حذف شده</a></li>
                         <li><a class="nav-icon icon-note" href="plans.php?act=new">تعرفه طرح ها</a></li>
+						<li><a class="nav-icon icon-note" href="removedplans.php?act=new">لیست طرح های حذف شده</a></li>
                         <li><a class="nav-icon icon-book" href="volume.php?act=new">تعرفه حجم ها</a></li>
                     </ul>
                 </nav>
