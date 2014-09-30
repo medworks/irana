@@ -136,6 +136,9 @@ if($_GET["order_infos"]=="send"){
 	$smspass = GetSettingValue('SmsPassWord',0);
 	$smslinenumber = GetSettingValue('SmsLineNumber',0);
 	$smstext = GetSettingValue('SmsText',1);
+	
+	$Is_Send_Order_Sms_For_Admin = GetSettingValue('Is_Send_Order_Sms_For_Admin',0);
+	$Admin_Mobile_Number = GetSettingValue('Admin_Mobile_Number',0);
 	 
 	$gate = new sms_soap($smsuser, $smspass);
 	$smsbalance = $gate->GetUserBalance();
@@ -215,12 +218,18 @@ if($_GET["order_infos"]=="send"){
 		echo "<div class='notification_error rtl'>خطا در ارسال فاکتور!</div>";
 //====================================== Send SMS =========================
 	if (isset($mobile) and (strlen($mobile)==11))
-	 {
+	{
 		$smstext = str_replace("{user}", $user, $smstext);
 		$smstext = str_replace("{tel}", $tel, $smstext);	 
 		$smstext = str_replace("{order_info}", $order_info, $smstext);	 
 		$rep =  $gate->SendSMS("{$smstext}","{$smslinenumber}","{$mobile}", 'normal');	 
-	 }	 
+	}	
+	
+	if (($Is_Send_Order_Sms_For_Admin==1) and isset($Admin_Mobile_Number))
+	{
+		$rep =  $gate->SendSMS("سفارش جدید ثبت شد","{$smslinenumber}","{$Admin_Mobile_Number}", 'normal');	
+	}
+	
 	 
 	
 }

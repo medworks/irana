@@ -26,9 +26,8 @@ $special = isset($_POST[special]);
 
 if ($_POST["mark"]=="saveplan")
 	{	      
-		$fields = array("`pname`","`month`","`gig`","`night`","`modem`","`price`","`percent`","`special`");		
-		$values = array("'{$_POST[plan]}'","'{$_POST[month]}'","'{$_POST[volume]}'",
-						"'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'","'{$special}'");	
+		$fields = array("`pname`","`month`","`gig`","`night`","`modem`","`price`","`percent`","`special`","`position`");		
+		$values = array("'{$_POST[plan]}'","'{$_POST[month]}'","'{$_POST[volume]}'","'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'","'{$special}'","'{$_POST[position]}'");	
 		if (!$db->InsertQuery('plans',$fields,$values)) 
 		{			
 			header('location:plans.php?act=new&msg=2');			
@@ -48,7 +47,8 @@ if ($_POST["mark"]=="saveplan")
 						 "`modem`"=>"'{$_POST[modem]}'",
 						 "`price`"=>"'{$_POST[price]}'",
 						 "`percent`"=>"'{$_POST[percent]}'",
-						 "`special`"=>"'{$_POST[special]}'");
+						 "`special`"=>"'{$_POST[special]}'",
+						 "`position`"=>"'{$_POST[position]}'");
         $db->UpdateQuery("plans",$values,array("id='{$_GET[pid]}'"));		
 		header('location:plans.php?act=new&msg=1');
 	}	
@@ -71,8 +71,11 @@ if ($_POST["mark"]=="saveplan")
 	}
 	if ($_GET['act']=="del")
 	{
-		$db->Delete("plans"," id",$_GET["pid"]);		
-		header('location:plans.php?act=new');	
+	//	$db->Delete("plans"," id",$_GET["pid"]);		
+	//	header('location:plans.php?act=new');	
+	 $values = array("`remove`"=>"'1'");
+     $db->UpdateQuery("plans",$values,array("id='{$_GET[pid]}'"));	
+	 header('location:plans.php?act=new');	
 	}	
 $msgs = GetMessage($_GET['msg']);
 $html =<<<cd
@@ -96,6 +99,7 @@ $html =<<<cd
 						<p style="padding-top:10px"><span>مودم دارد</span><input type="checkbox" name="modem" value="1" {$modemchecked}/></p>
 						<p class="clear"></p>
                         <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" value='{$row[percent]}'/></p>
+						<p><span>شماره ایندکس جهت ترتیب نمایش</span><input type="text" name="position" placeholder="a Number" value='{$row[position]}'/></p>
 						<p style="padding-top:10px"><span>طرح ویژه</span><input type="checkbox" name="special" value="1" {$special}/></p>
 						{$insertoredit}						
 					</form>
@@ -103,7 +107,7 @@ $html =<<<cd
                     <hr>
 cd;
 
-$rows = $db->SelectAll("plans","*",null,"id ASC");
+$rows = $db->SelectAll("plans","*"," remove = 0 ","position ASC");
 $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">
@@ -170,6 +174,21 @@ $html.=<<<cd
         </div>
     </section>
     <!-- Main Section End -->
+	<script type='text/javascript'>
+		$(document).ready(function(){	
+		  $("span.bin").click(function() 
+		  {
+				if(confirm("از حذف این رکورد مطمئن هستید؟"))
+				{					
+				}
+				else
+				{
+					return false;
+				}
+		  });
+	    });
+		</script>	
+		
 cd;
 echo $html;
 include_once("inc/footer.php"); 

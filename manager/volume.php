@@ -134,6 +134,20 @@ $html.=<<<cd
         </div>
     </section>
     <!-- Main Section End -->
+	<script type='text/javascript'>
+		$(document).ready(function(){	
+		  $("span.bin").click(function() 
+		  {
+				if(confirm("از حذف این رکورد مطمئن هستید؟"))
+				{					
+				}
+				else
+				{
+					return false;
+				}
+		  });
+	    });
+		</script>	
 cd;
 echo $html;
 include_once("inc/footer.php");
