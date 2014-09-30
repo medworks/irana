@@ -1,6 +1,4 @@
 <?php
-	include_once("inc/header.php");
-	
 	include_once("config.php");
 	include_once("classes/session.php");
     include_once("classes/database.php");
@@ -11,7 +9,10 @@
 	$sess = Session::GetSesstion();
 	$db = Database::GetDatabase();
 	$msg = Message::GetMessage();
+	//error_reporting(E_ALL);
+	//ini_set('display_errors', 0);
 	
+	include_once("inc/header.php");	
 	
 	$isclientexist = false;	
 	$javas="";
@@ -259,6 +260,7 @@ cd;
 	
 	//header('location:main.php');			   
 	}
+
 $Extra_Tax = GetSettingValue('Extra_Tax',0);	
 $html =<<<cd
 		<!-- Main content alpha -->

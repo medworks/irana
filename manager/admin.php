@@ -1,5 +1,4 @@
 <?php
-    include_once("inc/header.php");
 	include_once("../config.php");
 	include_once("../classes/functions.php");
   	include_once("../classes/messages.php");
@@ -8,8 +7,9 @@
   	include_once("../classes/database.php");	
 	include_once("../classes/login.php");
     include_once("../lib/persiandate.php");  
-	
-    
+	    
+	//error_reporting(E_ALL);
+	//ini_set('display_errors', 0);
 	
 	$login = Login::GetLogin();	
 	$db = Database::GetDatabase();	
@@ -18,7 +18,7 @@
 	{
 		header("Location: ../index.php");
 		die(); //solve security bug
-	}	
+	}		
 	$mes = Message::GetMessage();
 	if ($_GET["act"] == "logout")
    {
@@ -27,8 +27,9 @@
 	   else
 		    echo $mes->ShowError("عملیات خروج با خطا مواجه شد، لطفا مجددا سعی نمایید.");
    }
+  
    
-   if ($_GET['act']=="del")
+  if ($_GET['act']=="del")
   {
 	  //$db->Delete("orders"," id",$_GET["oid"]);
 	 $values = array("`remove`"=>"'1'");
@@ -46,7 +47,8 @@
 	 if ($_GET["act"]=="ord")	
 		header("location:admin.php?act=ord");	
 	 else	
-	    header("location:admin.php?act=confirmed&oid={$_GET[oid]}");	
+	    header("location:admin.php?act=confirmed&oid={$_GET[oid]}");
+   // echo "<br/>".$_GET["act"]."<br/>";
   }	
 	
 	if ($_GET["act"]=="ord")
@@ -58,12 +60,15 @@
 	else	
 	if ($_GET["act"]=="confirmed")	
 	{
-		$where = "Status = 2 AND paystatus = 1 AND remove = 0 ";
+		$where = " Status = 2 AND paystatus = 1 AND remove = 0 ";
 		$title = "لیست  تایید شده";
 		$titr  = "";
 		
 	    //header("location:admin.php?act=confirmed");
 	}	
+
+	include_once("inc/header.php");	
+	
 $list = array("propid"=>"نام مشتری",
 			  "orderdate"=>"تاریخ سفارش",	
 			  "tel"=>"تلفن",
@@ -169,6 +174,7 @@ if ($_POST['mark']=="srhorders")
 }
 else
 	$rows = $db->SelectAll("orders","*",$where,"id Desc");
+	//echo $db->cmd;
 $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">

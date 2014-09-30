@@ -1,10 +1,7 @@
-<?php
-    header('Content-Type: text/html; charset=UTF-8');
-?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Irana | Admin page</title>
 
 <link rel="stylesheet" media="screen" href="css/reset.css">
@@ -80,4 +77,4 @@
                     </ul>
                 </nav>
             </aside>
-            <!-- Sidebar End -->
+	<!-- Sidebar End -->			
