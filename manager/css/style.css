@@ -660,7 +660,12 @@ body.login {
 .list-view > li.calendar {
     background: transparent url(../images/calendar.png) no-repeat 30px 10px;
 }
-
+.list-view > li.order {
+    background: transparent url(../images/order.png) no-repeat 30px 10px;
+}
+.list-view > li.del {
+    background: transparent url(../images/del.png) no-repeat 30px 10px;
+}del
 .list-view > li:hover {
     background-color: #fafafa;
 }
@@ -1017,6 +1022,12 @@ body.login {
 }
 .icon-time {
     background-image: url(../images/time.png) !important;
+}
+.icon-order {
+    background-image: url(../images/order.png) !important;
+}
+.icon-del {
+    background-image: url(../images/del.png) !important;
 }
 
 /**
