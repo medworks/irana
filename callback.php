@@ -44,7 +44,7 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 }
 
 //if ($_POST["mark"]=="savepay")
-{
+//{
 	$confirmButton = "";
 	if($_POST['ResCode']==0)
 	{
@@ -158,7 +158,7 @@ cd;
     //$id = $db->MaxOfAll("id", "payment");
 	$id = $sess->Get("payment_id");
     $db->UpdateQuery("payment",$values,array("id='{$id}'"));		
-}	
+//}	
 $msg = "";
 if ($paymentdone==1)
 {		
@@ -171,7 +171,7 @@ $msg=<<<cd
 cd;
 }
 else
-if ($paymentdone==0)
+if ($paymentdone == 0 or $paymentdone == -1)
 {	
 $msg=<<<cd
 	<div id="msg"><p>عملیات پرداخت با مشکل مواجه شد</p></div>
@@ -226,6 +226,4 @@ cd;
 echo $html;
 //echo "email ->",$issend;
 	include_once("inc/footer.php");
-
-
 ?>
