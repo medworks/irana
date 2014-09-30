@@ -1,6 +1,4 @@
 ﻿<?php
-	include_once("inc/header.php");
-	
 	include_once("config.php");
 	include_once("classes/session.php");
     include_once("classes/database.php");
@@ -41,8 +39,7 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 	$db->UpdateQuery("properties",$values,array("id='{$order[propid]}'"));
 	
 	header('location:index.php');
-}
-
+}	
 //if ($_POST["mark"]=="savepay")
 //{
 	$confirmButton = "";
@@ -177,6 +174,7 @@ $msg=<<<cd
 	<div id="msg"><p>عملیات پرداخت با مشکل مواجه شد</p></div>
 cd;
 }
+include_once("inc/header.php");
 $html=<<<cd
 	<style>
 		.inner_main input[type=submit]{
