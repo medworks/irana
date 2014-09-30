@@ -227,7 +227,8 @@ if($_GET["order_infos"]=="send"){
 	
 	if (($Is_Send_Order_Sms_For_Admin==1) and isset($Admin_Mobile_Number))
 	{
-		$rep =  $gate->SendSMS("سفارش جدید ثبت شد","{$smslinenumber}","{$Admin_Mobile_Number}", 'normal');	
+		$adminsms = "سفارش جدید ثبت شد"."\r\n".$user."\r\n".$tel."-".$mobile;
+		$rep =  $gate->SendSMS($adminsms,"{$smslinenumber}","{$Admin_Mobile_Number}", 'normal');	
 	}
 	
 	 
