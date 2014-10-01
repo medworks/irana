@@ -5,12 +5,13 @@
     include_once("classes/messages.php");
 	include_once("classes/functions.php");	
 	include_once("/lib/persiandate.php");
+	include_once("./lib/jsmin.php");
     
 	$sess = Session::GetSesstion();
 	$db = Database::GetDatabase();
 	$msg = Message::GetMessage();
 	//error_reporting(E_ALL);
-	//ini_set('display_errors', 0);
+	//ini_set('display_errors', 1);
 	
 	include_once("inc/header.php");	
 	
@@ -27,7 +28,6 @@ function postRefId (refIdValue) {
 			hiddenField.setAttribute("name", "RefId");
 			hiddenField.setAttribute("value", refIdValue);
 			form.appendChild(hiddenField);
-
 			document.body.appendChild(form);         
 			form.submit();
 			document.body.removeChild(form);
@@ -35,7 +35,9 @@ function postRefId (refIdValue) {
 			
 	</script>
 cd;
+$postform = JSMin::minify($postform);	
 echo $postform;
+
 	if ($_GET["act"]=="neword")
 	{
 		$tel4neword = "  <strong style='font-size:18px;padding:0 5px 5px;display:block'>".
@@ -261,51 +263,10 @@ cd;
 	//header('location:main.php');			   
 	}
 
-$Extra_Tax = GetSettingValue('Extra_Tax',0);	
-$html =<<<cd
-		<!-- Main content alpha -->
-		<div class="main png_bg">
-			<div class="inner_main">
-			<!-- True containers (keep the content inside containers!) -->
-				<div class="container_alpha slogan">
-					<h1>شارژ و تمدید حساب</h1>
-				</div>
-				<div class="container_gamma slogan">
-				<div name="message">
-					{$msgs}
-				</div>
-					<h3>
-						1) لطفاً ایمیل و تلفن همراه معتبر وارد نمائید. در صورت پرداخت بصورت اینترنتی، اطلاعات خرید به این ایمیل و تلفن ارسال می شود.
-					</h3></br>
-					<style>
-					 h5 b{
-						font-size:20px;
-						font-weight:normal;
-					 }
-					</style>
-					<form name="frmorder" id="frmorder"action="" method="post">
-					<h5>شماره خط : <b>{$_GET['tel']}</b></h5>
-					{$plancode}
-					<div style="direction:rtl">
-					        {$tel4neword}
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input id="fullname" name="fullname" style="width:30%;font-size:18px;color:#000;background-color:#ddd" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input id="mobile" name="mobile" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="09123456789" value="{$row[mobile]}">
-							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input id="email" name="email" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row[email]}">													
-					</div>
-				</div>
-				<div class="container_gamma slogan" style="background:none">
-					<h3>
-						2) مشترک گرامی در صورت انتخاب گزینه تمدید، طرح درخواستی شما از زمان پرداخت فعال شده و میزان حجم و زمان به مانده قبلی شما اضافه خواهد شد، در غیر اینصورت از گزینه شارژ استفاده نمایید.
-					</h3></br>					
-					<div class="action" name="selector" id="selector" style="direction:rtl;width:150px;float:right">							
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input id="rbsharj"  style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0;" type="radio" checked name="plan" value="sharg">
-						<p class="clear"></p>
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input id="rbtamdid"  style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
-						<p class="clear"></p>
-						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input id="rbtaghir"  style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
-					</div>
+$Extra_Tax = GetSettingValue('Extra_Tax',0);
 
-					<script>
+$js =<<<cd
+<script type="text/javascript">
 						$(document).ready(function(){
 							$('div.action input').click(function(){
 								var cureentAct= $(this).val();
@@ -357,7 +318,183 @@ $html =<<<cd
 								}
 							});
 						});
-					</script>							
+					</script>	
+cd;
+
+$js_minifiyed_part1 = JSMin::minify($js);	
+
+$js=<<<cd
+<script type="text/javascript">
+		function submitform()
+		{
+		  if($('#fullname').val() == '')
+		  {
+			alert('لطفا نام خود را وارد نمایید');
+			return false;
+		  }
+		  if($('#mobile').val() == '')
+		  {
+			alert('لطفا شماره موبایل خود را وارد نمایید');
+			return false;
+		  }
+		  if($('#email').val() == '')
+		  {
+			alert('لطفا ایمیل خود را وارد نمایید');
+			return false;
+		  }
+		  if($('#tel').val() == '')
+		  {
+			alert('لطفا شماره تلفن خود را وارد نمایید');
+			return false;
+		  }
+		  	  		
+		if ($("input[name='plan']#rbtamdid").is(":checked"))
+		{
+			if ($("span#recplanname").text()=="")
+			{
+				alert('نام طرح خالی است، لطفا از گزینه تغییر حساب استفاده نمایید');
+				return false;
+			}
+        }
+		else
+		if ($("input[name='plan']#rbsharj").is(":checked"))
+		{
+			
+			if ($("#gigabyte").val()=="")
+			{				
+				alert('لطفا مقدار حجم را وارد نمایید!');
+				return false;
+			}
+        }
+		else
+		if ($("input[name='plan']#rbtaghir").is(":checked"))
+		{
+			
+			if ($("#cbplans").val()=="-1")
+			{				
+				alert('لطفا از لیست  طرح مورد نظر را انتخاب نمایید');
+				return false;
+			}
+        }
+	
+		  
+          $("#gigabyte").keyup();
+		  document.getElementById("frmorder").submit();
+		}
+		function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }		
+	</script>
+	
+	<script type='text/javascript'>
+		$(document).ready(function(){
+			var toman;
+            var nodot;		
+            var retdata			
+			$( "#gigabyte" ).keyup(function() {			
+			$.ajax({
+				type: "GET",
+				url: "manager/ajaxcommand.php",
+				data: 'gig=' + $('#gigabyte').val()	,
+				dataType: "json",
+				success: function (data) {		
+				 //retdata = jQuery.parseJSON(data);                   
+					$('#percent').html(data[0].toString()+" % ");
+					
+					$('#price').html(data[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+																			
+					$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
+					$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
+					$('input[name=orderprice]').val(data[2].toString());
+				}
+			        });
+
+			});
+		       $("#gigabyte").keyup();
+			   
+			$("#cbplans").change(function(){	
+               	if ($(this).val() != -1)
+				{
+					$.ajax({
+					type: "GET",
+					url: "manager/ajaxcommand.php",
+					data: 'planid=' + $(this).val(),
+					dataType: "json",
+					success: function (data) {				    
+						$('#gig').html(data[3]*data[2]+" گیگابایت ");
+						$('#month').html(data[2]+" ماهه ");	
+						$('#percent').html(data[7].toString()+" % ");
+						
+						$('#price').html(data[11].replace(/\B(?=(\d{3})+(?!\d))/g, ','));				
+											
+						toman = data[11] - ((data[11]*data[7])/100);
+						$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+						$('input[name=orderprice]').val(toman.toString());
+					}
+						});
+				}	
+										
+			});	
+			$("#cbplans").change();
+				
+    });
+	
+	
+	</script>
+cd;
+
+$js_minifiyed_part2 = JSMin::minify($js);
+
+$javas = JSMin::minify($javas);
+
+$html =<<<cd
+		<!-- Main content alpha -->
+		<div class="main png_bg">
+			<div class="inner_main">
+			<!-- True containers (keep the content inside containers!) -->
+				<div class="container_alpha slogan">
+					<h1>شارژ و تمدید حساب</h1>
+				</div>
+				<div class="container_gamma slogan">
+				<div name="message">
+					{$msgs}
+				</div>
+					<h3>
+						1) لطفاً ایمیل و تلفن همراه معتبر وارد نمائید. در صورت پرداخت بصورت اینترنتی، اطلاعات خرید به این ایمیل و تلفن ارسال می شود.
+					</h3></br>
+					<style>
+					 h5 b{
+						font-size:20px;
+						font-weight:normal;
+					 }
+					</style>
+					<form name="frmorder" id="frmorder"action="" method="post">
+					<h5>شماره خط : <b>{$_GET['tel']}</b></h5>
+					{$plancode}
+					<div style="direction:rtl">
+					        {$tel4neword}
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input id="fullname" name="fullname" style="width:30%;font-size:18px;color:#000;background-color:#ddd" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input id="mobile" name="mobile" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="09123456789" maxlength="11" value="{$row[mobile]}" onkeypress="return isNumber(event);">
+							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input id="email" name="email" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row[email]}">													
+					</div>
+				</div>
+				<div class="container_gamma slogan" style="background:none">
+					<h3>
+						2) مشترک گرامی در صورت انتخاب گزینه تمدید، طرح درخواستی شما از زمان پرداخت فعال شده و میزان حجم و زمان به مانده قبلی شما اضافه خواهد شد، در غیر اینصورت از گزینه شارژ استفاده نمایید.
+					</h3></br>					
+					<div class="action" name="selector" id="selector" style="direction:rtl;width:150px;float:right">							
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">شارژ حساب</strong><input id="rbsharj"  style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0;" type="radio" checked name="plan" value="sharg">
+						<p class="clear"></p>
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تمدید حساب فعلی</strong><input id="rbtamdid"  style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr latin-font" type="radio" name="plan" value="tamdid">
+						<p class="clear"></p>
+						<strong  style="font-size:18px;padding:0 5px 15px;float:right">تغییر حساب</strong><input id="rbtaghir"  style="width:15px;font-size:15px;box-shadow:none;float:right;margin:0" class="ltr" type="radio" name="plan" value="taghir">	
+					</div>
+					{$js_minifiyed_part1}						
 					<div class="toggler open" style="direction:rtl;width:700px;float:left;padding-bottom:70px;">
 						<div style="float:right;width:550px;">
 							<!-- Sharj hesab -->
@@ -431,131 +568,7 @@ $html =<<<cd
 		<!-- /Main content alpha -->
 		
 		{$javas} 
-		
-	<script type="text/javascript">
-		function submitform()
-		{
-		  if($('#fullname').val() == '')
-		  {
-			alert('لطفا نام خود را وارد نمایید');
-			return false;
-		  }
-		  if($('#mobile').val() == '')
-		  {
-			alert('لطفا شماره موبایل خود را وارد نمایید');
-			return false;
-		  }
-		  if($('#email').val() == '')
-		  {
-			alert('لطفا ایمیل خود را وارد نمایید');
-			return false;
-		  }
-		  if($('#tel').val() == '')
-		  {
-			alert('لطفا شماره تلفن خود را وارد نمایید');
-			return false;
-		  }
-		  	  		
-		if ($("input[name='plan']#rbtamdid").is(":checked"))
-		{
-			if ($("span#recplanname").text()=="")
-			{
-				alert('نام طرح خالی است، لطفا از گزینه تغییر حساب استفاده نمایید');
-				return false;
-			}
-        }
-		else
-		if ($("input[name='plan']#rbsharj").is(":checked"))
-		{
-			
-			if ($("#gigabyte").val()=="")
-			{				
-				alert('لطفا مقدار حجم را وارد نمایید!');
-				return false;
-			}
-        }
-		else
-		if ($("input[name='plan']#rbtaghir").is(":checked"))
-		{
-			
-			if ($("#cbplans").val()=="-1")
-			{				
-				alert('لطفا از لیست  طرح مورد نظر را انتخاب نمایید');
-				return false;
-			}
-        }
-	
-		  
-          $("#gigabyte").keyup();
-		  document.getElementById("frmorder").submit();
-		}
-	</script>
-	
-	<script type='text/javascript'>
-		$(document).ready(function(){
-			var toman;
-            var nodot;		
-            var retdata			
-			$( "#gigabyte" ).keyup(function() {			
-			$.ajax({
-				type: "GET",
-				url: "manager/ajaxcommand.php",
-				data: 'gig=' + $('#gigabyte').val()	,
-				dataType: "json",
-				success: function (data) {		
-				 //retdata = jQuery.parseJSON(data);                   
-					$('#percent').html(data[0].toString()+" % ");
-					
-					$('#price').html(data[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-																			
-					$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
-					$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
-					$('input[name=orderprice]').val(data[2].toString());
-				}
-			        });
-
-			});
-		       $("#gigabyte").keyup();
-			   
-			$("#cbplans").change(function(){	
-               	if ($(this).val() != -1)
-				{
-					$.ajax({
-					type: "GET",
-					url: "manager/ajaxcommand.php",
-					data: 'planid=' + $(this).val(),
-					dataType: "json",
-					success: function (data) {				    
-						$('#gig').html(data[3]*data[2]+" گیگابایت ");
-						$('#month').html(data[2]+" ماهه ");	
-						$('#percent').html(data[7].toString()+" % ");
-						
-						$('#price').html(data[11].replace(/\B(?=(\d{3})+(?!\d))/g, ','));				
-											
-						toman = data[11] - ((data[11]*data[7])/100);
-						$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-						$('input[name=orderprice]').val(toman.toString());
-					}
-						});
-				}	
-										
-			});	
-			$("#cbplans").change();
-			
-			
-	function isNumber(evt) {
-        evt = (evt) ? evt : window.event;
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-            return false;
-        }
-        return true;
-    }		
-		
-    });
-	
-	
-	</script>
+		{$js_minifiyed_part2}
 	
   	<!--! end of #container -->	
 cd;
