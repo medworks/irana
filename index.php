@@ -24,7 +24,7 @@
 					</h2>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
-					<img src="images/info_button.png" width="75px" class="alignright" alt="irana attention">
+					<img src="images/info_button.png" style="width:75px" class="alignright" alt="irana attention" />
 					<h1 class="rtl" style="font-size:18px;">
 						تمامي كالاها و خدمات اين فروشگاه، حسب مورد داراي مجوزهاي لازم از مراجع مربوطه مي‌باشند و فعاليت‌هاي اين سايت تابع قوانين و مقررات جمهوري اسلامي ايران است.
 					</h1>

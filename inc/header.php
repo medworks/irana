@@ -10,7 +10,7 @@
 	$Contact_Email = GetSettingValue('Contact_Email',0);				
 	$Tell_Number = GetSettingValue('Tell_Number',0);	
 ?>
-<!doctype html>
+<!DOCTYPE html>
 
 <!--[if lt IE 7 ]> <html lang="fa" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="fa" class="no-js ie7"> <![endif]-->
@@ -20,17 +20,18 @@
 
 <html lang="fa" class="no-js"><!--<![endif]--><head>
 	<title><?php echo $Site_Title?></title>
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
 	<meta name="google-site-verification" content="aK-MwILb314Nv3HBXG0docF8tB_U437D5Dw9R1buL-s" />
 	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
 	   Remove this if you use the .htaccess -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="description" content="">
-	<meta name="author" content="Mediateq.ir">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="description" content="<?php echo $Site_Describtion;?>" />
+	<meta name="keywords" content="<?php echo $Site_KeyWords;?>" />
+	<meta name="author" content="Mediateq.ir" />
 	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-	<meta http-equiv="Content-Language"  content="Fa">
+	<meta http-equiv="Content-Language"  content="Fa" />
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<!-- CSS : implied media="all" -->
@@ -41,13 +42,13 @@
 	
 </head>
 <body>
-	<iframe style="position: absolute;z-index:1001;top:15px;left:123px" src="/eNamadLogo.htm" frameborder="0" scrolling="no" allowtransparency="true" style="width: 150px; height:150px;"></iframe>
+	<iframe style="position:absolute;z-index:1001;top:15px;left:123px;width:150px;height:150px;" src="/eNamadLogo.htm" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
   	<div id="container">
 		<!-- Header -->
 	    <div id="header">
 			<div id="logo">
 				<!-- <img src="images/logo.png" alt=""> -->
-				<h1 style="color:#DE5328;text-shadow:2px 1px 2px #DE5328">گروه بازرگانی ایرانا<span>نماینده رسمی تمدید و ثبت محصولات مخابرات</h1>
+				<h1 style="color:#DE5328;text-shadow:2px 1px 2px #DE5328">گروه بازرگانی ایرانا<span>نماینده رسمی تمدید و ثبت محصولات مخابرات</span></h1>
 			</div>
 			<div id="personal_data">
 				<p>تلفن: <span style="display:inline-block;direction:ltr !important"><?php echo $Tell_Number?></span></p>
