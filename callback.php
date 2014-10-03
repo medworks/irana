@@ -158,9 +158,8 @@ cd;
 	
 	$order_id = $sess->Get("order_id");
     $fields = array("`oid`","`refid`","`pegiri`","`selorder`","`regdate`","`errcode`","`confirm`");		
-	$values = array("'{$order_id}'","'{$_POST[RefId]}'","'{$_POST[SaleReferenceId]}'",
-					"'{$_POST[SaleOrderId]}'","'{$date}'","'{$_POST[ResCode]} - {$ResCode}'","'{$paymentdone}'");		
-    $db->InsertQuery('debtpayment',$fields,$values)	
+	$values = array("'{$order_id}'","'{$_POST[RefId]}'","'{$_POST[SaleReferenceId]}'","'{$_POST[SaleOrderId]}'","'{$date}'","'{$_POST[ResCode]} - {$ResCode}'","'{$paymentdone}'");
+    $db->InsertQuery('debtpayment',$fields,$values);	
 //}	
 $msg = "";
 if ($paymentdone==1)
