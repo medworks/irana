@@ -1,5 +1,36 @@
 <?php
+	session_start();	
+	//$_SESSION = array();
+	include("./lib/captcha/simple-php-captcha.php");	
 	include_once("inc/header.php");
+	//echo $_POST["cap"],"=",$_SESSION['captcha']['code'],"<br/>";
+	$jsmsg="";
+	if ($_POST["mark"]=="posting")
+	{
+		if (strtolower($_POST["cap"])!=strtolower($_SESSION['captcha']['code']))
+		{
+$jsmsg =<<<cd
+<script type='text/javascript'>
+$(document).ready(function(){  
+	  $('form#frmtel').submit(function(e) {
+			alert('کد امنیتی را اشتباه وارد کرده اید!');
+			//e.preventDefault();
+//			return false;
+			
+	  });
+		
+	  });
+</script>
+cd;
+			echo $jsmsg;
+			header('location:index.php');			
+		}
+		else
+		{
+			header('location:main.php?tel='.$_POST["tel"]);
+		}
+	}
+	$_SESSION['captcha'] = simple_php_captcha();
 ?>
 		<!-- Main content alpha -->
 		<div class="main png_bg">
@@ -15,8 +46,12 @@
 				</div>
 				<div class="container_gamma slogan" style="background-color:#DE5328">
 					<div class="search">
-						<form id="frmtel" name="frmtel" action="main.php" method="get">
+						<form id="frmtel" name="frmtel" action="" method="POST">
 							<input type="text" id="tel" name="tel" style="color:#000;width:350px;height:25px;font-size:25px;line-height:32px;"  class="ltr" placeholder="5138555560"  maxlength="10"  onkeypress="return isNumber(event);">
+							<input type="text" id="cap" name="cap" style="color:#000;width:350px;height:25px;font-size:25px;line-height:32px;"  class="ltr" placeholder="کد امنیتی"  maxlength="6"  >
+							<img id="captcha" src=<?php echo $_SESSION['captcha']['image_src'] ?>  alt="کد امنیتی" />
+							<input type="submit" name="submit" value="مرحله بعد" style="color:#000;width:200px;height:30px;font-size:25px;"/>
+							<input type="hidden" name="mark" value="posting" />
 						</form>
 					</div>
 					<h2 class="rtl" style="margin-top:8px;text-shadow:none;color:#000">
