@@ -47,7 +47,7 @@ $table=<<<cd
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
- $rows[$i]["regdate"] = ToJalali($rows[$i]["regdate"]," l d F  Y ");
+ $rows[$i]["regdate"] = ToJalali($rows[$i]["regdate"]," l d F  Y  H:i:s");
  $order = $db->Select("orders","propid","id ='{$rows[$i]["oid"]}'");
  $person = $db->Select("properties","*","id ='{$order[0]}'");
  
