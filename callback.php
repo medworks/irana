@@ -154,7 +154,13 @@ cd;
 					"`confirm`"=>"'{$paymentdone}'");
     //$id = $db->MaxOfAll("id", "payment");
 	$id = $sess->Get("payment_id");
-    $db->UpdateQuery("payment",$values,array("id='{$id}'"));		
+    $db->UpdateQuery("payment",$values,array("id='{$id}'"));
+	
+	$order_id = $sess->Get("order_id");
+    $fields = array("`oid`","`refid`","`pegiri`","`selorder`","`regdate`","`errcode`","`confirm`");		
+	$values = array("'{$order_id}'","'{$_POST[RefId]}'","'{$_POST[SaleReferenceId]}'",
+					"'{$_POST[SaleOrderId]}'","'{$date}'","'{$_POST[ResCode]} - {$ResCode}'","'{$paymentdone}'");		
+    $db->InsertQuery('debtpayment',$fields,$values)	
 //}	
 $msg = "";
 if ($paymentdone==1)

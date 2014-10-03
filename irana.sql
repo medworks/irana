@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2014 at 08:38 PM
--- Server version: 5.6.11
--- PHP Version: 5.5.3
+-- Generation Time: Oct 03, 2014 at 07:57 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `irana`
 --
-CREATE DATABASE IF NOT EXISTS `irana` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `irana`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `debtpayment`
+--
+
+CREATE TABLE IF NOT EXISTS `debtpayment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `oid` int(11) NOT NULL,
+  `refid` varchar(30) NOT NULL,
+  `pegiri` bigint(20) NOT NULL,
+  `selorder` bigint(20) NOT NULL,
+  `regdate` datetime NOT NULL,
+  `errcode` varchar(10) NOT NULL,
+  `confirm` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=297 ;
 
 -- --------------------------------------------------------
 
@@ -40,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `price` double NOT NULL,
   `remove` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=310 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `orders`
@@ -66,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `errcode` varchar(10) NOT NULL,
   `confirm` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=237 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -164,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `email` varchar(50) NOT NULL,
   `planid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=163 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `properties`
@@ -185,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `key` varchar(30) NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `settings`
@@ -228,10 +244,7 @@ INSERT INTO `settings` (`id`, `key`, `value`) VALUES
 (34, 'Bank_Terminal_ID', '1144896'),
 (35, 'Bank_User_Name', 'irana'),
 (36, 'Bank_Pass_Word', '41833070'),
-(37, 'Email_Text', '<p style="direction:rtl;">\r\nبا سلام\r\n<br/>\r\nآقا/خانم {user} ، به شماره خط {tel}  و همراه {mobile} \r\n<br/>\r\nدرخواست شما با مشخصات {order_info} \r\n<br/>\r\nدر مورخه {date} با موفقیت ثبت شد.\r\n<br/>\r\n************************************\r\n<br/>\r\nمشخصات پرداخت به شرح ذیل می باشند :\r\n<br/>\r\nبانک : درگاه پرداخت الکترونیک بانک ملت\r\n<br/>\r\nکد پیگیری : {payment_code}\r\n<br/>\r\nتاریخ پرداخت : {date}\r\n<br/>\r\n************************************\r\n<br/>\r\n با تشکر از اعتماد شما - گروه بازرگانی ایرانا\r\n051-38555560\r\n<br/>\r\n</p>'),
-(38, 'Is_Send_Order_Sms_For_Admin', '1'),
-(39, 'Admin_Mobile_Number', ''),
-(40, 'Admin_Sms_Text', '');
+(37, 'Email_Text', '<p style="direction:rtl;">\r\nبا سلام\r\n<br/>\r\nآقا/خانم {user} ، به شماره خط {tel}  و همراه {mobile} \r\n<br/>\r\nدرخواست شما با مشخصات {order_info} \r\n<br/>\r\nدر مورخه {date} با موفقیت ثبت شد.\r\n<br/>\r\n************************************\r\n<br/>\r\nمشخصات پرداخت به شرح ذیل می باشند :\r\n<br/>\r\nبانک : درگاه پرداخت الکترونیک بانک ملت\r\n<br/>\r\nکد پیگیری : {payment_code}\r\n<br/>\r\nتاریخ پرداخت : {date}\r\n<br/>\r\n************************************\r\n<br/>\r\n با تشکر از اعتماد شما - گروه بازرگانی ایرانا\r\n051-38555560\r\n<br/>\r\n</p>');
 
 -- --------------------------------------------------------
 
@@ -249,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(35) NOT NULL,
   `type` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users`
