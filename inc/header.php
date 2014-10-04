@@ -42,7 +42,7 @@
 	
 </head>
 <body>
-	<iframe style="position:absolute;z-index:1001;top:15px;left:123px;width:150px;height:150px;" src="/eNamadLogo.htm" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+	<iframe style="position:absolute;z-index:1001;top:15px;left:195px;width:150px;height:150px;" src="/eNamadLogo.htm" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
   	<div id="container">
 		<!-- Header -->
 	    <div id="header">
