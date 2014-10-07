@@ -1,36 +1,44 @@
 <?php
 	session_start();	
 	//$_SESSION = array();
+	include_once("./lib/jsmin.php");
 	include("./lib/captcha/simple-php-captcha.php");	
 	include_once("inc/header.php");
 	//echo $_POST["cap"],"=",$_SESSION['captcha']['code'],"<br/>";
 	$jsmsg="";
 	if ($_POST["mark"]=="posting")
-	{
+	{		
 		if (strtolower($_POST["cap"])!=strtolower($_SESSION['captcha']['code']))
-		{
-$jsmsg =<<<cd
-<script type='text/javascript'>
-$(document).ready(function(){  
-	  $('form#frmtel').submit(function(e) {
-			alert('کد امنیتی را اشتباه وارد کرده اید!');
-			//e.preventDefault();
-//			return false;
-			
-	  });
-		
-	  });
-</script>
-cd;
-			echo $jsmsg;
-			header('location:index.php');			
+		{		
+
+			//header('location:index.php');			
 		}
 		else
 		{
 			header('location:main.php?tel='.$_POST["tel"]);
 		}
 	}
+	
 	$_SESSION['captcha'] = simple_php_captcha();
+	$capcha = strtolower($_SESSION['captcha']['code']);
+	
+$jsmsg =<<<cd
+<script type='text/javascript'>
+$(document).ready(function(){  
+	  $('form#frmtel').submit(function(e) {
+		if ($('#cap').val().toLowerCase() != '{$capcha}' )
+		{
+			alert('کد امنیتی را اشتباه وارد کرده اید!');
+		//	window.location="index.php";
+			e.preventDefault();
+			//return false;
+		}
+	  });
+		
+	  });
+</script>
+cd;
+$jsmsg = JSMin::minify($jsmsg);
 ?>
 		<!-- Main content alpha -->
 		<div class="main png_bg">
@@ -93,5 +101,7 @@ cd;
   
 	</script>
 <?php
+
+    echo $jsmsg;
 	include_once("inc/footer.php");
 ?>
