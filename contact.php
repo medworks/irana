@@ -68,9 +68,9 @@ $html =<<<cd
 						<form method="post" action="" id="frmcontact">
 							<div id="form_container">		
 								<div id="form_main">
-									<input type="text" name="name" id="name" placeholder="نام و نام خانوادگی" title="Name">
-									<input type="text" name="email" id="email" placeholder="ایمیل" title="Email">
-									<textarea name="comments" id="comments" rows="4" cols="4" placeholder="پیام" placeholder="Message"></textarea>
+									<input type="text" style="font-size:18px" name="name" id="name" placeholder="نام و نام خانوادگی" title="Name">
+									<input type="text" style="font-size:18px" name="email" id="email" placeholder="ایمیل" title="Email">
+									<textarea name="comments" style="font-size:18px" id="comments" rows="4" cols="4" placeholder="پیام" placeholder="Message"></textarea>
 									<p>
 										<input type="submit" name="submit1" id="submit1" value="ارسال!" class="superbutton">
 										<!-- <img src="images/ajax-loader.gif" class="loaderIcon" alt="Loading..." style="display: none;"> -->
