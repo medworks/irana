@@ -5,7 +5,7 @@
     include_once("classes/database.php");
     include_once("classes/messages.php");
   include_once("classes/functions.php");
-  include_once("/lib/persiandate.php");
+  include_once("lib/persiandate.php");
   
     $db = Database::GetDatabase();
   $msg = Message::GetMessage();
