@@ -1,14 +1,15 @@
-﻿<?php
+<?php
 	include_once("config.php");
 	include_once("classes/session.php");
+	
+	$sess = Session::GetSesstion();	
+	
     include_once("classes/database.php");
     include_once("classes/messages.php");
 	include_once("lib/persiandate.php");
 	include_once("lib/class.phpmailer.php");
 	include_once("classes/functions.php");
 	
-	
-	$sess = Session::GetSesstion();	
 	$db = Database::GetDatabase();
 	
 	
