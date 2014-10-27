@@ -112,7 +112,7 @@ cd;
 		{ $row["planid"]= -1; $plancode = "";}
 	//}
 	
-	$plans = $db->SelectAll("plans","*",NULL,"ID");	
+	$plans = $db->SelectAll("plans","*"," remove = 0 ","ID");	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
 		
 	if ($_POST["mark"] =="order" )
