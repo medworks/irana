@@ -58,6 +58,7 @@ echo $postform;
           $(".toggler #taghir").css('display',"block");		  
 		  $("input[id='rbsharj']").attr('disabled',true);
 		  $("input[id='rbtamdid']").attr('disabled',true);
+		  $("select[id='cbplans']").attr('disabled', 'disabled');
 		  $("#cbplans").val({$_GET[planid]});
 		  $("#cbplans").change(function(){	
 		        				
