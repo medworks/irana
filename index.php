@@ -81,9 +81,16 @@ $jsmsg = JSMin::minify($jsmsg);
 		function isNumber(evt) {	
 			evt = (evt) ? evt : window.event;
 			var charCode = (evt.which) ? evt.which : evt.keyCode;
+			if ($('#tel').val()=="" && charCode == 48)
+			{
+				alert("لطفا کد را بدون صفر وارد نمایید");
+				return false;
+			}
+			else
 			if (charCode > 31 && (charCode < 48 || charCode > 57)) {
 				return false;
 			}
+			
 			return true;
       }	
       

@@ -1,5 +1,4 @@
-<?php 
-	include_once("inc/header.php");
+<?php 	
 	include_once("../config.php");
 	include_once("../classes/functions.php");
 	include_once("../classes/database.php");	
@@ -24,7 +23,7 @@ $night = isset($_POST[night]);
 $modem = isset($_POST[modem]);
 $special = isset($_POST[special]);
 
-if ($_POST["mark"]=="saveplan")
+	if ($_POST["mark"]=="saveplan")
 	{	      
 		$fields = array("`pname`","`month`","`gig`","`night`","`modem`","`price`","`percent`","`special`","`position`");		
 		$values = array("'{$_POST[plan]}'","'{$_POST[month]}'","'{$_POST[volume]}'","'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'","'{$special}'","'{$_POST[position]}'");	
@@ -190,6 +189,7 @@ $html.=<<<cd
 		</script>	
 		
 cd;
+include_once("inc/header.php");
 echo $html;
 include_once("inc/footer.php"); 
 ?>

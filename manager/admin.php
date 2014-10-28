@@ -67,7 +67,6 @@
 	    //header("location:admin.php?act=confirmed");
 	}	
 
-	include_once("inc/header.php");	
 	
 $list = array("propid"=>"نام مشتری",
 			  "orderdate"=>"تاریخ سفارش",	
@@ -293,6 +292,7 @@ $html.=<<<cd
 		</script>	
 		
 cd;
+  include_once("inc/header.php");	
   echo $html;
   include_once("inc/footer.php")
 ?>

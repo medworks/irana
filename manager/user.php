@@ -1,5 +1,4 @@
-<?php 
-	include_once("inc/header.php");
+<?php	
 	include_once("../config.php");
     include_once("../classes/database.php");
 	include_once("../classes/messages.php");
@@ -143,7 +142,7 @@ $html.=<<<cd
     </section>
     <!-- Main Section End -->
 cd;
-
-	echo $html;
+include_once("inc/header.php");
+echo $html;
 include_once("inc/footer.php"); 
 ?>

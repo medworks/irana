@@ -1,5 +1,4 @@
-<?php
-    include_once("inc/header.php");
+<?php    
 	include_once("../config.php");
 	include_once("../classes/functions.php");
   	include_once("../classes/messages.php");
@@ -122,6 +121,7 @@ $html.=<<<cd
 		</script>	
 		
 cd;
+  include_once("inc/header.php");
   echo $html;
   include_once("inc/footer.php")
 ?>

@@ -41,7 +41,7 @@ echo $postform;
 	if ($_GET["act"]=="neword")
 	{
 		$tel4neword = "  <strong style='font-size:18px;padding:0 5px 5px;display:block'>".
-		              " تلفن </strong><input name='tel' style='width:30%;font-size:18px;color:#000;background-color:#ddd' type='text' placeholder='تلفن' /> ";
+		              " تلفن </strong><input type='text' id='tel' name='tel' style='width:30%;font-size:18px;color:#000;background-color:#ddd'  placeholder='تلفن' maxlength='10'  onkeypress='return isNumber2(event);' /> ";
 		$tel = $_POST["tel"];
 		
 		$kind = 3; // order from price page
@@ -136,7 +136,7 @@ cd;
        else
 	     $lastid = $row["id"];
 		 
-		 $sess->Set("person_id",$lastid);		
+		$sess->Set("person_id",$lastid);		
 			
 		if ($_POST["plan"] =="sharg")
 		{
@@ -327,6 +327,18 @@ $js=<<<cd
 <script type="text/javascript">
 		function submitform()
 		{
+		 if($('#tel').val() == '')
+		  {
+			alert('لطفا شماره تلفن خود را وارد نمایید');
+			return false;
+		  }
+		  if ($('#tel').val().length < 10)
+		 {
+				alert('لطفا شماره تلفن را بصورت 10 رقم ثبت نمایید(5138555560)');
+				//e.preventDefault();
+				return false;
+		}	 
+		  
 		  if($('#fullname').val() == '')
 		  {
 			alert('لطفا نام خود را وارد نمایید');
@@ -342,11 +354,7 @@ $js=<<<cd
 			alert('لطفا ایمیل خود را وارد نمایید');
 			return false;
 		  }
-		  if($('#tel').val() == '')
-		  {
-			alert('لطفا شماره تلفن خود را وارد نمایید');
-			return false;
-		  }
+		 
 		  	  		
 		if ($("input[name='plan']#rbtamdid").is(":checked"))
 		{
@@ -388,7 +396,22 @@ $js=<<<cd
             return false;
         }
         return true;
-    }		
+    }	
+	function isNumber2(evt) {	
+			evt = (evt) ? evt : window.event;
+			var charCode = (evt.which) ? evt.which : evt.keyCode;
+			if ($('#tel').val()=="" && charCode == 48)
+			{
+				alert("لطفا کد را بدون صفر وارد نمایید");
+				return false;
+			}
+			else
+			if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+				return false;
+			}
+			
+			return true;
+      }		
 	</script>
 	
 	<script type='text/javascript'>
