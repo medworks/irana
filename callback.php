@@ -31,9 +31,11 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 	$order = $db->Select("orders", "*", "id = "."'{$order_id}'");	
 	//echo $db->cmd;
 	//$person = $db->Select("properties", "*", "id = "."'{$order[propid]}'");	
-	$db->Delete("orders"," Id",$order_id);
+	//$db->Delete("orders"," Id",$order_id);
+	$values = array("`remove`"=>"'1'");
+    $db->UpdateQuery("orders",$values,array("id='{$order_id}'"));	
 	
-	$oldMax = $db->MaxOf("id","orders","propid='{$order[propid]}'");	
+	$oldMax = $db->MaxOf("id","orders","propid='{$order[propid]}' AND remove = 0 ");	
 	$oldplan = $db->Select("orders", "planid", "id = "."'{$oldMax}'");		
 	
 	$values = array("`planid`"=>"'{$oldplan[0]}'");
