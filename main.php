@@ -10,6 +10,8 @@
 	$sess = Session::GetSesstion();
 	$db = Database::GetDatabase();
 	$msg = Message::GetMessage();
+	$msgs = "";
+	$tel4neword="";
 	//error_reporting(E_ALL);
 	//ini_set('display_errors', 1);
 	
@@ -38,7 +40,7 @@ cd;
 $postform = JSMin::minify($postform);	
 echo $postform;
 
-	if ($_GET["act"]=="neword")
+	if (isset($_GET["act"]) && $_GET["act"]=="neword")
 	{
 		$tel4neword = "  <strong style='font-size:18px;padding:0 5px 5px;display:block'>".
 		              " تلفن </strong><input type='text' id='tel' name='tel' style='width:30%;font-size:18px;color:#000;background-color:#ddd'  placeholder='تلفن' maxlength='10'  onkeypress='return isNumber2(event);' /> ";
@@ -88,7 +90,7 @@ cd;
 	}
 	//else
 	//{
-		if ($_GET["act"]=="neword")
+		if (isset($_GET["act"]) && $_GET["act"]=="neword")
 		{
 			$tel = $_POST["tel"]; 
 			$plancode ="";
@@ -105,9 +107,9 @@ cd;
 		{	  
 		  $isclientexist = true;
 		  $plan = $db->Select("plans", "*", "id = "."'{$row["planid"]}'");	
-		  $plangig = $plan[gig]*$plan[month];
+		  $plangig = $plan["gig"]*$plan["month"];
 		  //echo $db->cmd;
-		  $plancode = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan[pname]}</b></h5>";
+		  $plancode = " <h5 style='margin-bottom:10px;'>طرح فعلی  : <b>{$plan['pname']}</b></h5>";
 		}
 		else
 		{ $row["planid"]= -1; $plancode = "";}
@@ -116,7 +118,7 @@ cd;
 	$plans = $db->SelectAll("plans","*"," remove = 0 ","ID");	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
 		
-	if ($_POST["mark"] =="order" )
+	if (isset($_POST["mark"]) && $_POST["mark"] =="order" )
 	{
 	   $date = date('Y-m-d H:i:s');	
 	   	   
@@ -294,7 +296,7 @@ $js =<<<cd
 								$.ajax({
 									type: "GET",
 									url: "manager/ajaxcommand.php",
-									data: 'planid= {$row[planid]}',
+									data: "planid= {$row['planid']}",
 									dataType: "json",
 									success: function (data) {				    
 											  $('#percent').html(data[7].toString()+" % ");
@@ -328,17 +330,20 @@ $js=<<<cd
 <script type="text/javascript">
 		function submitform()
 		{
-		 if($('#tel').val() == '')
-		  {
-			alert('لطفا شماره تلفن خود را وارد نمایید');
-			return false;
-		  }
-		  if ($('#tel').val().length < 10)
-		 {
-				alert('لطفا شماره تلفن را بصورت 10 رقم ثبت نمایید(5138555560)');
-				//e.preventDefault();
+		if( $('#tel').length )      
+		{
+			 if($('#tel').val() == '')
+			  {
+				alert('لطفا شماره تلفن خود را وارد نمایید');
 				return false;
-		}	 
+			  }
+			  if ($('#tel').val().length < 10)
+			  {
+					alert('لطفا شماره تلفن را بصورت 10 رقم ثبت نمایید(5138555560)');
+					//e.preventDefault();
+					return false;
+			  }	 
+		}	  
 		  
 		  if($('#fullname').val() == '')
 		  {
@@ -502,9 +507,9 @@ $html =<<<cd
 					{$plancode}
 					<div style="direction:rtl">
 					        {$tel4neword}
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input id="fullname" name="fullname" style="width:30%;font-size:18px;color:#000;background-color:#ddd" type="text" placeholder="نام و نام خانوادگی" value="{$row[fullname]}">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input id="mobile" name="mobile" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="09123456789" maxlength="11" value="{$row[mobile]}" onkeypress="return isNumber(event);">
-							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input id="email" name="email" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row[email]}">													
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input id="fullname" name="fullname" style="width:30%;font-size:18px;color:#000;background-color:#ddd" type="text" placeholder="نام و نام خانوادگی" value="{$row['fullname']}">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input id="mobile" name="mobile" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="09123456789" maxlength="11" value="{$row['mobile']}" onkeypress="return isNumber(event);">
+							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input id="email" name="email" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row['email']}">													
 					</div>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
@@ -530,9 +535,9 @@ $html =<<<cd
 							<!-- tamdid hesab feli -->
 							<div id="tamdid" class='act activity'>
 								<h3>تمدید حساب فعلی</h3>								
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">طرح: <span id="recplanname" style="color:#b24824">{$plan[pname]}</span></strong>
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">طرح: <span id="recplanname" style="color:#b24824">{$plan['pname']}</span></strong>
 								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم: <span id="recplangig" style="color:#b24824">{$plangig} گیگابایت</span></strong>
-								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span id="recplanmonth"style="color:#b24824">{$plan[month]} ماهه</span></strong>							
+								<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">زمان: <span id="recplanmonth"style="color:#b24824">{$plan['month']} ماهه</span></strong>							
 							</div>
 							<!-- taghir hesab -->
 							<div id="taghir" class='act activity'>
