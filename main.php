@@ -92,7 +92,7 @@ cd;
 	//{
 		if (isset($_GET["act"]) && $_GET["act"]=="neword")
 		{
-			$tel = $_POST["tel"]; 
+			$tel = isset($_POST["tel"])? $_POST["tel"] : null; 
 			$plancode ="";
 		}	
 		else	
@@ -127,9 +127,9 @@ cd;
 			$fields = array("`fullname`","`tel`","`mobile`","`email`","`planid`");	
 			$values = array("'{$_POST[fullname]}'","'{$tel}'","'{$_POST[mobile]}'","'{$_POST[email]}'","{$_POST["cbplans"]}");	
 			if ($db->InsertQuery('properties',$fields,$values)) 
-			{		    
+			{		   
 				$lastid = $db->InsertId();
-				$msgs = $msg->ShowSuccess("ثبت اطلاعات با موفقیت انجام شد");		
+				$msgs = $msg->ShowSuccess("ثبت اطلاعات با موفقیت انجام شد");	
 			} 	
 			else 
 			{  	
@@ -137,7 +137,9 @@ cd;
 			}
 	   }
        else
+	   {
 	     $lastid = $row["id"];
+	   } 
 		 
 		$sess->Set("person_id",$lastid);		
 			
@@ -393,6 +395,10 @@ $js=<<<cd
 	
 		  
           $("#gigabyte").keyup();
+		  
+					$(document).ready(function(){
+						$("select[id='cbplans']").removeAttr("disabled");
+					});	
 		  document.getElementById("frmorder").submit();
 		}
 		function isNumber(evt) {
@@ -588,6 +594,7 @@ $html =<<<cd
 					</div>
 				</div>
 			</div>
+			   {$javas} 
 			   <input type='hidden' name='mark' value='order' />
 			   <input type='hidden' name='orderprice' value='' />
 			</form>
@@ -596,7 +603,7 @@ $html =<<<cd
     	<div class="endmain png_bg"></div>
 		<!-- /Main content alpha -->
 		
-		{$javas} 
+		 
 		{$js_minifiyed_part2}
 	
   	<!--! end of #container -->	
