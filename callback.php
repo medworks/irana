@@ -1,8 +1,9 @@
 <?php
+	session_start();
 	include_once("config.php");
 	include_once("classes/session.php");
 	
-	$sess = Session::GetSesstion();	
+	//$sess = Session::GetSesstion();	
 	
     include_once("classes/database.php");
     include_once("classes/messages.php");
@@ -27,7 +28,8 @@ cd;
 if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 {
 	//$maxid = $db->MaxOfAll("id","orders");
-	$order_id = $sess->Get("order_id");
+	//$order_id = $sess->Get("order_id");
+	$order_id = $_SESSION["order_id"];
 	$order = $db->Select("orders", "*", "id = "."'{$order_id}'");	
 	//echo $db->cmd;
 	//$person = $db->Select("properties", "*", "id = "."'{$order[propid]}'");	
@@ -95,8 +97,10 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 				
 				//$maxid = $db->MaxOfAll("id","orders");
 				//$order = $db->Select("orders", "*", "id = "."'{$maxid}'");	
-				$order_id = $sess->Get("order_id");
-				$person_id = $sess->Get("person_id");				
+				//$order_id = $sess->Get("order_id");
+				$order_id = $_SESSION["order_id"];
+				//$person_id = $sess->Get("person_id");
+				$person_id = $_SESSION["person_id"];
 				$values = array("`paystatus`"=>"'1'");
 				$db->UpdateQuery("orders",$values,array("id='{$order_id}'"));
 				/*
@@ -156,10 +160,12 @@ cd;
 					"`errcode`"=>"'{$_POST['ResCode']} - {$ResCode}'",
 					"`confirm`"=>"'{$paymentdone}'");
     //$id = $db->MaxOfAll("id", "payment");
-	$id = $sess->Get("payment_id");
+	//$id = $sess->Get("payment_id");
+	$id = $_SESSION["payment_id"];
     $db->UpdateQuery("payment",$values,array("id='{$id}'"));
 	
-	$order_id = $sess->Get("order_id");
+	//$order_id = $sess->Get("order_id");
+	$order_id = $_SESSION["order_id"];
     $fields = array("`oid`","`refid`","`pegiri`","`selorder`","`regdate`","`errcode`","`confirm`");		
 	$values = array("'{$order_id}'","'{$_POST[RefId]}'","'{$_POST[SaleReferenceId]}'","'{$_POST[SaleOrderId]}'","'{$date}'","'{$_POST[ResCode]} - {$ResCode}'","'{$paymentdone}'");
     $db->InsertQuery('debtpayment',$fields,$values);	
@@ -167,7 +173,8 @@ cd;
 $msg = "";
 if ($paymentdone==1)
 {		
-$order_id = $sess->Get("order_id");				
+//$order_id = $sess->Get("order_id");				
+$order_id = $_SESSION["order_id"];
 $values = array("`paystatus`"=>"'1'");
 $db->UpdateQuery("orders",$values,array("id='{$order_id}'"));
 

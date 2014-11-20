@@ -1,4 +1,5 @@
 <?php
+    session_start();
 	include_once("config.php");
 	include_once("classes/session.php");
     include_once("classes/database.php");
@@ -7,7 +8,7 @@
 	include_once("lib/persiandate.php");
 	include_once("./lib/jsmin.php");
     
-	$sess = Session::GetSesstion();
+	//$sess = Session::GetSesstion();
 	$db = Database::GetDatabase();
 	$msg = Message::GetMessage();
 	$msgs = "";
@@ -141,8 +142,8 @@ cd;
 	     $lastid = $row["id"];
 	   } 
 		 
-		$sess->Set("person_id",$lastid);		
-			
+		//$sess->Set("person_id",$lastid);		
+		$_SESSION["person_id"] = $lastid;
 		if ($_POST["plan"] =="sharg")
 		{
 			$planid =$row["planid"];
@@ -186,7 +187,8 @@ cd;
 		//echo $db->cmd;
 		$lastid = $db->InsertId();
 		
-		$sess->Set("order_id",$lastid);
+		//$sess->Set("order_id",$lastid);
+		$_SESSION["order_id"] = $lastid;
 		
 // pay here ==================
 	try 
@@ -241,7 +243,8 @@ cd;
 		{
 			$date = date('Y-m-d H:i:s');
 			//$lastid = $db->InsertId();
-			$order_id =$sess->Get("order_id");
+			//$order_id =$sess->Get("order_id");
+			$order_id = $_SESSION["order_id"];
 			
 			$fields = array("`oid`","`refid`","`regdate`","`errcode`");		
 			$values = array("'{$order_id}'","'{$res[1]}'","'{$date}'","'{$ResCode}'");	
@@ -253,7 +256,8 @@ cd;
 			{  										
 			//	header('location:payment.php');
 				$lastid = $db->InsertId();		
-				$sess->Set("payment_id",$lastid);
+				//$sess->Set("payment_id",$lastid);
+				$_SESSION["payment_id"] =$lastid ;
 			}  		
 			// Update table, Save RefId
 			echo "<script language='javascript' type='text/javascript'>postRefId('" . $res[1] . "');</script>";
