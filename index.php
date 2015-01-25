@@ -15,7 +15,7 @@
 		}
 		else
 		{
-			header('location:main.php?tel='.$_POST["tel"]);
+			header('location:main.php?tel='.$_POST["tel"].'&do=ok');
 		}
 	}
 	

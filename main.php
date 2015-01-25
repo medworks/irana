@@ -8,6 +8,11 @@
 	include_once("lib/persiandate.php");
 	include_once("./lib/jsmin.php");
     
+	if ((isset($_GET["do"]) and $_GET["do"]!="ok")
+	or (!isset($_GET["do"]))) 
+	{
+		header("location: index.php");
+	}
 	//$sess = Session::GetSesstion();
 	$db = Database::GetDatabase();
 	$msg = Message::GetMessage();
