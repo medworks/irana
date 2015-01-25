@@ -126,6 +126,8 @@ cd;
 	   if (!$isclientexist)
 	   {
 			$fields = array("`fullname`","`tel`","`mobile`","`email`","`planid`");	
+			$_POST["fullname"] = mysql_escape_string($_POST["fullname"]);
+			$_POST["email"] = mysql_escape_string($_POST["email"]);
 			$values = array("'{$_POST[fullname]}'","'{$tel}'","'{$_POST[mobile]}'","'{$_POST[email]}'","{$_POST["cbplans"]}");	
 			if ($db->InsertQuery('properties',$fields,$values)) 
 			{		   
@@ -134,7 +136,14 @@ cd;
 			} 	
 			else 
 			{  	
-				$msgs = $msg->ShowError("ثبت اطلاعات با مشکل مواجه شد");							
+				$msgs = $msg->ShowError("ثبت اطلاعات با مشکل مواجه شد");
+				echo " <script language='javascript' type='text/javascript'>
+						$(document).ready(function(){
+							alert('ثبت نام با مشکل مواجه شد لطفا مجددا اقدام نمایید');
+							window.location.href = 'http://www.ir2020.ir';
+						});
+					//return;
+				</script> ";						
 			}
 	   }
        else
