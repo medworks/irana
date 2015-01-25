@@ -55,7 +55,7 @@ $jsmsg = JSMin::minify($jsmsg);
 				<div class="container_gamma slogan" style="background-color:#DE5328">
 					<div class="search">
 						<form id="frmtel" name="frmtel" action="" method="POST">
-							<input type="text" id="tel" autocomplete="on" onpaste="return false" name="tel" style="color:#000;width:220px;height:25px;font-size:25px;line-height:32px;margin-right:5px"  class="ltr" placeholder="5138555560"  maxlength="10"  onkeypress="return isNumber(event);">
+							<input type="text" id="tel" autocomplete="off" onpaste="return false" name="tel" style="color:#000;width:220px;height:25px;font-size:25px;line-height:32px;margin-right:5px"  class="ltr" placeholder="5138555560"  maxlength="10"  onkeypress="return isNumber(event);">
 							<input type="text" id="cap" name="cap" style="color:#000;width:150px;height:25px;font-size:25px;line-height:32px;margin-right:5px"  class="ltr" placeholder="کد امنیتی"  maxlength="6"  >
 							<img id="captcha" src=<?php echo $_SESSION['captcha']['image_src'] ?> style="width:150px;height:47px;float:left;margin-right:5px;border-radius:5px"  alt="کد امنیتی" />
 							<input type="submit" name="submit" value="مرحله بعد" style="color:#000;width:100px;height:47px;font-size:25px;"/>
