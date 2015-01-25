@@ -9,7 +9,12 @@
     include_once("../lib/persiandate.php");  
     include_once('../lib/sms/sms.class.php');	
 	
-	$login = Login::GetLogin();	
+	$login = Login::GetLogin();
+    if (!$login->IsLogged())
+	 {
+		header("Location: ../index.php");
+		die(); // solve a security bug
+	 }	
 	$db = Database::GetDatabase();	
 	
 	
