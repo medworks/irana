@@ -10,6 +10,11 @@
     include_once('../lib/sms/sms.class.php');	
 	
 	$login = Login::GetLogin();	
+    if (!$login->IsLogged())
+	{
+		header("Location: ../index.php");
+		die(); // solve a security bug
+	}	
 	$db = Database::GetDatabase();	
 	
 	
