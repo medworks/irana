@@ -44,7 +44,7 @@ echo $postform;
 	if (isset($_GET["act"]) && $_GET["act"]=="neword")
 	{
 		$tel4neword = "  <strong style='font-size:18px;padding:0 5px 5px;display:block'>".
-		              " تلفن </strong><input type='text' id='tel' name='tel' style='width:30%;font-size:18px;color:#000;background-color:#ddd'  placeholder='تلفن' maxlength='10'  onkeypress='return isNumber2(event);' /> ";
+		              " تلفن </strong><input type='text' onpaste='return false' id='tel' name='tel' style='width:30%;font-size:18px;color:#000;background-color:#ddd'  placeholder='تلفن' maxlength='10'  onkeypress='return isNumber2(event);' /> ";
 		$tel = $_POST["tel"];
 		
 		$kind = 3; // order from price page
@@ -526,9 +526,9 @@ $html =<<<cd
 					{$plancode}
 					<div style="direction:rtl">
 					        {$tel4neword}
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input id="fullname" name="fullname" style="width:30%;font-size:18px;color:#000;background-color:#ddd" type="text" placeholder="نام و نام خانوادگی" value="{$row['fullname']}">
-							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input id="mobile" name="mobile" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="09123456789" maxlength="11" value="{$row['mobile']}" onkeypress="return isNumber(event);">
-							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input id="email" name="email" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row['email']}">													
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">نام و نام خانوادگی</strong><input onpaste="return false" id="fullname" name="fullname" style="width:30%;font-size:18px;color:#000;background-color:#ddd" type="text" placeholder="نام و نام خانوادگی" value="{$row['fullname']}">
+							<strong style="font-size:18px;padding:0 5px 5px;display:block">شماره همراه</strong><input onpaste="return false" id="mobile" name="mobile" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="09123456789" maxlength="11" value="{$row['mobile']}" onkeypress="return isNumber(event);">
+							<strong style="font-size:18px;padding:0 5px px;display:block">ایمیل</strong><input onpaste="return false" id="email" name="email" style="width:30%;font-size:18px;color:#000;background-color:#ddd" class="ltr latin-font" type="text" placeholder="name@domain.com" value="{$row['email']}">													
 					</div>
 				</div>
 				<div class="container_gamma slogan" style="background:none">
