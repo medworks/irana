@@ -44,7 +44,7 @@ echo $postform;
 	if (isset($_GET["act"]) && $_GET["act"]=="neword")
 	{
 		$tel4neword = "  <strong style='font-size:18px;padding:0 5px 5px;display:block'>".
-		              " تلفن </strong><input type='text' onpaste='return false' id='tel' name='tel' style='width:30%;font-size:18px;color:#000;background-color:#ddd'  placeholder='تلفن' maxlength='10'  onkeypress='return isNumber2(event);' /> ";
+		              " تلفن </strong><input type='text' onpaste='return false' id='tel' autocomplete='off' name='tel' style='width:30%;font-size:18px;color:#000;background-color:#ddd'  placeholder='تلفن' maxlength='10'  onkeypress='return isNumber2(event);' /> ";
 		$tel = $_POST["tel"];
 		
 		$kind = 3; // order from price page
