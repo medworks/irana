@@ -45,7 +45,13 @@ function postRefId (refIdValue) {
 cd;
 $postform = JSMin::minify($postform);	
 echo $postform;
-
+//===================== rnd number ==================
+	//$stamp = date("ymdhis");  the number is too big
+	$stamp = date("dhis");
+	$ip = $_SERVER['REMOTE_ADDR'];
+	$orderId = "$stamp$ip";
+	$orderId = str_replace(".", "", "$orderId");
+//===================================================
 	if (isset($_GET["act"]) && $_GET["act"]=="neword")
 	{
 		$tel4neword = "  <strong style='font-size:18px;padding:0 5px 5px;display:block'>".
@@ -194,8 +200,8 @@ cd;
 		
 		// kind noe sefaresh -> sharj, tamdid,taghir, sefaresh
 		// status -> default is 1,when confirm updated to 2
-		$fields = array("`propid`","`planid`","`orderdate`","`kind`","`status`","`gig`","`price`");	 
-		$values = array("'{$lastid}'","'{$planid}'","'{$date}'","'{$kind}'","'1'","'{$giga}'","'{$_POST[orderprice]}'");
+		$fields = array("`propid`","`planid`","`selorder`","`orderdate`","`kind`","`status`","`gig`","`price`");	 
+		$values = array("'{$lastid}'","'{$planid}'","'{$orderId}'","'{$date}'","'{$kind}'","'1'","'{$giga}'","'{$_POST[orderprice]}'");
 		
 		$db->InsertQuery('orders',$fields,$values);
 		//echo $db->cmd;
@@ -221,8 +227,8 @@ cd;
 	
 	$terminalId =  GetSettingValue('Bank_Terminal_ID',1);
 	$userName =  GetSettingValue('Bank_User_Name',1);
-	$userPassword =  GetSettingValue('Bank_Pass_Word',1);
-	$orderId = rand() * time();//uniqid(rand(), false);		
+	$userPassword =  GetSettingValue('Bank_Pass_Word',1);	
+	//$orderId = rand() * time();//uniqid(rand(), false);	create at top of page
 	$amount = $_POST['orderprice'];				
 	$localDate = $todaydate;
 	$localTime = $todaytime;
@@ -260,8 +266,8 @@ cd;
 			//$order_id =$sess->Get("order_id");
 			$order_id = $_SESSION["order_id"];
 			
-			$fields = array("`oid`","`refid`","`regdate`","`errcode`");		
-			$values = array("'{$order_id}'","'{$res[1]}'","'{$date}'","'{$ResCode}'");	
+			$fields = array("`oid`","`refid`","`selorder`","`regdate`","`errcode`");		
+			$values = array("'{$order_id}'","'{$res[1]}'","'{$orderId}'","'{$date}'","'{$ResCode}'");	
 			if (!$db->InsertQuery('payment',$fields,$values)) 
 			{			
 			//header('location:payment.php');			

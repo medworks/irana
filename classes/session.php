@@ -4,7 +4,7 @@ class Session
 
     private $sessionName;
     private static $me;
-	public state ; // true is when session created and false is otherwise
+	//public state ; // true is when session created and false is otherwise
     
     public function __construct($sessionName=null, $regenerateId=false, $sessionId=null)
     {

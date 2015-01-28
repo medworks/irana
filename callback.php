@@ -29,7 +29,10 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 {
 	//$maxid = $db->MaxOfAll("id","orders");
 	//$order_id = $sess->Get("order_id");
-	$order_id = $_SESSION["order_id"];
+	//$order_id = $_SESSION["order_id"];
+	$saleorder = $_POST['SaleOrderId'];
+	$row = $db->Select("orders", "*", "selorder = "."'{$saleorder}'");
+	$order_id = $row["id"];
 	$order = $db->Select("orders", "*", "id = "."'{$order_id}'");	
 	//echo $db->cmd;
 	//$person = $db->Select("properties", "*", "id = "."'{$order[propid]}'");	
@@ -94,36 +97,11 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 			if ($ResCodesettle == "0" Or $ResCodesettle=="45") 
 			{
 				$paymentdone=1;
+				$saleorder = $_POST['SaleOrderId'];
+				$row = $db->Select("orders", "*", "selorder = "."'{$saleorder}'");	
+				//$person_id = $_SESSION["person_id"];
+				$person_id = $row["propid"];
 				
-				//$maxid = $db->MaxOfAll("id","orders");
-				//$order = $db->Select("orders", "*", "id = "."'{$maxid}'");	
-				//$order_id = $sess->Get("order_id");
-				$order_id = $_SESSION["order_id"];
-				//$person_id = $sess->Get("person_id");
-				$person_id = $_SESSION["person_id"];
-				$values = array("`paystatus`"=>"'1'");
-				$db->UpdateQuery("orders",$values,array("id='{$order_id}'"));
-				/*
-				//=============== send email
-				$person_id = $sess->Get("person_id");
-				$Contact_Email = GetSettingValue('Contact_Email',0);
-				$Email_Text = GetSettingValue('Email_Text',0);	
-				//$row = $db->Select("orders","*","id ='{$maxid}'");
-				$mobile = $db->Select("properties","mobile","id ='{$person_id}'");
-				$tel = $db->Select("properties","tel","id ='{$person_id}'");
-				$user = $db->Select("properties","fullname","id ='{$person_id}'");
-				$email = $db->Select("properties","email","id ='{$person_id}'");
-								
-				$Email_Text = str_replace("{user}", $user[0], $Email_Text);
-				$Email_Text = str_replace("{tel}", $tel[0], $Email_Text);
-				$Email_Text = str_replace("{mobile}", $mobile[0], $Email_Text);
-				$Email_Text = str_replace("{order_info}", $mobile[0], $Email_Text);
-				$today = ToJalali(date("Y-m-d")," l d F  Y ");
-				$Email_Text = str_replace("{date}", $today, $Email_Text);
-				//echo $Email_Text;
-				$issend = SendEmail($Contact_Email,"گروه بازرگانی ایرانا", array($email[0]), "رسید سفارش", $Email_Text);
-				//echo "email ->",$issend;
-				*/
 $javas=<<<cd
 		<script type='text/javascript'>
 		 $(document).ready(function(){		 
@@ -161,11 +139,15 @@ cd;
 					"`confirm`"=>"'{$paymentdone}'");
     //$id = $db->MaxOfAll("id", "payment");
 	//$id = $sess->Get("payment_id");
-	$id = $_SESSION["payment_id"];
-    $db->UpdateQuery("payment",$values,array("id='{$id}'"));
+	//$id = $_SESSION["payment_id"];
+	$saleorder = $_POST['SaleOrderId'];
+    $db->UpdateQuery("payment",$values,array("selorder='{$saleorder}'"));
 	
 	//$order_id = $sess->Get("order_id");
-	$order_id = $_SESSION["order_id"];
+	//$order_id = $_SESSION["order_id"];
+	$saleorder = $_POST['SaleOrderId'];
+	$row = $db->Select("orders", "*", "selorder = "."'{$saleorder}'");
+	$order_id = $row["id"];
     $fields = array("`oid`","`refid`","`pegiri`","`selorder`","`regdate`","`errcode`","`confirm`");		
 	$values = array("'{$order_id}'","'{$_POST[RefId]}'","'{$_POST[SaleReferenceId]}'","'{$_POST[SaleOrderId]}'","'{$date}'","'{$_POST[ResCode]} - {$ResCode}'","'{$paymentdone}'");
     $db->InsertQuery('debtpayment',$fields,$values);	
@@ -174,9 +156,12 @@ $msg = "";
 if ($paymentdone==1)
 {		
 //$order_id = $sess->Get("order_id");				
-$order_id = $_SESSION["order_id"];
-$values = array("`paystatus`"=>"'1'");
-$db->UpdateQuery("orders",$values,array("id='{$order_id}'"));
+//$order_id = $_SESSION["order_id"];
+	$saleorder = $_POST['SaleOrderId'];
+	$row = $db->Select("orders", "*", "selorder = "."'{$saleorder}'");
+	$order_id = $row["id"];
+	$values = array("`paystatus`"=>"'1'");
+	$db->UpdateQuery("orders",$values,array("id='{$order_id}'"));
 
 $msg=<<<cd
 	<div id="msg"><p>عملیات پرداخت با موفقیت انجام شد</p></div>
