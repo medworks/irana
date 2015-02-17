@@ -144,7 +144,7 @@ if($_GET["order_infos"]=="send"){
 	$smsbalance = $gate->GetUserBalance();
 //=================================================================
     $person_id = $_GET["pid"];//$sess->Get("person_id");
-	$order_id =$sess->Get("order_id");
+	$order_id  = $_GET["oid"];//$sess->Get("order_id");
 		
 	$Contact_Email = GetSettingValue('Contact_Email',0);
 	$Email_Text = GetSettingValue('Email_Text',0);	

@@ -101,11 +101,12 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 				$row = $db->Select("orders", "*", "selorder = "."'{$saleorder}'");	
 				//$person_id = $_SESSION["person_id"];
 				$person_id = $row["propid"];
+				$order_id = $row["id"];
 				
 $javas=<<<cd
 		<script type='text/javascript'>
 		 $(document).ready(function(){		 
-		 $.get('manager/ajaxcommand.php?order_infos=send&pid={$person_id}',function(data) {		     
+		 $.get('manager/ajaxcommand.php?order_infos=send&pid={$person_id}&oid={$order_id}',function(data) {		     
 				   $('#msg2').html(data);			
 				});
 		});
