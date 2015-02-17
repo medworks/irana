@@ -326,8 +326,8 @@ $js =<<<cd
 									dataType: "json",
 									success: function (data) {				    
 											  $('#percent').html(data[7].toString()+" % ");
-   										      $('#price').html(data[11].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-											  toman = data[11] - ((data[11]*data[7])/100);				
+   										      $('#price').html(data[12].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+											  toman = data[12] - ((data[12]*data[7])/100);				
 											  $('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 											  $('input[name=orderprice]').val(toman.toString());
 									}
