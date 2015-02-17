@@ -19,14 +19,15 @@
 	//ob_end_clean();
 
 
-$night = isset($_POST[night]);
-$modem = isset($_POST[modem]);
-$special = isset($_POST[special]);
+$night = isset($_POST["night"]);
+$modem = isset($_POST["modem"]);
+$special = isset($_POST["special"]);
+$offer = isset($_POST["offer"]);
 
 	if ($_POST["mark"]=="saveplan")
 	{	      
-		$fields = array("`pname`","`month`","`gig`","`night`","`modem`","`price`","`percent`","`special`","`position`");		
-		$values = array("'{$_POST[plan]}'","'{$_POST[month]}'","'{$_POST[volume]}'","'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'","'{$special}'","'{$_POST[position]}'");	
+		$fields = array("`pname`","`month`","`gig`","`night`","`modem`","`price`","`percent`","`special`","`position`","`hispecial`");
+		$values = array("'{$_POST[plan]}'","'{$_POST[month]}'","'{$_POST[volume]}'","'{$night}'","'{$modem}'","'{$_POST[price]}'","'{$_POST[percent]}'","'{$special}'","'{$_POST[position]}'","'{$offer}'");	
 		if (!$db->InsertQuery('plans',$fields,$values)) 
 		{			
 			header('location:plans.php?act=new&msg=2');			
@@ -47,7 +48,8 @@ $special = isset($_POST[special]);
 						 "`price`"=>"'{$_POST[price]}'",
 						 "`percent`"=>"'{$_POST[percent]}'",
 						 "`special`"=>"'{$_POST[special]}'",
-						 "`position`"=>"'{$_POST[position]}'");
+						 "`position`"=>"'{$_POST[position]}'",
+						 "`hispecial`"=>"'{$_POST[offer]}'");
         $db->UpdateQuery("plans",$values,array("id='{$_GET[pid]}'"));		
 		header('location:plans.php?act=new&msg=1');
 	}	
@@ -64,6 +66,7 @@ $special = isset($_POST[special]);
 		$nightchecked=($row['night'])?"checked":"";
 		$modemchecked=($row['modem'])?"checked":"";
 		$special=($row['special'])?"checked":"";
+		$offer=($row['hispecial'])?"checked":"";
 		$insertoredit = "
 			<p><input type='submit' style='width:70px;height:35px' value='ویرایش'/></p>
 						<input type='hidden' name='mark' value='editplan' />  ";
@@ -100,6 +103,7 @@ $html =<<<cd
                         <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" value='{$row[percent]}'/></p>
 						<p><span>شماره ایندکس جهت ترتیب نمایش</span><input type="text" name="position" placeholder="a Number" value='{$row[position]}'/></p>
 						<p style="padding-top:10px"><span>طرح ویژه</span><input type="checkbox" name="special" value="1" {$special}/></p>
+						<p style="padding-top:10px"><span> طرح خاص</span><input type="checkbox" name="offer" value="1" {$offer}/></p>
 						{$insertoredit}						
 					</form>
                     <div class="clear"></div>
@@ -111,13 +115,13 @@ $table=<<<cd
 <table class="datatable paginate sortable full">
     <thead class="rtl">
         <tr>	        
-            <th><a href="#">نام طرح</a></th>
-            <th><a href="#">مدت زمان</a></th>
-            <th><a href="#">حجم طرح</a></th>
-            <th><a href="#">شبانه </a></th>
-            <th><a href="#">مودم</a></th>
-			<th><a href="#">هزینه طرح</a></th>
-			<th><a href="#">درصد تخفیف</a></th>
+            <th style="width:200px"><a href="#">نام طرح</a></th>
+            <th style="width:40px"><a href="#">مدت زمان</a></th>
+            <th style="width:50px"><a href="#">حجم طرح</a></th>
+            <th style="width:30px"><a href="#">شبانه </a></th>
+            <th style="width:30px"><a href="#">مودم</a></th>
+			<th style="width:50px"><a href="#">هزینه طرح</a></th>
+			<th style="width:30px"><a href="#">درصد تخفیف</a></th>
 			<th style="width:70px"><a href="#">عملیات</a></th>	
         </tr>
     </thead>

@@ -86,9 +86,9 @@ echo $postform;
 					$('#month').html(data[2]+" ماهه ");	
 					$('#percent').html(data[7].toString()+" % ");
 					
-					$('#price').html(data[11].replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('#price').html(data[12].replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 														
-					toman = data[11] - ((data[11]*data[7])/100);
+					toman = data[12] - ((data[12]*data[7])/100);
 					$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 					$('input[name=orderprice]').val(toman.toString());
 				}
@@ -489,9 +489,9 @@ $js=<<<cd
 						$('#month').html(data[2]+" ماهه ");	
 						$('#percent').html(data[7].toString()+" % ");
 						
-						$('#price').html(data[11].replace(/\B(?=(\d{3})+(?!\d))/g, ','));				
+						$('#price').html(data[12].replace(/\B(?=(\d{3})+(?!\d))/g, ','));				
 											
-						toman = data[11] - ((data[11]*data[7])/100);
+						toman = data[12] - ((data[12]*data[7])/100);
 						$('#lastprice').html(toman.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 						$('input[name=orderprice]').val(toman.toString());
 					}

@@ -7,7 +7,7 @@
   include_once("classes/functions.php");
   include_once("lib/persiandate.php");
   
-    $db = Database::GetDatabase();
+  $db = Database::GetDatabase();
   $msg = Message::GetMessage();
 $html =<<<cd
   <link rel="stylesheet" href="manager/css/tables.css" type="text/css">
@@ -50,6 +50,7 @@ $table=<<<cd
 <table class="datatable full">
     <thead class="rtl">
         <tr>          
+		  <th>  </th>		
           <th>نام طرح</th>
           <th>مدت زمان (ماه)</th>
           <!-- <th>حجم (گیگابایت)</th> -->
@@ -87,8 +88,19 @@ else
  {
    $class = "";
  }
+ 
+ if ($rows[$i]["hispecial"])
+ {
+  $offer= "<img src='./images/offer.gif' width='40px' height='40px' />";
+ }
+else
+ {
+   $offer = "";
+ }
+ 
 $table .=<<<cd
         <tr class="$class">   
+			<td>{$offer}</td>
             <td>{$rows[$i]["pname"]}</td>
             <td>{$rows[$i]["month"]}</td>
             <!-- <td>{$rows[$i]["gig"]}</td> -->
