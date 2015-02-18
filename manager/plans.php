@@ -102,7 +102,7 @@ $html =<<<cd
 						<p class="clear"></p>
                         <p><span>درصد تخفیف</span><input type="text" name="percent" placeholder="1-100" value='{$row[percent]}'/></p>
 						<p><span>شماره ایندکس جهت ترتیب نمایش</span><input type="text" name="position" placeholder="a Number" value='{$row[position]}'/></p>
-						<p style="padding-top:10px"><span>طرح ویژه</span><input type="checkbox" name="special" value="1" {$special}/></p>
+						<p style="padding-top:10px;clear:both"><span>طرح ویژه</span><input type="checkbox" name="special" value="1" {$special}/></p>
 						<p style="padding-top:10px"><span> طرح خاص</span><input type="checkbox" name="offer" value="1" {$offer}/></p>
 						{$insertoredit}						
 					</form>
