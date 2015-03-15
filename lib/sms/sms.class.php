@@ -12,7 +12,7 @@ class sms_soap
 		$this->username = $user;
 		$this->password = $pass;
 
-        $this->client   = new nusoap_client(" http://37.130.202.188/class/sms/webservice/server.php?wsdl");
+        $this->client   = new nusoap_client("http://37.130.202.188/class/sms/webservice/server.php?wsdl");
 
         $this->client->soap_defencoding = 'UTF-8';
         $this->client->decode_utf8 = true;
