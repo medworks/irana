@@ -160,6 +160,15 @@ cd;
        else
 	   {
 	     $lastid = $row["id"];
+		 $findid = $db->Select("properties", "*", "tel = "."'{$tel}'");
+		 if ($findid && ($findid["mobile"]=="" or $_POST["email"]==""))
+		 {
+			$_POST["mobile"] = mysql_escape_string($_POST["mobile"]);
+			$_POST["email"] = mysql_escape_string($_POST["email"]);
+			$values = array("`mobile`"=>"'{$_POST["mobile"]}'",
+							"`email`"=>"'{$_POST["email"]}'");
+			$db->UpdateQuery("properties",$values,array("id='{$findid[id]}'"));	
+		 }
 	   } 
 		 
 		//$sess->Set("person_id",$lastid);		
