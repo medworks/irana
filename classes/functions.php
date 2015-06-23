@@ -194,41 +194,47 @@ function Pagination($itemsCount, $maxItemsInPage,
 function DataGrid($cols, $rows, $colsClass, $rowsClass, $itemsInPage, $pageNo, $keyName,
 			$showKey, $showEdit, $showDelete, $rowCount,$address)
 {
-			$code = "<table width='100%' class='datagrid' border='0'><tr class='datagridheader'>";
+			$rowNo = 0;
+			$colNo = 1;
+			$code = "<table style='width:100%' class='datagrid' border='0'><tr class='datagridheader'>";
 			//if ($showEdit) $code .= "<td class='datagrid'></td>";
-			$code .= "<th>ردیف</th>";
+			$code .= "<th style='{$colsClass[0]}'>ردیف</th>";
 			$fields = array();
                         $DBase = new Database();
 			foreach($cols as $key=>$value)
 			{
 				if (!$showKey && $key == $keyName) continue;
-				$code .= "<th>$value</th>";
+				//if ($colNo >= Count($fields)) break;
+				$colClass = ($colsClass[$colNo] == NULL) ? "" : $colsClass[$colNo];
+				$code .= "<th style='{$colClass}'>$value</th>";
 				$fields[] = $key;
+				$colNo++;
 			}
+			$colNo=0;
 		//	if ($showDelete) $code .= "<td class='datagrid'></td>";
-			$code .= "</tr>";
-			$rowNo = 0;
+			$code .= "</tr>";			
 			foreach($rows as $key=>$row)
 			{
 				$rowClass = ($rowsClass[$rowNo] == NULL) ? "datagridrow" : $rowsClass[$rowNo];
-                                //$colClass = ($colsClass[$colNo] == NULL) ? "datagridcol" : $colsClass[$colNo];
-                                $colClass ="";
+                                
+                               // $colClass ="";
 				$code .= "<tr class='{$rowClass}'>";
 				//if ($showEdit) $code .= "<td align='center' class='{$colClass}'><a href='?func=post&act=edition&pid={$row["id"]}'><img src='{$DBase->Site_Theme_Add}edit.gif' /></a></td>";
-				$code .= "<td align='center' class='{$colClass}'>" . ($rowNo + ($pageNo*$itemsInPage) + 1) . "</td>";
+				$code .= "<td align='center' >" . ($rowNo + ($pageNo*$itemsInPage) + 1) . "</td>";
 				$colNo = 0;
 				foreach($row as $key2=>$value)
 				{
 					if ($colNo >= Count($fields)) break;
 					if (!$showKey && $key2 == $keyName) continue;
-					$code .= "<td class='{$colClass}'>";
+                    $colClass = ($colsClass[$colNo] == NULL) ? "datagridcol" : $colsClass[$colNo];					
+					$code .= "<td style='{$colClass}'>";
 					$code .= $row[$fields[$colNo]];
 					$code .= "</td>";
 					$colNo++;
 				}
 				//if ($showDelete) $code .= "<td align='center' class='{$colClass}'><a href='?func=post&act=delete&pid={$row["id"]}&pageNo={$_GET["pageNo"]}'><img src='{$DBase->Site_Theme_Add}delete.gif' /></a></td>";
 				$code .= "</tr>";
-				$rowNo++;
+				$rowNo++;				
 				if ($rowNo >= $itemsInPage) break;
 			}
 			$code .= "<tr>";

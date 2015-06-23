@@ -32,13 +32,12 @@
   if ($_GET['act']=="del")
   {
 	  //$db->Delete("orders"," id",$_GET["oid"]);
-	  echo "delete";
 	 $values = array("`remove`"=>"'1'");
      $db->UpdateQuery("orders",$values,array("id='{$_GET[oid]}'"));			  
-	//  if ($_GET["state"]=="ord")	
-	//	header("location:admin.php?act=ord");	
-	// else	
-	  //  header("location:admin.php?act=confirmed");	
+	  if ($_GET["state"]=="ord")	
+		header("location:admin.php?act=ord");	
+	 else	
+	    header("location:admin.php?act=confirmed");	
   }	
   if ($_GET['act']=="confirm")
   {
@@ -55,13 +54,15 @@
 	if ($_GET["act"]=="ord")
     { 	
 		$where = "Status = 1 AND paystatus = 1 AND remove = 0 ";
-		$title = "لیست سفارشات";		
+		$title = "لیست سفارشات";
+		$titr = " <th style='width:55px'><a href='#'>عملیات</a></th> ";	
 	}	
 	else	
 	if ($_GET["act"]=="confirmed")	
 	{
 		$where = " Status = 2 AND paystatus = 1 AND remove = 0 ";
-		$title = "لیست  تایید شده";	
+		$title = "لیست  تایید شده";
+		$titr  = "";
 		
 	    //header("location:admin.php?act=confirmed");
 	}	
@@ -170,128 +171,105 @@ if ($_POST['mark']=="srhorders")
 	 break;
 	}	
 }
-//else
-	//$rows = $db->SelectAll("orders","*",$where,"id Desc");
+else
+	$rows = $db->SelectAll("orders","*",$where,"id Desc");
 	//echo $db->cmd;
-	$rows = $db->SelectAll(
-				"orders",
-				"*",
-				$where,
-				"id DESC",
-				$_GET["pageNo"]*10,
-				10);
-				
-				$rowsClass = array();
-                $colsClass = array();
-                $rowCount =($_GET["rec"]=="all" or $_POST["mark"]!="srhorders")?$db->CountOf("orders",$where):Count($rows);
-			   // $rowCount = Count($rows);
-				//echo "row is ".$rowCount;
-                for($i = 0; $i < Count($rows); $i++)
-                {		
-				 $rows[$i]["orderdate"] = ToJalali($rows[$i]["orderdate"],"Y/m/d H:i");
-				 $rows[$i]["tel"] = $db->Select("properties","tel","id = ".$rows[$i]["propid"])[0];
-				 $rows[$i]["mobile"] = $db->Select("properties","mobile","id = ".$rows[$i]["propid"])[0];
-				 $rows[$i]["email"] = $db->Select("properties","email","id = ".$rows[$i]["propid"])[0];
-				 $rows[$i]["propid"] = $db->Select("properties","fullname","id = ".$rows[$i]["propid"])[0]; 
-				 
-				 $rows[$i]["planid"] = $db->Select("plans","pname","id = ".$rows[$i]["planid"])[0];
+$table=<<<cd
+<table class="datatable paginate sortable full">
+    <thead class="rtl">
+        <tr>	  
+			<th style="width:70px"><a href="#">تاریخ سفارش</a></th>			
+            <th style="width:80px" ><a href="#">نام مشتری</a></th>
+			<th style="width:68px"><a href="#">تلفن</a></th>
+			<th style="width:70px"><a href="#">موبایل</a></th>
+			<!-- <th style="width:150px"><a href="#">ایمیل</a></th> -->
+			<th style="width:35px"><a href="#">نوع سفارش</a></th>
+            <th style="width:70px"><a href="#">نام طرح</a></th> 
+			<th style="width:70px"><a href="#">مبلغ</a></th> 			
+            <th style="width:35px"><a href="#">وضعیت سفارش</a></th>
+			<th style="width:35px"><a href="#">وضعیت پرداخت</a></th>
+			<th style="width:80px"><a href="#">کد پیگیری</a></th> 
+			<!-- <th style="width:20px"><a href="#">حجم</a></th>  -->
+			{$titr}
+        </tr>
+    </thead>
+	<tbody style="display: none;">
+cd;
+for($i = 0; $i < Count($rows); $i++)
+{
+ $rows[$i]["orderdate"] = ToJalali($rows[$i]["orderdate"],"Y/m/d H:i");
+ $tel = $db->Select("properties","tel","id = ".$rows[$i]["propid"])[0];
+ $mobile = $db->Select("properties","mobile","id = ".$rows[$i]["propid"])[0];
+ $email = $db->Select("properties","email","id = ".$rows[$i]["propid"])[0];
+ $rows[$i]["propid"] = $db->Select("properties","fullname","id = ".$rows[$i]["propid"])[0]; 
+ 
+ $rows[$i]["planid"] = $db->Select("plans","pname","id = ".$rows[$i]["planid"])[0];
 
-				 $rows[$i]["peygiri_code"] =$db->Select("payment","pegiri","oid = ".$rows[$i]["id"])[0]; 
-				 if($rows[$i]["kind"]==0)
-				 {
-					$rows[$i]["kind"] = "شارژ حساب";
-					$rows[$i]["planid"] = $rows[$i]["gig"]."GB"; 
-				 }
-				 else
-				 if ($rows[$i]["kind"]==1) 
-					$rows[$i]["kind"] = "تمدید حساب فعلی";
-				 else	
-				 if ($rows[$i]["kind"]==2) 
-					$rows[$i]["kind"] = "تغییر حساب"; 
-				else	
-				 if ($rows[$i]["kind"]==3) 	
-					$rows[$i]["kind"] = "سفارش طرح"; 
-					
-				if ($rows[$i]["status"]==1) 
-					$rows[$i]["status"] = "تایید نشده";
-				else	
-					$rows[$i]["status"] = "تایید شده";
+ $peygiri_code =$db->Select("payment","pegiri","oid = ".$rows[$i]["id"])[0]; 
+ if($rows[$i]["kind"]==0)
+ {
+	$rows[$i]["kind"] = "شارژ حساب";
+	$rows[$i]["planid"] = $rows[$i]["gig"]."GB"; 
+ }
+ else
+ if ($rows[$i]["kind"]==1) 
+	$rows[$i]["kind"] = "تمدید حساب فعلی";
+ else	
+ if ($rows[$i]["kind"]==2) 
+	$rows[$i]["kind"] = "تغییر حساب"; 
+else	
+ if ($rows[$i]["kind"]==3) 	
+	$rows[$i]["kind"] = "سفارش طرح"; 
+	
+if ($rows[$i]["status"]==1) 
+	$rows[$i]["status"] = "تایید نشده";
+else	
+	$rows[$i]["status"] = "تایید شده";
 
-				if ($rows[$i]["paystatus"]==1)
-					$rows[$i]["paystatus"] = "پرداخت شده";
-				else
-					$rows[$i]["paystatus"] = "معلق";
+if ($rows[$i]["paystatus"]==1)
+	$rows[$i]["paystatus"] = "پرداخت شده";
+else
+	$rows[$i]["paystatus"] = "معلق";	
+	
+	
+if (($i+1)%11 == 0)	
+	$table.=<<<cd
+	</tbody>
+		<tbody style="display: table-row-group;">
+cd;
 
-					
-				if ($i % 2==0)
-				 {
-						$rowsClass[] = "datagridevenrow";
-				 }
-				else
-				{
-						$rowsClass[] = "datagridoddrow";
-				}		
-				$colsClass = array(" width:15px; "," width:17px; "," width:40px; "," width:20px;","width:15px;","width:40px;","width:60px;","width:20px;"
-				,"width:20px;","width:20px;","width:20px;","width:20px;");
-				if ($_GET["act"]=="ord")
-				{
-				$rows[$i]["edit"] = "<a href='?act=confirm&state=ord&oid={$rows[$i][id]}' class='button button-gray no-text'
-						 style='text-decoration:none;'><span class='pencil'></span></a>";
-				$rows[$i]["delete"]=<<< del
-				<a href="javascript:void(0)"
-				onclick="DelMsg('{$rows[$i]['id']}',
-					'از حذف این خبر اطمینان دارید؟',
-				'?act=del&state=ord&pageNo={$_GET[pageNo]}&oid=');"
-				 class='button button-gray no-text' 
-			     style='text-decoration:none;'><span class='bin'></span></a>
-del;
-				}
-                         }
-
-    if (!$_GET["pageNo"] or $_GET["pageNo"]<=0) $_GET["pageNo"] = 0;
-            if (Count($rows) > 0)
-            {       
-					if ($_GET["act"]=="ord")
-					{
-						$header = array( 
-					        "orderdate"=>"تاریخ سفارش",
-							"propid"=>"نام مشتری",
-							"tel"=>"تلفن",
-							"mobile"=>"موبایل",
-							//"email"=>"ایمیل",
-							"kind"=>"نوع سفارش",
-							"planid"=>"   نام طرح   ",
-							"price"=>"مبلغ",
-							"status"=>"وضعیت سفارش",							
-							"paystatus"=>"وضعیت پرداخت",
-							"peygiri_code"=>"کد پیگیری",				
-                            "edit"=>"ویرایش",
-							"delete"=>"حذف",);
-							$plink = "act=ord";
-					}
-                    else
-					{
-						$header = array( 
-					        "orderdate"=>"تاریخ سفارش",
-							"propid"=>"نام مشتری",
-							"tel"=>"تلفن",
-							"mobile"=>"موبایل",
-							//"email"=>"ایمیل",
-							"kind"=>"نوع سفارش",
-							"planid"=>"   نام طرح   ",
-							"price"=>"مبلغ",
-							"status"=>"وضعیت سفارش",							
-							"paystatus"=>"وضعیت پرداخت",
-							"peygiri_code"=>"کد پیگیری",);
-							$plink = "act=confirmed";
-					}
-                    $gridcode .= DataGrid($header, $rows, $colsClass, $rowsClass, 10,
-                            $_GET["pageNo"], "id", false, true, true, $rowCount,$plink);  
-            }				
-
+$table .=<<<cd
+        <tr>		
+		    <td>{$rows[$i]["orderdate"]}</td>
+            <td>{$rows[$i]["propid"]}</td>
+			<td>{$tel}</td>			
+			<td>{$mobile}</td>			
+			<!-- <td style="font-size:12px;">{$email}</td> -->
+			<td>{$rows[$i]["kind"]}</td>
+            <td>{$rows[$i]["planid"]}</td>
+			<td>{$rows[$i]["price"]}</td>
+            <td>{$rows[$i]["status"]}</td>
+			<td>{$rows[$i]["paystatus"]}</td>
+			<td>{$peygiri_code}</td>
+            <!-- <td>{$rows[$i]["gig"]}</td>  -->
+cd;
+if ($_GET["act"]=="ord")
+{
+$table.=<<<cd
+		<td>
+                <ul class="action-buttons">
+                    <li><a href="?act=confirm&state=ord&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="pencil"></span></a></li>
+                    <li><a id="del" href="?act=del&state=ord&oid={$rows[$i]["id"]}" class="button button-gray no-text"><span class="bin"></span></a></li>
+                </ul>
+        </td>
+cd;
+}
+$table .= "</tr>";
+}
+$table.="</tbody> </table>";
 
 $html.=<<<cd
-                {$gridcode}
+                    {$table}
                 </div>
             </section>
         </div>

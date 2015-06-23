@@ -1,3 +1,4 @@
+
 /**
  * Sticky Footer
  */
@@ -23,9 +24,10 @@ footer, #push {
  */
 
 body {
-    font: normal normal normal 11px/16px 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, Verdana, sans-serif;
+    font: normal normal normal 16px/15px 'bmitra';
     overflow: -moz-scrollbars-vertical;
-    background: #8ec2da;
+    background: #8ec2da;	
+  font-weight: normal;
 }
 
 .no-border {
@@ -1145,3 +1147,163 @@ form.setting textarea{
     font-size: 18px;
 }
 /****************************************8*/
+
+/*=============== data grid section  ===============*/
+.datagrid
+{
+  float :right;
+  margin-top: 10px;
+  background-color: #ECECED;
+  border: 1px solid #ededed;
+  border-spacing:0px;
+  text-align: center;
+  direction:rtl !important;  
+}
+
+.datagridheader
+{
+  background-color: #668BDC;
+  text-align: center;
+  color: white; 
+  font-size: 18px;       
+}
+
+.datagridheader th{
+  //padding: 8px 5px;
+}
+
+.datagridevenrow{
+  background-color: #EEF5FF;
+}
+
+.datagridoddrow
+{
+  background-color:#FEF4E4;
+}
+
+.datagridevenrow td,
+.datagridoddrow td{
+  text-align: center;
+  //padding: 20px 5px;
+  border-right: 1px solid #ABCDEF;
+  padding: 5px;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.datagridevenrow p,
+.datagridoddrow p{
+  text-align: center;
+}
+
+.datagridevenrow img,
+.datagridoddrow img{
+  margin: -12px !important;
+}
+
+.datagridevenrow input,
+.datagridoddrow input{
+  margin: 0 auto;
+  margin-bottom: 0 !important;
+}
+
+.datagridcol
+{
+   background-color: #E3ECF9;
+}
+
+tr.datagridevenrow:hover,
+tr.datagridoddrow:hover
+{
+  background-color: #254590;
+  color: white;
+}
+
+.page-num{
+  padding: 5px;
+}
+
+.page-num a{
+  color: #777;
+}
+
+.page-num a:hover{
+  color: #000;
+}
+
+/**********************************Pagination*******************************/
+.pagination li{
+	float: right;
+}
+
+.pagination li span,
+.pagination li a{
+	display: block;
+	padding: 3px;
+	border-radius: 3px;
+}
+
+.pagination li p{
+	font-size: 19px;
+	text-align: center;
+}
+
+.firstPage{
+	background-image: url("../images/first.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 24px;
+    height: 24px;
+    text-indent: 9999px;
+}
+
+.prevPage{
+	background-image: url("../images/prev.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    text-indent: 9999px;
+}
+
+.nextPage{
+	background-image: url("../images/next.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 24px;
+	height: 24px;
+    margin-left: 10px;
+    text-indent: 9999px;
+}
+
+.lastPage{
+	background-image: url("../images/last.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 24px;
+    height: 24px;
+    text-indent: 9999px;
+}
+
+.pagenumber{
+	display: block;
+	width: 20px;
+	height: 20px;
+	color: #000;
+	text-align: center;
+}
+
+.pagenumber_selected{
+	display: block;
+	background-color: #f78400;
+	width: 20px;
+	height: 20px;
+	color: #eee;
+	text-align: center;
+}
+
+.pagenumber_section
+{
+	text-align: center;
+}
