@@ -323,7 +323,9 @@ $js =<<<cd
 									$('#price').html("0");
 								    $('#lastprice').html("0");
 									$('input[name=orderprice]').val("0");
-									$.get('manager/ajaxcommand.php?kind=percent',function(data) {
+									$("#cbvols").attr('selectedIndex', 0);
+									$("#cbplans").attr('selectedIndex', 0);
+								   	$.get('manager/ajaxcommand.php?kind=percent',function(data) {
 						               $('#percent').html(data);
 				                    });									 
 								}
@@ -334,6 +336,10 @@ $js =<<<cd
 									$(".toggler #tamdid").css('display',"block");
 								$('#price').html("0");
 								$('#lastprice').html("0");
+								
+								$("#cbvols").attr('selectedIndex', 0);
+								$("#cbplans").attr('selectedIndex', 0);
+								
 								$.ajax({
 									type: "GET",
 									url: "manager/ajaxcommand.php",
