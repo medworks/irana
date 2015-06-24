@@ -32,10 +32,10 @@
 	else
 	if ($_POST["mark"]=="editvol")
 	{			    
-		$values = array("`amount`"=>"'{$_POST[fvol]}'",
-		                 "`desc`"=>"'{$_POST[tvol]}'");
+		$values = array("`amount`"=>"'{$_POST[amount]}'",
+		                 "`desc`"=>"'{$_POST[desc]}'");
         $db->UpdateQuery("vols",$values,array("id='{$_GET[vid]}'"));		
-		header('location:vols.php?act=edit&msg=1');
+		header('location:vols.php?act=new&msg=1');
 	}	
 	
 	if ($_GET['act']=="new")
@@ -91,8 +91,8 @@ $table=<<<cd
 cd;
 for($i = 0; $i < Count($rows); $i++)
 {
- $rows[$i]["fvol"] = ($rows[$i]["amount"])." گیگابایت ";
- $rows[$i]["tvol"] = ($rows[$i]["desc"]);
+ $rows[$i]["amount"] = ($rows[$i]["amount"])." گیگابایت ";
+ $rows[$i]["desc"] = ($rows[$i]["desc"]);
  
 if (($i+1)%10 == 0)
 	
