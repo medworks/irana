@@ -45,17 +45,20 @@ if (isset($_GET["kind"]) and ($_GET["kind"]=="percent2"))
 	$Percent_Off = $db->Select("volumes","percent","`tvol`='5'");
 	echo $Percent_Off[0];
 }
-      
-	  $Extra_Tax = GetSettingValue('Extra_Tax',0);	
+      	  
+ if (isset($_GET["gig"]))
+{         
+      $Extra_Tax = GetSettingValue('Extra_Tax',0);	
       $gig = $_GET["gig"];
+	  //$gig = $db->Select("vols","amount","`id`='{$gig}'");
 	  $volprice1 = $db->Select("volumes","price","`tvol`='5'");
 	  $volprice2 = $db->Select("volumes","price","`tvol`='10'");
 	  $volprice3 = $db->Select("volumes","price","`tvol`='99'");
 	  $Percent_Off = $db->Select("volumes","percent","`tvol`='5'");
 	  $rows = array();
- if (isset($_GET["gig"]))
-{         
-      
+	  
+	  //$gig = $gig[0];
+	  
 	  $num =(int)($gig / 5);
 	  if ($num == 0) 
 	  {

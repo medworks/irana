@@ -74,6 +74,7 @@
                         <li><a class="nav-icon icon-note" href="plans.php?act=new">تعرفه طرح ها</a></li>
 						<li><a class="nav-icon icon-del" href="removedplans.php?act=new">لیست طرح های حذف شده</a></li>
                         <li><a class="nav-icon icon-book" href="volume.php?act=new">تعرفه حجم ها</a></li>
+						<li><a class="nav-icon icon-book" href="vols.php?act=new">لیست حجم ها</a></li>
                     </ul>
                 </nav>
             </aside>

@@ -328,14 +328,16 @@ function DataGrid($cols, $rows, $colsClass, $rowsClass, $itemsInPage, $pageNo, $
             //var_dump($option);
             return  $option;
         }
-		function DbSelectOptionTag($optionname,$dbdata,$feild,$selected=Null,$onchange=Null,$classname=null,$Style=Null)
+		function DbSelectOptionTag($optionname,$dbdata,$feild,$title,$selected=Null,$onchange=Null,$classname=null,$Style=Null,$titr=NULL)
         {
             $option = "<select Style='$Style' name='$optionname' class='$classname' id='$optionname' onchange='$onchange' >";
-			$option.="<option value='-1'>انتخاب طرح</option>";
+			$option.="<option value='-1'>{$title}</option>";
             foreach($dbdata as $key=>$val)
             {			  
                if ($selected == $val["id"]){ $select = "selected='1'";} else { $select="";}
-                $option.="<option value='{$val["id"]}' {$select} >{$val[$feild]}</option>";
+                $option.="<option value='{$val["id"]}' {$select} >{$val[$feild]}
+				    {$titr}
+				</option>";
             }
             $option.="</select>";
             //var_dump($option);
