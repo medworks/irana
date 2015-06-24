@@ -128,7 +128,10 @@ cd;
 	//}
 	
 	$plans = $db->SelectAll("plans","*"," remove = 0 ","ID");	
-	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
+	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname","انتخاب طرح",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
+	
+	$vols = $db->SelectAll("vols","*",NULL,"ID");	
+	$cbvols = DbSelectOptionTag("cbvols",$vols,"amount","انتخاب حجم",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
 		
 	if (isset($_POST["mark"]) && $_POST["mark"] =="order" )
 	{
@@ -177,7 +180,10 @@ cd;
 		{
 			$planid =$row["planid"];
 			$kind = 0;
-			$giga = $_POST["gigabyte"];
+			//$giga = $_POST["gigabyte"];
+			$giga = $_POST["cbvols"];
+			$giga = $db->Select("vols","amount","`id`='{$giga}'");
+			$giga = $giga[0];
 		}
 		else
 		if ($_POST["plan"] =="tamdid")
@@ -409,8 +415,8 @@ $js=<<<cd
 		if ($("input[name='plan']#rbsharj").is(":checked"))
 		{
 			
-			if ($("#gigabyte").val()=="")
-			{				
+			if ($("#cbvols").val()=="-1")
+			{			                
 				alert('لطفا مقدار حجم را وارد نمایید!');
 				return false;
 			}
@@ -427,7 +433,7 @@ $js=<<<cd
         }
 	
 		  
-          $("#gigabyte").keyup();
+         // $("#gigabyte").keyup();
 		  
 					$(document).ready(function(){
 						$("select[id='cbplans']").removeAttr("disabled");
@@ -464,6 +470,7 @@ $js=<<<cd
 			var toman;
             var nodot;		
             var retdata			
+		/*	
 			$( "#gigabyte" ).keyup(function() {			
 			$.ajax({
 				type: "GET",
@@ -484,7 +491,32 @@ $js=<<<cd
 
 			});
 		       $("#gigabyte").keyup();
-			   
+			 */
+			$("#cbvols").change(function(){	
+               	if ($(this).val() != -1)
+				{
+					$.ajax({
+					type: "GET",
+					url: "manager/ajaxcommand.php",					
+					data: 'gig=' + $(this).val(),
+					dataType: "json",
+					success: function (data) {				    
+						$('#percent').html(data[0].toString()+" % ");
+					    $('#price').html(data[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+						$('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
+					    $('#lastprice').html(data[2].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));					
+					    
+						$('input[name=orderprice]').val(data[2].toString());
+					}
+						});
+				}
+				else
+				{
+				    $('#price').html("0");
+					$('#lastprice').html("0");
+				}
+										
+			});		
 			$("#cbplans").change(function(){	
                	if ($(this).val() != -1)
 				{
@@ -568,8 +600,11 @@ $html =<<<cd
 							<!-- Sharj hesab -->
 							<div id="sharg" class='act'>
 								<h3>شارژ حساب</h3>						
-									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت (بین 1 تا 99)</strong>
+									<strong style="font-size:18px;padding:0 5px 5px;display:block;color:#000">حجم به گیگابایت </strong>
+									{$cbvols}
+									<!--
 									<input name="gigabyte" id="gigabyte" style="width:30%;font-size:15px;color:#000" class="ltr latin-font" type="text" placeholder="1-99" maxlength="2"  onkeypress="return isNumber(event);">
+									-->
 							</div>
 							<!-- tamdid hesab feli -->
 							<div id="tamdid" class='act activity'>
