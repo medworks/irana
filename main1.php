@@ -7,7 +7,6 @@
 	include_once("classes/functions.php");	
 	include_once("lib/persiandate.php");
 	include_once("./lib/jsmin.php");
-	include_once("./lib/soap/nusoap.php");
     
 	if ((isset($_GET["do"]) and $_GET["do"]!="ok")
 	or (!isset($_GET["do"]))) 
@@ -132,7 +131,7 @@ cd;
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname","انتخاب طرح",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
 	
 	$vols = $db->SelectAll("vols","*",NULL,"ID");	
-	$cbvols = DbSelectOptionTag2("cbvols",$vols,"amount","desc","انتخاب حجم",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
+	$cbvols = DbSelectOptionTag("cbvols",$vols,"amount","انتخاب حجم",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
 		
 	if (isset($_POST["mark"]) && $_POST["mark"] =="order" )
 	{
@@ -227,9 +226,14 @@ cd;
 		$_SESSION["order_id"] = $lastid;
 		
 // pay here ==================
-		
-	$client = new nusoap_client('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl',true);
-	
+	try 
+	{ 
+		$client = new soapclient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl');
+	} 
+	catch (Exception $e) 
+	{ 
+		die($e->getMessage()); 
+	}	
 
 	$now = getdate();
 	$now["mon"] =  ($now["mon"]<10)?"0".$now["mon"] :$now["mon"];
@@ -261,76 +265,45 @@ cd;
 		'callBackUrl' => $callBackUrl,
 		'payerId' => $payerId);
 		
-	// Check for an error
-	/*
-		$err = $client->getError();
-		if ($err) {
-			echo '<h2>خطای در ایجاد سازنده</h2><pre>' . $err . '</pre>';
-			die();
-		}	
-	*/
-	$result = $client->call('bpPayRequest', $parameters, $namespace);
-		
-		// Check for a fault
-		if ($client->fault) {
-			//echo '<h2>عدم ارتباط با وب سرویس</h2><pre>';
-			echo "<script>alert('عدم ارتباط با وب سرویس');</script>";
-			//print_r($result);
-			//echo '</pre>';
-			//die();
-		} 
-		else {	
-	// Check for errors
+	$result =  $client->bpPayRequest($parameters,$namespace);
+	//var_dump($result);
+	$array = get_object_vars($result);
+	$resultStr = $array["return"];
+	$res = explode (',',$resultStr);	
+	
+	if(is_array($res))
+	{	
+		$ResCode = $res[0];
+		if ($ResCode == "0") 
+		{
+			$date = date('Y-m-d H:i:s');
+			//$lastid = $db->InsertId();
+			//$order_id =$sess->Get("order_id");
+			$order_id = $_SESSION["order_id"];
 			
-			$resultStr  = $result;
-			//var_dump($resultStr);
-			$err = $client->getError();
-			if ($err) {
-				// Display the error
-				//echo '<h2>خطای </h2><pre>' . $err . '</pre>';
-				echo "<script>alert('خطای {$err}');</script>";
-				//die();
-			} 
+			$fields = array("`oid`","`refid`","`selorder`","`regdate`","`errcode`");		
+			$values = array("'{$order_id}'","'{$res[1]}'","'{$orderId}'","'{$date}'","'{$ResCode}'");	
+			if (!$db->InsertQuery('payment',$fields,$values)) 
+			{			
+			//header('location:payment.php');			
+			} 	
 			else 
-			{
-				// Display the result
-
-				$res = explode (',',$resultStr["return"]);				
-				//$res = $resultStr["return"];
-				$ResCode = $res[0];
-				
-				if ($ResCode == "0") 
-				{
-		
-					$date = date('Y-m-d H:i:s');
-					//$lastid = $db->InsertId();
-					//$order_id =$sess->Get("order_id");
-					$order_id = $_SESSION["order_id"];
-					
-					$fields = array("`oid`","`refid`","`selorder`","`regdate`","`errcode`");		
-					$values = array("'{$order_id}'","'{$res[1]}'","'{$orderId}'","'{$date}'","'{$ResCode}'");	
-					if (!$db->InsertQuery('payment',$fields,$values)) 
-					{			
-					//header('location:payment.php');			
-					} 	
-					else 
-					{  										
-					//	header('location:payment.php');
-						$lastid = $db->InsertId();		
-						//$sess->Set("payment_id",$lastid);
-						$_SESSION["payment_id"] =$lastid ;
-					}  		
-					// Update table, Save RefId
-					//echo "<br/> res 1 :",$res[1];
-					echo "<script language='javascript' type='text/javascript'>postRefId('" . $res[1] . "');</script>";
-				} 
-				else 
-				{
-				//	echo "خطا در دریافت اطلاعات معتبر از بانک  ";
-					echo "<script>alert('خطا در دریافت اطلاعات معتبر از بانک');</script>";
-				}
-			}
-        }			
+			{  										
+			//	header('location:payment.php');
+				$lastid = $db->InsertId();		
+				//$sess->Set("payment_id",$lastid);
+				$_SESSION["payment_id"] =$lastid ;
+			}  		
+			// Update table, Save RefId
+			echo "<script language='javascript' type='text/javascript'>postRefId('" . $res[1] . "');</script>";
+		} 
+		else 
+		{
+			// log error in app						
+		}
+	}
+	
+	
 	//header('location:main.php');			   
 	}
 

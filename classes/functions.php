@@ -343,6 +343,26 @@ function DataGrid($cols, $rows, $colsClass, $rowsClass, $itemsInPage, $pageNo, $
             //var_dump($option);
             return  $option;
         }
+		function DbSelectOptionTag2($optionname,$dbdata,$feild1,$feild2,$title,$selected=Null,$onchange=Null,$classname=null,$Style=Null,$titr=NULL)
+        {
+            $option = "<select Style='$Style' name='$optionname' class='$classname' id='$optionname' onchange='$onchange' >";
+			$option.="<option value='-1'>{$title}</option>";
+            foreach($dbdata as $key=>$val)
+            {			  
+			   if (!empty($val[$feild2]))
+			   {
+				$extra = "   ( {$val[$feild2]} ) ";
+			   }
+			   else $extra ="";
+               if ($selected == $val["id"]){ $select = "selected='1'";} else { $select="";}
+                $option.="<option value='{$val["id"]}' {$select} >{$val[$feild1]}  {$extra}
+				    {$titr}
+				</option>";
+            }
+            $option.="</select>";
+            //var_dump($option);
+            return  $option;
+        }
        function GetUserName($userid)
 	   {
 	      $db = Database::GetDatabase();

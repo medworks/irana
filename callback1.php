@@ -10,7 +10,6 @@
 	include_once("lib/persiandate.php");
 	include_once("lib/class.phpmailer.php");
 	include_once("classes/functions.php");
-	include_once("./lib/soap/nusoap.php");
 	
 	$db = Database::GetDatabase();
 	
@@ -54,7 +53,14 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 	$confirmButton = "";
 	if($_POST['ResCode']==0)
 	{
-		$client = new nusoap_client('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl',true);
+		try 
+		{ 
+			$client = new SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl');
+		} 
+		catch (Exception $e) 
+		{ 
+			die($e->getMessage()); 
+		} 
 
 		$namespace='http://interfaces.core.sw.bps.com/';
 
@@ -70,47 +76,32 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 	'orderId' => $_POST['SaleOrderId'],
 	'saleOrderId' => $_POST['SaleOrderId'],
 	'saleReferenceId' => $_POST['SaleReferenceId']);
-	$err = $client->getError();
-	if ($err) {
-		//echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
-		echo "<script>alert('خطای {$err}');</script>";
-	//	die();
-	}
-	$result = $client->call('bpVerifyRequest', $parameters, $namespace);
-    
-	if ($client->fault) {
-			//echo '<h2>Fault</h2><pre>';
-			//print_r($result);
-			//echo '</pre>';
-			//die();
-			echo "<script>alert('عدم ارتباط با وب سرویس');</script>";
-		} 
-		else {
 
-			$resultStr = $result;			
-			$err = $client->getError();
-			if ($err) {				
-				echo "<script>alert('خطای {$err}');</script>";
-			} 
-			else 
+	$result = $client->bpVerifyRequest($parameters, $namespace);
+
+	$array = get_object_vars($result);
+	$resultStr = $array["return"];
+
+	$res = explode (',',$resultStr);
+	if(is_array($res))
+	{	
+		$ResCode = $res[0];
+		if ($ResCode == "0") 
+		{			
+			$resultsettle = $client->bpSettleRequest($parameters, $namespace);
+			$array = get_object_vars($result);
+			$resultStr = $array["return"];
+			$ressettle = explode (',',$resultStr);
+			$ResCodesettle = $ressettle[0];
+			$ResCode = $ressettle[0];
+			if ($ResCodesettle == "0" Or $ResCodesettle=="45") 
 			{
-				$res = explode (',',$resultStr["return"]);
-				//$res = $resultStr["return"];
-				$ResCode = $res[0];				
-				if ($ResCode == "0") 
-				{
-					$resultsettle = $client->call('bpSettleRequest', $parameters, $namespace);
-					$ressettle = explode (',',$resultsettle["return"]);	
-					$ResCodesettle = $ressettle[0];
-			        $ResCode = $ressettle[0];
-					if ($ResCodesettle == "0" Or $ResCodesettle=="45") 
-					{
-						$paymentdone=1;
-						$saleorder = $_POST['SaleOrderId'];
-						$row = $db->Select("orders", "*", "selorder = "."'{$saleorder}'");	
-						//$person_id = $_SESSION["person_id"];
-						$person_id = $row["propid"];
-						$order_id = $row["id"];
+				$paymentdone=1;
+				$saleorder = $_POST['SaleOrderId'];
+				$row = $db->Select("orders", "*", "selorder = "."'{$saleorder}'");	
+				//$person_id = $_SESSION["person_id"];
+				$person_id = $row["propid"];
+				$order_id = $row["id"];
 				
 $javas=<<<cd
 		<script type='text/javascript'>
@@ -122,21 +113,19 @@ $javas=<<<cd
 		</script>
 cd;
 
-					}
-					else
-					{
-						$paymentdone=0;
-						$result = $client->call('bpReversalRequest', $parameters, $namespace);
-					}
-				}
-				else 
-				{
-					$paymentdone=0;
-					$result = $client->call('bpReversalRequest', $parameters, $namespace);
-				}
-			}// end Display the result
-		}// end Check for errors
-	
+			}
+			else
+			{
+				$paymentdone=0;
+				$result = $client->bpReversalRequest($parameters, $namespace);
+			}
+		} 
+		else 
+		{
+			$paymentdone=0;
+			$result = $client->bpReversalRequest($parameters, $namespace);			
+		}
+	}
 }
 	
 	
