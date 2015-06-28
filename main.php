@@ -244,7 +244,7 @@ cd;
 	$userName =  GetSettingValue('Bank_User_Name',1);
 	$userPassword =  GetSettingValue('Bank_Pass_Word',1);	
 	//$orderId = rand() * time();//uniqid(rand(), false);	create at top of page
-	$amount = $_POST['orderprice'];				
+	$amount = intval($_POST['orderprice']);
 	$localDate = $todaydate;
 	$localTime = $todaytime;
 	$additionalData = "خدمات اینترنت مخابرات";
