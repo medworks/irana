@@ -132,7 +132,7 @@ cd;
 	$plans = $db->SelectAll("plans","*"," remove = 0 ","ID");	
 	$cbplans = DbSelectOptionTag("cbplans",$plans,"pname","انتخاب طرح",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
 	
-	$vols = $db->SelectAll("vols","*",NULL,"ID");	
+	$vols = $db->SelectAll("vols","*",NULL,"amount ASC");	
 	$cbvols = DbSelectOptionTag2("cbvols",$vols,"amount","desc","انتخاب حجم",NULL,NULL,NULL,"width:220px;height:28px;border-radius:8px;color:#b24824");
 		
 	if (isset($_POST["mark"]) && $_POST["mark"] =="order" )
