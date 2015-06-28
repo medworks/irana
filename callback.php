@@ -83,7 +83,7 @@ if ($_POST['ResCode'] == "17") // when user click on cancel paying payment page
 			//print_r($result);
 			//echo '</pre>';
 			//die();
-			echo "<script>alert('عدم ارتباط با وب سرویس');</script>";
+			echo "<script>alert('اطلاعات ارسالی به سرور ناقص می باشد');</script>";
 		} 
 		else {
 

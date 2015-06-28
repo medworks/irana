@@ -48,9 +48,10 @@ $postform = JSMin::minify($postform);
 echo $postform;
 //===================== rnd number ==================
 	//$stamp = date("ymdhis");  the number is too big
-	$stamp = date("dhis");
+	$rnd = mt_rand ( 1 , 9 );
+	$stamp = date("his");
 	$ip = $_SERVER['REMOTE_ADDR'];
-	$orderId = "$stamp$ip";
+	$orderId = "$rnd$stamp$ip";
 	$orderId = str_replace(".", "", "$orderId");
 //===================================================
 	if (isset($_GET["act"]) && $_GET["act"]=="neword")
@@ -234,6 +235,9 @@ cd;
 	$now = getdate();
 	$now["mon"] =  ($now["mon"]<10)?"0".$now["mon"] :$now["mon"];
 	$todaydate = $now["year"].$now["mon"].$now["mday"];
+	$now["hours"] = ($now["hours"]<10)?"0".$now["hours"] :$now["hours"];
+	$now["minutes"] = ($now["minutes"]<10)?"0".$now["minutes"] :$now["minutes"];
+	$now["seconds"] = ($now["seconds"]<10)?"0".$now["seconds"] :$now["seconds"];
 	$todaytime = $now["hours"].$now["minutes"].$now["seconds"];	
 	
 	$terminalId =  GetSettingValue('Bank_Terminal_ID',1);
@@ -262,22 +266,32 @@ cd;
 		'payerId' => $payerId);
 		
 	// Check for an error
-	/*
+	
 		$err = $client->getError();
 		if ($err) {
-			echo '<h2>خطای در ایجاد سازنده</h2><pre>' . $err . '</pre>';
+			//echo '<h2>خطای در ایجاد سازنده</h2><pre>' . $err . '</pre>';
+			echo "<script>alert('خطای در ایجاد سازنده');</script>";
 			die();
 		}	
-	*/
+	
+	//===================== save info to db -======
+	$datetimer =date('Y-m-d H:i:s'); 
+	$fields = array("`regdate`","`terminalId`","`username`","`userpassword`",                "`orderId`","`amount`","`localDate`","`localTime`",                "`additionalData`","`callBackUrl`","`payerId`");	
+		$values = array("'{$datetimer}'","'{$terminalId}'","'{$userName}'","'{$userPassword}'","'{$orderId}'","'{$amount}'","'{$localDate}'","'{$localTime}'","'{$additionalData}'","'{$callBackUrl}'","'{$payerId}'");
+		
+		$db->InsertQuery('error',$fields,$values);
+	//=============================================
 	$result = $client->call('bpPayRequest', $parameters, $namespace);
 		
 		// Check for a fault
 		if ($client->fault) {
 			//echo '<h2>عدم ارتباط با وب سرویس</h2><pre>';
-			echo "<script>alert('عدم ارتباط با وب سرویس');</script>";
+			echo "<script>alert('اطلاعات ارسالی به سرور ناقص می باشد');</script>";
 			//print_r($result);
+			//echo "<br/>";
+			//print_r($parameters);
 			//echo '</pre>';
-			//die();
+			die();
 		} 
 		else {	
 	// Check for errors
@@ -289,7 +303,7 @@ cd;
 				// Display the error
 				//echo '<h2>خطای </h2><pre>' . $err . '</pre>';
 				echo "<script>alert('خطای {$err}');</script>";
-				//die();
+				die();
 			} 
 			else 
 			{
@@ -404,6 +418,12 @@ $js=<<<cd
 <script type="text/javascript">
 		function submitform()
 		{
+			var orderprice = $('input[name=orderprice]').val();
+		if ( orderprice=='0')
+		{
+			alert('لطفا تا محاسبه قیمت شکیبا باشید و سپس دکمه پرداخت را کلیک نمائید.');				
+			return false;
+		}
 		if( $('#tel').length )      
 		{
 			 if($('#tel').val() == '')
@@ -697,7 +717,7 @@ $html =<<<cd
 			</div>
 			   {$javas} 
 			   <input type='hidden' name='mark' value='order' />
-			   <input type='hidden' name='orderprice' value='' />
+			   <input type='hidden' name='orderprice' value='0' />
 			</form>
 			<!-- /True containers (keep the content inside containers!) -->
     	</div>
