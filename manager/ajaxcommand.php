@@ -111,6 +111,7 @@ if($_GET["contact"]=="reg"){
 	$name    = $_POST['name'];
 	$email   = $_POST['email'];
 	$text = $_POST['comments'];
+	$text = str_replace("\n.", "\n..", $text);
     $subject = "contact";
 	$message = $text;
 
